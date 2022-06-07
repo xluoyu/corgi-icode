@@ -1,11 +1,18 @@
+@import './vars.css';
+
 html,
 body,
 #app {
   height: 100%;
   margin: 0;
   padding: 0;
+  color: var(--theme-color)
 }
 
-html.dark {
-  background: #121212;
+
+.noBorder{
+  border: none;
+}
+.noBorder .el-input__wrapper{
+  box-shadow: none !important;
 }

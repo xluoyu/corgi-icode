@@ -1,5 +1,19 @@
 <template>
-  <main class="font-sans px-4 py-10 text-center gray-700">
+  <el-config-provider :locale="useLocale">
     <router-view />
-  </main>
+  </el-config-provider>
 </template>
+
+<script lang='ts' setup>
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import en from 'element-plus/lib/locale/lang/en'
+import { ILocal, locale } from '@/composables'
+
+const localeMap = {
+  [ILocal.CN]: zhCn,
+  [ILocal.EN]: en,
+}
+
+const useLocale = computed(() => localeMap[locale.value])
+</script>

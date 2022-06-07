@@ -3,11 +3,13 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Pages from 'vite-plugin-pages'
+// import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import WindiCSS from 'vite-plugin-windicss'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 export default defineConfig({
   resolve: {
@@ -21,7 +23,7 @@ export default defineConfig({
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
-    Pages(),
+    // Pages(),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
@@ -31,14 +33,29 @@ export default defineConfig({
         'vue-router',
         '@vueuse/core',
       ],
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        // 自动导入图标组件
+        IconsResolver({
+          prefix: 'Icon',
+        }),
+        ElementPlusResolver(),
+      ],
       dts: true,
     }),
 
     // https://github.com/antfu/vite-plugin-components
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        IconsResolver({
+          enabledCollections: ['ep'],
+        }),
+        ElementPlusResolver(),
+      ],
       dts: true,
+    }),
+
+    Icons({
+      autoInstall: true,
     }),
 
     WindiCSS(),

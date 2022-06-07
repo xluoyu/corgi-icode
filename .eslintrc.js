@@ -11,5 +11,6 @@ module.exports = {
     '@typescript-eslint/brace-style': 0,
     '@typescript-eslint/ban-types': 0,
     'no-alert': 0,
+    'vue/component-tags-order': 0,
   },
 }
