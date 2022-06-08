@@ -1,5 +1,5 @@
 export default {
-  title: 'Input',
+  title: 'input',
   type: 'input',
   form: [
     {

@@ -1,11 +1,9 @@
 export const isDark = useDark()
 export const toggleDark = useToggle(isDark)
 
-export enum ILocal {
-  CN = 'zh-CN',
-  EN = 'en-US',
+export enum ILocale {
+  zhCN = 'zh-CN',
+  enUS = 'en-US',
 }
-export const locale = useLocalStorage<ILocal>('locale', ILocal.CN)
-export const changeLocale = (newLocale: ILocal) => {
-  locale.value = newLocale
-}
+
+export const locale = useLocalStorage<ILocale>('locale', ILocale.zhCN)

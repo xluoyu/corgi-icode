@@ -8,11 +8,11 @@
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import en from 'element-plus/lib/locale/lang/en'
-import { ILocal, locale } from '@/composables'
+import { ILocale, locale } from '@/composables'
 
 const localeMap = {
-  [ILocal.CN]: zhCn,
-  [ILocal.EN]: en,
+  [ILocale.zhCN]: zhCn,
+  [ILocale.enUS]: en,
 }
 
 const useLocale = computed(() => localeMap[locale.value])
