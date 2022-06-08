@@ -1,4 +1,4 @@
-import Input from './input/data'
+import Input from './input'
 
 export default [
   {

@@ -8,6 +8,6 @@ import i18 from './utils/i18'
 
 const app = createApp(App)
 
-app.use(router)
-app.use(i18)
+app.use(router as any)
+app.use(i18 as any)
 app.mount('#app')

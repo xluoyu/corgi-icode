@@ -1,6 +1,7 @@
 export default {
   title: 'input',
   type: 'input',
+  component: () => import('./input.vue'),
   form: [
     {
       label: '标签文本',
@@ -41,7 +42,7 @@ export default {
     },
     {
       label: 'key值',
-      key: 'key',
+      key: '_key',
       type: 'text',
     },
   ],
