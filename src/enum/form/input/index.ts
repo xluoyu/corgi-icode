@@ -1,18 +1,22 @@
-export default {
+import type { IFormComp } from '../type'
+import Input from './input.vue'
+
+const data: IFormComp = {
   title: 'input',
   type: 'input',
-  component: () => import('./input.vue'),
+  component: markRaw(Input),
   form: [
     {
       label: '标签文本',
       key: 'label',
       type: 'text',
-      default: '输入框',
+      value: '输入框',
     },
     {
       label: '输入框类型',
       key: 'type',
       type: 'select',
+      value: 'text',
       options: [
         {
           label: '文本',
@@ -44,6 +48,9 @@ export default {
       label: 'key值',
       key: '_key',
       type: 'text',
+      value: '',
     },
   ],
 }
+
+export default data

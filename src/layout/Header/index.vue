@@ -4,11 +4,11 @@
       <el-col :span="8" />
       <el-col :span="8" class="text-center">
         <el-button type="primary" text class="text-base">
-          {{ $t('form') }}
+          {{ $t('page.form') }}
         </el-button>
         <el-divider direction="vertical" />
         <el-button type="success" text class="text-base">
-          {{ $t('table') }}
+          {{ $t('page.table') }}
         </el-button>
       </el-col>
       <el-col :span="8" class="flex items-center justify-end">

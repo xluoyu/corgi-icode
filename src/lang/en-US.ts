@@ -2,6 +2,7 @@ export default {
   comps: 'Components',
   templates: 'Templates',
   input: 'Input',
+  select: 'Select',
 
   basic: 'Basic',
 

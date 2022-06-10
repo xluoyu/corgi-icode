@@ -13,7 +13,7 @@ export default function(options: any) {
   const formItemAttrsStr = formItemAttrs.map(attr => formatArrt(attr, options[attr])).join(' ')
 
   const inputAttrs = { 'type': 'type', 'v-model': 'key' }
-  const inputAttrsStr = Object.keys(inputAttrs).map(attr => formatArrt(attr, options[inputAttrs[attr]])).join(' ')
+  const inputAttrsStr = Object.keys(inputAttrs).map(attr => formatArrt(attr, options[inputAttrs[attr as keyof typeof inputAttrs]])).join(' ')
 
   return `<el-form-item ${formItemAttrsStr}>
   <el-input ${inputAttrsStr} />

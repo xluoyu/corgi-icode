@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="label">
-    <el-input :type="type" />
+    <el-input v-model="value" :type="type" />
   </el-form-item>
 </template>
 
@@ -10,4 +10,6 @@ defineProps<{
   type: string
   _key: string
 }>()
+
+const value = ref('')
 </script>

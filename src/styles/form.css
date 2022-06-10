@@ -1,0 +1,15 @@
+.handle-comp{
+  border: 1px dashed #eee;
+}
+
+.handle-comp:hover{
+  border-color: var(--el-color-primary);
+}
+
+.handle-comp:hover .action-area{
+
+}
+.handle-comp.handle-comp--active{
+  border-style: solid;
+  border-color: var(--el-color-primary);
+}

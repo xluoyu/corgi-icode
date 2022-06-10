@@ -1,7 +1,7 @@
 <template>
   <div class="flex-1 h-full">
     <Tools />
-    <el-scrollbar class="overflow-auto !h-[calc(100%-var(--header-h))]">
+    <el-scrollbar class="overflow-auto !h-[calc(100%-2rem)]">
       <Whiteboard />
     </el-scrollbar>
   </div>

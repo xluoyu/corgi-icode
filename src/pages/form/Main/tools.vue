@@ -3,10 +3,10 @@
     <div />
     <el-space>
       <el-link type="primary" :icon="View">
-        预览
+        {{ $t('page.view') }}
       </el-link>
       <el-link type="primary" :icon="ElementPlus">
-        生成代码
+        {{ $t('page.renderCode') }}
       </el-link>
     </el-space>
   </div>
