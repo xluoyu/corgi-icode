@@ -1,15 +1,23 @@
 import type { IFormComp } from '../type'
-import Input from './input.vue'
+import IconoirInputField from '~icons/iconoir/input-field'
 
 const data: IFormComp = {
   title: 'input',
   type: 'input',
-  component: markRaw(Input),
+  key: '',
+  icon: IconoirInputField,
+  component: 'cg-input',
   form: [
+    {
+      label: '绑定key',
+      key: '_key',
+      type: 'input',
+      value: '',
+    },
     {
       label: '标签文本',
       key: 'label',
-      type: 'text',
+      type: 'input',
       value: '输入框',
     },
     {
@@ -43,12 +51,6 @@ const data: IFormComp = {
           value: 'url',
         },
       ],
-    },
-    {
-      label: 'key值',
-      key: '_key',
-      type: 'text',
-      value: '',
     },
   ],
 }

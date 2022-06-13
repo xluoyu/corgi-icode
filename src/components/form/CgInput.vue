@@ -5,11 +5,16 @@
 </template>
 
 <script lang='ts' setup>
-defineProps<{
+const props = defineProps<{
   label: string
   type: string
-  _key: string
+  value?: string
 }>()
 
-const value = ref('')
+const emits = defineEmits(['update'])
+
+const value = ref(props.value)
+watch(value, (val) => {
+  emits('update', val)
+})
 </script>

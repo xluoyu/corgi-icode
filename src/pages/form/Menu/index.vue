@@ -5,11 +5,12 @@
         <el-scrollbar>
           <el-collapse>
             <el-collapse-item v-for="item in FormCompList" :key="item.title" :title="$t('page.' + item.title)" :name="item.title">
-              <draggable :list="item.children" item-key="key" :sort="false" :group="{name: 'dragGroup', pull:'clone', put: false}" :clone="cloneItem">
+              <draggable :list="item.children" item-key="type" :sort="false" :clone="cloneFn" :group="{name: 'dragGroup', pull:'clone', put: false}" class="flex justify-between">
                 <template #item="{ element }">
-                  <el-button :data-type="item.title" class="cursor-pointer">
+                  <div :data-type="item.title" class="cursor-pointer w-[48%] flex justify-start items-center border py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)">
+                    <component :is="element.icon" class="mr-2 text-$el-color-primary" />
                     {{ $t(`comps.${element.title}`) }}
-                  </el-button>
+                  </div>
                 </template>
               </draggable>
             </el-collapse-item>
@@ -25,9 +26,15 @@
 
 <script lang='ts' setup>
 import Draggable from 'vuedraggable'
+import { cloneDeep } from 'lodash'
 import { data as FormCompList } from '@/enum/form'
 
-const cloneItem = (evt) => {
-  return evt
+let uuId = 0
+
+const cloneFn = (item: any) => {
+  const newObj = cloneDeep(item)
+  newObj.key = `${item.type}_${uuId}`
+  uuId++
+  return newObj
 }
 </script>

@@ -10,6 +10,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import WindiCSS from 'vite-plugin-windicss'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 export default defineConfig({
   resolve: {
@@ -19,10 +20,10 @@ export default defineConfig({
     },
   },
   plugins: [
+    vueSetupExtend(),
     Vue({
       reactivityTransform: true,
     }),
-
     // https://github.com/hannoeru/vite-plugin-pages
     // Pages(),
 
@@ -63,7 +64,11 @@ export default defineConfig({
   ],
 
   // https://github.com/vitest-dev/vitest
+  define: {
+    'import.meta.vitest': 'undefined',
+  },
   test: {
     environment: 'jsdom',
+    includeSource: ['src/**/*.{js,ts}'],
   },
 })
