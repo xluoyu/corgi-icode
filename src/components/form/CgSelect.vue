@@ -14,6 +14,7 @@
 <script lang='ts' setup>
 const props = defineProps<{
   label: string
+  _key?: string
   value?: string
   options?: { label: string; value: string | number }[]
 }>()
@@ -22,6 +23,6 @@ const emits = defineEmits(['update'])
 
 const value = ref(props.value)
 watch(value, (val) => {
-  emits('update', val)
+  emits('update', { key: props._key, value: val })
 })
 </script>

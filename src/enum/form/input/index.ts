@@ -52,6 +52,38 @@ const data: IFormComp = {
         },
       ],
     },
+    {
+      label: '是否必填',
+      key: 'required',
+      type: 'switch',
+      value: false,
+    },
+    {
+      label: '校验规则',
+      key: 'validate',
+      type: 'select',
+      value: '',
+      placeholder: '选择预设，或输入正则',
+      tooltip: '请确保在表单配置中开启校验',
+      options: [
+        {
+          label: '无',
+          value: '',
+        },
+        {
+          label: '手机号',
+          value: 'phone',
+        },
+        {
+          label: '邮箱',
+          value: 'email',
+        },
+        {
+          label: '身份证',
+          value: 'idcard',
+        },
+      ],
+    },
   ],
 }
 

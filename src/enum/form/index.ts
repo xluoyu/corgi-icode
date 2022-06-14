@@ -2,6 +2,7 @@ import Input from './input'
 import Select from './select'
 // import Textarea from './textarea'
 import type { IFormList } from './type'
+export * from './validate'
 
 export const data: IFormList = [
   {
@@ -13,7 +14,7 @@ export const data: IFormList = [
   },
 ]
 
-export const formData = [
+export const FormOptions = [
   {
     label: '表单宽度',
     key: 'style.width',

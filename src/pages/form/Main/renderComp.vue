@@ -1,5 +1,5 @@
 <template>
-  <component :is="item.component" v-bind="options" />
+  <component :is="item.component" v-bind="options" @update="(data: string | number) => emits('update', data)" />
 </template>
 
 <script lang='ts' setup>
@@ -14,4 +14,6 @@ const options = computed(() => props.item.form.reduce((pre, cur) => {
   return pre
 }, {} as Record<string, any>),
 )
+
+const emits = defineEmits(['update'])
 </script>
