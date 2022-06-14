@@ -35,20 +35,8 @@ const data: IFormComp = {
           value: 'password',
         },
         {
-          label: '文本域',
-          value: 'textarea',
-        },
-        {
-          label: '邮箱',
-          value: 'email',
-        },
-        {
           label: '电话',
           value: 'tel',
-        },
-        {
-          label: '链接',
-          value: 'url',
         },
       ],
     },
