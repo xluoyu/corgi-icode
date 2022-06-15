@@ -48,9 +48,9 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-components
     Components({
       resolvers: [
-        IconsResolver({
-          enabledCollections: ['ep'],
-        }),
+        // IconsResolver({
+        //   enabledCollections: ['ep'],
+        // }),
         ElementPlusResolver(),
       ],
       dts: true,

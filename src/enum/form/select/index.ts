@@ -5,8 +5,15 @@ export default {
   type: 'select',
   key: '',
   icon: OcticonMultiSelect16,
+  value: '',
   component: 'cg-select',
   form: [
+    {
+      label: '绑定key',
+      key: '_key',
+      type: 'input',
+      value: '选择框',
+    },
     {
       label: '标签文本',
       key: 'label',

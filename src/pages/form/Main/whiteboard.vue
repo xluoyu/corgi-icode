@@ -60,8 +60,6 @@ const formAttrs = computed(() => {
        */
       if (key === 'validate' && value) {
         pre.rules = getFormValidateRules.value
-
-        console.log(pre.rules)
       }
       pre[key] = value
     }

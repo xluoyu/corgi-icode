@@ -45,7 +45,6 @@ export function createFormGroup() {
    * @param param0
    */
   const updateWidgetSimulateValue = ({ key, value }: { key: string; value: any }) => {
-    console.log(key, value)
     widgetList.value.find(e => e.key === key)!.value = value
   }
 
