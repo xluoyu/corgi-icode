@@ -1,3 +1,5 @@
+import type CompConfig from './CompConfig'
+
 export type IFormList = Array<{
   title: string
   children: Array<IFormComp>
@@ -10,6 +12,7 @@ export interface IFormComp {
   key: string
   component: any
   form: any[]
+  value?: any
   // Array<{
   //   label: string
   //   key: string
@@ -17,4 +20,11 @@ export interface IFormComp {
   //   value?: any
   //   options?: Array<any>
   // }>
+}
+
+export interface IFormItemOptions {
+  label: string
+  key: string
+  type: keyof typeof CompConfig
+  value: string | number | boolean | null
 }

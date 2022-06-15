@@ -16,7 +16,7 @@ export default {
     {
       label: '选项',
       key: 'options',
-      type: 'array',
+      type: 'selectOptions',
       value: [
         { label: '选项一', value: 1 },
         { label: '选项二', value: 2 },

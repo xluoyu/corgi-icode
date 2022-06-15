@@ -1,5 +1,5 @@
 <template>
-  <component :is="item.component" :key="options._key" v-bind="options" @update="(data: string | number) => emits('update', data)" />
+  <component :is="item.component" v-bind="options" @update="(data: string | number) => emits('update', data)" />
 </template>
 
 <script lang='ts' setup>

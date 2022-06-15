@@ -7,6 +7,7 @@ const data: IFormComp = {
   key: '',
   icon: IconoirInputField,
   component: 'cg-input',
+  value: '',
   form: [
     {
       label: '绑定key',
@@ -23,22 +24,8 @@ const data: IFormComp = {
     {
       label: '输入框类型',
       key: 'type',
-      type: 'select',
+      type: 'iputTypeSelect',
       value: 'text',
-      options: [
-        {
-          label: '文本',
-          value: 'text',
-        },
-        {
-          label: '密码',
-          value: 'password',
-        },
-        {
-          label: '电话',
-          value: 'tel',
-        },
-      ],
     },
     {
       label: '是否必填',
@@ -49,28 +36,8 @@ const data: IFormComp = {
     {
       label: '校验规则',
       key: 'validate',
-      type: 'select',
+      type: 'validateSelect',
       value: '',
-      placeholder: '选择预设，或输入正则',
-      tooltip: '请确保在表单配置中开启校验',
-      options: [
-        {
-          label: '无',
-          value: '',
-        },
-        {
-          label: '手机号',
-          value: 'phone',
-        },
-        {
-          label: '邮箱',
-          value: 'email',
-        },
-        {
-          label: '身份证',
-          value: 'idcard',
-        },
-      ],
     },
   ],
 }

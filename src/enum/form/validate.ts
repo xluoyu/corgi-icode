@@ -10,7 +10,7 @@ export function validateFn(key: string, _rule: RegExp) {
       return callback(new Error(`Please input the ${key}`))
     }
     if (!_rule.test(value)) {
-      callback(new Error('Please input digits'))
+      callback(new Error(`Please input the correct ${key}`))
     } else {
       callback()
     }

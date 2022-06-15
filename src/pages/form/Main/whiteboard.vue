@@ -4,7 +4,7 @@
       <draggable :list="list" item-key="key" group="dragGroup" class="w-full h-full">
         <template #item="{ element, index }">
           <HandleComp :item="element" :index="index" :form-group="formGroup">
-            <RenderComp :item="element" @update="updateData" />
+            <RenderComp :item="element" @update="(data) => updateWidgetSimulateValue({key: element.key, value: data.value})" />
           </HandleComp>
         </template>
       </draggable>
@@ -22,12 +22,7 @@ import { validateFn, validates } from '@/enum/form'
 
 const formGroup = inject(ProvideFormGroup)!
 
-const list = toRef(formGroup, 'widgetList')
-const formData = reactive(formGroup.formDataComp)
-const updateData = ({ key, value }: { key: string; value: string|number }) => {
-  formData[key] = value
-}
-
+const { widgetList: list, formSimulateData: formData, updateWidgetSimulateValue } = formGroup
 /**
  * 生成表单的校验规则
  */
@@ -45,9 +40,9 @@ const getFormValidateRules = computed(() => {
 
     validate = Object.keys(validates).includes(validate) ? validates[validate as keyof typeof validates] : validate
 
-    // if (validate) {
-    //   pre[key].push({ validator: validateFn(key, validate), trigger })
-    // }
+    if (validate) {
+      pre[key].push({ validator: validateFn(key, validate), trigger })
+    }
 
     return pre
   }, {} as Record<string, any>)

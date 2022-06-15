@@ -4,7 +4,7 @@
       <el-tab-pane :label="$t('page.components')">
         <el-scrollbar>
           <el-collapse>
-            <el-collapse-item v-for="item in FormCompList" :key="item.title" :title="$t('page.' + item.title)" :name="item.title">
+            <el-collapse-item v-for="item in compList" :key="item.title" :title="$t('page.' + item.title)" :name="item.title">
               <draggable :list="item.children" item-key="type" :sort="false" :clone="cloneFn" :group="{name: 'dragGroup', pull:'clone', put: false}" class="flex justify-between">
                 <template #item="{ element }">
                   <div :data-type="item.title" class="cursor-pointer w-[48%] flex justify-start items-center border py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)">
@@ -27,15 +27,15 @@
 <script lang='ts' setup>
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash'
-import { data as FormCompList } from '@/enum/form'
-
+import { GetCompList } from '@/enum/form'
+const compList = GetCompList()
 let uuId = 0
 
 const cloneFn = (item: any) => {
   const newObj = cloneDeep(item)
   const key = `${item.type}_${uuId}`
   newObj.key = key
-  newObj.form.find(e => e.key === '_key').value = key
+  newObj.form.find((e: any) => e.key === '_key').value = key
   uuId++
   return newObj
 }

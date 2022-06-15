@@ -35,6 +35,7 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     IEpMoon: typeof import('~icons/ep/moon')['default']
     IEpSunny: typeof import('~icons/ep/sunny')['default']
+    RenderComp: typeof import('./src/components/RenderComp.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
