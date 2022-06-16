@@ -17,6 +17,7 @@ const renderList = computed(() => {
     return {
       ...CompConfig[item.type],
       ...item,
+      _key: item.key,
     }
   })
 })

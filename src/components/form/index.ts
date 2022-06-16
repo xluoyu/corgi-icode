@@ -2,11 +2,13 @@ import type { App } from 'vue'
 import CgInput from './CgInput.vue'
 import CgSwitch from './CgSwitch.vue'
 import CgSelect from './CgSelect.vue'
+import CgOptions from './CgOptions.vue'
 
 const list = {
   CgInput,
   CgSwitch,
   CgSelect,
+  CgOptions,
 }
 
 export default {

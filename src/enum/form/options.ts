@@ -1,6 +1,6 @@
 import type { IFormItemOptions } from './type'
 
-export const FormOptions: IFormItemOptions[] = [
+export const FormOptions: IFormItemOptions = [
   {
     label: '表单宽度',
     key: 'style.width',

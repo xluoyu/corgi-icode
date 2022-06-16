@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="label" :prop="_key">
-    <el-input v-model="value" :type="type" :placeholder="placeholder" />
+    <el-input v-model="value" :type="type" :placeholder="placeholder" @change="changeValue" />
   </el-form-item>
 </template>
 
@@ -16,7 +16,7 @@ const props = defineProps<{
 const emits = defineEmits(['update'])
 
 const value = ref(props.value)
-watch(value, (val) => {
+const changeValue = (val: string) => {
   emits('update', { key: props._key, value: val })
-})
+}
 </script>

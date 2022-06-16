@@ -12,7 +12,6 @@ export interface IFormComp {
   key: string
   component: any
   form: any[]
-  value?: any
   // Array<{
   //   label: string
   //   key: string

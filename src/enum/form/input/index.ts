@@ -7,11 +7,16 @@ const data: IFormComp = {
   key: '',
   icon: IconoirInputField,
   component: 'cg-input',
-  value: '',
   form: [
     {
       label: '绑定key',
       key: '_key',
+      type: 'input',
+      value: '',
+    },
+    {
+      label: '默认值',
+      key: 'value',
       type: 'input',
       value: '',
     },
@@ -28,7 +33,13 @@ const data: IFormComp = {
       value: 'text',
     },
     {
-      label: '是否必填',
+      label: '占位内容',
+      key: 'placeholder',
+      type: 'input',
+      value: '请输入内容',
+    },
+    {
+      label: '必填',
       key: 'required',
       type: 'switch',
       value: false,

@@ -32,20 +32,23 @@ export function createFormGroup() {
   /**
    * 模拟生成 表单的数据
    */
-  const formSimulateData = computed(() => {
+  const getFormSimulateData = () => {
     return widgetList.value.reduce((pre, item) => {
       const key = item.form.find(e => e.key === '_key').value
-      pre[key] = item.value || ''
+      const value = item.form.find(e => e.key === 'value').value
+      pre[key] = value || ''
       return pre
     }, {} as Record<string, any>)
-  })
+  }
+  const formSimulateData = ref(getFormSimulateData())
+  watch(() => widgetList.value.length, getFormSimulateData)
 
   /**
    * 更新组件的模拟value
    * @param param0
    */
-  const updateWidgetSimulateValue = ({ key, value }: { key: string; value: any }) => {
-    widgetList.value.find(e => e.key === key)!.value = value
+  const updateWidgetSimulateValue = ({ value }: { key: string; value: any }) => {
+    curActionWidget.value!.form.find(e => e.key === 'value').value = value
   }
 
   /**
@@ -57,8 +60,11 @@ export function createFormGroup() {
     formOptions.value[index].value = value
   }
 
-  const updateActionWidgetOptions = ({ value }: { key: string; value: any }, index: number) => {
+  const updateActionWidgetOptions = ({ key, value }: { key: string; value: any }, index: number) => {
     curActionWidget.value!.form[index].value = value
+    if (key === '_key' || key === 'value') {
+      formSimulateData.value = getFormSimulateData()
+    }
   }
 
   return {

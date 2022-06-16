@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     CgInput: typeof import('./src/components/form/CgInput.vue')['default']
+    CgOptions: typeof import('./src/components/form/CgOptions.vue')['default']
     CgSelect: typeof import('./src/components/form/CgSelect.vue')['default']
     CgSwitch: typeof import('./src/components/form/CgSwitch.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
@@ -31,6 +32,8 @@ declare module '@vue/runtime-core' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSpace: typeof import('element-plus/es')['ElSpace']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
