@@ -35,7 +35,7 @@ const cloneFn = (item: any) => {
   const newObj = cloneDeep(item)
   const key = `${item.type}_${uuId}`
   newObj.key = key
-  newObj.form.find((e: any) => e.key === '_key').value = key
+  newObj.form._key.value = key
   uuId++
   return newObj
 }

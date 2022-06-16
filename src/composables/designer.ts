@@ -6,7 +6,7 @@ export function createFormGroup() {
   /**
    * 当前的form配置
    */
-  const formOptions = ref(FormOptions)
+  const formOptions = reactive(FormOptions)
   /**
    * 白板上的组件集合
    */
@@ -34,21 +34,24 @@ export function createFormGroup() {
    */
   const getFormSimulateData = () => {
     return widgetList.value.reduce((pre, item) => {
-      const key = item.form.find(e => e.key === '_key').value
-      const value = item.form.find(e => e.key === 'value').value
+      const key = item.form._key.value as string
+      const value = item.form.value.value
       pre[key] = value || ''
       return pre
     }, {} as Record<string, any>)
   }
   const formSimulateData = ref(getFormSimulateData())
-  watch(() => widgetList.value.length, getFormSimulateData)
+  watch(() => widgetList.value.length, () => {
+    formSimulateData.value = getFormSimulateData()
+  })
 
   /**
    * 更新组件的模拟value
    * @param param0
    */
-  const updateWidgetSimulateValue = ({ value }: { key: string; value: any }) => {
-    curActionWidget.value!.form.find(e => e.key === 'value').value = value
+  const updateWidgetSimulateValue = ({ key, value }: { key: string; value: any }) => {
+    console.log(key, value)
+    formSimulateData.value[key] = value
   }
 
   /**
@@ -56,14 +59,16 @@ export function createFormGroup() {
    * @param param0
    * @param index
    */
-  const updateFormOptions = ({ value }: { key: string; value: any }, index: number) => {
-    formOptions.value[index].value = value
+  const updateFormOptions = ({ key, value }: { key: string; value: any }) => {
+    formOptions[key].value = value
   }
 
-  const updateActionWidgetOptions = ({ key, value }: { key: string; value: any }, index: number) => {
-    curActionWidget.value!.form[index].value = value
+  const updateActionWidgetOptions = ({ key, value }: { key: string; value: any }) => {
+    curActionWidget.value!.form[key].value = value
     if (key === '_key' || key === 'value') {
-      formSimulateData.value = getFormSimulateData()
+      nextTick(() => {
+        formSimulateData.value = getFormSimulateData()
+      })
     }
   }
 

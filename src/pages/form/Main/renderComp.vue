@@ -9,8 +9,8 @@ const props = defineProps<{
   item: IFormComp
 }>()
 
-const options = computed(() => props.item.form.reduce((pre, cur) => {
-  pre[cur.key] = cur.value
+const options = computed(() => Object.keys(props.item.form).reduce((pre, key) => {
+  pre[key] = props.item.form[key].value
   return pre
 }, {} as Record<string, any>),
 )

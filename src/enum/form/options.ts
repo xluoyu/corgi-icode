@@ -1,40 +1,34 @@
 import type { IFormItemOptions } from './type'
 
-export const FormOptions: IFormItemOptions = [
-  {
+export const FormOptions: IFormItemOptions = {
+  'style.width': {
     label: '表单宽度',
-    key: 'style.width',
     type: 'input',
     value: 'auto',
   },
-  {
+  'inline': {
     label: '行内模式',
-    key: 'inline',
     type: 'switch',
     value: false,
   },
-  {
+  'label-width': {
     label: '标签宽度',
-    key: 'label-width',
     type: 'input',
     value: 'auto',
   },
-  {
+  'label-position': {
     label: '标签位置',
-    key: 'label-position',
     type: 'labelPosition',
     value: 'left',
   },
-  {
+  'size': {
     label: '组件大小',
-    key: 'size',
     type: 'formSize',
     value: 'default',
   },
-  {
+  'validate': {
     label: '开启验证',
-    key: 'validate',
     type: 'switch',
     value: false,
   },
-]
+}

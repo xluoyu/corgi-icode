@@ -4,7 +4,7 @@
       <draggable :list="list" item-key="key" group="dragGroup" class="w-full h-full">
         <template #item="{ element, index }">
           <HandleComp :item="element" :index="index" :form-group="formGroup">
-            <RenderComp :item="element" @update="(data) => updateWidgetSimulateValue({key: element.key, value: data.value})" />
+            <RenderComp :item="element" @update="(data) => updateWidgetSimulateValue({key: data.key, value: data.value})" />
           </HandleComp>
         </template>
       </draggable>
@@ -19,6 +19,7 @@ import RenderComp from './renderComp.vue'
 import { ProvideFormGroup } from '@/composables/designer'
 import { mixinValue } from '@/utils'
 import { validateFn, validates } from '@/enum/form'
+import type { withRegExp } from '@/enum/form/type'
 
 const formGroup = inject(ProvideFormGroup)!
 
@@ -28,9 +29,9 @@ const { widgetList: list, formSimulateData: formData, updateWidgetSimulateValue 
  */
 const getFormValidateRules = computed(() => {
   return formGroup.widgetList.value.reduce((pre, item) => {
-    const key = item.form.find(e => e.key === '_key').value
-    let validate = item.form.find(e => e.key === 'validate').value
-    const required = item.form.find(e => e.key === 'required').value
+    const key = item.form._key.value as string
+    let validate: withRegExp = item.form.validate.value
+    const required = item.form.required.value
     const trigger = item.type === 'input' ? 'blur' : 'change'
 
     pre[key] = []
@@ -38,7 +39,7 @@ const getFormValidateRules = computed(() => {
       pre[key].push({ required: true, message: `${key} is required`, trigger })
     }
 
-    validate = Object.keys(validates).includes(validate) ? validates[validate as keyof typeof validates] : validate
+    validate = (Object.keys(validates).includes(validate as string) ? validates[validate as keyof typeof validates] : validate) as RegExp | null
 
     if (validate) {
       pre[key].push({ validator: validateFn(key, validate), trigger })
@@ -49,8 +50,8 @@ const getFormValidateRules = computed(() => {
 })
 
 const formAttrs = computed(() => {
-  return formGroup.formOptions.value.reduce((pre, attrItem) => {
-    const { key, value } = attrItem
+  return Object.keys(formGroup.formOptions).reduce((pre, key) => {
+    const value = formGroup.formOptions[key].value
 
     if (key.includes('.')) {
       mixinValue(key, value, pre)

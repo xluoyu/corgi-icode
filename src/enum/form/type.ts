@@ -11,7 +11,7 @@ export interface IFormComp {
   icon?: any
   key: string
   component: any
-  form: any[]
+  form: IFormItemOptions
   // Array<{
   //   label: string
   //   key: string
@@ -21,9 +21,17 @@ export interface IFormComp {
   // }>
 }
 
-export interface IFormItemOptions {
+export type IFormItemOptions = Record<string, {
+  label: string
+  type: keyof typeof CompConfig
+  value: string | number | boolean | null
+}>
+
+export type IFormItemOptionsArray = Array<{
   label: string
   key: string
   type: keyof typeof CompConfig
   value: string | number | boolean | null
-}
+}>
+
+export type withRegExp = string | number | boolean | RegExp | null
