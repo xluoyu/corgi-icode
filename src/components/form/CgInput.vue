@@ -1,6 +1,11 @@
 <template>
   <el-form-item :label="label" :prop="_key">
-    <el-input v-model="value" :type="type" :placeholder="placeholder" @change="changeValue" />
+    <el-input
+      v-model="value"
+      :type="type"
+      v-bind="$attrs"
+      @change="changeValue"
+    />
   </el-form-item>
 </template>
 
@@ -10,7 +15,6 @@ const props = defineProps<{
   type: string
   value?: string
   _key?: string
-  placeholder?: string
 }>()
 
 const emits = defineEmits(['update'])

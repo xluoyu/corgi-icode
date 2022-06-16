@@ -28,6 +28,8 @@ const { widgetList: list, formSimulateData: formData, updateWidgetSimulateValue 
  * 生成表单的校验规则
  */
 const getFormValidateRules = computed(() => {
+  if (!formGroup.formOptions.validate.value)
+    return []
   return formGroup.widgetList.value.reduce((pre, item) => {
     const key = item.form._key.value as string
     let validate: withRegExp = item.form.validate.value

@@ -33,6 +33,11 @@ const data: IFormComp = {
       type: 'input',
       value: '请输入内容',
     },
+    clearable: {
+      label: '可清空',
+      type: 'switch',
+      value: false,
+    },
     required: {
       label: '必填',
       type: 'switch',
@@ -42,6 +47,21 @@ const data: IFormComp = {
       label: '校验规则',
       type: 'validateSelect',
       value: '',
+    },
+    maxlength: {
+      label: '最大长度',
+      type: 'input',
+      value: '',
+    },
+    minlength: {
+      label: '最小长度',
+      type: 'input',
+      value: '',
+    },
+    showWordLimit: {
+      label: '显示字数限制',
+      type: 'switch',
+      value: false,
     },
   },
 }

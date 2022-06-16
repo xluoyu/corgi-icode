@@ -31,5 +31,30 @@ export default {
         { label: '选项三', value: 3 },
       ],
     },
+    placeholder: {
+      label: '占位内容',
+      type: 'input',
+      value: '请输入内容',
+    },
+    clearable: {
+      label: '可清空',
+      type: 'switch',
+      value: false,
+    },
+    required: {
+      label: '必填',
+      type: 'switch',
+      value: false,
+    },
+    multiple: {
+      label: '多选',
+      type: 'switch',
+      value: false,
+    },
+    filterable: {
+      label: '可搜索',
+      type: 'switch',
+      value: false,
+    },
   },
 }

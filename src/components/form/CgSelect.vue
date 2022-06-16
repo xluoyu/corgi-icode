@@ -1,5 +1,5 @@
 <template>
-  <el-form-item>
+  <el-form-item :prop="_key">
     <template #label>
       <div class="flex items-center">
         {{ label }}
@@ -13,7 +13,10 @@
         </el-tooltip>
       </div>
     </template>
-    <el-select v-model="value" :placeholder="placeholder">
+    <el-select
+      v-model="value"
+      v-bind="$attrs"
+    >
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -32,7 +35,6 @@ const props = defineProps<{
   value?: string
   options?: { label: string; value: string | number }[]
   tooltip?: string
-  placeholder?: string
 }>()
 
 const emits = defineEmits(['update'])

@@ -50,7 +50,6 @@ export function createFormGroup() {
    * @param param0
    */
   const updateWidgetSimulateValue = ({ key, value }: { key: string; value: any }) => {
-    console.log(key, value)
     formSimulateData.value[key] = value
   }
 
