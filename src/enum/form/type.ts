@@ -25,6 +25,7 @@ export type IFormItemOptions = Record<string, {
   label: string
   type: keyof typeof CompConfig
   value: string | number | boolean | null
+  tooltip?: string
 }>
 
 export type IFormItemOptionsArray = Array<{
@@ -32,6 +33,7 @@ export type IFormItemOptionsArray = Array<{
   key: string
   type: keyof typeof CompConfig
   value: string | number | boolean | null
+  tooltip?: string
 }>
 
 export type withRegExp = string | number | boolean | RegExp | null

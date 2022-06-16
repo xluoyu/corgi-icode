@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
     CgOptions: typeof import('./src/components/form/CgOptions.vue')['default']
     CgSelect: typeof import('./src/components/form/CgSelect.vue')['default']
     CgSwitch: typeof import('./src/components/form/CgSwitch.vue')['default']
+    CgTextarea: typeof import('./src/components/form/CgTextarea.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
