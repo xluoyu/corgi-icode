@@ -1,5 +1,5 @@
 <template>
-  <el-form label-width="auto">
+  <el-form label-width="auto" size="small">
     <template v-for="item, i in renderList" :key="item.key">
       <Component :is="'cg-' + item.comp" v-bind="item" @update="(data: any) => emits('update', data, i)" />
     </template>

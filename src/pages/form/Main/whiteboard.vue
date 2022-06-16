@@ -1,7 +1,7 @@
 <template>
   <div class="h-800px m-8 p-4 bg-$theme-bg .dark:bg-dark-300">
     <el-form :model="formData" class="w-full h-full" v-bind="formAttrs">
-      <draggable :list="list" item-key="key" group="dragGroup" class="w-full h-full">
+      <draggable :list="list" item-key="key" group="dragGroup" class="w-full h-full" @add="addEnd">
         <template #item="{ element, index }">
           <HandleComp :item="element" :index="index" :form-group="formGroup">
             <RenderComp :item="element" @update="(data) => updateWidgetSimulateValue({key: data.key, value: data.value})" />
@@ -67,4 +67,8 @@ const formAttrs = computed(() => {
     return pre
   }, {} as Record<string, any>)
 })
+
+const addEnd = (e: any) => {
+  formGroup.changeActiveWidget(e.newIndex)
+}
 </script>

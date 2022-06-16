@@ -1,5 +1,6 @@
 <template>
-  <el-form-item :label="label">
+  <div>
+    <el-form-item :label="label" />
     <el-table :data="value">
       <el-table-column prop="label" label="名称">
         <template #default="{row}">
@@ -22,7 +23,7 @@
     <el-button type="primary" :icon="Plus" class="block mx-auto mt-2" :disabled="disabledAdd" @click="addOption">
       添加
     </el-button>
-  </el-form-item>
+  </div>
 </template>
 
 <script lang='ts' setup>
