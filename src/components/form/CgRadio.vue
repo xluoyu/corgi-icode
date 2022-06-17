@@ -1,17 +1,16 @@
 <template>
-  <el-input
-    v-model="value"
-    :type="type"
-    v-bind="$attrs"
-    @change="changeValue"
-  />
+  <el-radio-group v-model="value" @change="changeValue">
+    <el-radio v-for="item in options" :key="item.value" :label="item.value">
+      {{ item.label }}
+    </el-radio>
+  </el-radio-group>
 </template>
 
 <script lang='ts' setup>
 const props = defineProps<{
-  type: string
-  value?: string
+  value?: string | number
   _key?: string
+  options?: { label: string; value: string | number }[]
 }>()
 
 const emits = defineEmits(['update'])

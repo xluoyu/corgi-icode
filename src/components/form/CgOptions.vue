@@ -1,6 +1,5 @@
 <template>
   <div>
-    <el-form-item :label="label" />
     <el-table :data="value">
       <el-table-column prop="label" label="名称">
         <template #default="{row}">
@@ -29,11 +28,8 @@
 <script lang='ts' setup>
 import { Delete, Plus } from '@element-plus/icons-vue'
 const props = defineProps<{
-  label: string
   value?: Array<any>
   _key?: string
-  activeValue?: string
-  inactiveValue?: string
 }>()
 
 const emits = defineEmits(['update'])

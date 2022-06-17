@@ -13,5 +13,10 @@ export default {
   comps: {
     input: '输入框',
     select: '选择器',
+    textarea: '多行文本',
+    switch: '开关',
+    color: '颜色选择器',
+    radio: '单选框',
+    checkbox: '多选框',
   },
 }

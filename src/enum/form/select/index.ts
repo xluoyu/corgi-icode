@@ -1,6 +1,7 @@
+import type { IFormComp } from '../type'
 import OcticonMultiSelect16 from '~icons/octicon/multi-select-16'
 
-export default {
+const data: IFormComp = {
   title: 'select',
   type: 'select',
   key: '',
@@ -10,7 +11,7 @@ export default {
     _key: {
       label: '绑定key',
       type: 'input',
-      value: '选择框',
+      value: '',
     },
     value: {
       label: '默认值',
@@ -58,3 +59,5 @@ export default {
     },
   },
 }
+
+export default data

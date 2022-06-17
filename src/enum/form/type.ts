@@ -10,21 +10,14 @@ export interface IFormComp {
   type: string
   icon?: any
   key: string
-  component: any
+  component: string
   form: IFormItemOptions
-  // Array<{
-  //   label: string
-  //   key: string
-  //   type: string
-  //   value?: any
-  //   options?: Array<any>
-  // }>
 }
 
 export type IFormItemOptions = Record<string, {
   label: string
   type: keyof typeof CompConfig
-  value: string | number | boolean | null
+  value: any
   tooltip?: string
 }>
 
@@ -32,7 +25,7 @@ export type IFormItemOptionsArray = Array<{
   label: string
   key: string
   type: keyof typeof CompConfig
-  value: string | number | boolean | null
+  value: any
   tooltip?: string
 }>
 

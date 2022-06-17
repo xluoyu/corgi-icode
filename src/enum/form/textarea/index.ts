@@ -1,11 +1,11 @@
 import type { IFormComp } from '../type'
-import IconoirInputField from '~icons/iconoir/input-field'
+import BiTextareaResize from '~icons/bi/textarea-resize'
 
 const data: IFormComp = {
   title: 'textarea',
   type: 'textarea',
   key: '',
-  icon: IconoirInputField,
+  icon: BiTextareaResize,
   component: 'cg-textarea',
   form: {
     _key: {
@@ -21,12 +21,7 @@ const data: IFormComp = {
     label: {
       label: '标签文本',
       type: 'input',
-      value: '输入框',
-    },
-    type: {
-      label: '输入框类型',
-      type: 'iputTypeSelect',
-      value: 'text',
+      value: '多行文本',
     },
     placeholder: {
       label: '占位内容',
@@ -71,8 +66,8 @@ const data: IFormComp = {
     },
     resize: {
       label: '用户控制缩放',
-      type: 'switch',
-      value: true,
+      type: 'resizeSelect',
+      value: 'both',
     },
   },
 }

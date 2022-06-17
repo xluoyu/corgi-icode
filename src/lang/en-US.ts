@@ -13,5 +13,10 @@ export default {
   comps: {
     input: 'Input',
     select: 'Select',
+    textarea: 'Textarea',
+    switch: 'Switch',
+    color: 'Color Picker',
+    radio: 'Radio',
+    checkbox: 'Checkbox',
   },
 }

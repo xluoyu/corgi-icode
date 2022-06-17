@@ -5,9 +5,9 @@
         <el-scrollbar>
           <el-collapse>
             <el-collapse-item v-for="item in compList" :key="item.title" :title="$t('page.' + item.title)" :name="item.title">
-              <draggable :list="item.children" item-key="type" :sort="false" :clone="cloneFn" :group="{name: 'dragGroup', pull:'clone', put: false}" class="flex justify-between">
+              <draggable :list="item.children" item-key="type" :sort="false" :clone="cloneFn" :group="{name: 'dragGroup', pull:'clone', put: false}" class="flex justify-between flex-wrap">
                 <template #item="{ element }">
-                  <div :data-type="item.title" class="cursor-pointer w-[48%] flex justify-start items-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)">
+                  <div :data-type="item.title" class="cursor-pointer w-[48%] mb-3 flex justify-start items-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)">
                     <component :is="element.icon" class="mr-2 text-$el-color-primary" />
                     {{ $t(`comps.${element.title}`) }}
                   </div>

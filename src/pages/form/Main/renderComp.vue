@@ -1,5 +1,7 @@
 <template>
-  <component :is="item.component" :key="options._key" v-bind="options" @update="(data: string | number) => emits('update', data)" />
+  <el-form-item :label="options.label" :prop="options._key">
+    <component :is="item.component" :key="options._key" v-bind="options" @update="(data: string | number) => emits('update', data)" />
+  </el-form-item>
 </template>
 
 <script lang='ts' setup>

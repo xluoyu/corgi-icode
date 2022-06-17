@@ -1,15 +1,9 @@
 <template>
-  <el-input
-    v-model="value"
-    :type="type"
-    v-bind="$attrs"
-    @change="changeValue"
-  />
+  <el-color-picker v-model="value" v-bind="$attrs" @change="changeValue" />
 </template>
 
 <script lang='ts' setup>
 const props = defineProps<{
-  type: string
   value?: string
   _key?: string
 }>()

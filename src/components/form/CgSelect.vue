@@ -1,40 +1,22 @@
 <template>
-  <el-form-item :prop="_key">
-    <template #label>
-      <div class="flex items-center">
-        {{ label }}
-        <el-tooltip
-          v-if="tooltip"
-          :content="tooltip"
-        >
-          <el-icon class="ml-1">
-            <IcBaselineInfo />
-          </el-icon>
-        </el-tooltip>
-      </div>
-    </template>
-    <el-select
-      v-model="value"
-      v-bind="$attrs"
-    >
-      <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-      />
-    </el-select>
-  </el-form-item>
+  <el-select
+    v-model="value"
+    v-bind="$attrs"
+  >
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
 </template>
 
 <script lang='ts' setup>
-import IcBaselineInfo from '~icons/ic/baseline-info'
 const props = defineProps<{
-  label: string
   _key?: string
   value?: string
   options?: { label: string; value: string | number }[]
-  tooltip?: string
 }>()
 
 const emits = defineEmits(['update'])

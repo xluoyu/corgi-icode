@@ -8,6 +8,9 @@ export default {
   switch: {
     comp: 'switch',
   },
+  color: {
+    comp: 'color',
+  },
   labelPosition: {
     comp: 'select',
     options: [
@@ -87,5 +90,26 @@ export default {
   },
   selectOptions: {
     comp: 'options',
+  },
+  resizeSelect: {
+    comp: 'select',
+    options: [
+      {
+        label: '不可改变',
+        value: 'none',
+      },
+      {
+        label: '可改变',
+        value: 'both',
+      },
+      {
+        label: '只能改变宽度',
+        value: 'horizontal',
+      },
+      {
+        label: '只能改变高度',
+        value: 'vertical',
+      },
+    ],
   },
 }

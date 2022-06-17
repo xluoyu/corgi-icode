@@ -7,6 +7,7 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/form',
+      // component: () => import('@/pages/index.vue'),
     },
     {
       path: '/form',

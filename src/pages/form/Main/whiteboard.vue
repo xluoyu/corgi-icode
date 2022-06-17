@@ -19,7 +19,6 @@ import RenderComp from './renderComp.vue'
 import { ProvideFormGroup } from '@/composables/designer'
 import { mixinValue } from '@/utils'
 import { validateFn, validates } from '@/enum/form'
-import type { withRegExp } from '@/enum/form/type'
 
 const formGroup = inject(ProvideFormGroup)!
 
@@ -32,7 +31,7 @@ const getFormValidateRules = computed(() => {
     return []
   return formGroup.widgetList.value.reduce((pre, item) => {
     const key = item.form._key.value as string
-    let validate: withRegExp = item.form.validate.value
+    let validate: string | RegExp | null = item.form.validate?.value
     const required = item.form.required.value
     const trigger = item.type === 'input' ? 'blur' : 'change'
 
@@ -41,7 +40,7 @@ const getFormValidateRules = computed(() => {
       pre[key].push({ required: true, message: `${key} is required`, trigger })
     }
 
-    validate = (Object.keys(validates).includes(validate as string) ? validates[validate as keyof typeof validates] : validate) as RegExp | null
+    validate = (validate && Object.keys(validates).includes(validate as string) ? validates[validate as keyof typeof validates] : validate) as RegExp | null
 
     if (validate) {
       pre[key].push({ validator: validateFn(key, validate), trigger })
