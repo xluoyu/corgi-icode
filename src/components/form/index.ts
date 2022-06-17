@@ -7,6 +7,7 @@ import CgTextarea from './CgTextarea.vue'
 import CgColor from './CgColor.vue'
 import CgRadio from './CgRadio.vue'
 import CgCheckbox from './CgCheckbox.vue'
+import CgText from './CgText.vue'
 
 const list = {
   CgInput,
@@ -17,6 +18,7 @@ const list = {
   CgColor,
   CgRadio,
   CgCheckbox,
+  CgText,
 }
 
 export default {

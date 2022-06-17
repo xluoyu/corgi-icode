@@ -6,6 +6,7 @@ import Switch from './switch'
 import Color from './color'
 import Radio from './radio'
 import Checkbox from './checkbox'
+import Text from './text'
 export * from './validate'
 export * from './options'
 
@@ -21,7 +22,12 @@ export const GetCompList = (): IFormList => {
         Color,
         Radio,
         Checkbox,
+        Text,
       ],
     },
   ]
 }
+
+export const TemplateList = [
+
+]

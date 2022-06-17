@@ -12,6 +12,7 @@ export interface IFormComp {
   key: string
   component: string
   form: IFormItemOptions
+  noForm?: boolean
 }
 
 export type IFormItemOptions = Record<string, {

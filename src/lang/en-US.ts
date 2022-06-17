@@ -18,5 +18,6 @@ export default {
     color: 'Color Picker',
     radio: 'Radio',
     checkbox: 'Checkbox',
+    text: 'Text',
   },
 }

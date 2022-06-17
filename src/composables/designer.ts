@@ -34,6 +34,8 @@ export function createFormGroup() {
    */
   const getFormSimulateData = () => {
     return widgetList.value.reduce((pre, item) => {
+      if (item.noForm)
+        return pre
       const key = item.form._key.value as string
       const value = item.form.value.value
       pre[key] = value || ''

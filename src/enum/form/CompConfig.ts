@@ -112,4 +112,33 @@ export default {
       },
     ],
   },
+  textSizeSelect: {
+    comp: 'select',
+    options: [
+      {
+        label: 'Supplementary text',
+        value: 'extra-small',
+      },
+      {
+        label: 'Body (small)',
+        value: 'small',
+      },
+      {
+        label: 'Body',
+        value: 'base',
+      },
+      {
+        label: 'Small Title',
+        value: 'medium',
+      },
+      {
+        label: 'Title',
+        value: 'large',
+      },
+      {
+        label: 'Main Title',
+        value: 'extra-large',
+      },
+    ],
+  },
 }

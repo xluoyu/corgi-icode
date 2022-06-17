@@ -18,5 +18,6 @@ export default {
     color: '颜色选择器',
     radio: '单选框',
     checkbox: '多选框',
+    text: '文字',
   },
 }

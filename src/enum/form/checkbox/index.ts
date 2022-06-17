@@ -1,11 +1,11 @@
 import type { IFormComp } from '../type'
-import IcOutlineRadioButtonChecked from '~icons/ic/outline-radio-button-checked'
+import IonCheckbox from '~icons/ion/checkbox'
 
 const data: IFormComp = {
   title: 'checkbox',
   type: 'checkbox',
   key: '',
-  icon: IcOutlineRadioButtonChecked,
+  icon: IonCheckbox,
   component: 'cg-checkbox',
   form: {
     _key: {
