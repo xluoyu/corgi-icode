@@ -30,22 +30,25 @@ const getFormValidateRules = computed(() => {
   if (!formGroup.formOptions.validate.value)
     return []
   return formGroup.widgetList.value.reduce((pre, item) => {
+    if (item.noForm)
+      return pre
     const key = item.form._key.value as string
-    let validate: string | RegExp | null = item.form.validate?.value
-    const required = item.form.required.value
     const trigger = item.type === 'input' ? 'blur' : 'change'
 
     pre[key] = []
-    if (required) {
+    if (item.form.required && item.form.required.value) {
       pre[key].push({ required: true, message: `${key} is required`, trigger })
     }
 
-    validate = (validate && Object.keys(validates).includes(validate as string) ? validates[validate as keyof typeof validates] : validate) as RegExp | null
+    if (item.form.validate) {
+      let validate: string | RegExp | null = item.form.validate?.value
 
-    if (validate) {
-      pre[key].push({ validator: validateFn(key, validate), trigger })
+      validate = (validate && Object.keys(validates).includes(validate as string) ? validates[validate as keyof typeof validates] : validate) as RegExp | null
+
+      if (validate) {
+        pre[key].push({ validator: validateFn(key, validate), trigger })
+      }
     }
-
     return pre
   }, {} as Record<string, any>)
 })
