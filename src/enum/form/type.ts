@@ -30,4 +30,13 @@ export type IFormItemOptionsArray = Array<{
   tooltip?: string
 }>
 
-export type withRegExp = string | number | boolean | RegExp | null
+export type ITemplateOptions = {
+  title: string
+  key: string
+  type: 'template'
+  photo?: string
+  formOptions: IFormItemOptions
+  widgetList: Array<IFormComp>
+}
+
+

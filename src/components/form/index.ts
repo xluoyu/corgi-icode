@@ -8,6 +8,8 @@ import CgColor from './CgColor.vue'
 import CgRadio from './CgRadio.vue'
 import CgCheckbox from './CgCheckbox.vue'
 import CgText from './CgText.vue'
+import CgButton from './CgButton.vue'
+import CgDivider from './CgDivider.vue'
 
 const list = {
   CgInput,
@@ -19,6 +21,8 @@ const list = {
   CgRadio,
   CgCheckbox,
   CgText,
+  CgButton,
+  CgDivider
 }
 
 export default {

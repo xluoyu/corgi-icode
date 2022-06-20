@@ -56,7 +56,6 @@ const getFormValidateRules = computed(() => {
 const formAttrs = computed(() => {
   return Object.keys(formGroup.formOptions).reduce((pre, key) => {
     const value = formGroup.formOptions[key].value
-
     if (key.includes('.')) {
       mixinValue(key, value, pre)
     } else {

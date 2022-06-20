@@ -42,10 +42,10 @@ const renderList = computed(() => {
 })
 
 const emits = defineEmits(['update'])
-onBeforeMount(() => {
-  console.time('renderForm')
-})
-onMounted(() => {
-  console.timeEnd('renderForm')
-})
+// onBeforeMount(() => {
+//   console.time('renderForm')
+// })
+// onMounted(() => {
+//   console.timeEnd('renderForm')
+// })
 </script>

@@ -5,8 +5,10 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CgButton: typeof import('./src/components/form/CgButton.vue')['default']
     CgCheckbox: typeof import('./src/components/form/CgCheckbox.vue')['default']
     CgColor: typeof import('./src/components/form/CgColor.vue')['default']
+    CgDivider: typeof import('./src/components/form/CgDivider.vue')['default']
     CgInput: typeof import('./src/components/form/CgInput.vue')['default']
     CgOptions: typeof import('./src/components/form/CgOptions.vue')['default']
     CgRadio: typeof import('./src/components/form/CgRadio.vue')['default']
@@ -35,6 +37,7 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElLink: typeof import('element-plus/es')['ElLink']
     ElOption: typeof import('element-plus/es')['ElOption']
+    ElPopover: typeof import('element-plus/es')['ElPopover']
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRow: typeof import('element-plus/es')['ElRow']

@@ -141,4 +141,33 @@ export default {
       },
     ],
   },
+  buttonType: {
+    comp: 'select',
+    options: [
+      {
+        label: '默认',
+        value: 'default',
+      },
+      {
+        label: '确认',
+        value: 'primary',
+      },
+      {
+        label: '取消',
+        value: 'info',
+      },
+      {
+        label: '警告',
+        value: 'warning',
+      },
+      {
+        label: '危险',
+        value: 'danger',
+      },
+      {
+        label: '成功',
+        value: 'success',
+      },
+    ],
+  }
 }

@@ -19,5 +19,7 @@ export default {
     radio: 'Radio',
     checkbox: 'Checkbox',
     text: 'Text',
+    divider: 'Divider',
+    button: 'Button',
   },
 }

@@ -19,5 +19,7 @@ export default {
     radio: '单选框',
     checkbox: '多选框',
     text: '文字',
+    divider: '分割线',
+    button: '按钮',
   },
 }
