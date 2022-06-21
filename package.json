@@ -13,6 +13,7 @@
     "@vueuse/core": "^8.7.4",
     "element-plus": "^2.2.6",
     "lodash": "^4.17.21",
+    "monaco-editor": "^0.33.0",
     "vue": "^3.2.37",
     "vue-i18n": "^9.1.10",
     "vue-router": "^4.0.16",

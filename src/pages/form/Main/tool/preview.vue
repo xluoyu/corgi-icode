@@ -95,7 +95,7 @@ const updateWidgetSimulateValue = ({ key, value }: { key: string; value: any }) 
   formData.value[key] = value
 }
 
-const openPreview = (options: IFormData) => {
+const open = (options: IFormData) => {
   dialogVisible.value = true
   formOptions.formOptions = options.formOptions
   formOptions.widgetList = options.widgetList
@@ -104,6 +104,6 @@ const openPreview = (options: IFormData) => {
 }
 
 defineExpose({
-  openPreview,
+  open,
 })
 </script>
