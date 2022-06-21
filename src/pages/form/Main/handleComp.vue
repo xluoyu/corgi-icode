@@ -1,6 +1,7 @@
 <template>
   <div :class="cls" @click="activeCurComp">
     <slot />
+    <!-- <div>{{ props.item.form.inline || props.formGroup.formOptions.inline.value }}</div> -->
   </div>
 </template>
 
@@ -21,6 +22,6 @@ const activeCurComp = () => {
 const cls = computed(() => [
   'handle-comp',
   { 'handle-comp--active': props.formGroup.activeWidgetIndex.value === props.index },
-  { 'inline-block': props.item.form.inline || props.formGroup.formOptions.inline.value }
+  { 'inline-block': props.item.form.inline || props.formGroup.formOptions.inline.value },
 ])
 </script>

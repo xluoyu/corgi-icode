@@ -8,7 +8,7 @@ import Checkbox from './checkbox'
 import Text from './text'
 import Divider from './divider'
 import Button from './button'
-import { IFormList } from './type'
+import type { IFormList } from './type'
 
 export const GetCompList = (): IFormList => {
   return [
@@ -24,7 +24,7 @@ export const GetCompList = (): IFormList => {
         Checkbox,
         Text,
         Divider,
-        Button
+        Button,
       ],
     },
   ]

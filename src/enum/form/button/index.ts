@@ -28,7 +28,7 @@ const data: IFormComp = {
       label: '内联',
       type: 'switch',
       value: true,
-    }
+    },
   },
 }
 

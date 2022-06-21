@@ -1,21 +1,21 @@
-import { ITemplateOptions } from "../type"
+import type { ITemplateOptions } from '../type'
 
-const data:ITemplateOptions = {
+const data: ITemplateOptions = {
   title: '基础模板',
   type: 'template',
   key: 'base',
   photo: 'https://ks3-cn-beijing.ksyuncs.com/vform-static/form-samples/t1.png',
   formOptions: {
     'style.width': { label: '表单宽度', type: 'input', value: 'auto' },
-    inline: { label: '行内模式', type: 'switch', value: false },
+    'inline': { label: '行内模式', type: 'switch', value: false },
     'label-width': { label: '标签宽度', type: 'input', value: 'auto' },
     'label-position': {
       label: '标签位置',
       type: 'labelPosition',
       value: 'left',
     },
-    size: { label: '组件大小', type: 'formSize', value: 'default' },
-    validate: { label: '开启验证', type: 'switch', value: false },
+    'size': { label: '组件大小', type: 'formSize', value: 'default' },
+    'validate': { label: '开启验证', type: 'switch', value: false },
   },
   widgetList: [
     {
@@ -142,6 +142,11 @@ const data:ITemplateOptions = {
         type: { label: '按钮类型', type: 'buttonType', value: 'primary' },
         content: { label: '内容', type: 'input', value: '提交' },
         size: { label: '尺寸', type: 'formSize', value: 'default' },
+        inline: {
+          label: '内联',
+          type: 'switch',
+          value: true,
+        },
       },
     },
     {
@@ -154,6 +159,11 @@ const data:ITemplateOptions = {
         type: { label: '按钮类型', type: 'buttonType', value: 'default' },
         content: { label: '内容', type: 'input', value: '取消' },
         size: { label: '尺寸', type: 'formSize', value: 'default' },
+        inline: {
+          label: '内联',
+          type: 'switch',
+          value: true,
+        },
       },
     },
   ],

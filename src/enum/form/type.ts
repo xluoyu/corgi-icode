@@ -30,13 +30,14 @@ export type IFormItemOptionsArray = Array<{
   tooltip?: string
 }>
 
+export interface IFormData{
+  formOptions: IFormItemOptions
+  widgetList: Array<IFormComp>
+}
+
 export type ITemplateOptions = {
   title: string
   key: string
   type: 'template'
   photo?: string
-  formOptions: IFormItemOptions
-  widgetList: Array<IFormComp>
-}
-
-
+} & IFormData

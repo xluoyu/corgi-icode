@@ -169,5 +169,5 @@ export default {
         value: 'success',
       },
     ],
-  }
+  },
 }

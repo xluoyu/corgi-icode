@@ -9,5 +9,5 @@
 
 <script lang='ts' setup>
 import Whiteboard from './whiteboard.vue'
-import Tools from './tools.vue'
+import Tools from './tool/index.vue'
 </script>

@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
-import { FormOptions } from '@/enum/form'
-import type { IFormComp } from '@/enum/form/type'
 import { cloneDeep } from 'lodash'
+import { FormOptions } from '@/enum/form'
+import type { IFormComp, IFormData } from '@/enum/form/type'
 
 export function createFormGroup() {
   /**
@@ -74,10 +74,10 @@ export function createFormGroup() {
     }
   }
 
-  const returnFormData = () => {
+  const returnFormData = (): IFormData => {
     return {
       formOptions: cloneDeep(formOptions),
-      widgetList: cloneDeep(widgetList.value)
+      widgetList: cloneDeep(widgetList.value),
     }
   }
 

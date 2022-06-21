@@ -10,15 +10,18 @@
       </el-link>
     </el-space>
   </div>
+  <Preview ref="previewDialog" />
 </template>
 
 <script lang='ts' setup>
-import { ProvideFormGroup } from '@/composables/designer';
 import { ElementPlus, View } from '@element-plus/icons-vue'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import Preview from './preview.vue'
+import { ProvideFormGroup } from '@/composables/designer'
 const formGroup = inject(ProvideFormGroup)!
-
+const previewDialog = ref<InstanceType<typeof Preview> | null>(null)
 const view = () => {
   const data = formGroup.returnFormData()
-  console.log(data)
+  previewDialog.value!.openPreview(data)
 }
 </script>
