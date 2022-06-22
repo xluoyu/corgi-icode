@@ -22,6 +22,6 @@ const activeCurComp = () => {
 const cls = computed(() => [
   'handle-comp',
   { 'handle-comp--active': props.formGroup.activeWidgetIndex.value === props.index },
-  { 'inline-block': props.item.form.inline || props.formGroup.formOptions.inline.value },
+  { 'inline-block': props.item.form?.inline?.value || props.formGroup.formOptions.inline.value },
 ])
 </script>

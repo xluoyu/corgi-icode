@@ -57,7 +57,7 @@ const formAttrs = computed(() => {
   return Object.keys(formGroup.formOptions).reduce((pre, key) => {
     const value = formGroup.formOptions[key].value
     if (key.includes('.')) {
-      mixinValue(key, value, pre)
+      pre = mixinValue(key, value, pre)
     } else {
       /**
        * 表单开启了校验

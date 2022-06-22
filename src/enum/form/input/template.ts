@@ -1,13 +1,11 @@
+import type { IFormItemOptions } from '../type'
 import { formatArrt } from '@/utils/renderTemplate'
 
-export default function(options: any) {
-  const formItemAttrs = ['label', 'prop']
-  const formItemAttrsStr = formItemAttrs.map(attr => formatArrt(attr, options[attr])).join(' ')
-
-  const inputAttrs = { 'type': 'type', 'v-model': 'key' }
-  const inputAttrsStr = Object.keys(inputAttrs).map(attr => formatArrt(attr, options[inputAttrs[attr as keyof typeof inputAttrs]])).join(' ')
+export default function(options: IFormItemOptions) {
+  const attrs = ['type', 'placeholder', 'clearable', 'maxlength', 'minlength', 'showWordLimit']
+  const attrsStr = attrs.map(attr => formatArrt(attr, options[attr].value)).join(' ')
 
   return {
-    template: `<el-input ${inputAttrsStr} />`
+    template: `<el-input v-model="formData.${options._key.value}" ${attrsStr} />`,
   }
 }

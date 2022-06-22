@@ -1,23 +1,31 @@
 import { formatArrt } from '@/utils/renderTemplate'
 
 export default function(options: any) {
-  const formItemAttrs = ['label', 'prop']
-  const formItemAttrsStr = formItemAttrs.map(attr => formatArrt(attr, options[attr])).join(' ')
-
-  const inputAttrs = { 'type': 'type', 'v-model': 'key' }
-  const inputAttrsStr = Object.keys(inputAttrs).map(attr => formatArrt(attr, options[inputAttrs[attr as keyof typeof inputAttrs]])).join(' ')
+  const attrs = ['placeholder', 'clearable', 'multiple', 'filterable']
+  const attrsStr = attrs.map(attr => formatArrt(attr, options[attr].value)).join('\n')
+  const privateVar: Record<string, any> = {}
+  let optionsStr = ''
+  if (options.options.value.length >= 3) {
+    optionsStr = `<el-option
+  v-for="item in ${options}"
+  :key="item.value"
+  :label="item.label"
+  :value="item.value"
+/>`
+    privateVar[`${options._key.value}SelectList`] = options.options.value
+  } else {
+    optionsStr = options.options.value.reduce((pre: string, cur: { value: any; label: any }) => {
+      return `${pre}\n  <el-option :value="${cur.value}" :label="${cur.label}"/>`
+    }, '')
+  }
 
   return {
     template: `<el-select
-  v-model="value"
-  v-bind="$attrs"
+  v-model="formData.${options._key.value}"
+  ${attrsStr}
 >
-  <el-option
-    v-for="item in options"
-    :key="item.value"
-    :label="item.label"
-    :value="item.value"
-  />
+  ${optionsStr}
 </el-select>`,
+    privateVar,
   }
 }
