@@ -10,3 +10,6 @@
   border-style: solid;
   border-color: var(--el-color-primary);
 }
+.handle-comp .el-button{
+  margin-right: 12px
+}

@@ -9,6 +9,7 @@ export default {
     renderCode: '生成代码',
     formConfig: '表单配置',
     componentConfig: '组件配置',
+    saveTemplate: '保存模板',
   },
   comps: {
     input: '输入框',

@@ -19,7 +19,7 @@
       </el-tab-pane>
       <el-tab-pane :label="$t('page.templates')">
         <el-scrollbar>
-          <div v-for="item in TemplateList" :key="item.key" class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)" @click="renderTemplate(item)">
+          <div v-for="item in templateList" :key="item.key" class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)" @click="renderTemplate(item)">
             <el-popover placement="right" width="600px" :offset="20" :show-after="500">
               <template #reference>
                 <div>
@@ -27,7 +27,7 @@
                   {{ item.title }}
                 </div>
               </template>
-              <img :src="item.photo" alt="">
+              <img :src="item.photo" alt="" class="mx-auto">
             </el-popover>
           </div>
         </el-scrollbar>
@@ -39,9 +39,10 @@
 <script lang='ts' setup>
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash'
-import { GetCompList, TemplateList } from '@/enum/form'
+import { GetCompList } from '@/enum/form'
 import type { ITemplateOptions } from '@/enum/form/type'
 import { ProvideFormGroup } from '@/composables/designer'
+import { templateList } from '@/composables/template'
 // import { ElMessageBox } from 'element-plus';
 const compList = GetCompList()
 let uuId = 0

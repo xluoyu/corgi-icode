@@ -9,6 +9,7 @@ export default {
     renderCode: 'Generate Code',
     formConfig: 'Form Config',
     componentConfig: 'Component Config',
+    saveTemplate: 'Save Template',
   },
   comps: {
     input: 'Input',
