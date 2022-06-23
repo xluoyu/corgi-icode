@@ -4,7 +4,7 @@ export const FormOptions: IFormItemOptions = {
   'style.width': {
     label: '表单宽度',
     type: 'input',
-    value: 'auto',
+    value: '',
   },
   'inline': {
     label: '行内模式',

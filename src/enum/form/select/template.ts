@@ -15,7 +15,7 @@ export default function(options: any) {
     privateVar[`${options._key.value}SelectList`] = JSON.stringify(options.options.value)
   } else {
     optionsStr = options.options.value.reduce((pre: string, cur: { value: any; label: any }) => {
-      return `${pre}<el-option :value="${cur.value}" :label="${cur.label}"/>`
+      return `${pre}<el-option :value="${cur.value}" label="${cur.label}"/>`
     }, '')
   }
 

@@ -19,12 +19,12 @@
       </el-tab-pane>
       <el-tab-pane :label="$t('page.templates')">
         <el-scrollbar>
-          <div v-for="item in TemplateList" :key="item.key" @click="renderTemplate(item)" class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)">
+          <div v-for="item in TemplateList" :key="item.key" class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)" @click="renderTemplate(item)">
             <el-popover placement="right" width="600px" :offset="20" :show-after="500">
               <template #reference>
                 <div>
                   <img :src="item.photo" alt="" class="object-cover max-h-200px mx-auto">
-                    {{ item.title }}
+                  {{ item.title }}
                 </div>
               </template>
               <img :src="item.photo" alt="">
@@ -40,8 +40,8 @@
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash'
 import { GetCompList, TemplateList } from '@/enum/form'
-import { ITemplateOptions } from '@/enum/form/type';
-import { ProvideFormGroup } from '@/composables/designer';
+import type { ITemplateOptions } from '@/enum/form/type'
+import { ProvideFormGroup } from '@/composables/designer'
 // import { ElMessageBox } from 'element-plus';
 const compList = GetCompList()
 let uuId = 0
@@ -60,12 +60,12 @@ const cloneFn = (item: any) => {
   return newObj
 }
 
-const renderTemplate = (item:ITemplateOptions) => {
+const renderTemplate = (item: ITemplateOptions) => {
   ElMessageBox.confirm(
     `是否使用${item.title}替换当前配置?`,
   ).then(() => {
-    Object.keys(item.formOptions).forEach(key => {
-      formGroup.updateFormOptions({key, value: item.formOptions[key].value})
+    Object.keys(item.formOptions).forEach((key) => {
+      formGroup.updateFormOptions({ key, value: item.formOptions[key].value })
     })
     formGroup.widgetList.value = item.widgetList
   }).catch(() => {})
