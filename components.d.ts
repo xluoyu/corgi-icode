@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
     CgCheckbox: typeof import('./src/components/form/CgCheckbox.vue')['default']
     CgColor: typeof import('./src/components/form/CgColor.vue')['default']
     CgDivider: typeof import('./src/components/form/CgDivider.vue')['default']
+    CgGrid: typeof import('./src/components/form/CgGrid.vue')['default']
     CgInput: typeof import('./src/components/form/CgInput.vue')['default']
     CgOptions: typeof import('./src/components/form/CgOptions.vue')['default']
     CgRadio: typeof import('./src/components/form/CgRadio.vue')['default']

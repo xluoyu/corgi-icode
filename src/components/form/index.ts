@@ -10,6 +10,7 @@ import CgCheckbox from './CgCheckbox.vue'
 import CgText from './CgText.vue'
 import CgButton from './CgButton.vue'
 import CgDivider from './CgDivider.vue'
+import CgGrid from './CgGrid.vue'
 
 const list = {
   CgInput,
@@ -22,7 +23,8 @@ const list = {
   CgCheckbox,
   CgText,
   CgButton,
-  CgDivider
+  CgDivider,
+  CgGrid,
 }
 
 export default {

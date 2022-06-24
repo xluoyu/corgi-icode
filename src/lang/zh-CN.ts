@@ -10,6 +10,7 @@ export default {
     formConfig: '表单配置',
     componentConfig: '组件配置',
     saveTemplate: '保存模板',
+    layout: '布局',
   },
   comps: {
     input: '输入框',
@@ -22,5 +23,6 @@ export default {
     text: '文字',
     divider: '分割线',
     button: '按钮',
+    grid: '栅格',
   },
 }

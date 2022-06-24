@@ -10,6 +10,7 @@ export default {
     formConfig: 'Form Config',
     componentConfig: 'Component Config',
     saveTemplate: 'Save Template',
+    layout: 'Layout',
   },
   comps: {
     input: 'Input',
@@ -22,5 +23,6 @@ export default {
     text: 'Text',
     divider: 'Divider',
     button: 'Button',
+    grid: 'Grid',
   },
 }

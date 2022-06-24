@@ -8,10 +8,17 @@ import Checkbox from './checkbox'
 import Text from './text'
 import Divider from './divider'
 import Button from './button'
+import Grid from './grid'
 import type { IFormList } from './type'
 
 export const GetCompList = (): IFormList => {
   return [
+    {
+      title: 'layout',
+      children: [
+        Grid,
+      ],
+    },
     {
       title: 'basic',
       children: [

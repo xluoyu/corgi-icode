@@ -3,7 +3,7 @@
     <el-tabs tab-position="top" class="h-full">
       <el-tab-pane :label="$t('page.components')">
         <el-scrollbar>
-          <el-collapse>
+          <el-collapse v-model="actionCollapse">
             <el-collapse-item v-for="item in compList" :key="item.title" :title="$t('page.' + item.title)" :name="item.title">
               <draggable :list="item.children" item-key="type" :sort="false" :clone="cloneFn" :group="{name: 'dragGroup', pull:'clone', put: false}" class="flex justify-between flex-wrap">
                 <template #item="{ element }">
@@ -45,6 +45,7 @@ import { ProvideFormGroup } from '@/composables/designer'
 import { templateList } from '@/composables/template'
 // import { ElMessageBox } from 'element-plus';
 const compList = GetCompList()
+const actionCollapse = ref(compList.slice(0, 2).map(e => e.title))
 let uuId = 0
 
 const formGroup = inject(ProvideFormGroup)!
@@ -72,3 +73,9 @@ const renderTemplate = (item: ITemplateOptions) => {
   }).catch(() => {})
 }
 </script>
+
+<style>
+.el-collapse-item__content{
+  padding-bottom: 0;
+}
+</style>
