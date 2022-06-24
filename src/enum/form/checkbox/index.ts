@@ -16,7 +16,7 @@ const data: IFormComp = {
     value: {
       label: '默认值',
       type: 'input',
-      value: '1,2',
+      value: '1, 2',
     },
     label: {
       label: '标签文本',

@@ -1,11 +1,15 @@
 import type { IFormData, IFormItemOptions } from './type'
 import input from './input/template'
 import select from './select/template'
+import button from './button/template'
+import checkbox from './checkbox/template'
 import { validateFn, validates } from './validate'
 import { formatArrt } from '@/utils/renderTemplate'
 export const CodeTemplate: Record<string, (options: IFormItemOptions) => any> = {
   input,
   select,
+  button,
+  checkbox,
 }
 export const renderCode = (formGroup: IFormData) => {
   let hasValidate = false // 是否开启校验
@@ -40,7 +44,6 @@ export const renderCode = (formGroup: IFormData) => {
       return pre
     let itemStr = ''
     const itemStrData = CodeTemplate[type](form)
-    formDataObj[form._key.value] = form.value.value
 
     if (itemStrData.privateVar) {
       Object.assign(widgetVariableList, itemStrData.privateVar)
@@ -49,6 +52,7 @@ export const renderCode = (formGroup: IFormData) => {
     if (cur.noForm) {
       itemStr = `${itemStrData.template}`
     } else {
+      formDataObj[form._key.value] = itemStrData.formatValue ? itemStrData.formatValue(form.value.value) : form.value.value
       itemStr = `<el-form-item label="${form.label.value}"${hasValidate ? ` prop="${form._key.value}"` : ''}>
       ${itemStrData.template}
     </el-form-item>`
@@ -75,7 +79,6 @@ export const renderCode = (formGroup: IFormData) => {
     }
     return pre + itemStr
   }, '')
-
   /**
    * 渲染各个模块的私有变量
    */
@@ -89,7 +92,7 @@ export const renderCode = (formGroup: IFormData) => {
    * 渲染formData
    */
   const formDataStr = `{${Object.keys(formDataObj).reduce((pre, key) => {
-    return `${pre}\n  ${key}: ${formDataObj[key] || '\'\''},`
+    return `${pre}\n  ${key}: ${(typeof formDataObj[key] === 'object' ? JSON.stringify(formDataObj[key]) : formDataObj[key]) || '\'\''},`
   }, '')}\n}`
 
   const validateStr = `\nconst roles = {${Object.keys(validateList).reduce((pre, key) => {
