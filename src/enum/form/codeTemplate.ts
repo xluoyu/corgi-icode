@@ -3,6 +3,7 @@ import input from './input/template'
 import select from './select/template'
 import button from './button/template'
 import checkbox from './checkbox/template'
+import color from './color/template'
 import { validateFn, validates } from './validate'
 import { formatArrt } from '@/utils/renderTemplate'
 export const CodeTemplate: Record<string, (options: IFormItemOptions) => any> = {
@@ -10,6 +11,7 @@ export const CodeTemplate: Record<string, (options: IFormItemOptions) => any> = 
   select,
   button,
   checkbox,
+  color,
 }
 export const renderCode = (formGroup: IFormData) => {
   let hasValidate = false // 是否开启校验
@@ -92,7 +94,7 @@ export const renderCode = (formGroup: IFormData) => {
    * 渲染formData
    */
   const formDataStr = `{${Object.keys(formDataObj).reduce((pre, key) => {
-    return `${pre}\n  ${key}: ${(typeof formDataObj[key] === 'object' ? JSON.stringify(formDataObj[key]) : formDataObj[key]) || '\'\''},`
+    return `${pre}\n  ${key}: ${(typeof formDataObj[key] === 'object' ? JSON.stringify(formDataObj[key]) : `'${formDataObj[key]}'`)},`
   }, '')}\n}`
 
   const validateStr = `\nconst roles = {${Object.keys(validateList).reduce((pre, key) => {
