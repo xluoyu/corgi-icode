@@ -4,6 +4,11 @@ import select from './select/template'
 import button from './button/template'
 import checkbox from './checkbox/template'
 import color from './color/template'
+import divider from './divider/template'
+import radio from './radio/template'
+import _switch from './switch/template'
+import text from './text/template'
+import textarea from './textarea/template'
 import { validateFn, validates } from './validate'
 import { formatArrt } from '@/utils/renderTemplate'
 export const CodeTemplate: Record<string, (options: IFormItemOptions) => any> = {
@@ -12,6 +17,11 @@ export const CodeTemplate: Record<string, (options: IFormItemOptions) => any> = 
   button,
   checkbox,
   color,
+  divider,
+  radio,
+  switch: _switch,
+  text,
+  textarea,
 }
 export const renderCode = (formGroup: IFormData) => {
   let hasValidate = false // 是否开启校验
@@ -23,15 +33,13 @@ export const renderCode = (formGroup: IFormData) => {
       return `:${keys[0]}="{${keys[1]}: '${value}'}"`
     }
     /**
-         * 表单开启了校验
-         */
+     * 表单开启了校验
+     */
     if (key === 'validate' && value) {
       hasValidate = true
       return null
     }
     return formatArrt(key, value)
-    // }
-    // return pre
   }).filter(Boolean).join(' ')
 
   const formDataObj: Record<string, any> = {} // formData的对象

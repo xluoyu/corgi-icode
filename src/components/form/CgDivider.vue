@@ -1,5 +1,7 @@
 <template>
-  <el-divider v-bind="$attrs">{{content}}</el-divider>
+  <el-divider v-bind="$attrs">
+    {{ content }}
+  </el-divider>
 </template>
 
 <script lang='ts' setup>
