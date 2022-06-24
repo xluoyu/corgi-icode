@@ -1,31 +1,8 @@
-import type { InjectionKey, Ref } from 'vue'
+import type { InjectionKey } from 'vue'
 import { cloneDeep } from 'lodash'
 import { FormOptions } from '@/enum/form'
 import type { IFormComp, IFormData } from '@/enum/form/type'
-
-const whiteboardGroupNum = 0
-const whiteboardContent: Record<number, Ref<IFormComp[]>> = {}
-/**
- * 创建组件列表
- *
- */
-function createWidgetList() {
-  const widgetList = ref<IFormComp[]>([])
-
-  whiteboardContent[whiteboardGroupNum] = widgetList
-
-  return {
-    widgetList,
-  }
-}
-
-function handleWidgetList(groupNum: number) {
-  const curWidgetList = whiteboardContent[groupNum]
-
-  return {
-
-  }
-}
+import { findDeepItem } from '@/utils'
 
 export function createFormGroup() {
   /**
@@ -105,6 +82,10 @@ export function createFormGroup() {
     }
   }
 
+  const findChildren = (_key: string) => {
+    return findDeepItem<IFormComp>(widgetList.value, ({ key }) => key === _key)
+  }
+
   return {
     formOptions,
     widgetList,
@@ -116,6 +97,7 @@ export function createFormGroup() {
     updateWidgetSimulateValue,
     updateFormOptions,
     updateActionWidgetOptions,
+    findChildren,
   }
 }
 

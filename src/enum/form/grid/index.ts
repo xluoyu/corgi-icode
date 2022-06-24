@@ -11,6 +11,7 @@ const data: IFormComp = {
   form: {
 
   },
+  children: [],
 }
 
 export default data

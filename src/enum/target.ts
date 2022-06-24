@@ -2,6 +2,7 @@
  * 最终生成的目标
  */
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const target = {
   name: '表单名称',
   key: 'form01',
@@ -39,6 +40,18 @@ const target = {
         { key: 'label', value: '年龄', comp: 'input' },
         { key: '_key', value: 'age', comp: 'input' },
         { key: 'required', value: true, comp: 'switch' },
+      ],
+    },
+    {
+      key: 'grid01',
+      component: 'cg-grid',
+      optinos: [],
+      children: [
+        {
+          key: 'input02',
+          component: 'cg-input',
+          optinos: [],
+        },
       ],
     },
   ],
