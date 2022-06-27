@@ -24,6 +24,7 @@ import type { IFormData } from '@/enum/form/type'
 import { mixinValue } from '@/utils'
 
 const dialogVisible = ref(false)
+provide('showType', 'preview') // 显示状态为预览
 const formOptions = reactive<IFormData>({
   formOptions: {},
   widgetList: [],

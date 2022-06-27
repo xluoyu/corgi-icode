@@ -5,6 +5,10 @@ export default {
   input: {
     comp: 'input',
   },
+  inputNumer: {
+    comp: 'input',
+    type: 'number',
+  },
   switch: {
     comp: 'switch',
   },

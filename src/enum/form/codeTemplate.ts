@@ -1,28 +1,13 @@
 import type { IFormData, IFormItemOptions } from './type'
-import input from './input/template'
-import select from './select/template'
-import button from './button/template'
-import checkbox from './checkbox/template'
-import color from './color/template'
-import divider from './divider/template'
-import radio from './radio/template'
-import _switch from './switch/template'
-import text from './text/template'
-import textarea from './textarea/template'
 import { validateFn, validates } from './validate'
 import { formatArrt } from '@/utils/renderTemplate'
-export const CodeTemplate: Record<string, (options: IFormItemOptions) => any> = {
-  input,
-  select,
-  button,
-  checkbox,
-  color,
-  divider,
-  radio,
-  switch: _switch,
-  text,
-  textarea,
-}
+const templates = import.meta.globEager('./*/template.ts')
+export const CodeTemplate: Record<string, (options: IFormItemOptions) => any> = Object.keys(templates).reduce((res, key) => {
+  const _key = key.match(/\/(\S*)\//)![1]
+  res[_key] = templates[key].default
+  return res
+}, {} as Record<string, any>)
+
 export const renderCode = (formGroup: IFormData) => {
   let hasValidate = false // 是否开启校验
   const validateList: Record<string, any> = {} // 校验列表

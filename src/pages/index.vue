@@ -34,5 +34,10 @@ const options = [
         Go
       </el-button>
     </div>
+
+    <el-row class="min-h-[80px]">
+      <el-col :span="12" class="bg-light-100" />
+      <el-col :span="12" class="bg-red-300" />
+    </el-row>
   </div>
 </template>

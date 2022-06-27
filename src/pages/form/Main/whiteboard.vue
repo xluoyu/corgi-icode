@@ -2,9 +2,9 @@
   <div id="whiteboard" class="h-800px m-8 p-4 bg-$theme-bg .dark:bg-dark-300">
     <el-form :model="formData" class="w-full h-full" v-bind="formAttrs">
       <draggable :list="list" item-key="key" group="dragGroup" class="w-full h-full" @add="addEnd">
-        <template #item="{ element, index }">
-          <HandleComp :item="element" :index="index" :form-group="formGroup">
-            <RenderComp :item="element" @update="(data) => updateWidgetSimulateValue({key: data.key, value: data.value})" />
+        <template #item="{ element }">
+          <HandleComp :item="element">
+            <RenderComp :item="element" />
           </HandleComp>
         </template>
       </draggable>
@@ -21,8 +21,9 @@ import { mixinValue } from '@/utils'
 import { validateFn, validates } from '@/enum/form'
 
 const formGroup = inject(ProvideFormGroup)!
+provide('showType', 'whiteboard') // 显示状态为白板
 
-const { widgetList: list, formSimulateData: formData, updateWidgetSimulateValue } = formGroup
+const { widgetList: list, formSimulateData: formData } = formGroup
 /**
  * 生成表单的校验规则
  */
@@ -71,7 +72,7 @@ const formAttrs = computed(() => {
   }, {} as Record<string, any>)
 })
 
-const addEnd = (e: any) => {
-  formGroup.changeActiveWidget(e.newIndex)
+const addEnd = () => {
+  formGroup.changeActiveWidget(formGroup.curCloneWidgetKey.value)
 }
 </script>

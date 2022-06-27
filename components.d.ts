@@ -7,6 +7,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     CgButton: typeof import('./src/components/form/CgButton.vue')['default']
     CgCheckbox: typeof import('./src/components/form/CgCheckbox.vue')['default']
+    CgCol: typeof import('./src/components/form/CgCol.vue')['default']
     CgColor: typeof import('./src/components/form/CgColor.vue')['default']
     CgDivider: typeof import('./src/components/form/CgDivider.vue')['default']
     CgGrid: typeof import('./src/components/form/CgGrid.vue')['default']
@@ -52,7 +53,6 @@ declare module '@vue/runtime-core' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    RenderComp: typeof import('./src/components/RenderComp.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -1,29 +1,28 @@
 <template>
   <el-row>
-    <draggable :list="children" item-key="key" group="dragGroup" class="w-full min-h-[40px]" @add="addEnd">
-      <template #item="{ element, index }">
-        <el-col :span="24">
-          <HandleComp :item="element" :index="index" :form-group="formGroup">
-            <RenderComp :item="element" @update="(data) => updateWidgetSimulateValue({key: data.key, value: data.value})" />
-          </HandleComp>
-        </el-col>
-      </template>
-    </draggable>
+    <!-- <RenderComp v-for="item in children" :key="item.key" :item="item" /> -->
+    <cg-col v-for="item in children" :key="item.key" :item="item" />
   </el-row>
 </template>
 
 <script lang='ts' setup>
-import Draggable from 'vuedraggable'
-import { ProvideFormGroup } from '@/composables/designer'
-import HandleComp from '@/pages/form/Main/handleComp.vue'
-import RenderComp from '@/pages/form/Main/renderComp.vue'
+import { ProvideFormGroup, addNewWidget } from '@/composables/designer'
+// import HandleComp from '@/pages/form/Main/handleComp.vue'
+// import RenderComp from '@/pages/form/Main/renderComp.vue'
+import { colOptions } from '@/enum/form/grid'
 const props = defineProps<{
   itemKey: string
 }>()
 
 const formGroup = inject(ProvideFormGroup)!
-const { updateWidgetSimulateValue } = formGroup
+const showType = inject('showType')
 
-const { children } = formGroup.findChildren(props.itemKey)!
+const { children } = formGroup.findWidgetItem(props.itemKey)!
+
+onMounted(() => {
+  if (showType === 'whiteboard') {
+    children.push(addNewWidget(colOptions), addNewWidget(colOptions))
+  }
+})
 
 </script>

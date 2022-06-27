@@ -36,6 +36,8 @@ const activeTab = ref('form')
 watch(() => curActionWidget.value?.key, (val) => {
   if (val) {
     activeTab.value = 'comp'
+  } else {
+    activeTab.value = 'form'
   }
 })
 </script>

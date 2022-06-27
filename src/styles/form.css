@@ -1,10 +1,11 @@
 .handle-comp{
   border: 1px dashed var(--el-border-color);
+  padding: 4px;
 }
 
-.handle-comp:hover{
+/* .handle-comp:hover{
   border-color: var(--el-color-primary);
-}
+} */
 
 .handle-comp.handle-comp--active{
   border-style: solid;

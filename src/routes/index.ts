@@ -19,6 +19,10 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: '/index',
+      component: () => import('@/pages/index.vue'),
+    },
   ],
 })
 

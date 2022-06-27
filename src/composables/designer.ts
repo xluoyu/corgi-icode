@@ -2,9 +2,23 @@ import type { InjectionKey } from 'vue'
 import { cloneDeep } from 'lodash'
 import { FormOptions } from '@/enum/form'
 import type { IFormComp, IFormData } from '@/enum/form/type'
-import { findDeepItem } from '@/utils'
+let uuId = 0
+
+export function addNewWidget(item: IFormComp) {
+  const newObj = cloneDeep(item)
+  const key = `${item.type}_${uuId}`
+  newObj.key = key
+  delete newObj.icon
+  if (newObj.form._key) {
+    newObj.form._key.value = key
+  }
+  uuId++
+
+  return newObj
+}
 
 export function createFormGroup() {
+  const curCloneWidgetKey = ref<string>('')
   /**
    * 当前的form配置
    */
@@ -14,21 +28,45 @@ export function createFormGroup() {
    */
   const widgetList = ref<IFormComp[]>([])
   /**
-   * 当前活跃的组件下标
+   * 组件集合的扁平化结构
+   *
+   * Record<IFormComp.key, IFormComp>
    */
-  const activeWidgetIndex = ref<number | null>(null)
-  const changeActiveWidget = (index: number) => {
-    activeWidgetIndex.value = index
+  const widgetListFlat = computed<Record<string, any>>(() => {
+    const res: any = {}
+    function forRun(list: IFormComp[]) {
+      list.forEach((item) => {
+        res[item.key] = item
+        if (item.children) {
+          forRun(item.children)
+        }
+      })
+    }
+    forRun(widgetList.value)
+    return res
+  })
+  /**
+   * 当前活跃的组件key
+   */
+  const activeWidgetKey = ref<string>('')
+  const changeActiveWidget = (key: string) => {
+    if (!key)
+      return
+    activeWidgetKey.value = key
+  }
+
+  const findWidgetItem = (_key: string) => {
+    return widgetListFlat.value[_key]
   }
 
   /**
    * 当前活跃的组件
    */
   const curActionWidget = computed(() => {
-    if (activeWidgetIndex.value === null) {
+    if (activeWidgetKey.value === null) {
       return null
     }
-    return widgetList.value[activeWidgetIndex.value]
+    return widgetListFlat.value[activeWidgetKey.value]
   })
 
   /**
@@ -82,22 +120,19 @@ export function createFormGroup() {
     }
   }
 
-  const findChildren = (_key: string) => {
-    return findDeepItem<IFormComp>(widgetList.value, ({ key }) => key === _key)
-  }
-
   return {
     formOptions,
     widgetList,
     formSimulateData,
-    activeWidgetIndex,
+    activeWidgetKey,
     curActionWidget,
+    curCloneWidgetKey,
     returnFormData,
     changeActiveWidget,
     updateWidgetSimulateValue,
     updateFormOptions,
     updateActionWidgetOptions,
-    findChildren,
+    findWidgetItem,
   }
 }
 

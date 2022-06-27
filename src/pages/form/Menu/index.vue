@@ -38,27 +38,21 @@
 
 <script lang='ts' setup>
 import Draggable from 'vuedraggable'
-import { cloneDeep } from 'lodash'
 import { GetCompList } from '@/enum/form'
 import type { ITemplateOptions } from '@/enum/form/type'
-import { ProvideFormGroup } from '@/composables/designer'
+import { ProvideFormGroup, addNewWidget } from '@/composables/designer'
 import { templateList } from '@/composables/template'
-// import { ElMessageBox } from 'element-plus';
 const compList = GetCompList()
 const actionCollapse = ref(compList.slice(0, 2).map(e => e.title))
-let uuId = 0
 
 const formGroup = inject(ProvideFormGroup)!
 
+/**
+ * 对选中的组件进行拷贝
+ */
 const cloneFn = (item: any) => {
-  const newObj = cloneDeep(item)
-  const key = `${item.type}_${uuId}`
-  newObj.key = key
-  delete newObj.icon
-  if (newObj.form._key) {
-    newObj.form._key.value = key
-  }
-  uuId++
+  const newObj = addNewWidget(item)
+  formGroup.curCloneWidgetKey.value = newObj.key
   return newObj
 }
 

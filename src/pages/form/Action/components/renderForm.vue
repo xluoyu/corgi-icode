@@ -34,7 +34,9 @@ const renderList = computed(() => {
   const res = props.formOptions.map((item) => {
     return {
       ...CompConfig[item.type],
-      ...item,
+      label: item.label,
+      tooltip: item.tooltip,
+      value: item.value,
       _key: item.key,
     }
   })
