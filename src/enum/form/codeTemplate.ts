@@ -1,8 +1,8 @@
-import type { IFormData, IFormItemOptions } from './type'
+import type { IFormComp, IFormData, IFormItemOptions } from './type'
 import { validateFn, validates } from './validate'
 import { formatArrt } from '@/utils/renderTemplate'
 const templates = import.meta.globEager('./*/template.ts')
-export const CodeTemplate: Record<string, (options: IFormItemOptions) => any> = Object.keys(templates).reduce((res, key) => {
+export const CodeTemplate: Record<string, (options: IFormItemOptions, item: IFormComp) => any> = Object.keys(templates).reduce((res, key) => {
   const _key = key.match(/\/(\S*)\//)![1]
   res[_key] = templates[key].default
   return res
@@ -38,16 +38,18 @@ export const renderCode = (formGroup: IFormData) => {
     if (!CodeTemplate[type])
       return pre
     let itemStr = ''
-    const itemStrData = CodeTemplate[type](form)
+    const itemStrData = CodeTemplate[type](form, cur)
 
     if (itemStrData.privateVar) {
       Object.assign(widgetVariableList, itemStrData.privateVar)
+    }
+    if (itemStrData.formData) {
+      Object.assign(formDataObj, itemStrData.formData || {})
     }
 
     if (cur.noForm) {
       itemStr = `${itemStrData.template}`
     } else {
-      formDataObj[form._key.value] = itemStrData.formatValue ? itemStrData.formatValue(form.value.value) : form.value.value
       itemStr = `<el-form-item label="${form.label.value}"${hasValidate ? ` prop="${form._key.value}"` : ''}>
       ${itemStrData.template}
     </el-form-item>`

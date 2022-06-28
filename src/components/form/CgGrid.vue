@@ -1,15 +1,12 @@
 <template>
   <el-row>
-    <!-- <RenderComp v-for="item in children" :key="item.key" :item="item" /> -->
     <cg-col v-for="item in children" :key="item.key" :item="item" />
   </el-row>
 </template>
 
 <script lang='ts' setup>
 import { ProvideFormGroup, addNewWidget } from '@/composables/designer'
-// import HandleComp from '@/pages/form/Main/handleComp.vue'
-// import RenderComp from '@/pages/form/Main/renderComp.vue'
-import { colOptions } from '@/enum/form/grid'
+import colOptions from '@/enum/form/col'
 const props = defineProps<{
   itemKey: string
 }>()

@@ -35,8 +35,12 @@ const options = computed(() => Object.keys(props.item.form).reduce((pre, key) =>
   return pre
 }, {} as Record<string, any>))
 
-const cls = computed(() => [
-  'handle-comp',
-  { 'handle-comp--active': formGroup.curActionWidget.value?.key === props.item.key },
-])
+const cls = computed(() => {
+  return showType === 'preview'
+    ? ''
+    : [
+        'handle-comp',
+        { 'handle-comp--active': formGroup.curActionWidget.value?.key === props.item.key },
+      ]
+})
 </script>

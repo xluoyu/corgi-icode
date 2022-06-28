@@ -20,14 +20,17 @@ export default function(options: any) {
   }
 
   return {
+    formData: {
+      [options._key.value]: options.value.value.split(','),
+    },
     template: `<el-checkbox-group
         v-model="formData.${options._key.value}"
       >
         ${optionsStr}
       </el-checkbox-group>`,
     privateVar,
-    formatValue: (value: string) => {
-      return value.split(',')
-    },
+    // formatValue: (value: string) => {
+    //   return value.split(',')
+    // },
   }
 }
