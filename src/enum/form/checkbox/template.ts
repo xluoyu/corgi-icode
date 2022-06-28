@@ -29,8 +29,5 @@ export default function(options: any) {
         ${optionsStr}
       </el-checkbox-group>`,
     privateVar,
-    // formatValue: (value: string) => {
-    //   return value.split(',')
-    // },
   }
 }

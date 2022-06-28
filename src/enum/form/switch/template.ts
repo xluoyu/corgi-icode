@@ -5,6 +5,9 @@ export default function(options: any) {
   const attrsStr = attrs.map(attr => formatArrt(attr, options[attr].value)).filter(Boolean).join('\n')
 
   return {
+    formData: {
+      [options._key.value]: options.value.value,
+    },
     template: `<el-switch
         v-model="formData.${options._key.value}"
         ${attrsStr}

@@ -20,6 +20,9 @@ export default function(options: any) {
   }
 
   return {
+    formData: {
+      [options._key.value]: options.value.value,
+    },
     template: `<el-radio-group
         v-model="formData.${options._key.value}"
       >
