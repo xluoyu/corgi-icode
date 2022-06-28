@@ -1,11 +1,16 @@
 <template>
   <div :class="cls" @click.capture="activeCurComp">
     <slot />
-    <!-- <div>{{ props.item.form.inline || props.formGroup.formOptions.inline.value }}</div> -->
+    <div>
+      <div class="moveArea text-xs inline-flex px-2 py-1 items-center bg-[#a0cfff]">
+        <RiDragMove2Fill />{{ $t(`comps.${item.title}`) }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang='ts' setup>
+import RiDragMove2Fill from '~icons/ri/drag-move-2-fill'
 import { ProvideFormGroup } from '@/composables/designer'
 import type { IFormComp } from '@/enum/form/type'
 
