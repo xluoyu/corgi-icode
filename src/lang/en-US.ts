@@ -11,6 +11,7 @@ export default {
     componentConfig: 'Component Config',
     saveTemplate: 'Save Template',
     layout: 'Layout',
+    tree: 'Tree',
   },
   comps: {
     input: 'Input',

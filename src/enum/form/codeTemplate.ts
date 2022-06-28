@@ -2,7 +2,7 @@ import type { IFormComp, IFormData, IFormItemOptions } from './type'
 import { validateFn, validates } from './validate'
 import { formatArrt } from '@/utils/renderTemplate'
 const templates = import.meta.globEager('./*/template.ts')
-export const CodeTemplate: Record<string, (options: IFormItemOptions, item: IFormComp) => any> = Object.keys(templates).reduce((res, key) => {
+export const CodeTemplate: Record<string, (arg0: IFormItemOptions, arg1?: IFormComp, arg2?: any) => any> = Object.keys(templates).reduce((res, key) => {
   const _key = key.match(/\/(\S*)\//)![1]
   res[_key] = templates[key].default
   return res
@@ -38,7 +38,7 @@ export const renderCode = (formGroup: IFormData) => {
     if (!CodeTemplate[type])
       return pre
     let itemStr = ''
-    const itemStrData = CodeTemplate[type](form, cur)
+    const itemStrData = CodeTemplate[type](form, cur, { hasValidate })
 
     if (itemStrData.privateVar) {
       Object.assign(widgetVariableList, itemStrData.privateVar)

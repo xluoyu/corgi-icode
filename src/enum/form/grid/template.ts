@@ -2,9 +2,9 @@ import type { IFormComp, IFormItemOptions } from '../type'
 import { CodeTemplate } from '../codeTemplate'
 import { formatArrt } from '@/utils/renderTemplate'
 
-export default function(options: IFormItemOptions, widget: IFormComp) {
+export default function(formOptions: IFormItemOptions, widget: IFormComp, options: any) {
   const attrs = ['gutter']
-  const attrsStr = attrs.map(attr => formatArrt(attr, options[attr].value)).filter(Boolean).join(' ')
+  const attrsStr = attrs.map(attr => formatArrt(attr, formOptions[attr].value)).filter(Boolean).join(' ')
 
   const privateVar: Record<string, any> = {}
   const formData = {}
@@ -15,7 +15,7 @@ export default function(options: IFormItemOptions, widget: IFormComp) {
       if (!CodeTemplate[type])
         return null
 
-      const itemStrData = CodeTemplate[type](form, child)
+      const itemStrData = CodeTemplate[type](form, child, options)
 
       Object.assign(privateVar, itemStrData.privateVar || {})
       if (itemStrData.formData) {

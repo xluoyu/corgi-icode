@@ -11,6 +11,7 @@ export default {
     componentConfig: '组件配置',
     saveTemplate: '保存模板',
     layout: '布局',
+    tree: '结构树',
   },
   comps: {
     input: '输入框',
