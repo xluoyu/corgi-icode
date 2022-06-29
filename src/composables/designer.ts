@@ -32,8 +32,8 @@ export function createFormGroup() {
    *
    * Record<IFormComp.key, IFormComp>
    */
-  const widgetListFlat = computed<Record<string, any>>(() => {
-    const res: any = {}
+  const widgetListFlat = computed<Record<string, IFormComp>>(() => {
+    const res: Record<string, IFormComp> = {}
     function forRun(list: IFormComp[]) {
       list.forEach((item) => {
         res[item.key] = item

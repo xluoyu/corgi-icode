@@ -1,7 +1,7 @@
 <template>
   <div id="whiteboard" class="h-800px m-8 p-4 bg-$theme-bg .dark:bg-dark-300">
     <el-form :model="formData" class="w-full h-full" v-bind="formAttrs">
-      <draggable :list="list" item-key="key" group="dragGroup" class="w-full h-full" @add="addEnd">
+      <draggable :list="list" handle=".handleArea" item-key="key" group="dragGroup" class="w-full h-full" @add="addEnd">
         <template #item="{ element }">
           <HandleComp :item="element">
             <RenderComp :item="element" />

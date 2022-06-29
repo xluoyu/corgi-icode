@@ -3,7 +3,7 @@
     <template v-if="showType === 'preview'">
       <RenderComp v-for="_item in item.children" :key="_item.key" :item="_item" />
     </template>
-    <draggable v-else :list="item.children" item-key="key" group="dragGroup" class="w-full min-h-[40px]">
+    <draggable v-else :list="item.children" item-key="key" group="dragGroup" class="w-full min-h-[40px]" @add="addEnd">
       <template #item="{ element }">
         <HandleComp :item="element">
           <RenderComp :item="element" />
@@ -43,4 +43,11 @@ const cls = computed(() => {
         { 'handle-comp--active': formGroup.curActionWidget.value?.key === props.item.key },
       ]
 })
+
+const addEnd = () => {
+  props.item.children?.forEach((child) => {
+    child.parent = props.item.key
+  })
+  formGroup.changeActiveWidget(formGroup.curCloneWidgetKey.value)
+}
 </script>

@@ -14,6 +14,7 @@ export interface IFormComp {
   form: IFormItemOptions
   noForm?: boolean
   children?: IFormComp[]
+  parent?: string
 }
 
 export type IFormItemOptions = Record<string, {

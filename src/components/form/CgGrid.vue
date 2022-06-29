@@ -18,7 +18,10 @@ const { children } = formGroup.findWidgetItem(props.itemKey)!
 
 onMounted(() => {
   if (showType === 'whiteboard') {
-    children.push(addNewWidget(colOptions), addNewWidget(colOptions))
+    children!.push(
+      Object.assign(addNewWidget(colOptions), { parent: props.itemKey }),
+      Object.assign(addNewWidget(colOptions), { parent: props.itemKey }),
+    )
   }
 })
 
