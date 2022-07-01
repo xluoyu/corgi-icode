@@ -12,6 +12,7 @@ export default {
     saveTemplate: 'Save Template',
     layout: 'Layout',
     tree: 'Tree',
+    clear: 'Clear',
   },
   comps: {
     input: 'Input',
@@ -25,5 +26,6 @@ export default {
     divider: 'Divider',
     button: 'Button',
     grid: 'Grid',
+    time: 'Time Picker',
   },
 }

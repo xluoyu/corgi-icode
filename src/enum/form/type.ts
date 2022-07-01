@@ -22,6 +22,7 @@ export type IFormItemOptions = Record<string, {
   type: keyof typeof CompConfig
   value: any
   tooltip?: string
+  isShow?: (options: any) => boolean
 }>
 
 export type IFormItemOptionsArray = Array<{
@@ -42,4 +43,5 @@ export type ITemplateOptions = {
   key: string
   type: 'template'
   photo?: string
+  uuId: number
 } & IFormData

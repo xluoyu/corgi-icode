@@ -49,5 +49,6 @@ const addEnd = () => {
     child.parent = props.item.key
   })
   formGroup.changeActiveWidget(formGroup.curCloneWidgetKey.value)
+  formGroup.addHistory()
 }
 </script>

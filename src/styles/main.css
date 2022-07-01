@@ -17,3 +17,16 @@ body,
 .noBorder .el-input__wrapper{
   box-shadow: none !important;
 }
+
+.el-button.is-text {
+  border-color: transparent;
+  color: var(--el-color-primary);
+  background: 0 0;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.el-button.is-text:focus, .el-button.is-text:hover{
+  background-color: transparent !important;
+  opacity: .8;
+}

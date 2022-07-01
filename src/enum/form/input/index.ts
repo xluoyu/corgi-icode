@@ -25,7 +25,7 @@ const data: IFormComp = {
     },
     type: {
       label: '输入框类型',
-      type: 'iputTypeSelect',
+      type: 'inputTypeSelect',
       value: 'text',
     },
     placeholder: {

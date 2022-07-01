@@ -7,7 +7,7 @@
           {{ $t('page.form') }}
         </el-button>
         <el-divider direction="vertical" />
-        <el-button type="success" text class="text-base">
+        <el-button type="success" text class="text-base" @click="toTable">
           {{ $t('page.table') }}
         </el-button>
       </el-col>
@@ -47,5 +47,9 @@ const { locale: curLocale } = useI18n()
 const handleCommand = (command: ILocale) => {
   locale.value = command
   curLocale.value = command
+}
+
+const toTable = () => {
+  ElMessage.info('暂未开发')
 }
 </script>

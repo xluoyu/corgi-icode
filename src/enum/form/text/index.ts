@@ -9,7 +9,7 @@ const data: IFormComp = {
   component: 'cg-text',
   noForm: true,
   form: {
-    value: {
+    content: {
       label: '内容',
       type: 'input',
       value: '文字',

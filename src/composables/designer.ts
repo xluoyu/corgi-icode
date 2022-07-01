@@ -2,22 +2,32 @@ import type { InjectionKey } from 'vue'
 import { cloneDeep } from 'lodash'
 import { FormOptions } from '@/enum/form'
 import type { IFormComp, IFormData } from '@/enum/form/type'
-let uuId = 0
+const historyMaxStep = 5
+export const uuId = ref(0)
+export const historyWidgetList = ref<IFormComp[][]>([[]])
+
+function addHistoryWidgetList(list: IFormComp[]) {
+  historyWidgetList.value.push(list)
+  if (historyWidgetList.value.length > historyMaxStep) {
+    historyWidgetList.value.shift()
+  }
+}
 
 export function addNewWidget(item: IFormComp) {
   const newObj = cloneDeep(item)
-  const key = `${item.type}_${uuId}`
+  const key = `${item.type}_${uuId.value}`
   newObj.key = key
   delete newObj.icon
   if (newObj.form._key) {
     newObj.form._key.value = key
   }
-  uuId++
+  uuId.value++
 
   return newObj
 }
 
 export function createFormGroup() {
+  uuId.value = 0
   const curCloneWidgetKey = ref<string>('')
   /**
    * 当前的form配置
@@ -120,6 +130,10 @@ export function createFormGroup() {
     }
   }
 
+  const addHistory = () => {
+    addHistoryWidgetList(cloneDeep(widgetList.value))
+  }
+
   return {
     formOptions,
     widgetList,
@@ -133,6 +147,7 @@ export function createFormGroup() {
     updateFormOptions,
     updateActionWidgetOptions,
     findWidgetItem,
+    addHistory,
   }
 }
 

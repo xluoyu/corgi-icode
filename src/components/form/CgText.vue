@@ -5,13 +5,13 @@
       fontSize: `var(--el-font-size-${size})`
     }"
   >
-    {{ value }}
+    {{ content }}
   </div>
 </template>
 
 <script lang='ts' setup>
 defineProps<{
-  value?: string
+  content?: string
   size: string
   block: boolean
 }>()

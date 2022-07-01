@@ -12,6 +12,7 @@ export default {
     saveTemplate: '保存模板',
     layout: '布局',
     tree: '结构树',
+    clear: '清空',
   },
   comps: {
     input: '输入框',
@@ -25,5 +26,6 @@ export default {
     divider: '分割线',
     button: '按钮',
     grid: '栅格',
+    time: '时间选择器',
   },
 }
