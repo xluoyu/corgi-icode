@@ -31,6 +31,11 @@
             </el-dropdown-menu>
           </template>
         </el-dropdown>
+        <a href="https://github.com/xluoyu/corgi-lowcode" target="__blank">
+          <el-icon class="cursor-pointer ml-4" :size="20">
+            <AkarIconsGithubFill />
+          </el-icon>
+        </a>
       </el-col>
     </el-row>
   </el-header>
@@ -40,6 +45,7 @@
 import { useI18n } from 'vue-i18n'
 import OouiLanguage from '~icons/ooui/language'
 import IcBaselineWbSunny from '~icons/ic/baseline-wb-sunny'
+import AkarIconsGithubFill from '~icons/akar-icons/github-fill'
 import BiCloudMoonFill from '~icons/bi/cloud-moon-fill'
 import type { ILocale } from '@/composables'
 import { isDark, locale, toggleDark } from '@/composables'

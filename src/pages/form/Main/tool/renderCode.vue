@@ -14,7 +14,7 @@
         <el-button type="primary" @click="exportFile">
           导出文件
         </el-button>
-        <el-button type="primary" @click="dialogVisible = false">
+        <el-button type="primary" @click="() => {destroyEditor(); dialogVisible = false}">
           关闭
         </el-button>
       </div>
@@ -62,13 +62,13 @@ const init = () => {
   })
 }
 
-const destroyEditor = (deno: any) => {
+const destroyEditor = (deno?: any) => {
   /**
    * 使用原始值调用方法
    */
   editInstance?.dispose()
   copyInstance?.destroy()
-  nextTick(deno)
+  deno && nextTick(deno)
 }
 
 const exportFile = () => {

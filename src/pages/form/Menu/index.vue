@@ -61,6 +61,7 @@
 
 <script lang='ts' setup>
 import Draggable from 'vuedraggable'
+import { cloneDeep } from 'lodash'
 import { GetCompList } from '@/enum/form'
 import type { IFormComp, ITemplateOptions } from '@/enum/form/type'
 import { ProvideFormGroup, addNewWidget, uuId } from '@/composables/designer'
@@ -68,7 +69,6 @@ import { templateList } from '@/composables/template'
 import GgComponents from '~icons/gg/components'
 import GgTemplate from '~icons/gg/template'
 import CodiconListTree from '~icons/codicon/list-tree'
-import { cloneDeep } from 'lodash'
 const compList = GetCompList()
 const actionCollapse = ref(compList.slice(0, 2).map(e => e.title))
 
