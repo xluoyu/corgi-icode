@@ -31,8 +31,8 @@
             </el-dropdown-menu>
           </template>
         </el-dropdown>
-        <a href="https://github.com/xluoyu/corgi-lowcode" target="__blank">
-          <el-icon class="cursor-pointer ml-4" :size="20">
+        <a href="https://github.com/xluoyu/corgi-lowcode" target="__blank" class="cursor-pointer ml-4 leading-0">
+          <el-icon :size="20">
             <AkarIconsGithubFill />
           </el-icon>
         </a>

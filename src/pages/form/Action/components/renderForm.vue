@@ -1,7 +1,7 @@
 <template>
   <el-form label-width="auto" size="small">
     <template v-for="item, i in renderList" :key="item.key">
-      <el-form-item :prop="item._key">
+      <el-form-item v-show="item.isShow" :prop="item._key">
         <template #label>
           <div class="flex items-center">
             {{ item.label }}
@@ -30,24 +30,41 @@ const props = defineProps<{
   formOptions: IFormItemOptionsArray
 }>()
 
-const renderList = computed(() => {
-  const res = props.formOptions.map((item) => {
+const formOptionsData = computed(() => {
+  return props.formOptions.reduce((pre, cur) => {
     return {
+      ...pre,
+      [cur.key]: cur.value,
+    }
+  }, {} as Record<string, any>)
+})
+
+const isShowFormItems = ref<any>([])
+
+watch(formOptionsData, () => {
+  isShowFormItems.value.forEach((item: { obj: { isShow: any }; isShow: (arg0: Record<string, any>) => any }) => {
+    item.obj.isShow = item.isShow(formOptionsData.value)
+  })
+})
+
+const renderList = computed(() => {
+  isShowFormItems.value = []
+  const res = props.formOptions.map((item) => {
+    const obj: any = {
       ...CompConfig[item.type],
       label: item.label,
       tooltip: item.tooltip,
       value: item.value,
       _key: item.key,
+      isShow: item.isShow ? item.isShow!(formOptionsData.value) : true,
     }
+    if (item.isShow) {
+      isShowFormItems.value.push({ obj, isShow: item.isShow })
+    }
+    return obj
   })
   return res
 })
 
 const emits = defineEmits(['update'])
-// onBeforeMount(() => {
-//   console.time('renderForm')
-// })
-// onMounted(() => {
-//   console.timeEnd('renderForm')
-// })
 </script>

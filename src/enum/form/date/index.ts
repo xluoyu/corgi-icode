@@ -2,11 +2,12 @@ import type { IFormComp } from '../type'
 import CilAvTimer from '~icons/cil/av-timer'
 
 const data: IFormComp = {
-  title: 'time',
-  type: 'time',
+  title: 'date',
+  type: 'date',
   key: '',
   icon: CilAvTimer,
-  component: 'cg-time',
+  component: 'cg-text',
+  noForm: true,
   form: {
     _key: {
       label: '绑定key',

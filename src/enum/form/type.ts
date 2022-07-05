@@ -31,6 +31,7 @@ export type IFormItemOptionsArray = Array<{
   type: keyof typeof CompConfig
   value: any
   tooltip?: string
+  isShow?: (options: any) => boolean
 }>
 
 export interface IFormData{

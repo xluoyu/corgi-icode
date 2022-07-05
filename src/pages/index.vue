@@ -6,6 +6,9 @@ const options = [
   { label: '选项2', value: '2' },
   { label: '选项3', value: '3' },
 ]
+
+const value1 = ref('')
+const isRange = ref(false)
 </script>
 
 <template>
@@ -39,5 +42,9 @@ const options = [
       <el-col :span="12" class="bg-light-100" />
       <el-col :span="12" class="bg-red-300" />
     </el-row>
+    <el-button @click="isRange = !isRange">
+      change
+    </el-button>
+    <el-time-picker v-model="value1" :is-range="isRange" placeholder="Arbitrary time" />
   </div>
 </template>
