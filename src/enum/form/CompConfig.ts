@@ -174,4 +174,45 @@ export default {
       },
     ],
   },
+  dateTypeSelect: {
+    comp: 'select',
+    options: [
+      {
+        label: '年',
+        value: 'year',
+      },
+      {
+        label: '月',
+        value: 'month',
+      },
+      {
+        label: '日',
+        value: 'date',
+      },
+      {
+        label: '多个日期',
+        value: 'dates',
+      },
+      {
+        label: '日期时间',
+        value: 'datetime',
+      },
+      {
+        label: '周',
+        value: 'week',
+      },
+      {
+        label: '日期时间范围',
+        value: 'datetimerange',
+      },
+      {
+        label: '日期范围',
+        value: 'daterange',
+      },
+      {
+        label: '月份范围',
+        value: 'monthrange',
+      },
+    ],
+  },
 }

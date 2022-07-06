@@ -6,7 +6,7 @@ const data: IFormComp = {
   type: 'date',
   key: '',
   icon: CilAvTimer,
-  component: 'cg-text',
+  component: 'cg-date',
   noForm: true,
   form: {
     _key: {
@@ -34,10 +34,10 @@ const data: IFormComp = {
       type: 'switch',
       value: true,
     },
-    isRange: {
-      label: '是否范围选择',
-      type: 'switch',
-      value: false,
+    type: {
+      label: '显示类型',
+      type: 'dateTypeSelect',
+      value: 'date',
     },
     placeholder: {
       label: '占位内容',
@@ -56,6 +56,11 @@ const data: IFormComp = {
       type: 'input',
       value: '结束时间',
       isShow: options => options.isRange,
+    },
+    format: {
+      label: '日期格式',
+      type: 'input',
+      value: 'yyyy-MM-dd',
     },
   },
 }

@@ -56,6 +56,21 @@ const data: IFormComp = {
       value: '结束时间',
       isShow: options => options.isRange,
     },
+    arrowControl: {
+      label: '箭头选择',
+      type: 'switch',
+      value: false,
+    },
+    rangeSeparator: {
+      label: '范围分隔符',
+      type: 'input',
+      value: '-',
+    },
+    format: {
+      label: '时间格式',
+      type: 'input',
+      value: 'HH:mm:ss',
+    },
   },
 }
 
