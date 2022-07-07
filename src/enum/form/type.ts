@@ -23,6 +23,7 @@ export type IFormItemOptions = Record<string, {
   value: any
   tooltip?: string
   isShow?: (options: any) => boolean
+  changeCb?: (options: any) => void
 }>
 
 export type IFormItemOptionsArray = Array<{
@@ -32,6 +33,7 @@ export type IFormItemOptionsArray = Array<{
   value: any
   tooltip?: string
   isShow?: (options: any) => boolean
+  changeCb?: (options: any) => void
 }>
 
 export interface IFormData{

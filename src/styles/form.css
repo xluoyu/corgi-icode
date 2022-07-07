@@ -10,7 +10,7 @@
 } */
 
 .handle-comp.handle-comp--active{
-  border-color: var(--el-color-primary);
+  border-color: var(--el-color-primary) !important;
 }
 .handle-comp.handle-comp--active>.handleArea{
   display: flex;

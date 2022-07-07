@@ -7,7 +7,6 @@ const data: IFormComp = {
   key: '',
   icon: CilAvTimer,
   component: 'cg-date',
-  noForm: true,
   form: {
     _key: {
       label: '绑定key',
@@ -22,7 +21,7 @@ const data: IFormComp = {
     label: {
       label: '标签文本',
       type: 'input',
-      value: '时间选择',
+      value: '日期选择',
     },
     editable: {
       label: '可输入',
@@ -43,24 +42,47 @@ const data: IFormComp = {
       label: '占位内容',
       type: 'input',
       value: '请选择时间',
-      isShow: options => !options.isRange,
+      isShow: (options) => {
+        const list = ['year', 'month', 'date', 'dates', 'datetime', 'week']
+        return list.includes(options.type)
+      },
     },
     startPlaceholder: {
-      label: '开始时间占位内容',
+      label: '开始占位内容',
       type: 'input',
       value: '开始时间',
-      isShow: options => options.isRange,
+      isShow: (options) => {
+        const list = ['datetimerange', 'daterange', 'monthrange']
+        return list.includes(options.type)
+      },
     },
     endPlaceholder: {
-      label: '结束时间占位内容',
+      label: '结束占位内容',
       type: 'input',
       value: '结束时间',
-      isShow: options => options.isRange,
+      isShow: (options) => {
+        const list = ['datetimerange', 'daterange', 'monthrange']
+        return list.includes(options.type)
+      },
+    },
+    rangeSeparator: {
+      label: '范围分隔符',
+      type: 'input',
+      value: '-',
+      isShow: (options) => {
+        const list = ['datetimerange', 'daterange', 'monthrange']
+        return list.includes(options.type)
+      },
     },
     format: {
-      label: '日期格式',
+      label: '显示格式',
       type: 'input',
-      value: 'yyyy-MM-dd',
+      value: 'YYYY-MM-DD',
+    },
+    valueFormat: {
+      label: '输出格式',
+      type: 'input',
+      value: 'YYYY-MM-DD',
     },
   },
 }

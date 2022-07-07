@@ -1,6 +1,6 @@
 <template>
   <el-form label-width="auto" size="small">
-    <template v-for="item, i in renderList" :key="item.key">
+    <template v-for="item in renderList" :key="item.key">
       <el-form-item v-show="item.isShow" :prop="item._key">
         <template #label>
           <div class="flex items-center">
@@ -15,7 +15,7 @@
             </el-tooltip>
           </div>
         </template>
-        <Component :is="'cg-' + item.comp" v-bind="item" @update="(data: any) => emits('update', data, i)" />
+        <Component :is="'cg-' + item.comp" v-bind="item" @update="(data: any) => {changeValue(data, item)}" />
       </el-form-item>
     </template>
   </el-form>
@@ -23,12 +23,14 @@
 
 <script lang='ts' setup>
 import CompConfig from '@/enum/form/CompConfig'
-import type { IFormItemOptionsArray } from '@/enum/form/type'
+import type { IFormItemOptions, IFormItemOptionsArray } from '@/enum/form/type'
 import IcBaselineInfo from '~icons/ic/baseline-info'
 
 const props = defineProps<{
   formOptions: IFormItemOptionsArray
+  formData?: IFormItemOptions
 }>()
+const emits = defineEmits(['update'])
 
 const formOptionsData = computed(() => {
   return props.formOptions.reduce((pre, cur) => {
@@ -47,6 +49,12 @@ watch(formOptionsData, () => {
   })
 })
 
+const changeValue = (data: any, item: any) => {
+  console.log(item)
+  item.changeCb && item.changeCb(props.formData)
+  emits('update', data)
+}
+
 const renderList = computed(() => {
   isShowFormItems.value = []
   const res = props.formOptions.map((item) => {
@@ -57,6 +65,7 @@ const renderList = computed(() => {
       value: item.value,
       _key: item.key,
       isShow: item.isShow ? item.isShow!(formOptionsData.value) : true,
+      changeCb: item.changeCb,
     }
     if (item.isShow) {
       isShowFormItems.value.push({ obj, isShow: item.isShow })
@@ -66,5 +75,4 @@ const renderList = computed(() => {
   return res
 })
 
-const emits = defineEmits(['update'])
 </script>

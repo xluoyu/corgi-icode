@@ -20,7 +20,6 @@ declare module '@vue/runtime-core' {
     CgText: typeof import('./src/components/form/CgText.vue')['default']
     CgTextarea: typeof import('./src/components/form/CgTextarea.vue')['default']
     CgTime: typeof import('./src/components/form/CgTime.vue')['default']
-    CgTimeAndDate: typeof import('./src/components/form/CgTimeAndDate.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']

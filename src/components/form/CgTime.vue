@@ -4,7 +4,7 @@
 
 <script lang='ts' setup>
 const props = defineProps<{
-  value?: string | number
+  value?: any
   _key?: string
   isRange: boolean
 }>()
@@ -17,8 +17,8 @@ watch(() => props.isRange, () => {
 
 const emits = defineEmits(['update'])
 
-const value = ref(props.value)
-const changeValue = (val: string) => {
-  emits('update', { key: props._key, value: val })
+const value = ref(props.isRange ? props.value.split(',') : props.value)
+const changeValue = (val: any) => {
+  emits('update', { key: props._key, value: props.isRange ? val.join(',') : val })
 }
 </script>

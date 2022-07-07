@@ -1,5 +1,5 @@
 <template>
-  <el-col v-bind="options" :class="cls" @click.capture="activeCurComp">
+  <el-col v-bind="options" :class="cls" style="border-color: rgb(74,74,74)" @click.capture="activeCurComp">
     <template v-if="showType === 'preview'">
       <RenderComp v-for="_item in item.children" :key="_item.key" :item="_item" />
     </template>

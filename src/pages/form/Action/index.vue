@@ -3,7 +3,7 @@
     <el-tabs v-model="activeTab" tab-position="top" class="h-full">
       <el-tab-pane v-if="curActionWidget" :label="$t('page.componentConfig')" name="comp">
         <keep-alive>
-          <RenderForm :key="curActionWidget.key" :form-options="formOptionsToArray(curActionWidget.form)" @update="updateActionWidgetOptions" />
+          <RenderForm :key="curActionWidget.key" :form-options="formOptionsToArray(curActionWidget.form)" :form-data="curActionWidget.form" @update="updateActionWidgetOptions" />
         </keep-alive>
       </el-tab-pane>
       <el-tab-pane :label="$t('page.formConfig')" name="form">

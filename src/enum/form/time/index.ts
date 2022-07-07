@@ -45,26 +45,22 @@ const data: IFormComp = {
       isShow: options => !options.isRange,
     },
     startPlaceholder: {
-      label: '开始时间占位内容',
+      label: '开始占位内容',
       type: 'input',
       value: '开始时间',
       isShow: options => options.isRange,
     },
     endPlaceholder: {
-      label: '结束时间占位内容',
+      label: '结束占位内容',
       type: 'input',
       value: '结束时间',
       isShow: options => options.isRange,
-    },
-    arrowControl: {
-      label: '箭头选择',
-      type: 'switch',
-      value: false,
     },
     rangeSeparator: {
       label: '范围分隔符',
       type: 'input',
       value: '-',
+      isShow: options => options.isRange,
     },
     format: {
       label: '时间格式',
