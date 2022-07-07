@@ -93,6 +93,6 @@ const removeCurItem = () => {
 const copyClick = () => {
   const index = parentChild.value.indexOf(props.item)
 
-  parentChild.value.splice(index, 0, Object.assign(addNewWidget(colOptions), { parent: props.item.parent }))
+  parentChild.value.splice(index + 1, 0, Object.assign(addNewWidget(colOptions), { parent: props.item.parent }))
 }
 </script>
