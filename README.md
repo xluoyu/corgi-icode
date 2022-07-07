@@ -1,9 +1,10 @@
-## 代码生成器
+<p align="center">
+  <img src="./public/logo.png" width="100" align="center"></img>
 
-- 目标
+  <h2 align="center">Corgi代码生成器</h2>
 
-通过拖拽、配置 方式， 生成可维护的表单、表格、搜索表单等源代码。
-
+  <p align="center">通过拖拽、配置 方式， 生成可维护的表单、表格、搜索表单等源代码。</p>
+</p>
 
 ## 待实现
 - [ √ ] 表单添加校验
