@@ -68,7 +68,7 @@ export const renderCode = (formGroup: IFormData) => {
           let validate: string | RegExp | null = cur.form.validate?.value
           validate = (validate && Object.keys(validates).includes(validate as string) ? validates[validate as keyof typeof validates] : validate) as RegExp | null
           if (validate) {
-            Object.assign(widgetVariableList, { [`${key}Validate`]: validateFn(key, validate) })
+            Object.assign(widgetVariableList, { [`${key}ValidateReg`]: validate, [`${key}Validate`]: `${validateFn(key, validate)}`.replace(/_rule/g, `${key}ValidateReg`) })
             validateList[key].push({ validator: `${key}Validate`, trigger })
           }
         }
@@ -97,6 +97,7 @@ export const renderCode = (formGroup: IFormData) => {
     const validateValue = JSON.stringify(validateList[key]).replaceAll(`"${key}Validate"`, `${key}Validate`)
     return `${pre}\n  ${key}: ${validateValue},`
   }, '')}\n}`
+  console.log(validateList, validateStr)
 
   return `<template>
   <el-form :model="formData" ${formAttrs}${hasValidate ? ' :rules="rules"' : ''}>
@@ -107,7 +108,7 @@ export const renderCode = (formGroup: IFormData) => {
 <script lang='ts' setup>
 const formData = reactive(${formDataStr})
 ${widgetVariableStr}
-${validateList.length ? validateStr : ''}
+${Object.keys(validateList).length ? validateStr : ''}
 </script>
 
 `

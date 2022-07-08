@@ -50,7 +50,6 @@ watch(formOptionsData, () => {
 })
 
 const changeValue = (data: any, item: any) => {
-  console.log(item)
   item.changeCb && item.changeCb(props.formData)
   emits('update', data)
 }

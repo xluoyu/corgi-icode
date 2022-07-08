@@ -5,7 +5,7 @@
     width="60%"
   >
     <el-form :model="formData" class="w-full h-full" v-bind="formAttrs">
-      <RenderComp v-for="item in formOptions.widgetList" :key="item.key" :item="item" @update="(data) => updateWidgetSimulateValue({key: data.key, value: data.value})" />
+      <RenderComp v-for="item in formOptions.widgetList" :key="item.key" :dis-update="true" :item="item" @update="updateWidgetSimulateValue" />
     </el-form>
     <template #footer>
       <div class="text-center">
@@ -93,6 +93,7 @@ const getFormSimulateData = () => {
   }, {} as Record<string, any>)
 }
 const updateWidgetSimulateValue = ({ key, value }: { key: string; value: any }) => {
+  console.log('update!!!')
   formData.value[key] = value
 }
 
