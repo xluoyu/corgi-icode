@@ -10,6 +10,7 @@ export default {
     formConfig: '表单配置',
     componentConfig: '组件配置',
     saveTemplate: '保存模板',
+    saveFile: '保存文件',
     layout: '布局',
     tree: '结构树',
     clear: '清空',

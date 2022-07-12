@@ -10,6 +10,7 @@ export default {
     formConfig: 'Form Config',
     componentConfig: 'Component Config',
     saveTemplate: 'Save Template',
+    saveFile: 'Save File',
     layout: 'Layout',
     tree: 'Tree',
     clear: 'Clear',
