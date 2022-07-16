@@ -1,5 +1,5 @@
 import { TemplateList } from '@/enum/form'
-import { ITemplateOptions } from '@/enum/form/type'
+import type { ITemplateOptions } from '@/enum/form/type'
 
 export const localTemplateList = useLocalStorage<ITemplateOptions[]>('templateList', [])
 

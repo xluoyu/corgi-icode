@@ -8,4 +8,4 @@ export enum ILocale {
 
 export const locale = useLocalStorage<ILocale>('locale', ILocale.zhCN)
 
-export const uuId = ref(0)
+export const useEnv = ref('normal')
