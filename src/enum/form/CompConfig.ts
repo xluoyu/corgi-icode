@@ -15,6 +15,10 @@ export default {
   color: {
     comp: 'color',
   },
+  alphaColor: {
+    comp: 'color',
+    showAlpha: true,
+  },
   labelPosition: {
     comp: 'select',
     options: [

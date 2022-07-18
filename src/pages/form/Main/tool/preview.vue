@@ -18,7 +18,6 @@
 </template>
 
 <script lang='ts' setup>
-import RenderComp from '../renderComp.vue'
 import { validateFn, validates } from '@/enum/form'
 import type { IFormData } from '@/enum/form/type'
 import { mixinValue } from '@/utils'

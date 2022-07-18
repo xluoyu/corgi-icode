@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     CgButton: typeof import('./src/components/form/CgButton.vue')['default']
+    CgCard: typeof import('./src/components/form/CgCard.vue')['default']
     CgCheckbox: typeof import('./src/components/form/CgCheckbox.vue')['default']
     CgCol: typeof import('./src/components/form/CgCol.vue')['default']
     CgColor: typeof import('./src/components/form/CgColor.vue')['default']
@@ -21,13 +22,16 @@ declare module '@vue/runtime-core' {
     CgTextarea: typeof import('./src/components/form/CgTextarea.vue')['default']
     CgTime: typeof import('./src/components/form/CgTime.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
+    DraggableArea: typeof import('./src/components/DraggableArea.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
+    ElCollapseTransition: typeof import('element-plus/es')['ElCollapseTransition']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
@@ -57,6 +61,8 @@ declare module '@vue/runtime-core' {
     ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElTree: typeof import('element-plus/es')['ElTree']
+    HandleComp: typeof import('./src/components/HandleComp.vue')['default']
+    RenderComp: typeof import('./src/components/RenderComp.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

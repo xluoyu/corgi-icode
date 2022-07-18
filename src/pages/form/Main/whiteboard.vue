@@ -4,21 +4,13 @@
       <p v-if="!list.length" class="absolute top-1/2 left-0 right-0 mx-auto text-center">
         请从左侧列表中选择一个组件, 然后用鼠标拖动组件放置于此处.
       </p>
-      <draggable :list="list" handle=".handleArea" item-key="key" group="dragGroup" class="w-full h-full" @add="addEnd">
-        <template #item="{ element }">
-          <HandleComp :item="element">
-            <RenderComp :item="element" />
-          </HandleComp>
-        </template>
-      </draggable>
+      <DraggableArea :list="list" @add="addEnd" />
     </el-form>
   </div>
 </template>
 
 <script lang='ts' setup>
-import Draggable from 'vuedraggable'
-import HandleComp from './handleComp.vue'
-import RenderComp from './renderComp.vue'
+// import Draggable from 'vuedraggable'
 import { ProvideFormGroup } from '@/composables/designer'
 import { mixinValue } from '@/utils'
 import { validateFn, validates } from '@/enum/form'

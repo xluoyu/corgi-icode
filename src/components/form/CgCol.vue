@@ -3,13 +3,7 @@
     <template v-if="showType === 'preview'">
       <RenderComp v-for="_item in item.children" :key="_item.key" :item="_item" />
     </template>
-    <draggable v-else :list="item.children" item-key="key" group="dragGroup" class="w-full min-h-[40px]" @add="addEnd">
-      <template #item="{ element }">
-        <HandleComp :item="element">
-          <RenderComp :item="element" />
-        </HandleComp>
-      </template>
-    </draggable>
+    <DraggableArea :list="item.children" class="min-h-[50px]" @add="addEnd" />
 
     <div class="handleArea !text-base bottom-0 right-0">
       <el-icon @click="sortLeftClick">
@@ -27,10 +21,8 @@
 
 <script lang='ts' setup>
 import { Back, CopyDocument, Delete } from '@element-plus/icons-vue'
-import draggable from 'vuedraggable'
+// import draggable from 'vuedraggable'
 import { ProvideFormGroup, addNewWidget } from '@/composables/designer'
-import HandleComp from '@/pages/form/Main/handleComp.vue'
-import RenderComp from '@/pages/form/Main/renderComp.vue'
 import type { IFormComp } from '@/enum/form/type'
 import colOptions from '@/enum/form/col'
 const props = defineProps<{

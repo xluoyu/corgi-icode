@@ -16,11 +16,6 @@ const props = defineProps<{
 
 const emits = defineEmits(['update'])
 
-// onMounted(() => {
-// const ctx = getCurrentInstance()!
-// console.log(ctx)
-// })
-
 const options = computed(() => Object.keys(props.item.form).reduce((pre, key) => {
   pre[key] = props.item.form[key].value
   return pre
