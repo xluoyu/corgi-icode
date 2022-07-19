@@ -31,6 +31,7 @@ import type { IFormData } from '@/enum/form/type'
 import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution'
 import 'monaco-editor/esm/vs/basic-languages/html/html.contribution'
 import { renderCode } from '@/enum/form'
+import { isDark } from '@/composables/appConfig'
 
 const dialogVisible = ref(false)
 const copyRef = ref<VNodeRef | null>(null)
@@ -46,7 +47,7 @@ const formGroup = reactive<IFormData>({
 const init = () => {
   editInstance = editor.create(editRef.value!, {
     value: beautify.html(renderCode(formGroup), { indent_size: 2 }),
-    theme: 'vs-dark',
+    theme: isDark.value ? 'vs-dark' : 'vs-light',
     language: 'html',
     automaticLayout: true,
     renderLineHighlight: 'all',

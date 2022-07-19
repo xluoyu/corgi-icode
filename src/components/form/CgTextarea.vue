@@ -21,12 +21,8 @@ const changeValue = (val: string) => {
   emits('update', { key: props._key, value: val })
 }
 
-const textareaRef = ref()
-
-const textareaRefWidth = computed(() => {
-  console.log(textareaRef.value?.ref)
-  return `${textareaRef.value?.ref?.parentNode.offsetWidth}px` || '0px'
-})
+const textareaRef = ref<any>(null)
+const textareaRefWidth = computed(() => `${textareaRef.value?.ref.parentNode.offsetWidth}px` || '0px')
 </script>
 
 <style>
