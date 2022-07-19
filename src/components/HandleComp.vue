@@ -1,23 +1,31 @@
 <template>
   <div :class="cls" @click.capture="activeCurComp">
     <slot />
-    <div class="handleArea opacity-80 cursor-move top-0 left-0">
-      <RiDragMove2Fill />{{ $t(`comps.${item.title}`) }}
-    </div>
-    <div class="handleArea !text-base bottom-0 right-0">
-      <el-icon v-if="sortBtn.left" @click="sortLeftClick">
-        <Back />
-      </el-icon>
-      <el-icon v-if="sortBtn.top" @click="sortTopClick">
-        <Top />
-      </el-icon>
-      <el-icon v-if="sortBtn.btm" @click="sortBtmClick">
-        <Bottom />
-      </el-icon>
+    <div class="handleArea bottom-0 right-0 text-light-50">
+      <div>
+        <RiDragMove2Fill />{{ $t(`comps.${item.title}`) }}
+      </div>
+      <div v-if="sortBtn.left" @click="sortLeftClick">
+        <el-icon>
+          <Back />
+        </el-icon>
+      </div>
+      <div v-if="sortBtn.top" @click="sortTopClick">
+        <el-icon>
+          <Top />
+        </el-icon>
+      </div>
+      <div v-if="sortBtn.btm" @click="sortBtmClick">
+        <el-icon>
+          <Bottom />
+        </el-icon>
+      </div>
       <slot name="handle" />
-      <el-icon @click="removeCurItem">
-        <Delete />
-      </el-icon>
+      <div @click="removeCurItem">
+        <el-icon>
+          <Delete />
+        </el-icon>
+      </div>
     </div>
   </div>
 </template>
@@ -112,18 +120,40 @@ const removeCurItem = () => {
 </script>
 
 <style>
+.handle-comp{
+  border: 1px dashed transparent;
+  position: relative;
+}
+.handle-comp .handleArea{
+  display: none;
+}
+.handle-comp.handle-comp--active{
+  border-color: var(--el-color-primary) !important;
+}
+.handle-comp.handle-comp--active>.handleArea{
+  display: flex;
+}
+.handle-comp .el-button{
+  margin-right: 12px
+}
 .handleArea{
   position: absolute;
   z-index: 1;
-  background: #409EFF;
   font-size: 12px;
   padding: 2px 4px;
   display: none;
   align-items: center;
   justify-content: center;
+  height: 24px;
 }
-.handleArea i{
-  margin: 0 5px;
+.handleArea > div{
+  margin-left: 4px;
   cursor: pointer;
+  background: #409EFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  height:100%;
 }
 </style>
