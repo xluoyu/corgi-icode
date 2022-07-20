@@ -3,10 +3,13 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite --port 8080 --open",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "typecheck": "vue-tsc --noEmit",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "commit": "cz"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.6",
@@ -35,7 +38,12 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "@vue/test-utils": "^2.0.2",
     "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
     "jsdom": "^19.0.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "typescript": "^4.7.4",
     "unocss": "^0.38.2",
     "unplugin-auto-import": "^0.7.2",

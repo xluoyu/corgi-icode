@@ -30,7 +30,14 @@ const target = {
       optinos: [
         { key: 'label', value: '职位', comp: 'input' },
         { key: '_key', value: 'job', comp: 'input' },
-        { key: 'optinos', value: [{ label: '前端', value: 'q' }, { label: '后端', value: 'h' }], comp: 'selectOptions' },
+        {
+          key: 'optinos',
+          value: [
+            { label: '前端', value: 'q' },
+            { label: '后端', value: 'h' },
+          ],
+          comp: 'selectOptions',
+        },
       ],
     },
     {

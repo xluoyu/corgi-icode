@@ -1,4 +1,2 @@
 import Base from './template/baseForm'
-export const TemplateList = [
-  Base,
-]
+export const TemplateList = [Base]

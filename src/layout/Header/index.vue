@@ -1,9 +1,11 @@
 <template>
-  <el-header class="h-$header-h bg-$theme-bg border-b border-gray-400 z-10 relative">
+  <el-header
+    class="h-$header-h bg-$theme-bg border-b border-gray-400 z-10 relative"
+  >
     <el-row class="h-full" align="middle">
       <el-col :span="8" class="flex items-center">
         <img src="/logo.png" alt="" class="w-12">
-        <p class="ml-2 ">
+        <p class="ml-2">
           <span class="text-xl font-bold">Corgi</span> 代码生成器
         </p>
       </el-col>
@@ -36,7 +38,11 @@
             </el-dropdown-menu>
           </template>
         </el-dropdown>
-        <a href="https://github.com/xluoyu/corgi-lowcode" target="__blank" class="cursor-pointer ml-4 leading-0">
+        <a
+          href="https://github.com/xluoyu/corgi-lowcode"
+          target="__blank"
+          class="cursor-pointer ml-4 leading-0"
+        >
           <el-icon :size="20">
             <AkarIconsGithubFill />
           </el-icon>
@@ -46,7 +52,7 @@
   </el-header>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
 import OouiLanguage from '~icons/ooui/language'
 import IcBaselineWbSunny from '~icons/ic/baseline-wb-sunny'

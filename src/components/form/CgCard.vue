@@ -1,9 +1,15 @@
 <template>
-  <el-card :style="{'--el-card-bg-color': background, '--el-card-padding': '6px'}">
+  <el-card
+    :style="{ '--el-card-bg-color': background, '--el-card-padding': '6px' }"
+  >
     <template #header>
       <div class="flex justify-between items-center">
         <span class="pl-1">{{ title }}</span>
-        <el-button class="button" text @click="collapseStatus = !collapseStatus">
+        <el-button
+          class="button"
+          text
+          @click="collapseStatus = !collapseStatus"
+        >
           <el-icon>
             <ArrowDown v-if="collapseStatus" />
             <ArrowUp v-else />
@@ -16,11 +22,16 @@
       <DraggableArea :list="children" class="min-h-[60px]" @add="addEnd" />
     </el-collapse-transition>
 
-    <DraggableArea v-if="!collapse" :list="children" class="min-h-[60px]" @add="addEnd" />
+    <DraggableArea
+      v-if="!collapse"
+      :list="children"
+      class="min-h-[60px]"
+      @add="addEnd"
+    />
   </el-card>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { ProvideFormGroup } from '@/composables/designer'
 const props = defineProps<{
@@ -42,11 +53,10 @@ const addEnd = () => {
 }
 
 const collapseStatus = ref(false)
-
 </script>
 
 <style scoped>
-.el-card__header{
+.el-card__header {
   padding-top: 10px;
   padding-bottom: 10px;
 }

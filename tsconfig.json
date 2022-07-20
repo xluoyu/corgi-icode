@@ -20,7 +20,7 @@
       "unplugin-icons/types/vue"
     ],
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["src/*"]
     }
   },
   "exclude": ["dist", "node_modules"]

@@ -5,19 +5,13 @@ const router = useRouter()
 
 <template>
   <div>
-    <p>
-      Hi, {{ props.name }}
-    </p>
+    <p>Hi, {{ props.name }}</p>
     <p text-sm op50>
       <em>Dynamic route!</em>
     </p>
 
     <div>
-      <el-button
-        class="mt-4"
-        type="success"
-        @click="router.back()"
-      >
+      <el-button class="mt-4" type="success" @click="router.back()">
         Back
       </el-button>
     </div>

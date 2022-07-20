@@ -29,12 +29,7 @@ export default defineConfig({
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      imports: [
-        'vue',
-        'vue/macros',
-        'vue-router',
-        '@vueuse/core',
-      ],
+      imports: ['vue', 'vue/macros', 'vue-router', '@vueuse/core'],
       resolvers: [
         // 自动导入图标组件
         IconsResolver({

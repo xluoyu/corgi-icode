@@ -7,6 +7,6 @@
   </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import Header from './Header/index.vue'
 </script>

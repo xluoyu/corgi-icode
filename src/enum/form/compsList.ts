@@ -18,10 +18,7 @@ export const GetCompList = (): IFormList => {
   return [
     {
       title: 'layout',
-      children: [
-        Grid,
-        Card,
-      ],
+      children: [Grid, Card],
     },
     {
       title: 'basic',

@@ -12,11 +12,16 @@ export default function(options: any) {
           :label="item.label"
           :value="item.value"
         />`
-    privateVar[`${options._key.value}RadioList`] = JSON.stringify(options.options.value)
+    privateVar[`${options._key.value}RadioList`] = JSON.stringify(
+      options.options.value,
+    )
   } else {
-    optionsStr = options.options.value.reduce((pre: string, cur: { value: any; label: any }) => {
-      return `${pre}<el-radio :value="${cur.value}" label="${cur.label}"/>`
-    }, '')
+    optionsStr = options.options.value.reduce(
+      (pre: string, cur: { value: any; label: any }) => {
+        return `${pre}<el-radio :value="${cur.value}" label="${cur.label}"/>`
+      },
+      '',
+    )
   }
 
   return {

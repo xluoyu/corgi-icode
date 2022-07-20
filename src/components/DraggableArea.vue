@@ -1,5 +1,12 @@
 <template>
-  <draggable :list="list" handle=".handleArea" item-key="key" group="dragGroup" class="w-full h-full" @add="$emit('addEnd')">
+  <draggable
+    :list="list"
+    handle=".handleArea"
+    item-key="key"
+    group="dragGroup"
+    class="w-full h-full"
+    @add="$emit('addEnd')"
+  >
     <template #item="{ element }">
       <HandleComp :item="element">
         <RenderComp :item="element" />
@@ -8,7 +15,7 @@
   </draggable>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import Draggable from 'vuedraggable'
 import type { IFormComp } from '@/enum/form/type'
 

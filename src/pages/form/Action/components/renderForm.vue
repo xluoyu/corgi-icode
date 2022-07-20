@@ -5,23 +5,24 @@
         <template #label>
           <div class="flex items-center">
             {{ item.label }}
-            <el-tooltip
-              v-if="item.tooltip"
-              :content="item.tooltip"
-            >
+            <el-tooltip v-if="item.tooltip" :content="item.tooltip">
               <el-icon class="ml-1">
                 <IcBaselineInfo />
               </el-icon>
             </el-tooltip>
           </div>
         </template>
-        <Component :is="'cg-' + item.comp" v-bind="item" @update="(data: any) => {changeValue(data, item)}" />
+        <Component
+          :is="'cg-' + item.comp"
+          v-bind="item"
+          @update="(data: any) => {changeValue(data, item)}"
+        />
       </el-form-item>
     </template>
   </el-form>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import CompConfig from '@/enum/form/CompConfig'
 import type { IFormItemOptions, IFormItemOptionsArray } from '@/enum/form/type'
 import IcBaselineInfo from '~icons/ic/baseline-info'
@@ -44,9 +45,14 @@ const formOptionsData = computed(() => {
 const isShowFormItems = ref<any>([])
 
 watch(formOptionsData, () => {
-  isShowFormItems.value.forEach((item: { obj: { isShow: any }; isShow: (arg0: Record<string, any>) => any }) => {
-    item.obj.isShow = item.isShow(formOptionsData.value)
-  })
+  isShowFormItems.value.forEach(
+    (item: {
+      obj: { isShow: any }
+      isShow: (arg0: Record<string, any>) => any
+    }) => {
+      item.obj.isShow = item.isShow(formOptionsData.value)
+    },
+  )
 })
 
 const changeValue = (data: any, item: any) => {
@@ -73,5 +79,4 @@ const renderList = computed(() => {
   })
   return res
 })
-
 </script>

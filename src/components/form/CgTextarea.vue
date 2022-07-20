@@ -8,7 +8,7 @@
   />
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 const props = defineProps<{
   value?: string
   _key?: string
@@ -22,11 +22,13 @@ const changeValue = (val: string) => {
 }
 
 const textareaRef = ref<any>(null)
-const textareaRefWidth = computed(() => `${textareaRef.value?.ref.parentNode.offsetWidth}px` || '0px')
+const textareaRefWidth = computed(
+  () => `${textareaRef.value?.ref.parentNode.offsetWidth}px` || '0px',
+)
 </script>
 
 <style>
-.el-textarea .el-textarea__inner{
+.el-textarea .el-textarea__inner {
   max-width: v-bind(textareaRefWidth);
 }
 </style>

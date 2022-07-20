@@ -2,9 +2,7 @@
   <div :class="cls" @click.capture="activeCurComp">
     <slot />
     <div class="handleArea bottom-0 right-0 text-light-50">
-      <div>
-        <RiDragMove2Fill />{{ $t(`comps.${item.title}`) }}
-      </div>
+      <div><RiDragMove2Fill />{{ $t(`comps.${item.title}`) }}</div>
       <div v-if="sortBtn.left" @click="sortLeftClick">
         <el-icon>
           <Back />
@@ -30,7 +28,7 @@
   </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { Back, Bottom, Delete, Top } from '@element-plus/icons-vue'
 import RiDragMove2Fill from '~icons/ri/drag-move-2-fill'
 import { ProvideFormGroup } from '@/composables/designer'
@@ -47,8 +45,14 @@ const activeCurComp = () => {
 
 const cls = computed(() => [
   'handle-comp',
-  { 'handle-comp--active': formGroup.curActionWidget.value?.key === props.item.key },
-  { 'inline-block': props.item.form?.inline?.value || formGroup.formOptions.inline.value },
+  {
+    'handle-comp--active':
+      formGroup.curActionWidget.value?.key === props.item.key,
+  },
+  {
+    'inline-block':
+      props.item.form?.inline?.value || formGroup.formOptions.inline.value,
+  },
 ])
 
 const sortBtn = reactive({
@@ -64,24 +68,28 @@ const parentChild = computed(() => {
 /**
  * 计算当前组件需要展示的排序按钮
  */
-watch(() => parentChild, () => {
-  const parent = props.item.parent || null
-  function setTopAndBtm(index: number, list: any[]) {
-    sortBtn.left = !!parent
-    sortBtn.top = index !== 0
-    sortBtn.btm = index < list.length - 1
-  }
-  // 没有父级，说明是在el-form的根目录，直接从widgetList排序
-  if (!parent) {
-    const itemIndex = formGroup.widgetList.value.indexOf(props.item)
-    setTopAndBtm(itemIndex, formGroup.widgetList.value)
-  } else {
-    // 有父级，说明是在栅格系统下
-    const parentChildren = formGroup.findWidgetItem(parent).children!
-    const itemIndex = parentChildren.indexOf(props.item)
-    setTopAndBtm(itemIndex, parentChildren)
-  }
-}, { immediate: true, deep: true })
+watch(
+  () => parentChild,
+  () => {
+    const parent = props.item.parent || null
+    function setTopAndBtm(index: number, list: any[]) {
+      sortBtn.left = !!parent
+      sortBtn.top = index !== 0
+      sortBtn.btm = index < list.length - 1
+    }
+    // 没有父级，说明是在el-form的根目录，直接从widgetList排序
+    if (!parent) {
+      const itemIndex = formGroup.widgetList.value.indexOf(props.item)
+      setTopAndBtm(itemIndex, formGroup.widgetList.value)
+    } else {
+      // 有父级，说明是在栅格系统下
+      const parentChildren = formGroup.findWidgetItem(parent).children!
+      const itemIndex = parentChildren.indexOf(props.item)
+      setTopAndBtm(itemIndex, parentChildren)
+    }
+  },
+  { immediate: true, deep: true },
+)
 
 /**
  * 聚焦当前组件的父级
@@ -99,7 +107,10 @@ const sortLeftClick = () => {
  */
 const sortTopClick = () => {
   const oldIndex = parentChild.value.indexOf(props.item)
-  ;[parentChild.value[oldIndex], parentChild.value[oldIndex - 1]] = [parentChild.value[oldIndex - 1], parentChild.value[oldIndex]]
+  ;[parentChild.value[oldIndex], parentChild.value[oldIndex - 1]] = [
+    parentChild.value[oldIndex - 1],
+    parentChild.value[oldIndex],
+  ]
 }
 
 /**
@@ -107,7 +118,10 @@ const sortTopClick = () => {
  */
 const sortBtmClick = () => {
   const oldIndex = parentChild.value.indexOf(props.item)
-  ;[parentChild.value[oldIndex], parentChild.value[oldIndex + 1]] = [parentChild.value[oldIndex + 1], parentChild.value[oldIndex]]
+  ;[parentChild.value[oldIndex], parentChild.value[oldIndex + 1]] = [
+    parentChild.value[oldIndex + 1],
+    parentChild.value[oldIndex],
+  ]
 }
 
 /**
@@ -120,23 +134,23 @@ const removeCurItem = () => {
 </script>
 
 <style>
-.handle-comp{
+.handle-comp {
   border: 1px dashed transparent;
   position: relative;
 }
-.handle-comp .handleArea{
+.handle-comp .handleArea {
   display: none;
 }
-.handle-comp.handle-comp--active{
+.handle-comp.handle-comp--active {
   border-color: var(--el-color-primary) !important;
 }
-.handle-comp.handle-comp--active>.handleArea{
+.handle-comp.handle-comp--active > .handleArea {
   display: flex;
 }
-.handle-comp .el-button{
-  margin-right: 12px
+.handle-comp .el-button {
+  margin-right: 12px;
 }
-.handleArea{
+.handleArea {
   position: absolute;
   z-index: 1;
   font-size: 12px;
@@ -146,14 +160,14 @@ const removeCurItem = () => {
   justify-content: center;
   height: 24px;
 }
-.handleArea > div{
+.handleArea > div {
   margin-left: 4px;
   cursor: pointer;
-  background: #409EFF;
+  background: #409eff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 2px 4px;
-  height:100%;
+  height: 100%;
 }
 </style>

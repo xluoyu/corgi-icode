@@ -9,7 +9,7 @@
   />
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 const props = defineProps<{
   value?: string | number
   _key?: string
@@ -25,8 +25,10 @@ const changeValue = (val: string) => {
   emits('update', { key: props._key, value: val })
 }
 
-watch(() => props.type, () => {
-  uid.value = new Date().getTime()
-})
-
+watch(
+  () => props.type,
+  () => {
+    uid.value = new Date().getTime()
+  },
+)
 </script>

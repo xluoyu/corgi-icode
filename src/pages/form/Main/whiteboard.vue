@@ -1,7 +1,13 @@
 <template>
-  <div id="whiteboard" class="h-800px m-8 p-4 relative bg-$theme-bg .dark:bg-dark-300">
+  <div
+    id="whiteboard"
+    class="h-800px m-8 p-4 relative bg-$theme-bg .dark:bg-dark-300"
+  >
     <el-form :model="formData" class="w-full h-full" v-bind="formAttrs">
-      <p v-if="!list.length" class="absolute top-1/2 left-0 right-0 mx-auto text-center">
+      <p
+        v-if="!list.length"
+        class="absolute top-1/2 left-0 right-0 mx-auto text-center"
+      >
         请从左侧列表中选择一个组件, 然后用鼠标拖动组件放置于此处.
       </p>
       <DraggableArea :list="list" @add="addEnd" />
@@ -9,7 +15,7 @@
   </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 // import Draggable from 'vuedraggable'
 import { ProvideFormGroup } from '@/composables/designer'
 import { mixinValue } from '@/utils'
@@ -39,7 +45,11 @@ const getFormValidateRules = computed(() => {
     if (item.form.validate) {
       let validate: string | RegExp | null = item.form.validate?.value
 
-      validate = (validate && Object.keys(validates).includes(validate as string) ? validates[validate as keyof typeof validates] : validate) as RegExp | null
+      validate = (
+        validate && Object.keys(validates).includes(validate as string)
+          ? validates[validate as keyof typeof validates]
+          : validate
+      ) as RegExp | null
 
       if (validate) {
         pre[key].push({ validator: validateFn(key, validate), trigger })

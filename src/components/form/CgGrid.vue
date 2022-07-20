@@ -4,7 +4,7 @@
   </el-row>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { ProvideFormGroup, addNewWidget } from '@/composables/designer'
 import colOptions from '@/enum/form/col'
 const props = defineProps<{
@@ -24,5 +24,4 @@ onMounted(() => {
     )
   }
 })
-
 </script>

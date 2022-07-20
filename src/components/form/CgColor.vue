@@ -2,7 +2,7 @@
   <el-color-picker v-model="value" v-bind="$attrs" @change="changeValue" />
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 const props = defineProps<{
   value?: string
   _key?: string

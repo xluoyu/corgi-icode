@@ -4,7 +4,7 @@
   </el-divider>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 defineProps<{
   content: string
 }>()

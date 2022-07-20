@@ -2,30 +2,42 @@
   <div>
     <el-table :data="value">
       <el-table-column prop="label" label="名称">
-        <template #default="{row}">
+        <template #default="{ row }">
           <el-input v-model="row.label" />
         </template>
       </el-table-column>
       <el-table-column prop="value" label="值">
-        <template #default="{row}">
+        <template #default="{ row }">
           <el-input v-model="row.value" />
         </template>
       </el-table-column>
       <el-table-column prop="value" label="Action">
-        <template #default="{$index}">
-          <el-button text size="small" type="danger" :icon="Delete" @click="remove($index)">
+        <template #default="{ $index }">
+          <el-button
+            text
+            size="small"
+            type="danger"
+            :icon="Delete"
+            @click="remove($index)"
+          >
             删除
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-    <el-button type="primary" :icon="Plus" class="block mx-auto mt-2 mb-4" :disabled="disabledAdd" @click="addOption">
+    <el-button
+      type="primary"
+      :icon="Plus"
+      class="block mx-auto mt-2 mb-4"
+      :disabled="disabledAdd"
+      @click="addOption"
+    >
       添加
     </el-button>
   </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { Delete, Plus } from '@element-plus/icons-vue'
 const props = defineProps<{
   value?: Array<any>

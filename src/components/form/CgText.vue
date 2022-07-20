@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 defineProps<{
   content?: string
   size: string

@@ -6,14 +6,13 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  color: var(--theme-color)
+  color: var(--theme-color);
 }
 
-
-.noBorder{
+.noBorder {
   border: none;
 }
-.noBorder .el-input__wrapper{
+.noBorder .el-input__wrapper {
   box-shadow: none !important;
 }
 
@@ -25,7 +24,8 @@ body,
   padding-right: 6px;
 }
 
-.el-button.is-text:focus, .el-button.is-text:hover{
+.el-button.is-text:focus,
+.el-button.is-text:hover {
   background-color: transparent !important;
-  opacity: .8;
+  opacity: 0.8;
 }

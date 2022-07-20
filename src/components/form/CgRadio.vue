@@ -6,7 +6,7 @@
   </el-radio-group>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 const props = defineProps<{
   value?: string | number
   _key?: string

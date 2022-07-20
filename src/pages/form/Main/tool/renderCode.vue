@@ -14,7 +14,15 @@
         <el-button type="primary" @click="exportFile">
           导出文件
         </el-button>
-        <el-button type="primary" @click="() => {destroyEditor(); dialogVisible = false}">
+        <el-button
+          type="primary"
+          @click="
+            () => {
+              destroyEditor()
+              dialogVisible = false
+            }
+          "
+        >
           关闭
         </el-button>
       </div>
@@ -22,7 +30,7 @@
   </el-dialog>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import beautify from 'js-beautify'
 import Clipboard from 'clipboard'
 import type { VNodeRef } from 'vue'
@@ -73,7 +81,9 @@ const destroyEditor = (deno?: any) => {
 }
 
 const exportFile = () => {
-  const blob = new Blob([editInstance?.getValue() || ''], { type: 'text/plain;charset=utf-8' })
+  const blob = new Blob([editInstance?.getValue() || ''], {
+    type: 'text/plain;charset=utf-8',
+  })
   const a = document.createElement('a')
   a.download = 'form.vue'
   a.href = URL.createObjectURL(blob)
@@ -94,7 +104,7 @@ defineExpose({
 })
 </script>
 <style scoped>
-.edit{
+.edit {
   height: 500px;
 }
 </style>

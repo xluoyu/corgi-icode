@@ -3,7 +3,10 @@ import { formatArrt } from '@/utils/renderTemplate'
 
 export default function(options: IFormItemOptions) {
   const attrs = ['showAlpha']
-  const attrsStr = attrs.map(attr => formatArrt(attr, options[attr].value)).filter(Boolean).join(' ')
+  const attrsStr = attrs
+    .map(attr => formatArrt(attr, options[attr].value))
+    .filter(Boolean)
+    .join(' ')
 
   return {
     formData: {
