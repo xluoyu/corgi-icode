@@ -30,5 +30,6 @@ export default {
     time: 'Time Picker',
     date: 'Date Picker',
     timeAndDate: 'Time And Date Picker',
+    card: 'Card',
   },
 }

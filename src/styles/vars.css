@@ -1,11 +1,11 @@
-:root{
+:root {
   --theme-bg: #fff;
   --theme-color: #333;
   --theme-gary: #acb0b6;
   --header-h: 60px;
 }
 
-.dark{
+.dark {
   --theme-bg: #141414;
   --theme-color: #fff;
 }

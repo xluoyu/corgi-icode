@@ -7,7 +7,7 @@
   />
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 const props = defineProps<{
   type?: string
   value?: string | number

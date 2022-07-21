@@ -34,11 +34,16 @@ if (import.meta.vitest) {
   const { it, expect } = import.meta.vitest
   it('should standardResultType', () => {
     expect(mixinValue('name', 'a', {})).toEqual({ name: 'a' })
-    expect(mixinValue('class.age.sd', 'auto', { class: { zzc: 'aa' } })).toEqual({ class: { zzc: 'aa', age: { sd: 'auto' } } })
+    expect(
+      mixinValue('class.age.sd', 'auto', { class: { zzc: 'aa' } }),
+    ).toEqual({ class: { zzc: 'aa', age: { sd: 'auto' } } })
   })
 }
 
-export function findDeepItem<T>(list: any[], filter: (a: any) => boolean): T | null {
+export function findDeepItem<T>(
+  list: any[],
+  filter: (a: any) => boolean,
+): T | null {
   for (let i = 0; i < list.length; i++) {
     const item = list[i]
     if (filter(item)) {

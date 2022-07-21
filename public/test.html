@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script>
-    class Scheduler {
-      _maxNum = 2;
-      _queue = new Set();
-      _waitQueue = [];
-      async add(fn) {
-        return new Promise(async resolve => {
-          if (this._queue.size < this._maxNum) {
-            await this.runFn(fn);
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Scheduler {
+        _maxNum = 2
+        _queue = new Set()
+        _waitQueue = []
+        async add(fn) {
+          return new Promise(async (resolve) => {
+            if (this._queue.size < this._maxNum) {
+              await this.runFn(fn)
+              resolve()
+            } else {
+              this._waitQueue.push({ fn, resolve })
+            }
+          })
+        }
+        async taskWhile() {
+          if (this._waitQueue.length > 0 && this._queue.size < this._maxNum) {
+            const { fn, resolve } = this._waitQueue.shift()
+            await this.runFn(fn)
             resolve()
-          } else {
-            this._waitQueue.push({fn, resolve});
           }
-        })
-      }
-      async taskWhile() {
-        if (this._waitQueue.length > 0 && this._queue.size < this._maxNum) {
-          const {fn, resolve} = this._waitQueue.shift();
-          await this.runFn(fn);
-          resolve();
+        }
+        async runFn(fn) {
+          this._queue.add(fn)
+          await fn()
+          this._queue.delete(fn)
+          this.taskWhile()
         }
       }
-      async runFn(fn) {
-        this._queue.add(fn);
-        await fn();
-        this._queue.delete(fn);
-        this.taskWhile()
+
+      const timeout = (time) =>
+        new Promise((resolve) => {
+          setTimeout(resolve, time)
+        })
+
+      const scheduler = new Scheduler()
+
+      const addTask = (time, order) => {
+        scheduler.add(() => timeout(time)).then(() => console.log(order))
       }
-    }
 
-
-    const timeout = (time) => new Promise(resolve => {
-        setTimeout(resolve, time)
-    })
-
-    const scheduler = new Scheduler()
-
-    const addTask = (time, order) => {
-      scheduler.add(() => timeout(time)).then(() => console.log(order))
-    }
-
-    addTask(4000, 1)
-    addTask(3500, 2)
-    addTask(4000, 3)
-    addTask(3000, 4)
-  </script>
-</body>
+      addTask(4000, 1)
+      addTask(3500, 2)
+      addTask(4000, 3)
+      addTask(3000, 4)
+    </script>
+  </body>
 </html>

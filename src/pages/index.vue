@@ -14,7 +14,11 @@ const isRange = ref(false)
 <template>
   <div>
     <el-checkbox-group v-model="value">
-      <el-checkbox v-for="item in options" :key="item.value" :label="item.value">
+      <el-checkbox
+        v-for="item in options"
+        :key="item.value"
+        :label="item.value"
+      >
         {{ item.label }}
       </el-checkbox>
     </el-checkbox-group>
@@ -29,11 +33,7 @@ const isRange = ref(false)
     />
 
     <div>
-      <el-button
-        type="primary"
-        :disabled="!name"
-        class="mt-4"
-      >
+      <el-button type="primary" :disabled="!name" class="mt-4">
         Go
       </el-button>
     </div>
@@ -45,6 +45,10 @@ const isRange = ref(false)
     <el-button @click="isRange = !isRange">
       change
     </el-button>
-    <el-time-picker v-model="value1" :is-range="isRange" placeholder="Arbitrary time" />
+    <el-time-picker
+      v-model="value1"
+      :is-range="isRange"
+      placeholder="Arbitrary time"
+    />
   </div>
 </template>

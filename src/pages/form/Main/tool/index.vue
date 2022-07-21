@@ -1,17 +1,44 @@
 <template>
-  <div class="h-8 px-4 flex items-center justify-between bg-$theme-bg border-x border-b border-gray-400">
+  <div
+    class="h-8 px-4 flex items-center justify-between bg-$theme-bg border-x border-b border-gray-400"
+  >
     <div>
-      <el-button :icon="AkarIconsArrowBack" :type="historyListLength === 1 ? '' : 'primary'" text size="large" class="px-4" :disabled="historyListLength === 1" @click="historyBack" />
-      <el-button :icon="AkarIconsArrowForward" :type="curHistoryNum === 1 ? '' : 'primary'" text :disabled="curHistoryNum === 1" @click="historyGo" />
+      <el-button
+        :icon="AkarIconsArrowBack"
+        :type="historyListLength === 1 ? '' : 'primary'"
+        text
+        size="large"
+        class="px-4"
+        :disabled="historyListLength === 1"
+        @click="historyBack"
+      />
+      <el-button
+        :icon="AkarIconsArrowForward"
+        :type="curHistoryNum === 1 ? '' : 'primary'"
+        text
+        :disabled="curHistoryNum === 1"
+        @click="historyGo"
+      />
       <el-button text type="primary" :icon="Delete" @click="clearList">
         {{ $t('page.clear') }}
       </el-button>
     </div>
     <el-space>
-      <el-button v-if="useEnv === 'vscode'" text type="primary" :icon="AkarIconsVueFill" @click="saveFileOptions.dialog = true">
+      <el-button
+        v-if="useEnv === 'vscode'"
+        text
+        type="primary"
+        :icon="AkarIconsVueFill"
+        @click="saveFileOptions.dialog = true"
+      >
         {{ $t('page.saveFile') }}
       </el-button>
-      <el-button text type="primary" :icon="IconoirSaveActionFloppy" @click="saveTemplate">
+      <el-button
+        text
+        type="primary"
+        :icon="IconoirSaveActionFloppy"
+        @click="saveTemplate"
+      >
         {{ $t('page.saveTemplate') }}
       </el-button>
       <el-button text type="primary" :icon="View" @click="view">
@@ -25,11 +52,7 @@
   <Preview ref="previewDialog" />
   <RenderCode ref="renderCodeDialog" />
 
-  <el-dialog
-    v-model="saveFileOptions.dialog"
-    title="Tip"
-    width="400px"
-  >
+  <el-dialog v-model="saveFileOptions.dialog" title="Tip" width="400px">
     <p>Please input your file name</p>
     <br>
     <el-input v-model="saveFileOptions.fileName">
@@ -49,7 +72,7 @@
   </el-dialog>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { Delete, View } from '@element-plus/icons-vue'
 import beautify from 'js-beautify'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
@@ -61,7 +84,11 @@ import AkarIconsVueFill from '~icons/akar-icons/vue-fill'
 import IconoirSaveActionFloppy from '~icons/iconoir/save-action-floppy'
 import AkarIconsArrowForward from '~icons/akar-icons/arrow-forward'
 import AkarIconsArrowBack from '~icons/akar-icons/arrow-back'
-import { ProvideFormGroup, historyWidgetList, uuId } from '@/composables/designer'
+import {
+  ProvideFormGroup,
+  historyWidgetList,
+  uuId,
+} from '@/composables/designer'
 import { localTemplateList } from '@/composables/template'
 import { useEnv } from '@/composables/appConfig'
 import { renderCode } from '@/enum/form'
@@ -83,14 +110,19 @@ const saveFileOptions = reactive({
 })
 
 const saveFile = () => {
-  const code = beautify.html(renderCode(formGroup.returnFormData()), { indent_size: 2 })
-  window.parent.postMessage({
-    cmd: 'saveFile',
-    data: {
-      fileName: `${saveFileOptions.fileName}.vue`,
-      code,
+  const code = beautify.html(renderCode(formGroup.returnFormData()), {
+    indent_size: 2,
+  })
+  window.parent.postMessage(
+    {
+      cmd: 'saveFile',
+      data: {
+        fileName: `${saveFileOptions.fileName}.vue`,
+        code,
+      },
     },
-  }, '*')
+    '*',
+  )
 
   saveFileOptions.dialog = false
 }
@@ -130,12 +162,14 @@ const historyListLength = computed(() => historyWidgetList.value.length)
 // 前进
 const historyGo = () => {
   curHistoryNum.value = Math.max(1, curHistoryNum.value - 1)
-  formGroup.widgetList.value = historyWidgetList.value[historyListLength.value - curHistoryNum.value]
+  formGroup.widgetList.value
+    = historyWidgetList.value[historyListLength.value - curHistoryNum.value]
 }
 
 // 后退
 const historyBack = () => {
   curHistoryNum.value++
-  formGroup.widgetList.value = historyWidgetList.value[historyListLength.value - curHistoryNum.value]
+  formGroup.widgetList.value
+    = historyWidgetList.value[historyListLength.value - curHistoryNum.value]
 }
 </script>

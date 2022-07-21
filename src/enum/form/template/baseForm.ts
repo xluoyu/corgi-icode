@@ -24,7 +24,7 @@ const data: ITemplateOptions = {
       type: 'text',
       key: 'text_0',
       component: 'cg-text',
-      noForm: true, 
+      noForm: true,
       form: {
         content: { label: '内容', type: 'input', value: '表单' },
         size: { label: '字体大小', type: 'textSizeSelect', value: 'large' },

@@ -30,5 +30,6 @@ export default {
     time: '时间选择器',
     date: '日期选择器',
     timeAndDate: '时间日期选择器',
+    card: '卡片',
   },
 }

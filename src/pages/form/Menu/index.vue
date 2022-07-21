@@ -10,11 +10,28 @@
         </h3>
         <el-scrollbar>
           <el-collapse v-model="actionCollapse">
-            <el-collapse-item v-for="item in compList" :key="item.title" :title="$t('page.' + item.title)" :name="item.title">
-              <draggable :list="item.children" item-key="type" :sort="false" :clone="cloneFn" :group="{name: 'dragGroup', pull:'clone', put: false}" class="flex justify-between flex-wrap">
+            <el-collapse-item
+              v-for="item in compList"
+              :key="item.title"
+              :title="$t('page.' + item.title)"
+              :name="item.title"
+            >
+              <draggable
+                :list="item.children"
+                item-key="type"
+                :sort="false"
+                :clone="cloneFn"
+                :group="{ name: 'dragGroup', pull: 'clone', put: false }"
+                class="flex justify-between flex-wrap"
+              >
                 <template #item="{ element }">
-                  <div class="cursor-pointer w-[48%] mb-3 flex justify-start items-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)">
-                    <component :is="element.icon" class="mr-2 text-$el-color-primary" />
+                  <div
+                    class="cursor-pointer w-[48%] mb-3 flex justify-start items-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)"
+                  >
+                    <component
+                      :is="element.icon"
+                      class="mr-2 text-$el-color-primary"
+                    />
                     {{ $t(`comps.${element.title}`) }}
                   </div>
                 </template>
@@ -31,11 +48,25 @@
           {{ $t('page.templates') }}
         </h3>
         <el-scrollbar>
-          <div v-for="item in templateList" :key="item.key" class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)" @click="renderTemplate(item)">
-            <el-popover placement="right" width="600px" :offset="20" :show-after="500">
+          <div
+            v-for="item in templateList"
+            :key="item.key"
+            class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)"
+            @click="renderTemplate(item)"
+          >
+            <el-popover
+              placement="right"
+              width="600px"
+              :offset="20"
+              :show-after="500"
+            >
               <template #reference>
                 <div>
-                  <img :src="item.photo" alt="" class="object-cover max-h-160px mx-auto">
+                  <img
+                    :src="item.photo"
+                    alt=""
+                    class="object-cover max-h-160px mx-auto"
+                  >
                   {{ item.title }}
                 </div>
               </template>
@@ -52,14 +83,20 @@
           {{ $t('page.tree') }}
         </h3>
         <el-scrollbar>
-          <el-tree :data="treeData" default-expand-all class="node-tree" :props="treeDefaultProps" @node-click="handleNodeClick" />
+          <el-tree
+            :data="treeData"
+            default-expand-all
+            class="node-tree"
+            :props="treeDefaultProps"
+            @node-click="handleNodeClick"
+          />
         </el-scrollbar>
       </el-tab-pane>
     </el-tabs>
   </el-aside>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash'
 import { GetCompList } from '@/enum/form'
@@ -84,22 +121,24 @@ const cloneFn = (item: any) => {
 }
 
 const renderTemplate = (item: ITemplateOptions) => {
-  ElMessageBox.confirm(
-    `是否使用${item.title}替换当前配置?`,
-  ).then(() => {
-    Object.keys(item.formOptions).forEach((key) => {
-      formGroup.updateFormOptions({ key, value: item.formOptions[key].value })
+  ElMessageBox.confirm(`是否使用${item.title}替换当前配置?`)
+    .then(() => {
+      Object.keys(item.formOptions).forEach((key) => {
+        formGroup.updateFormOptions({ key, value: item.formOptions[key].value })
+      })
+      formGroup.widgetList.value = cloneDeep(item.widgetList)
+      uuId.value = item.uuId
     })
-    formGroup.widgetList.value = cloneDeep(item.widgetList)
-    uuId.value = item.uuId
-  }).catch(() => {})
+    .catch(() => {})
 }
 
 const { widgetList: treeData } = formGroup
 const treeDefaultProps = {
-  label: (data: IFormComp) => (data.form.label ? `${data.form.label.value} - ` : '') + data.type,
+  label: (data: IFormComp) =>
+    (data.form.label ? `${data.form.label.value} - ` : '') + data.type,
   children: 'children',
-  class: (data: IFormComp) => formGroup.activeWidgetKey.value === data.key ? 'text-$el-color-primary' : '',
+  class: (data: IFormComp) =>
+    formGroup.activeWidgetKey.value === data.key ? 'text-$el-color-primary' : '',
 }
 const handleNodeClick = (data: IFormComp) => {
   formGroup.changeActiveWidget(data.key)
@@ -107,23 +146,23 @@ const handleNodeClick = (data: IFormComp) => {
 </script>
 
 <style>
-.el-collapse-item__content{
+.el-collapse-item__content {
   padding-bottom: 0;
 }
-.node-tree .el-tree-node{
+.node-tree .el-tree-node {
   position: relative;
   padding-left: 12px;
 }
 .node-tree .el-tree-node__content {
-  padding-left: 5px!important;
+  padding-left: 5px !important;
 }
 .node-tree .el-tree-node__expand-icon.is-leaf {
-    display: none;
+  display: none;
 }
 .node-tree .el-tree-node__expand-icon {
-    margin-left: -3px;
-    padding: 6px 6px 6px 0;
-    font-size: 16px;
+  margin-left: -3px;
+  padding: 6px 6px 6px 0;
+  font-size: 16px;
 }
 .node-tree .el-tree-node::before {
   content: '';
@@ -146,10 +185,11 @@ const handleNodeClick = (data: IFormComp) => {
   position: absolute;
   right: auto;
 }
-.aside-tabs .el-tabs__content, .aside-tabs .el-tab-pane{
+.aside-tabs .el-tabs__content,
+.aside-tabs .el-tab-pane {
   height: 100%;
 }
-.aside-tabs .el-tab-pane .el-scrollbar{
+.aside-tabs .el-tab-pane .el-scrollbar {
   height: calc(100% - 40px);
 }
 </style>

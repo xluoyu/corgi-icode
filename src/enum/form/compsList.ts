@@ -11,15 +11,14 @@ import Button from './button'
 import Grid from './grid'
 import Time from './time'
 import Date from './date'
+import Card from './card'
 import type { IFormList } from './type'
 
 export const GetCompList = (): IFormList => {
   return [
     {
       title: 'layout',
-      children: [
-        Grid,
-      ],
+      children: [Grid, Card],
     },
     {
       title: 'basic',

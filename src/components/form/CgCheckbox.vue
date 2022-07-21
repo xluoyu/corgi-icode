@@ -6,7 +6,7 @@
   </el-checkbox-group>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 const props = defineProps<{
   value?: string
   _key?: string

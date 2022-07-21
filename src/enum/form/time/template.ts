@@ -3,14 +3,23 @@ import { formatArrt } from '@/utils/renderTemplate'
 
 export default function(options: IFormItemOptions) {
   const attrs = ['editable', 'clearable', 'isRange', 'format']
-  const attrsStr = attrs.map(attr => formatArrt(attr, options[attr].value)).filter(Boolean).join(' ')
+  const attrsStr = attrs
+    .map(attr => formatArrt(attr, options[attr].value))
+    .filter(Boolean)
+    .join(' ')
   let otherAttrsStr = ''
   if (options.isRange.value) {
     const rangeAttrs = ['startPlaceholder', 'endPlaceholder', 'rangeSeparator']
-    otherAttrsStr = rangeAttrs.map(attr => formatArrt(attr, options[attr].value)).filter(Boolean).join(' ')
+    otherAttrsStr = rangeAttrs
+      .map(attr => formatArrt(attr, options[attr].value))
+      .filter(Boolean)
+      .join(' ')
   } else {
     const disRangeAttrs = ['placeholder']
-    otherAttrsStr = disRangeAttrs.map(attr => formatArrt(attr, options[attr].value)).filter(Boolean).join(' ')
+    otherAttrsStr = disRangeAttrs
+      .map(attr => formatArrt(attr, options[attr].value))
+      .filter(Boolean)
+      .join(' ')
   }
 
   return {

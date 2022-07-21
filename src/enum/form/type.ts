@@ -17,14 +17,17 @@ export interface IFormComp {
   parent?: string
 }
 
-export type IFormItemOptions = Record<string, {
-  label: string
-  type: keyof typeof CompConfig
-  value: any
-  tooltip?: string
-  isShow?: (options: any) => boolean
-  changeCb?: (options: any) => void
-}>
+export type IFormItemOptions = Record<
+  string,
+  {
+    label: string
+    type: keyof typeof CompConfig
+    value: any
+    tooltip?: string
+    isShow?: (options: any) => boolean
+    changeCb?: (options: any) => void
+  }
+>
 
 export type IFormItemOptionsArray = Array<{
   label: string
@@ -36,7 +39,7 @@ export type IFormItemOptionsArray = Array<{
   changeCb?: (options: any) => void
 }>
 
-export interface IFormData{
+export interface IFormData {
   formOptions: IFormItemOptions
   widgetList: Array<IFormComp>
 }

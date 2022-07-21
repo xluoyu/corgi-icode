@@ -2,7 +2,7 @@
   <el-switch v-model="value" v-bind="$attrs" />
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 const props = defineProps<{
   value?: boolean | string
   _key?: string

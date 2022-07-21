@@ -28,9 +28,12 @@ if (window.parent !== window) {
     },
   }
 
-  window.parent.postMessage({
-    cmd: 'getEnv',
-  }, '*')
+  window.parent.postMessage(
+    {
+      cmd: 'getEnv',
+    },
+    '*',
+  )
 
   window.addEventListener('message', (ev) => {
     if (ev.data.type && methods[ev.data.type as keyof typeof methods]) {
@@ -38,8 +41,6 @@ if (window.parent !== window) {
     }
   })
 }
-
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

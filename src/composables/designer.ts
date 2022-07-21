@@ -93,15 +93,24 @@ export function createFormGroup() {
     }, {} as Record<string, any>)
   }
   const formSimulateData = ref(getFormSimulateData())
-  watch(() => widgetList.value.length, () => {
-    formSimulateData.value = getFormSimulateData()
-  })
+  watch(
+    () => widgetList.value.length,
+    () => {
+      formSimulateData.value = getFormSimulateData()
+    },
+  )
 
   /**
    * 更新组件的模拟value
    * @param param0
    */
-  const updateWidgetSimulateValue = ({ key, value }: { key: string; value: any }) => {
+  const updateWidgetSimulateValue = ({
+    key,
+    value,
+  }: {
+    key: string
+    value: any
+  }) => {
     formSimulateData.value[key] = value
   }
 
@@ -114,7 +123,13 @@ export function createFormGroup() {
     formOptions[key].value = value
   }
 
-  const updateActionWidgetOptions = ({ key, value }: { key: string; value: any }) => {
+  const updateActionWidgetOptions = ({
+    key,
+    value,
+  }: {
+    key: string
+    value: any
+  }) => {
     curActionWidget.value!.form[key].value = value
     if (key === '_key' || key === 'value') {
       nextTick(() => {
@@ -153,4 +168,6 @@ export function createFormGroup() {
 
 export type ICreateFormGroup = ReturnType<typeof createFormGroup>
 
-export const ProvideFormGroup = Symbol('ProvideFormGroup') as InjectionKey<ICreateFormGroup>
+export const ProvideFormGroup = Symbol(
+  'ProvideFormGroup',
+) as InjectionKey<ICreateFormGroup>

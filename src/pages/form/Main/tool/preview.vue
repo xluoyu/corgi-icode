@@ -1,11 +1,13 @@
 <template>
-  <el-dialog
-    v-model="dialogVisible"
-    title="表单预览"
-    width="60%"
-  >
+  <el-dialog v-model="dialogVisible" title="表单预览" width="60%">
     <el-form :model="formData" class="w-full h-full" v-bind="formAttrs">
-      <RenderComp v-for="item in formOptions.widgetList" :key="item.key" :dis-update="true" :item="item" @update="updateWidgetSimulateValue" />
+      <RenderComp
+        v-for="item in formOptions.widgetList"
+        :key="item.key"
+        :dis-update="true"
+        :item="item"
+        @update="updateWidgetSimulateValue"
+      />
     </el-form>
     <template #footer>
       <div class="text-center">
@@ -17,8 +19,7 @@
   </el-dialog>
 </template>
 
-<script lang='ts' setup>
-import RenderComp from '../renderComp.vue'
+<script lang="ts" setup>
 import { validateFn, validates } from '@/enum/form'
 import type { IFormData } from '@/enum/form/type'
 import { mixinValue } from '@/utils'
@@ -51,7 +52,11 @@ const getFormValidateRules = () => {
     if (item.form.validate) {
       let validate: string | RegExp | null = item.form.validate?.value
 
-      validate = (validate && Object.keys(validates).includes(validate as string) ? validates[validate as keyof typeof validates] : validate) as RegExp | null
+      validate = (
+        validate && Object.keys(validates).includes(validate as string)
+          ? validates[validate as keyof typeof validates]
+          : validate
+      ) as RegExp | null
 
       if (validate) {
         pre[key].push({ validator: validateFn(key, validate), trigger })
@@ -92,7 +97,13 @@ const getFormSimulateData = () => {
     return pre
   }, {} as Record<string, any>)
 }
-const updateWidgetSimulateValue = ({ key, value }: { key: string; value: any }) => {
+const updateWidgetSimulateValue = ({
+  key,
+  value,
+}: {
+  key: string
+  value: any
+}) => {
   console.log('update!!!')
   formData.value[key] = value
 }

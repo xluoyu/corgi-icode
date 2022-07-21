@@ -1,8 +1,6 @@
 <template>
   <el-form :model="formData" :rules="rules">
-    <div>
-      xxx表单
-    </div>
+    <div>xxx表单</div>
     <el-divider />
     <el-form-item label="名字" prop="name">
       <el-input v-model="formData.name" placeholder="请输入名字" />
@@ -21,9 +19,7 @@
       </el-radio-group>
     </el-form-item>
     <el-form-item label="职位" prop="position">
-      <el-select
-        v-model="formData.position"
-      >
+      <el-select v-model="formData.position">
         <el-option
           v-for="item in positionSelectList"
           :key="item.value"
@@ -38,7 +34,7 @@
   </el-form>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 const formData = reactive({
   name: '小明',
   age: 12,
