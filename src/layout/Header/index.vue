@@ -9,21 +9,12 @@
           <span class="text-xl font-bold">Corgi</span> 代码生成器
         </p>
       </el-col>
-      <el-col :span="8" class="text-center">
-        <el-button type="primary" text class="text-base">
-          {{ $t('page.form') }}
-        </el-button>
-        <el-divider direction="vertical" />
-        <el-button type="success" text class="text-base" @click="toTable">
-          {{ $t('page.table') }}
-        </el-button>
-      </el-col>
       <el-col :span="8" class="flex items-center justify-end">
         <el-icon class="cursor-pointer mr-4" :size="20" @click="toggleDark()">
           <IcBaselineWbSunny v-show="!isDark" />
           <BiCloudMoonFill v-show="isDark" />
         </el-icon>
-        <el-dropdown @command="handleCommand">
+        <!-- <el-dropdown @command="handleCommand">
           <el-icon :size="20">
             <OouiLanguage />
           </el-icon>
@@ -37,7 +28,7 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </template>
-        </el-dropdown>
+        </el-dropdown> -->
         <a
           href="https://github.com/xluoyu/corgi-lowcode"
           target="__blank"
@@ -53,20 +44,20 @@
 </template>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
-import OouiLanguage from '~icons/ooui/language'
+// import { useI18n } from 'vue-i18n'
+// import OouiLanguage from '~icons/ooui/language'
 import IcBaselineWbSunny from '~icons/ic/baseline-wb-sunny'
 import AkarIconsGithubFill from '~icons/akar-icons/github-fill'
 import BiCloudMoonFill from '~icons/bi/cloud-moon-fill'
-import type { ILocale } from '@/composables'
-import { isDark, locale, toggleDark } from '@/composables'
-const { locale: curLocale } = useI18n()
-const handleCommand = (command: ILocale) => {
-  locale.value = command
-  curLocale.value = command
-}
+// import type { ILocale } from '@/composables'
+import { isDark, toggleDark } from '@/composables'
+// const { locale: curLocale } = useI18n()
+// const handleCommand = (command: ILocale) => {
+//   locale.value = command
+//   curLocale.value = command
+// }
 
-const toTable = () => {
-  ElMessage.info('暂未开发')
-}
+// const toTable = () => {
+//   ElMessage.info('暂未开发')
+// }
 </script>

@@ -6,21 +6,21 @@
           <GgComponents />
         </template>
         <h3 class="text-base py-2 text-$el-color-primary">
-          {{ $t('page.components') }}
+          组件
         </h3>
         <el-scrollbar>
           <el-collapse v-model="actionCollapse">
             <el-collapse-item
               v-for="item in compList"
               :key="item.title"
-              :title="$t('page.' + item.title)"
+              :title="item.title"
               :name="item.title"
             >
               <draggable
                 :list="item.children"
                 item-key="type"
                 :sort="false"
-                :clone="cloneFn"
+                :clone="cloneNewWidget"
                 :group="{ name: 'dragGroup', pull: 'clone', put: false }"
                 class="flex justify-between flex-wrap"
               >
@@ -32,7 +32,7 @@
                       :is="element.icon"
                       class="mr-2 text-$el-color-primary"
                     />
-                    {{ $t(`comps.${element.title}`) }}
+                    {{ element.title }}
                   </div>
                 </template>
               </draggable>
@@ -45,7 +45,7 @@
           <GgTemplate />
         </template>
         <h3 class="text-base py-2 text-$el-color-primary">
-          {{ $t('page.templates') }}
+          模板
         </h3>
         <el-scrollbar>
           <div
@@ -80,11 +80,11 @@
           <CodiconListTree />
         </template>
         <h3 class="text-base py-2 text-$el-color-primary">
-          {{ $t('page.tree') }}
+          结构树
         </h3>
         <el-scrollbar>
           <el-tree
-            :data="treeData"
+            :data="widgetList"
             default-expand-all
             class="node-tree"
             :props="treeDefaultProps"
@@ -99,49 +99,35 @@
 <script lang="ts" setup>
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash'
-import { GetCompList } from '@/enum/form'
+import { GetCompList, TemplateList } from '@/enum/form'
 import type { IFormComp, ITemplateOptions } from '@/enum/form/type'
-import { ProvideFormGroup, addNewWidget, uuId } from '@/composables/designer'
-import { templateList } from '@/composables/template'
 import GgComponents from '~icons/gg/components'
 import GgTemplate from '~icons/gg/template'
 import CodiconListTree from '~icons/codicon/list-tree'
+import { activeWidgetKey, cloneNewWidget, getTemplateList, uuId, widgetList } from '@/core'
+
 const compList = GetCompList()
 const actionCollapse = ref(compList.slice(0, 2).map(e => e.title))
-
-const formGroup = inject(ProvideFormGroup)!
-
-/**
- * 对选中的组件进行拷贝
- */
-const cloneFn = (item: any) => {
-  const newObj = addNewWidget(item)
-  formGroup.curCloneWidgetKey.value = newObj.key
-  return newObj
-}
+const templateList = getTemplateList(TemplateList)
 
 const renderTemplate = (item: ITemplateOptions) => {
   ElMessageBox.confirm(`是否使用${item.title}替换当前配置?`)
     .then(() => {
-      Object.keys(item.formOptions).forEach((key) => {
-        formGroup.updateFormOptions({ key, value: item.formOptions[key].value })
-      })
-      formGroup.widgetList.value = cloneDeep(item.widgetList)
+      widgetList.value = cloneDeep(item.widgetList)
       uuId.value = item.uuId
     })
     .catch(() => {})
 }
 
-const { widgetList: treeData } = formGroup
 const treeDefaultProps = {
   label: (data: IFormComp) =>
     (data.form.label ? `${data.form.label.value} - ` : '') + data.type,
   children: 'children',
   class: (data: IFormComp) =>
-    formGroup.activeWidgetKey.value === data.key ? 'text-$el-color-primary' : '',
+    activeWidgetKey.value === data.key ? 'text-$el-color-primary' : '',
 }
 const handleNodeClick = (data: IFormComp) => {
-  formGroup.changeActiveWidget(data.key)
+  activeWidgetKey.value = data.key
 }
 </script>
 

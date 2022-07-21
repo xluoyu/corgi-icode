@@ -1,7 +1,7 @@
-import type { IFormComp } from '../type'
+import type { IWidgetItemWithOptions } from '../type'
 import IcOutlineSmartButton from '~icons/ic/outline-smart-button'
 
-const data: IFormComp = {
+const data: IWidgetItemWithOptions = {
   title: 'button',
   type: 'button',
   key: '',

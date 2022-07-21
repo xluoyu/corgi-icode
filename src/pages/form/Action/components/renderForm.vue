@@ -13,7 +13,7 @@
           </div>
         </template>
         <Component
-          :is="'cg-' + item.comp"
+          :is="item.component"
           v-bind="item"
           @update="(data: any) => {changeValue(data, item)}"
         />

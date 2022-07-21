@@ -8,13 +8,12 @@
 import Menu from './Menu/index.vue'
 import Action from './Action/index.vue'
 import Main from './Main/index.vue'
-import { ProvideFormGroup, createFormGroup } from '@/composables/designer'
+// import { ProvideFormGroup, createFormGroup } from '@/composables/designer'
 import { useEnv } from '@/composables/appConfig'
 
-const formGroup = createFormGroup()
-provide(ProvideFormGroup, formGroup)
+// const formGroup = createFormGroup()
+// provide(ProvideFormGroup, formGroup)
 
-// onMounted(() => {
 if (window.parent !== window) {
   console.log('当前处在iframe下')
 

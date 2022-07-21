@@ -5,11 +5,11 @@
     item-key="key"
     group="dragGroup"
     class="w-full h-full"
-    @add="$emit('addEnd')"
+    @add="(val) => {$emit('addEnd', val)}"
   >
     <template #item="{ element }">
       <HandleComp :item="element">
-        <RenderComp :item="element" />
+        <slot :item="element" />
       </HandleComp>
     </template>
   </draggable>

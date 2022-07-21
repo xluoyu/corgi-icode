@@ -104,7 +104,6 @@ const updateWidgetSimulateValue = ({
   key: string
   value: any
 }) => {
-  console.log('update!!!')
   formData.value[key] = value
 }
 

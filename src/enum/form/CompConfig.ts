@@ -3,24 +3,24 @@
  */
 export default {
   input: {
-    comp: 'input',
+    component: 'CgInput',
   },
   inputNumer: {
-    comp: 'input',
+    component: 'CgInput',
     type: 'number',
   },
   switch: {
-    comp: 'switch',
+    component: 'CgSwitch',
   },
   color: {
-    comp: 'color',
+    component: 'CgColor',
   },
   alphaColor: {
-    comp: 'color',
+    component: 'CgColor',
     showAlpha: true,
   },
   labelPosition: {
-    comp: 'select',
+    component: 'CgSelect',
     options: [
       {
         label: '左',
@@ -37,7 +37,7 @@ export default {
     ],
   },
   formSize: {
-    comp: 'select',
+    component: 'CgSelect',
     options: [
       {
         label: '默认',
@@ -54,7 +54,7 @@ export default {
     ],
   },
   inputTypeSelect: {
-    comp: 'select',
+    component: 'CgSelect',
     options: [
       {
         label: '文本',
@@ -71,7 +71,7 @@ export default {
     ],
   },
   validateSelect: {
-    comp: 'select',
+    component: 'CgSelect',
     options: [
       {
         label: '无',
@@ -97,10 +97,10 @@ export default {
     filterable: true,
   },
   selectOptions: {
-    comp: 'options',
+    component: 'CgOptions',
   },
   resizeSelect: {
-    comp: 'select',
+    component: 'CgSelect',
     options: [
       {
         label: '不可改变',
@@ -121,7 +121,7 @@ export default {
     ],
   },
   textSizeSelect: {
-    comp: 'select',
+    component: 'CgSelect',
     options: [
       {
         label: 'Supplementary text',
@@ -150,7 +150,7 @@ export default {
     ],
   },
   buttonType: {
-    comp: 'select',
+    component: 'CgSelect',
     options: [
       {
         label: '默认',
@@ -179,7 +179,7 @@ export default {
     ],
   },
   dateTypeSelect: {
-    comp: 'select',
+    component: 'CgSelect',
     options: [
       {
         label: '年',

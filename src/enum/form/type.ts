@@ -1,4 +1,5 @@
 import type CompConfig from './CompConfig'
+import type { IWidgetItem, IWidgetItemForm } from '@/core/type'
 
 export type IFormList = Array<{
   title: string
@@ -51,3 +52,18 @@ export type ITemplateOptions = {
   photo?: string
   uuId: number
 } & IFormData
+
+// new
+
+type IWidgetItemFormWithOptions = Record<
+  string,
+  {
+    label: string
+    type: keyof typeof CompConfig
+    value: any
+  }
+>
+
+export type IWidgetItemWithOptions = IWidgetItem & {
+  form: IWidgetItemFormWithOptions
+}
