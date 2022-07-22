@@ -3,14 +3,14 @@
     :is="item.component"
     v-if="item.noForm"
     :key="options._key"
-    :item-key="item.key"
+    :item="item"
     v-bind="options"
-    @update="updateWidgetSimulateValue"
   />
   <el-form-item v-else :label="options.label" :prop="options._key">
     <component
       :is="item.component"
       :key="options._key"
+      :item="item"
       v-bind="options"
       @update="update"
     />
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ProvideFormGroup } from '@/composables/designer'
+// import { ProvideFormGroup } from '@/composables/designer'
 import type { IFormComp } from '@/enum/form/type'
 
 const props = defineProps<{
@@ -35,11 +35,14 @@ const options = computed(() =>
   }, {} as Record<string, any>),
 )
 
-const formGroup = inject(ProvideFormGroup)!
-const { updateWidgetSimulateValue } = formGroup
+// const formGroup = inject(ProvideFormGroup)!
+// const { updateWidgetSimulateValue } = formGroup
+
+const formFn: any = inject('formData')
+
 const update = (data: any) => {
   if (!props.disUpdate) {
-    updateWidgetSimulateValue(data)
+    formFn.updateFormData(data)
   } else {
     emits('update', data)
   }

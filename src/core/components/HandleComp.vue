@@ -2,7 +2,7 @@
   <div :class="cls" @click.capture="activeCurComp">
     <slot />
     <div class="handleArea bottom-0 right-0 text-light-50">
-      <div><RiDragMove2Fill />{{ $t(`comps.${item.title}`) }}</div>
+      <div><RiDragMove2Fill />{{ item.type }}</div>
       <div v-if="sortBtn.left" @click="sortLeftClick">
         <el-icon>
           <Back />
@@ -31,28 +31,30 @@
 <script lang="ts" setup>
 import { Back, Bottom, Delete, Top } from '@element-plus/icons-vue'
 import RiDragMove2Fill from '~icons/ri/drag-move-2-fill'
-import { ProvideFormGroup } from '@/composables/designer'
+// import { ProvideFormGroup } from '@/composables/designer'
 import type { IFormComp } from '@/enum/form/type'
+import { activeWidgetKey, curActionWidget, findWidgetItem, widgetList } from '@/core'
 
 const props = defineProps<{
   item: IFormComp
 }>()
-const formGroup = inject(ProvideFormGroup)!
+// const formGroup = inject(ProvideFormGroup)!
 
 const activeCurComp = () => {
-  formGroup.changeActiveWidget(props.item.key)
+  // formGroup.changeActiveWidget(props.item.key)
+  activeWidgetKey.value = props.item.key
 }
 
 const cls = computed(() => [
   'handle-comp',
   {
     'handle-comp--active':
-      formGroup.curActionWidget.value?.key === props.item.key,
+      curActionWidget.value?.key === props.item.key,
   },
-  {
-    'inline-block':
-      props.item.form?.inline?.value || formGroup.formOptions.inline.value,
-  },
+  // {
+  //   'inline-block':
+  //     props.item.form?.inline?.value || formOptions.inline.value,
+  // },
 ])
 
 const sortBtn = reactive({
@@ -61,8 +63,8 @@ const sortBtn = reactive({
   btm: false,
 })
 const parentChild = computed(() => {
-  const parent = formGroup.findWidgetItem(props.item.parent!)
-  return parent ? parent.children! : formGroup.widgetList.value
+  const parent = findWidgetItem(props.item.parent!)
+  return parent ? parent.children! : widgetList.value
 })
 
 /**
@@ -79,11 +81,11 @@ watch(
     }
     // 没有父级，说明是在el-form的根目录，直接从widgetList排序
     if (!parent) {
-      const itemIndex = formGroup.widgetList.value.indexOf(props.item)
-      setTopAndBtm(itemIndex, formGroup.widgetList.value)
+      const itemIndex = widgetList.value.indexOf(props.item)
+      setTopAndBtm(itemIndex, widgetList.value)
     } else {
       // 有父级，说明是在栅格系统下
-      const parentChildren = formGroup.findWidgetItem(parent).children!
+      const parentChildren = findWidgetItem(parent).children!
       const itemIndex = parentChildren.indexOf(props.item)
       setTopAndBtm(itemIndex, parentChildren)
     }
@@ -98,7 +100,8 @@ watch(
 const sortLeftClick = () => {
   const parent = props.item.parent!
   if (parent) {
-    formGroup.changeActiveWidget(parent)
+    // changeActiveWidget(parent)
+    activeWidgetKey.value = parent
   }
 }
 

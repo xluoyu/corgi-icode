@@ -1,5 +1,5 @@
 import type CompConfig from './CompConfig'
-import type { IWidgetItem, IWidgetItemForm } from '@/core/type'
+import type { IWidgetItem } from '@/core/type'
 
 export type IFormList = Array<{
   title: string

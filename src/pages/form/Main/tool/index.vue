@@ -20,7 +20,7 @@
         @click="historyGo"
       />
       <el-button text type="primary" :icon="Delete" @click="clearList">
-        {{ $t('page.clear') }}
+        清空
       </el-button>
     </div>
     <el-space>
@@ -31,7 +31,7 @@
         :icon="AkarIconsVueFill"
         @click="saveFileOptions.dialog = true"
       >
-        {{ $t('page.saveFile') }}
+        保存文件
       </el-button>
       <el-button
         text
@@ -39,13 +39,13 @@
         :icon="IconoirSaveActionFloppy"
         @click="saveTemplate"
       >
-        {{ $t('page.saveTemplate') }}
+        保存模板
       </el-button>
       <el-button text type="primary" :icon="View" @click="view">
-        {{ $t('page.view') }}
+        预览
       </el-button>
       <el-button text type="primary" :icon="IcBaselineCode" @click="render">
-        {{ $t('page.renderCode') }}
+        生成代码
       </el-button>
     </el-space>
   </div>

@@ -9,6 +9,25 @@ const options = [
 
 const value1 = ref('')
 const isRange = ref(false)
+
+const obj = reactive({
+  name: '小明',
+  age: 18,
+})
+
+function getComputed(key: keyof typeof obj) {
+  return computed(() => {
+    return obj[key]
+  })
+}
+
+const curName = getComputed('name')
+
+console.log(curName.value)
+
+obj.name = '小红'
+console.log(curName.value)
+
 </script>
 
 <template>
