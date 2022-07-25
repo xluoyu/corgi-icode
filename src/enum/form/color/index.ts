@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import IonColorPalette from '~icons/ion/color-palette'
 
 const data: IFormComp = {
-  title: 'color',
+  title: '取色器',
   type: 'color',
   key: '',
   icon: IonColorPalette,

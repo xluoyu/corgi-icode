@@ -1,8 +1,8 @@
 import { cloneDeep } from 'lodash'
 import type { IWidgetItem } from '../type'
-import { warnMsg } from '../utils'
+import { errorMsg } from '../utils'
 import { addHistoryWidgetList } from './history'
-import { activeWidgetKey, curCloneWidgetKey, uuId, widgetList, widgetListFlat } from './state'
+import { activeWidgetKey, curActionWidget, curCloneWidgetKey, uuId, widgetList, widgetListFlat } from './state'
 
 /**
  * 查找组件
@@ -22,6 +22,7 @@ export const findWidgetItem = (key: string) => {
  * @returns
  */
 export function addNewWidget(parentKey?: string) {
+  console.log(parentKey)
   if (parentKey) {
     const parent = widgetListFlat.value[parentKey]
     if (!parent) {
@@ -63,7 +64,7 @@ export function cloneNewWidget(item: IWidgetItem) {
 export function getFormData(key: string) {
   const targetWidget = findWidgetItem(key)
   if (!targetWidget || targetWidget.type !== 'form') {
-    warnMsg(`未找到对应的form组件，key: ${key}`)
+    errorMsg(`未找到对应的form组件，key: ${key}`, 'core/app/methods.ts line: 66')
     return
   }
 
@@ -73,4 +74,44 @@ export function getFormData(key: string) {
     pre[widget.key] = widget.form.value.value
     return pre
   }, {} as Record<string, any>)
+}
+
+export function getParentForm(widget: IWidgetItem): null | IWidgetItem {
+  if (!widget.parent)
+    return null
+  const parent = findWidgetItem(widget.parent)
+  if (!parent)
+    return null
+
+  if (parent.type !== 'form') {
+    return getParentForm(parent)
+  } else {
+    return parent
+  }
+}
+
+/**
+ * 更新活跃组件的属性值
+ *
+ * 如果更新的key为_key(表单绑定节点)、value(默认值), 会去更新父级表单的formdata
+ * @param key
+ * @param value
+ * @returns
+ */
+export function updateActionWidgetOptions(key: string, value: any) {
+  if (!curActionWidget.value) {
+    errorMsg('当前没有活跃的组件', 'core/app/methods.ts line: 95')
+    return
+  }
+
+  curActionWidget.value.form[key].value = value
+
+  if ((key === '_key' || key === 'value') && curActionWidget.value.parent) {
+    // updateActionWidgetOptions('parent', value)
+    const parentFormWidgetItem = getParentForm(curActionWidget.value)
+
+    if (parentFormWidgetItem && parentFormWidgetItem.updateDataFn) {
+      nextTick(parentFormWidgetItem.updateDataFn)
+    }
+  }
 }

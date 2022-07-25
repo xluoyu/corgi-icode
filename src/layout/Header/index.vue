@@ -3,13 +3,13 @@
     class="h-$header-h bg-$theme-bg border-b border-gray-400 z-10 relative"
   >
     <el-row class="h-full" align="middle">
-      <el-col :span="8" class="flex items-center">
+      <el-col :span="12" class="flex items-center">
         <img src="/logo.png" alt="" class="w-12">
         <p class="ml-2">
           <span class="text-xl font-bold">Corgi</span> 代码生成器
         </p>
       </el-col>
-      <el-col :span="8" class="flex items-center justify-end">
+      <el-col :span="12" class="flex items-center justify-end">
         <el-icon class="cursor-pointer mr-4" :size="20" @click="toggleDark()">
           <IcBaselineWbSunny v-show="!isDark" />
           <BiCloudMoonFill v-show="isDark" />

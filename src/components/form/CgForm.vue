@@ -9,21 +9,26 @@
 </template>
 
 <script lang='ts' setup>
-import type { IWidgetItem } from '@/core'
+import type { IWidgetItem, objectT } from '@/core'
 import { addNewWidget, getFormData, mixinValue } from '@/core'
 
 const props = defineProps<{
   item: IWidgetItem
 }>()
 
-const formData = reactive({})
+const formData = reactive<objectT<any>>({})
 
-watch(() => props.item.children!.length, () => {
+function updateFormData() {
   Object.assign(formData, getFormData(props.item.key))
-})
+}
+
+// eslint-disable-next-line vue/no-mutating-props
+props.item.updateDataFn = updateFormData
+
+watch(() => props.item.children!.length, updateFormData)
 
 provide('formData', {
-  updateFormData(data) {
+  updateFormData(data: { key: string | number; value: any }) {
     console.log('update form', data)
     formData[data.key] = data.value
   },
@@ -48,7 +53,6 @@ const formAttrs = computed(() => {
 })
 
 const addEnd = () => {
-  addNewWidget(props.item.parent)
+  addNewWidget(props.item.key)
 }
-
 </script>

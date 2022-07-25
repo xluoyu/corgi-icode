@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import OcticonMultiSelect16 from '~icons/octicon/multi-select-16'
 
 const data: IFormComp = {
-  title: 'select',
+  title: '下拉框',
   type: 'select',
   key: '',
   icon: OcticonMultiSelect16,

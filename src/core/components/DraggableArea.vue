@@ -1,7 +1,7 @@
 <template>
   <draggable
     :list="list"
-    handle=".handleArea"
+    handle=".moveArea"
     item-key="key"
     group="dragGroup"
     class="w-full h-full"
@@ -24,4 +24,8 @@ defineProps<{
 }>()
 
 defineEmits(['addEnd'])
+
+// 为了阻止vue的warn信息
+provide('formData', null)
+
 </script>

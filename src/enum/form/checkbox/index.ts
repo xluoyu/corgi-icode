@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import IonCheckbox from '~icons/ion/checkbox'
 
 const data: IFormComp = {
-  title: 'checkbox',
+  title: '多选',
   type: 'checkbox',
   key: '',
   icon: IonCheckbox,

@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import MdiToggleSwitchOff from '~icons/mdi/toggle-switch-off'
 
 const data: IFormComp = {
-  title: 'switch',
+  title: '开关',
   type: 'switch',
   key: '',
   icon: MdiToggleSwitchOff,

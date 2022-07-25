@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import RiBankCardLine from '~icons/ri/bank-card-line'
 
 const data: IFormComp = {
-  title: 'card',
+  title: '卡片',
   type: 'card',
   key: '',
   icon: RiBankCardLine,

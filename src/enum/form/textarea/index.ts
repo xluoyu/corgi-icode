@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import BiTextareaResize from '~icons/bi/textarea-resize'
 
 const data: IFormComp = {
-  title: 'textarea',
+  title: '多行文本',
   type: 'textarea',
   key: '',
   icon: BiTextareaResize,

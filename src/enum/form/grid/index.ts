@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import MaterialSymbolsGridOn from '~icons/material-symbols/grid-on'
 
 const data: IFormComp = {
-  title: 'grid',
+  title: '网格',
   type: 'grid',
   key: '',
   icon: MaterialSymbolsGridOn,

@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import IcOutlineRadioButtonChecked from '~icons/ic/outline-radio-button-checked'
 
 const data: IFormComp = {
-  title: 'radio',
+  title: '单选',
   type: 'radio',
   key: '',
   icon: IcOutlineRadioButtonChecked,

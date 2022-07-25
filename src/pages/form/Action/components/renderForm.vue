@@ -1,15 +1,15 @@
 <template>
   <el-form label-width="auto" size="small">
     <template v-for="item in renderList" :key="item.key">
-      <el-form-item v-show="item.isShow" :prop="item._key">
+      <el-form-item :prop="item._key">
         <template #label>
           <div class="flex items-center">
             {{ item.label }}
-            <el-tooltip v-if="item.tooltip" :content="item.tooltip">
+            <!-- <el-tooltip v-if="item.tooltip" :content="item.tooltip">
               <el-icon class="ml-1">
                 <IcBaselineInfo />
               </el-icon>
-            </el-tooltip>
+            </el-tooltip> -->
           </div>
         </template>
         <Component
@@ -24,57 +24,61 @@
 
 <script lang="ts" setup>
 import CompConfig from '@/enum/form/CompConfig'
-import type { IFormItemOptions, IFormItemOptionsArray } from '@/enum/form/type'
-import IcBaselineInfo from '~icons/ic/baseline-info'
+// import IcBaselineInfo from '~icons/ic/baseline-info'
+import { curActionWidget } from '@/core'
 
-const props = defineProps<{
-  formOptions: IFormItemOptionsArray
-  formData?: IFormItemOptions
-}>()
-const emits = defineEmits(['update'])
+// const props = defineProps<{
+//   formOptions: IFormItemOptionsArray
+//   formData?: IFormItemOptions
+// }>()
+// const emits = defineEmits(['update'])
 
-const formOptionsData = computed(() => {
-  return props.formOptions.reduce((pre, cur) => {
-    return {
-      ...pre,
-      [cur.key]: cur.value,
-    }
-  }, {} as Record<string, any>)
-})
+// const formOptionsData = computed(() => {
+//   return props.formOptions.reduce((pre, cur) => {
+//     return {
+//       ...pre,
+//       [cur.key]: cur.value,
+//     }
+//   }, {} as Record<string, any>)
+// })
 
-const isShowFormItems = ref<any>([])
+// const isShowFormItems = ref<any>([])
 
-watch(formOptionsData, () => {
-  isShowFormItems.value.forEach(
-    (item: {
-      obj: { isShow: any }
-      isShow: (arg0: Record<string, any>) => any
-    }) => {
-      item.obj.isShow = item.isShow(formOptionsData.value)
-    },
-  )
-})
+// watch(formOptionsData, () => {
+//   isShowFormItems.value.forEach(
+//     (item: {
+//       obj: { isShow: any }
+//       isShow: (arg0: Record<string, any>) => any
+//     }) => {
+//       item.obj.isShow = item.isShow(formOptionsData.value)
+//     },
+//   )
+// })
 
 const changeValue = (data: any, item: any) => {
-  item.changeCb && item.changeCb(props.formData)
-  emits('update', data)
+  // item.changeCb && item.changeCb(props.formData)
+  // emits('update', data)
+  curActionWidget.value!.form[data.key].value = data.value
 }
 
 const renderList = computed(() => {
-  isShowFormItems.value = []
-  const res = props.formOptions.map((item) => {
+  if (!curActionWidget.value)
+    return []
+  // isShowFormItems.value = []
+  const res = Object.keys(curActionWidget.value.form).map((key) => {
+    const item = curActionWidget.value!.form[key]
     const obj: any = {
-      ...CompConfig[item.type],
+      ...CompConfig[item.type as keyof typeof CompConfig],
       label: item.label,
-      tooltip: item.tooltip,
+      // tooltip: item.tooltip,
       value: item.value,
-      _key: item.key,
-      isShow: item.isShow ? item.isShow!(formOptionsData.value) : true,
-      changeCb: item.changeCb,
+      _key: key,
+      // isShow: item.isShow ? item.isShow!(formOptionsData.value) : true,
+      // changeCb: item.changeCb,
     }
-    if (item.isShow) {
-      isShowFormItems.value.push({ obj, isShow: item.isShow })
-    }
+    // if (item.isShow) {
+    //   isShowFormItems.value.push({ obj, isShow: item.isShow })
+    // }
     return obj
   })
   return res

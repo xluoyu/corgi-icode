@@ -19,11 +19,11 @@ import type { IFormList } from './type'
 export const GetCompList = (): IFormList => {
   return [
     {
-      title: 'layout',
+      title: '布局',
       children: [Form, Table, Grid, Card],
     },
     {
-      title: 'basic',
+      title: '基础组件',
       children: [
         Input,
         Select,

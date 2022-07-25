@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import IconoirInputField from '~icons/iconoir/input-field'
 
 const data: IFormComp = {
-  title: 'input',
+  title: '输入框',
   type: 'input',
   key: '',
   icon: IconoirInputField,

@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import CilAvTimer from '~icons/cil/av-timer'
 
 const data: IFormComp = {
-  title: 'time',
+  title: '时间选择器',
   type: 'time',
   key: '',
   icon: CilAvTimer,

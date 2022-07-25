@@ -2,24 +2,26 @@
   <div :class="cls" @click.capture="activeCurComp">
     <slot />
     <div class="handleArea bottom-0 right-0 text-light-50">
-      <div><RiDragMove2Fill />{{ item.type }}</div>
-      <div v-if="sortBtn.left" @click="sortLeftClick">
+      <div title="移动组件" class="moveArea">
+        <RiDragMove2Fill />{{ item.type }}
+      </div>
+      <div v-if="sortBtn.left" title="父级组件" @click="sortLeftClick">
         <el-icon>
           <Back />
         </el-icon>
       </div>
-      <div v-if="sortBtn.top" @click="sortTopClick">
+      <div v-if="sortBtn.top" title="上一个组件" @click="sortTopClick">
         <el-icon>
           <Top />
         </el-icon>
       </div>
-      <div v-if="sortBtn.btm" @click="sortBtmClick">
+      <div v-if="sortBtn.btm" title="下一个组件" @click="sortBtmClick">
         <el-icon>
           <Bottom />
         </el-icon>
       </div>
       <slot name="handle" />
-      <div @click="removeCurItem">
+      <div title="删除组件" @click="removeCurItem">
         <el-icon>
           <Delete />
         </el-icon>

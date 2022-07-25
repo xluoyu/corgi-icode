@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import MdiFormatText from '~icons/mdi/format-text'
 
 const data: IFormComp = {
-  title: 'text',
+  title: '文字',
   type: 'text',
   key: '',
   icon: MdiFormatText,

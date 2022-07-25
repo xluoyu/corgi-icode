@@ -8,6 +8,7 @@ export interface IWidgetItem {
   noForm?: boolean
   children?: IWidgetItem[]
   parent?: string
+  updateDataFn?: () => void // 用来更新组件内的数据
 }
 
 export type IWidgetItemForm = Record<
@@ -19,10 +20,9 @@ export type IWidgetItemForm = Record<
   }
 >
 
-export type IWidgetItemFormOptions = Record<
-  string,
-  {
-    component: string
-    [name: string]: any
-  }
->
+export type IWidgetItemFormOptions = objectT<{
+  component: string
+  [name: string]: any
+}>
+
+export type objectT<T> = Record<string, T>

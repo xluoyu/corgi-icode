@@ -2,7 +2,7 @@ import type { IFormComp } from '../type'
 import RadixIconsDividerHorizontal from '~icons/radix-icons/divider-horizontal'
 
 const data: IFormComp = {
-  title: 'divider',
+  title: '分割线',
   type: 'divider',
   key: '',
   icon: RadixIconsDividerHorizontal,

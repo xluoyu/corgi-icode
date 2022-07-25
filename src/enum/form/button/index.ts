@@ -2,7 +2,7 @@ import type { IWidgetItemWithOptions } from '../type'
 import IcOutlineSmartButton from '~icons/ic/outline-smart-button'
 
 const data: IWidgetItemWithOptions = {
-  title: 'button',
+  title: '按钮',
   type: 'button',
   key: '',
   icon: IcOutlineSmartButton,

@@ -38,11 +38,12 @@ const options = computed(() =>
 // const formGroup = inject(ProvideFormGroup)!
 // const { updateWidgetSimulateValue } = formGroup
 
+// 判断是否在form之下
 const formFn: any = inject('formData')
 
 const update = (data: any) => {
   if (!props.disUpdate) {
-    formFn.updateFormData(data)
+    formFn.updateFormData && formFn.updateFormData(data)
   } else {
     emits('update', data)
   }

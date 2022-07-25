@@ -2,8 +2,8 @@ import { merge } from 'lodash'
 
 export * from './template'
 
-export function warnMsg(msg: string) {
-  console.warn(`[lowcode-core]: ${msg}`)
+export function errorMsg(msg: string, source: string) {
+  console.error(`[lowcode-core]: ${msg}`, source)
 }
 
 /**
