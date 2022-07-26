@@ -1,14 +1,11 @@
 <template>
   <el-dialog v-model="dialogVisible" title="表单预览" width="60%">
-    <el-form :model="formData" class="w-full h-full" v-bind="formAttrs">
-      <RenderComp
-        v-for="item in formOptions.widgetList"
-        :key="item.key"
-        :dis-update="true"
-        :item="item"
-        @update="updateWidgetSimulateValue"
-      />
-    </el-form>
+    <RenderComp
+      v-for="item in widgetList"
+      :key="item.key"
+      :dis-update="true"
+      :item="item"
+    />
     <template #footer>
       <div class="text-center">
         <el-button type="primary" @click="dialogVisible = false">
@@ -22,14 +19,12 @@
 <script lang="ts" setup>
 import { validateFn, validates } from '@/enum/form'
 import type { IFormData } from '@/enum/form/type'
-import { mixinValue } from '@/utils'
+import type { IWidgetItem } from '@/core'
+import { mixinValue } from '@/core'
 
 const dialogVisible = ref(false)
 provide('showType', 'preview') // 显示状态为预览
-const formOptions = reactive<IFormData>({
-  formOptions: {},
-  widgetList: [],
-})
+const widgetList = ref<IWidgetItem[]>([])
 
 const formAttrs = ref({})
 /**
@@ -107,10 +102,9 @@ const updateWidgetSimulateValue = ({
   formData.value[key] = value
 }
 
-const open = (options: IFormData) => {
+const open = (options: IWidgetItem[]) => {
   dialogVisible.value = true
-  formOptions.formOptions = options.formOptions
-  formOptions.widgetList = options.widgetList
+  widgetList.value = options
   getFormAttrs()
   getFormSimulateData()
 }

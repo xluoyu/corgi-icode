@@ -1,6 +1,6 @@
 <template>
-  <el-form :model="formData" class="w-full h-full border border-gray-400 border-dashed" v-bind="formAttrs">
-    <DraggableArea :list="item.children" class="min-h-[100px]" @add="addEnd">
+  <el-form :model="formData" :rules="validateRules" class="w-full h-full border border-gray-400 border-dashed" v-bind="formAttrs">
+    <DraggableArea :list="item.children" class="min-h-[100px]" :item-key="item.key">
       <template #default="{ item: _item }">
         <RenderComp :item="_item" />
       </template>
@@ -10,7 +10,8 @@
 
 <script lang='ts' setup>
 import type { IWidgetItem, objectT } from '@/core'
-import { addNewWidget, getFormData, mixinValue } from '@/core'
+import { getFormData, mixinValue } from '@/core'
+import { validateFn, validates } from '@/enum/form'
 
 const props = defineProps<{
   item: IWidgetItem
@@ -37,22 +38,67 @@ provide('formData', {
 const formAttrs = computed(() => {
   return Object.keys(props.item.form).reduce((pre, key) => {
     const value = props.item.form[key].value
-    if (key.includes('.') && value) {
+    if (!value)
+      return pre
+    if (key.includes('.')) {
       pre = mixinValue(key, value, pre)
     } else {
       /**
        * 表单开启了校验
        */
-      // if (key === 'validate' && value) {
-      //   pre.rules = getFormValidateRules.value
-      // }
+      if (key === 'validate')
+        return pre
       pre[key] = value
     }
     return pre
   }, {} as Record<string, any>)
 })
 
-const addEnd = () => {
-  addNewWidget(props.item.key)
-}
+/**
+ * 规则校验
+ */
+const validateRules = computed(() => {
+  if (!props.item.form.validate.value)
+    return []
+
+  function run(list: IWidgetItem[]) {
+    return list.reduce((pre, item) => {
+      if (item.children && item.type !== 'form') {
+        pre = run(item.children)
+        return pre
+      }
+      if (item.noForm) {
+        return pre
+      }
+
+      const key = item.form._key.value as string
+      const trigger = item.type === 'input' ? 'blur' : 'change'
+      const rules: Record<string, any>[] = []
+
+      if (item.form.required && item.form.required.value) {
+        rules.push({ required: true, message: `${key} is required`, trigger })
+      }
+
+      if (item.form.validate) {
+        let validate: string | RegExp | null = item.form.validate?.value
+
+        validate = (
+          validate && Object.keys(validates).includes(validate as string)
+            ? validates[validate as keyof typeof validates]
+            : validate
+        ) as RegExp | null
+
+        if (validate) {
+          rules.push({ validator: validateFn(key, validate), trigger })
+        }
+      }
+
+      pre[key] = rules
+      return pre
+    }, {} as Record<string, any>)
+  }
+
+  return run(props.item.children!)
+})
+
 </script>

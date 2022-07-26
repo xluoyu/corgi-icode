@@ -17,6 +17,8 @@ export type IWidgetItemForm = Record<
     label: string
     type: string
     value: any
+    isShow?: (options: any) => boolean
+    changeCb?: (options: any) => void
   }
 >
 

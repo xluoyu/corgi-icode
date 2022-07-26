@@ -3,7 +3,7 @@
     v-model="value"
     :type="type"
     v-bind="$attrs"
-    @input="changeValue"
+    @change="changeValue"
   />
 </template>
 

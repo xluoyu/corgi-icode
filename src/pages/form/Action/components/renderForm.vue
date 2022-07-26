@@ -56,8 +56,6 @@ import { curActionWidget } from '@/core'
 // })
 
 const changeValue = (data: any, item: any) => {
-  // item.changeCb && item.changeCb(props.formData)
-  // emits('update', data)
   curActionWidget.value!.form[data.key].value = data.value
 }
 

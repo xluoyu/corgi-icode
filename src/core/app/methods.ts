@@ -22,7 +22,6 @@ export const findWidgetItem = (key: string) => {
  * @returns
  */
 export function addNewWidget(parentKey?: string) {
-  console.log(parentKey)
   if (parentKey) {
     const parent = widgetListFlat.value[parentKey]
     if (!parent) {
@@ -32,7 +31,7 @@ export function addNewWidget(parentKey?: string) {
       item.parent = parentKey
     })
   }
-
+  console.log(curCloneWidgetKey.value)
   activeWidgetKey.value = curCloneWidgetKey.value // 修改当前的活跃组件key
   addHistoryWidgetList(widgetList.value) // 添加历史记录
 }
@@ -114,4 +113,12 @@ export function updateActionWidgetOptions(key: string, value: any) {
       nextTick(parentFormWidgetItem.updateDataFn)
     }
   }
+}
+
+/**
+ * 导出完整的数据
+ * @returns
+ */
+export function returnData(): IWidgetItem[] {
+  return cloneDeep(widgetList.value)
 }

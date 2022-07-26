@@ -22,13 +22,18 @@ const changeValue = (val: string) => {
 }
 
 const textareaRef = ref<any>(null)
-const textareaRefWidth = computed(
-  () => `${textareaRef.value?.ref.parentNode.offsetWidth}px` || '0px',
-)
+const textareaRefParentWidth = ref(0)
+
+onMounted(() => {
+  nextTick(() => {
+    textareaRefParentWidth.value = textareaRef.value?.ref.parentNode.offsetWidth || 0
+  })
+})
+
 </script>
 
 <style>
 .el-textarea .el-textarea__inner {
-  max-width: v-bind(textareaRefWidth);
+  max-width: v-bind(textareaRefParentWidth + 'px');
 }
 </style>

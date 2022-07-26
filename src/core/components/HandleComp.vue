@@ -73,7 +73,7 @@ const parentChild = computed(() => {
  * 计算当前组件需要展示的排序按钮
  */
 watch(
-  () => parentChild,
+  () => parentChild.value.length,
   () => {
     const parent = props.item.parent || null
     function setTopAndBtm(index: number, list: any[]) {
@@ -81,16 +81,7 @@ watch(
       sortBtn.top = index !== 0
       sortBtn.btm = index < list.length - 1
     }
-    // 没有父级，说明是在el-form的根目录，直接从widgetList排序
-    if (!parent) {
-      const itemIndex = widgetList.value.indexOf(props.item)
-      setTopAndBtm(itemIndex, widgetList.value)
-    } else {
-      // 有父级，说明是在栅格系统下
-      const parentChildren = findWidgetItem(parent).children!
-      const itemIndex = parentChildren.indexOf(props.item)
-      setTopAndBtm(itemIndex, parentChildren)
-    }
+    setTopAndBtm(parentChild.value.indexOf(props.item), parentChild.value)
   },
   { immediate: true, deep: true },
 )
@@ -137,42 +128,3 @@ const removeCurItem = () => {
   parentChild.value.splice(oldIndex, 1)
 }
 </script>
-
-<style>
-.handle-comp {
-  border: 1px dashed transparent;
-  position: relative;
-}
-.handle-comp .handleArea {
-  display: none;
-}
-.handle-comp.handle-comp--active {
-  border-color: var(--el-color-primary) !important;
-}
-.handle-comp.handle-comp--active > .handleArea {
-  display: flex;
-}
-.handle-comp .el-button {
-  margin-right: 12px;
-}
-.handleArea {
-  position: absolute;
-  z-index: 1;
-  font-size: 12px;
-  padding: 2px 4px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  height: 24px;
-}
-.handleArea > div {
-  margin-left: 4px;
-  cursor: pointer;
-  background: #409eff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 4px;
-  height: 100%;
-}
-</style>

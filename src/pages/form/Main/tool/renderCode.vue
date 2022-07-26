@@ -35,11 +35,12 @@ import beautify from 'js-beautify'
 import Clipboard from 'clipboard'
 import type { VNodeRef } from 'vue'
 import { editor } from 'monaco-editor/esm/vs/editor/editor.api.js'
-import type { IFormData } from '@/enum/form/type'
+// import type { IFormData } from '@/enum/form/type'
 import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution'
 import 'monaco-editor/esm/vs/basic-languages/html/html.contribution'
 import { renderCode } from '@/enum/form'
 import { isDark } from '@/composables/appConfig'
+import type { IWidgetItem } from '@/core'
 
 const dialogVisible = ref(false)
 const copyRef = ref<VNodeRef | null>(null)
@@ -47,10 +48,7 @@ const editRef = ref(null)
 let editInstance: editor.IStandaloneCodeEditor | null = null
 let copyInstance: Clipboard | null = null
 
-const formGroup = reactive<IFormData>({
-  formOptions: {},
-  widgetList: [],
-})
+const widgetList = ref<IWidgetItem[]>([])
 
 const init = () => {
   editInstance = editor.create(editRef.value!, {
@@ -90,10 +88,11 @@ const exportFile = () => {
   a.click()
 }
 
-const open = (options: IFormData) => {
+const open = (options: IWidgetItem[]) => {
   dialogVisible.value = true
-  formGroup.formOptions = options.formOptions
-  formGroup.widgetList = options.widgetList
+  // formGroup.formOptions = options.formOptions
+  // formGroup.widgetList = options.widgetList
+  widgetList.value = options
   nextTick(() => {
     init()
   })

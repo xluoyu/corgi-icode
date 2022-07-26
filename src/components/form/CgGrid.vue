@@ -1,27 +1,30 @@
 <template>
   <el-row>
-    <cg-col v-for="item in children" :key="item.key" :item="item" />
+    <cg-col v-for="_item in children" :key="_item.key" :item="_item" />
   </el-row>
 </template>
 
 <script lang="ts" setup>
-import { ProvideFormGroup, addNewWidget } from '@/composables/designer'
+import type { IWidgetItem } from '@/core'
+import { cloneNewWidget, curCloneWidgetKey } from '@/core'
 import colOptions from '@/enum/form/col'
 const props = defineProps<{
-  itemKey: string
+  item: IWidgetItem
 }>()
 
-const formGroup = inject(ProvideFormGroup)!
 const showType = inject('showType')
 
-const { children } = formGroup.findWidgetItem(props.itemKey)!
+const children = props.item.children
 
 onMounted(() => {
   if (showType === 'whiteboard') {
-    children!.push(
-      Object.assign(addNewWidget(colOptions), { parent: props.itemKey }),
-      Object.assign(addNewWidget(colOptions), { parent: props.itemKey }),
+    props.item.children!.push(
+      Object.assign(cloneNewWidget(colOptions), { parent: props.item.key }),
+      Object.assign(cloneNewWidget(colOptions), { parent: props.item.key }),
     )
+
+    // 将活跃节点的key锁定为grid
+    curCloneWidgetKey.value = props.item.key
   }
 })
 </script>

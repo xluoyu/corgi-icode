@@ -12,37 +12,45 @@
         :item="_item"
       />
     </template>
-    <DraggableArea :list="item.children" class="min-h-[50px]" @add="addEnd" />
+    <DraggableArea :list="item.children" class="min-h-[50px]" :item-key="item.key">
+      <template #default="{ item:_item }">
+        <RenderComp :item="_item" />
+      </template>
+    </DraggableArea>
 
-    <div class="handleArea !text-base bottom-0 right-0">
-      <el-icon @click="sortLeftClick">
-        <Back />
-      </el-icon>
-      <el-icon @click="copyClick">
-        <CopyDocument />
-      </el-icon>
-      <el-icon @click="removeCurItem">
-        <Delete />
-      </el-icon>
+    <div class="handleArea bottom-0 right-0">
+      <div title="父级组件" @click="sortLeftClick">
+        <el-icon>
+          <Back />
+        </el-icon>
+      </div>
+      <div title="复制一份" @click="copyClick">
+        <el-icon>
+          <CopyDocument />
+        </el-icon>
+      </div>
+      <div title="删除" @click="removeCurItem">
+        <el-icon>
+          <Delete />
+        </el-icon>
+      </div>
     </div>
   </el-col>
 </template>
 
 <script lang="ts" setup>
 import { Back, CopyDocument, Delete } from '@element-plus/icons-vue'
-// import draggable from 'vuedraggable'
-import { ProvideFormGroup, addNewWidget } from '@/composables/designer'
 import type { IFormComp } from '@/enum/form/type'
+import { activeWidgetKey, cloneNewWidget, curActionWidget, findWidgetItem } from '@/core'
 import colOptions from '@/enum/form/col'
 const props = defineProps<{
   item: IFormComp
 }>()
 
-const formGroup = inject(ProvideFormGroup)!
 const showType = inject('showType')
 
 const activeCurComp = () => {
-  formGroup.changeActiveWidget(props.item.key)
+  activeWidgetKey.value = props.item.key
 }
 
 const options = computed(() =>
@@ -59,22 +67,13 @@ const cls = computed(() => {
         'handle-comp',
         {
           'handle-comp--active':
-            formGroup.curActionWidget.value?.key === props.item.key,
+            curActionWidget.value?.key === props.item.key,
         },
       ]
 })
 
-const addEnd = () => {
-  props.item.children?.forEach((child) => {
-    child.parent = props.item.key
-  })
-  formGroup.changeActiveWidget(formGroup.curCloneWidgetKey.value)
-  formGroup.addHistory()
-}
-
 const parentChild = computed(() => {
-  const parent = formGroup.findWidgetItem(props.item.parent!)
-  return parent ? parent.children! : formGroup.widgetList.value
+  return findWidgetItem(props.item.parent!).children!
 })
 
 /**
@@ -84,7 +83,7 @@ const parentChild = computed(() => {
 const sortLeftClick = () => {
   const parent = props.item.parent!
   if (parent) {
-    formGroup.changeActiveWidget(parent)
+    activeWidgetKey.value = parent
   }
 }
 
@@ -102,7 +101,7 @@ const copyClick = () => {
   parentChild.value.splice(
     index + 1,
     0,
-    Object.assign(addNewWidget(colOptions), { parent: props.item.parent }),
+    Object.assign(cloneNewWidget(colOptions), { parent: props.item.parent }),
   )
 }
 </script>

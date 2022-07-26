@@ -84,23 +84,26 @@ import AkarIconsVueFill from '~icons/akar-icons/vue-fill'
 import IconoirSaveActionFloppy from '~icons/iconoir/save-action-floppy'
 import AkarIconsArrowForward from '~icons/akar-icons/arrow-forward'
 import AkarIconsArrowBack from '~icons/akar-icons/arrow-back'
-import {
-  ProvideFormGroup,
-  historyWidgetList,
-  uuId,
-} from '@/composables/designer'
+// import {
+//   ProvideFormGroup,
+//   historyWidgetList,
+//   uuId,
+// } from '@/composables/designer'
 import { localTemplateList } from '@/composables/template'
 import { useEnv } from '@/composables/appConfig'
 import { renderCode } from '@/enum/form'
-const formGroup = inject(ProvideFormGroup)!
+import { historyWidgetList, returnData, uuId, widgetList } from '@/core'
+
+// const = inject(ProvideFormGroup)!
 const previewDialog = ref<InstanceType<typeof Preview> | null>(null)
 const renderCodeDialog = ref<InstanceType<typeof RenderCode> | null>(null)
 const view = () => {
-  const data = formGroup.returnFormData()
+  const data = returnData()
   previewDialog.value!.open(data)
 }
+
 const render = () => {
-  const data = formGroup.returnFormData()
+  const data = returnData()
   renderCodeDialog.value!.open(data)
 }
 
@@ -110,7 +113,7 @@ const saveFileOptions = reactive({
 })
 
 const saveFile = () => {
-  const code = beautify.html(renderCode(formGroup.returnFormData()), {
+  const code = beautify.html(renderCode(returnData()), {
     indent_size: 2,
   })
   window.parent.postMessage(
@@ -136,14 +139,13 @@ const saveTemplate = () => {
     cancelButtonText: 'Cancel',
   })
     .then(({ value }) => {
-      const data = formGroup.returnFormData()
+      const data = returnData()
       localTemplateList.value.push({
         title: value,
         type: 'template',
         key: `${new Date().getTime()}`,
         photo: `http://iph.href.lu/200x200?text=${value}`,
-        formOptions: data.formOptions,
-        widgetList: data.widgetList,
+        data,
         uuId: uuId.value,
       })
     })
@@ -151,7 +153,7 @@ const saveTemplate = () => {
 }
 
 const clearList = () => {
-  formGroup.widgetList.value = []
+  widgetList.value = []
 }
 
 // 记录返回历史记录的step
@@ -162,14 +164,14 @@ const historyListLength = computed(() => historyWidgetList.value.length)
 // 前进
 const historyGo = () => {
   curHistoryNum.value = Math.max(1, curHistoryNum.value - 1)
-  formGroup.widgetList.value
+  widgetList.value
     = historyWidgetList.value[historyListLength.value - curHistoryNum.value]
 }
 
 // 后退
 const historyBack = () => {
   curHistoryNum.value++
-  formGroup.widgetList.value
+  widgetList.value
     = historyWidgetList.value[historyListLength.value - curHistoryNum.value]
 }
 </script>

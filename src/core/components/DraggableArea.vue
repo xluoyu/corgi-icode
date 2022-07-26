@@ -5,7 +5,7 @@
     item-key="key"
     group="dragGroup"
     class="w-full h-full"
-    @add="(val) => {$emit('addEnd', val)}"
+    @add="addEnd"
   >
     <template #item="{ element }">
       <HandleComp :item="element">
@@ -17,15 +17,18 @@
 
 <script lang="ts" setup>
 import Draggable from 'vuedraggable'
+import { addNewWidget } from '../app'
 import type { IFormComp } from '@/enum/form/type'
 
-defineProps<{
+const props = defineProps<{
+  itemKey?: string
   list: IFormComp[]
 }>()
 
-defineEmits(['addEnd'])
-
 // 为了阻止vue的warn信息
-provide('formData', null)
+// provide('formData', null)
 
+const addEnd = () => {
+  addNewWidget(props.itemKey)
+}
 </script>

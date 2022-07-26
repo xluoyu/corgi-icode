@@ -29,3 +29,40 @@ body,
   background-color: transparent !important;
   opacity: 0.8;
 }
+
+.handle-comp {
+  border: 1px dashed transparent;
+  position: relative;
+}
+.handle-comp .handleArea {
+  display: none;
+}
+.handle-comp.handle-comp--active {
+  border-color: var(--el-color-primary) !important;
+}
+.handle-comp.handle-comp--active > .handleArea {
+  display: flex;
+}
+.handle-comp .el-button {
+  margin-right: 12px;
+}
+.handleArea {
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+  padding: 2px 4px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+}
+.handleArea > div {
+  margin-left: 4px;
+  cursor: pointer;
+  background: #409eff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  height: 100%;
+}
