@@ -1,13 +1,11 @@
-import type { IFormItemOptions } from '../type'
-
-export default function(options: IFormItemOptions) {
+export default function(options: Record<string, any>) {
   return {
     template: `<div :style="{${
-      options.block.value ? '' : 'display: inline-block,'
+      options.block ? '' : 'display: inline-block,'
     }${
-      options.size.value !== 'large'
-        ? `fontSize: var(--el-font-size-${options.size.value})`
+      options.size !== 'large'
+        ? `fontSize: var(--el-font-size-${options.size})`
         : ''
-    }}">${options.content.value}</div>`,
+    }}">${options.content}</div>`,
   }
 }

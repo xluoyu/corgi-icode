@@ -1,22 +1,22 @@
 // import { formatArrt } from '@/utils/renderTemplate'
 
-export default function(options: any) {
+export default function(options: Record<string, any>) {
   // const attrs = ['placeholder', 'clearable', 'multiple', 'filterable']
   // const attrsStr = attrs.map(attr => formatArrt(attr, options[attr].value)).filter(Boolean).join('\n')
   const privateVar: Record<string, any> = {}
   let optionsStr = ''
-  if (options.options.value.length >= 3) {
+  if (options.options.length >= 3) {
     optionsStr = `<el-checkbox
-          v-for="item in ${options._key.value}SelectList"
+          v-for="item in ${options._key}SelectList"
           :key="item.value"
           :label="item.label"
           :value="item.value"
         />`
-    privateVar[`${options._key.value}CheckboxList`] = JSON.stringify(
-      options.options.value,
+    privateVar[`${options._key}CheckboxList`] = JSON.stringify(
+      options.options,
     )
   } else {
-    optionsStr = options.options.value.reduce(
+    optionsStr = options.options.reduce(
       (pre: string, cur: { value: any; label: any }) => {
         return `${pre}<el-checkbox :value="${cur.value}" label="${cur.label}"/>`
       },
@@ -26,10 +26,10 @@ export default function(options: any) {
 
   return {
     formData: {
-      [options._key.value]: options.value.value.split(','),
+      [options._key]: options.value.split(','),
     },
     template: `<el-checkbox-group
-        v-model="formData.${options._key.value}"
+        v-model="formData.${options._key}"
       >
         ${optionsStr}
       </el-checkbox-group>`,

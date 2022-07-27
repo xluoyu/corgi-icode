@@ -1,6 +1,6 @@
 import { formatArrt } from '@/utils/renderTemplate'
 
-export default function(options: any) {
+export default function(options: Record<string, any>) {
   const attrs = ['placeholder', 'clearable', 'multiple', 'filterable']
   const attrsStr = attrs
     .map(attr => formatArrt(attr, options[attr]))

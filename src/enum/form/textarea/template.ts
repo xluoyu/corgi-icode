@@ -1,7 +1,6 @@
-import type { IFormItemOptions } from '../type'
 import { formatArrt } from '@/utils/renderTemplate'
 
-export default function(options: IFormItemOptions) {
+export default function(options: Record<string, any>) {
   const attrs = [
     'placeholder',
     'clearable',
@@ -13,14 +12,14 @@ export default function(options: IFormItemOptions) {
     'resize',
   ]
   const attrsStr = attrs
-    .map(attr => formatArrt(attr, options[attr].value))
+    .map(attr => formatArrt(attr, options[attr]))
     .filter(Boolean)
     .join(' ')
 
   return {
     formData: {
-      [options._key.value]: options.value.value,
+      [options._key]: options.value,
     },
-    template: `<el-input v-model="formData.${options._key.value}" type="textarea" ${attrsStr} />`,
+    template: `<el-input v-model="formData.${options._key}" type="textarea" ${attrsStr} />`,
   }
 }

@@ -1,4 +1,5 @@
 // import { validateFn, validates } from './validate'
+import { validateFn, validates } from './validate'
 import type { IWidgetItem } from '@/core'
 import { objectToString } from '@/core'
 const templates = import.meta.globEager('./*/template.ts')
@@ -40,7 +41,6 @@ export function renderCode(widgetList: IWidgetItem[]) {
       let childrenStr = ''
 
       const itemStrData = CodeTemplate[widget.type](formValue, widget)
-      console.log(itemStrData)
 
       // 如果当前是form组件，将formData放入formDataObj中
       if (widget.type === 'form') {
@@ -61,18 +61,33 @@ export function renderCode(widgetList: IWidgetItem[]) {
       // 如果当前组件开启了校验，将校验列表放入validateList中
       if (formOptions && formOptions.validate && !widget.noForm) {
         const rules = []
+        const trigger = widget.type === 'input' ? 'blur' : 'change'
         if (formValue.required) {
           rules.push({
             required: true,
             message: `${formValue._key} is required`,
-            trigger: widget.type === 'input' ? 'blur' : 'change',
+            trigger,
           })
         }
 
         if (formValue.validate) {
-          // let validate =
+          const validate = Object.keys(validates).includes(formValue.validate as string) ? validates[formValue.validate as keyof typeof validates] : formValue.validate
+
+          Object.assign(widgetVariableList, {
+            [`${formValue._key}Validate`]: `${validateFn(formValue._key, validate)}`.replace(
+              /_rule/g,
+              `${formValue._key}ValidateReg`,
+            ).replace(/\$\{key\}/g, formValue._key),
+          })
+
+          rules.push({ validator: `${formValue._key}Validate`, trigger })
         }
-        // Object.assign(validateList[`${formOptions.key}Rules`], )
+
+        if (rules.length) {
+          Object.assign(validateList[`${formOptions.key}Rules`], {
+            [formValue._key]: rules,
+          })
+        }
       }
 
       /**
@@ -109,7 +124,6 @@ export function renderCode(widgetList: IWidgetItem[]) {
   }
 
   const templateStr = eachList(widgetList)
-  console.log(templateStr, formDataObj, widgetVariableList)
 
   /**
    * 渲染各个模块的私有变量
@@ -130,6 +144,16 @@ export function renderCode(widgetList: IWidgetItem[]) {
     },
     '',
   )
+  /**
+   * 渲染校验规则列表
+   */
+  const validateListStr = Object.keys(validateList).reduce(
+    (pre, key) => {
+      return `${pre}\nconst ${key} = ${objectToString(validateList[key])}`
+    },
+    '',
+  )
+  console.log(validateList, validateListStr)
 
   return `
 <template>
@@ -139,6 +163,7 @@ export function renderCode(widgetList: IWidgetItem[]) {
 <script setup>
 ${formDataStr}
 ${widgetVariableStr}
+${Object.keys(validateList).length ? validateListStr : ''}
 </script>
 `
 }
@@ -208,26 +233,26 @@ ${widgetVariableStr}
 //       trigger,
 //     })
 //   }
-//       if (cur.form.validate) {
-//         let validate: string | RegExp | null = cur.form.validate?.value
-//         validate = (
-//           validate && Object.keys(validates).includes(validate as string)
-//             ? validates[validate as keyof typeof validates]
-//             : validate
-//         ) as RegExp | null
-//         if (validate) {
-//           Object.assign(widgetVariableList, {
-//             [`${key}ValidateReg`]: validate,
-//             [`${key}Validate`]: `${validateFn(key, validate)}`.replace(
-//               /_rule/g,
+// if (cur.form.validate) {
+//   let validate: string | RegExp | null = cur.form.validate?.value
+//   validate = (
+//     validate && Object.keys(validates).includes(validate as string)
+//       ? validates[validate as keyof typeof validates]
+//       : validate
+//   ) as RegExp | null
+//   if (validate) {
+//     Object.assign(widgetVariableList, {
+//       [`${key}ValidateReg`]: validate,
+//       [`${key}Validate`]: `${validateFn(key, validate)}`.replace(
+//         /_rule/g,
 //               `${key}ValidateReg`,
-//             ),
-//           })
-//           validateList[key].push({ validator: `${key}Validate`, trigger })
-//         }
-//       }
-//     }
+//       ),
+//     })
+//     validateList[key].push({ validator: `${key}Validate`, trigger })
 //   }
+// }
+//   }
+// }
 //   return pre + itemStr
 // }, '')
 /**

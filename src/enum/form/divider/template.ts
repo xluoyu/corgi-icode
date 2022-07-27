@@ -1,7 +1,5 @@
-import type { IFormItemOptions } from '../type'
-
-export default function(options: IFormItemOptions) {
+export default function(options: Record<string, any>) {
   return {
-    template: `<el-divider>${options.content.value}</el-divider>`,
+    template: `<el-divider>${options.content}</el-divider>`,
   }
 }

@@ -55,11 +55,18 @@ export function objectToString(obj: any): string {
   if (obj instanceof Object) {
     console.log(obj, '对象')
 
-    return `{${Object.keys(obj).map(key => `${key}: ${obj[key] ? `'${obj[key]}'` : '\'\''}`).join(', ')}}`
+    return `{${Object.keys(obj).map(key => `${key}: ${obj[key] ? `${objectToString(obj[key])}` : '\'\''}`).join(', ')}}`
   }
-  console.log(obj, '其他')
 
-  return JSON.stringify(obj)
+  if (typeof obj === 'string') {
+    return `'${obj}'`
+  }
+
+  if (typeof obj === 'boolean' || typeof obj === 'number') {
+    return `${obj}`
+  }
+
+  return `'${obj}'`
 }
 
 if (import.meta.vitest) {
