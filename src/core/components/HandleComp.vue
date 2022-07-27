@@ -35,7 +35,7 @@ import { Back, Bottom, Delete, Top } from '@element-plus/icons-vue'
 import RiDragMove2Fill from '~icons/ri/drag-move-2-fill'
 // import { ProvideFormGroup } from '@/composables/designer'
 import type { IFormComp } from '@/enum/form/type'
-import { activeWidgetKey, curActionWidget, findWidgetItem, widgetList } from '@/core'
+import { activeWidgetKey, curActionWidget, findWidgetItem, getParentForm, widgetList } from '@/core'
 
 const props = defineProps<{
   item: IFormComp
@@ -53,10 +53,10 @@ const cls = computed(() => [
     'handle-comp--active':
       curActionWidget.value?.key === props.item.key,
   },
-  // {
-  //   'inline-block':
-  //     props.item.form?.inline?.value || formOptions.inline.value,
-  // },
+  {
+    'inline-block':
+      props.item.form?.inline?.value || getParentForm(props.item)?.form.inline.value,
+  },
 ])
 
 const sortBtn = reactive({

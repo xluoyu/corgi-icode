@@ -84,17 +84,11 @@ import AkarIconsVueFill from '~icons/akar-icons/vue-fill'
 import IconoirSaveActionFloppy from '~icons/iconoir/save-action-floppy'
 import AkarIconsArrowForward from '~icons/akar-icons/arrow-forward'
 import AkarIconsArrowBack from '~icons/akar-icons/arrow-back'
-// import {
-//   ProvideFormGroup,
-//   historyWidgetList,
-//   uuId,
-// } from '@/composables/designer'
 import { localTemplateList } from '@/composables/template'
 import { useEnv } from '@/composables/appConfig'
 import { renderCode } from '@/enum/form'
 import { historyWidgetList, returnData, uuId, widgetList } from '@/core'
 
-// const = inject(ProvideFormGroup)!
 const previewDialog = ref<InstanceType<typeof Preview> | null>(null)
 const renderCodeDialog = ref<InstanceType<typeof RenderCode> | null>(null)
 const view = () => {

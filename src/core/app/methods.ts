@@ -31,7 +31,6 @@ export function addNewWidget(parentKey?: string) {
       item.parent = parentKey
     })
   }
-  console.log(curCloneWidgetKey.value)
   activeWidgetKey.value = curCloneWidgetKey.value // 修改当前的活跃组件key
   addHistoryWidgetList(widgetList.value) // 添加历史记录
 }

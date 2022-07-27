@@ -17,96 +17,16 @@
 </template>
 
 <script lang="ts" setup>
-import { validateFn, validates } from '@/enum/form'
-import type { IFormData } from '@/enum/form/type'
 import type { IWidgetItem } from '@/core'
-import { mixinValue } from '@/core'
 
 const dialogVisible = ref(false)
 provide('showType', 'preview') // 显示状态为预览
+provide('formData', null)
 const widgetList = ref<IWidgetItem[]>([])
-
-const formAttrs = ref({})
-/**
- * 表单校验
- */
-const getFormValidateRules = () => {
-  if (!formOptions.formOptions.validate.value)
-    return []
-  return formOptions.widgetList.reduce((pre, item) => {
-    if (item.noForm)
-      return pre
-    const key = item.form._key.value as string
-    const trigger = item.type === 'input' ? 'blur' : 'change'
-
-    pre[key] = []
-    if (item.form.required && item.form.required.value) {
-      pre[key].push({ required: true, message: `${key} is required`, trigger })
-    }
-
-    if (item.form.validate) {
-      let validate: string | RegExp | null = item.form.validate?.value
-
-      validate = (
-        validate && Object.keys(validates).includes(validate as string)
-          ? validates[validate as keyof typeof validates]
-          : validate
-      ) as RegExp | null
-
-      if (validate) {
-        pre[key].push({ validator: validateFn(key, validate), trigger })
-      }
-    }
-    return pre
-  }, {} as Record<string, any>)
-}
-/**
- * form 属性
- */
-const getFormAttrs = () => {
-  formAttrs.value = Object.keys(formOptions.formOptions).reduce((pre, key) => {
-    const value = formOptions.formOptions[key].value
-    if (key.includes('.')) {
-      mixinValue(key, value, pre)
-    } else {
-      /**
-       * 表单开启了校验
-       */
-      if (key === 'validate' && value) {
-        pre.rules = getFormValidateRules()
-      }
-      pre[key] = value
-    }
-    return pre
-  }, {} as Record<string, any>)
-}
-
-const formData = ref<any>({})
-const getFormSimulateData = () => {
-  formData.value = formOptions.widgetList.reduce((pre, item) => {
-    if (item.noForm)
-      return pre
-    const key = item.form._key.value as string
-    const value = item.form.value.value
-    pre[key] = value || ''
-    return pre
-  }, {} as Record<string, any>)
-}
-const updateWidgetSimulateValue = ({
-  key,
-  value,
-}: {
-  key: string
-  value: any
-}) => {
-  formData.value[key] = value
-}
 
 const open = (options: IWidgetItem[]) => {
   dialogVisible.value = true
   widgetList.value = options
-  getFormAttrs()
-  getFormSimulateData()
 }
 
 defineExpose({

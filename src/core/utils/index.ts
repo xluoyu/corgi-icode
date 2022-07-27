@@ -45,3 +45,35 @@ if (import.meta.vitest) {
     ).toEqual({ class: { zzc: 'aa', age: { sd: 'auto' } } })
   })
 }
+
+export function objectToString(obj: any): string {
+  if (Array.isArray(obj)) {
+    console.log(obj, '数组')
+    return `[${obj.map(item => objectToString(item)).join(', ')}]`
+  }
+
+  if (obj instanceof Object) {
+    console.log(obj, '对象')
+
+    return `{${Object.keys(obj).map(key => `${key}: ${obj[key] ? `'${obj[key]}'` : '\'\''}`).join(', ')}}`
+  }
+  console.log(obj, '其他')
+
+  return JSON.stringify(obj)
+}
+
+if (import.meta.vitest) {
+  const { it, expect } = import.meta.vitest
+  it('should objectToString', () => {
+    expect(objectToString({
+      name: '你们',
+      age: 2,
+    })).toEqual('{name: \'你们\', age: \'2\'}')
+    expect(
+      objectToString([
+        { name: '阿松大', age: '2' },
+        { name: '阿松二', age: '3' },
+      ]),
+    ).toEqual('[{name: \'阿松大\', age: \'2\'}, {name: \'阿松二\', age: \'3\'}]')
+  })
+}

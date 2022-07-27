@@ -8,9 +8,10 @@
     @add="addEnd"
   >
     <template #item="{ element }">
-      <HandleComp :item="element">
+      <HandleComp v-if="showType === 'whiteboard'" :item="element">
         <slot :item="element" />
       </HandleComp>
+      <slot v-else :item="element" />
     </template>
   </draggable>
 </template>
@@ -24,6 +25,8 @@ const props = defineProps<{
   itemKey?: string
   list: IFormComp[]
 }>()
+
+const showType = inject('showType')
 
 // 为了阻止vue的warn信息
 // provide('formData', null)

@@ -19,7 +19,6 @@ const uid = ref(new Date().getTime())
 watch(
   () => props.isRange,
   () => {
-    console.log('change isRange')
     uid.value = new Date().getTime()
   },
 )

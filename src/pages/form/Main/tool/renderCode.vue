@@ -52,7 +52,7 @@ const widgetList = ref<IWidgetItem[]>([])
 
 const init = () => {
   editInstance = editor.create(editRef.value!, {
-    value: beautify.html(renderCode(formGroup), { indent_size: 2 }),
+    value: beautify.html(renderCode(widgetList.value), { indent_size: 2 }),
     theme: isDark.value ? 'vs-dark' : 'vs-light',
     language: 'html',
     automaticLayout: true,
@@ -90,8 +90,6 @@ const exportFile = () => {
 
 const open = (options: IWidgetItem[]) => {
   dialogVisible.value = true
-  // formGroup.formOptions = options.formOptions
-  // formGroup.widgetList = options.widgetList
   widgetList.value = options
   nextTick(() => {
     init()

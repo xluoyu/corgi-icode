@@ -10,6 +10,11 @@ const data: IFormComp = {
   noForm: true,
   children: [],
   form: {
+    'dataName': {
+      label: '数据对象',
+      type: 'input',
+      value: '',
+    },
     'style.width': {
       label: '表单宽度',
       type: 'input',

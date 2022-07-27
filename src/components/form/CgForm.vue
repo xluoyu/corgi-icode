@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="formData" :rules="validateRules" class="w-full h-full border border-gray-400 border-dashed" v-bind="formAttrs">
+  <el-form :model="formData" :rules="validateRules" class="w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs">
     <DraggableArea :list="item.children" class="min-h-[100px]" :item-key="item.key">
       <template #default="{ item: _item }">
         <RenderComp :item="_item" />
@@ -12,6 +12,8 @@
 import type { IWidgetItem, objectT } from '@/core'
 import { getFormData, mixinValue } from '@/core'
 import { validateFn, validates } from '@/enum/form'
+
+const showType = inject('showType')
 
 const props = defineProps<{
   item: IWidgetItem
@@ -30,7 +32,6 @@ watch(() => props.item.children!.length, updateFormData)
 
 provide('formData', {
   updateFormData(data: { key: string | number; value: any }) {
-    console.log('update form', data)
     formData[data.key] = data.value
   },
 })
