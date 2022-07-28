@@ -37,8 +37,8 @@ provide('formData', {
 })
 
 const formAttrs = computed(() => {
-  return Object.keys(props.item.form).reduce((pre, key) => {
-    const value = props.item.form[key].value
+  return Object.entries(props.item.form).reduce((pre, [key, cur]) => {
+    const value = cur.value
     if (!value)
       return pre
     if (key.includes('.')) {

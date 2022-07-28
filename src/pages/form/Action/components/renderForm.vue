@@ -63,8 +63,7 @@ const renderList = computed(() => {
   if (!curActionWidget.value)
     return []
   // isShowFormItems.value = []
-  const res = Object.keys(curActionWidget.value.form).map((key) => {
-    const item = curActionWidget.value!.form[key]
+  const res = Object.entries(curActionWidget.value.form).map(([key, item]) => {
     const obj: any = {
       ...CompConfig[item.type as keyof typeof CompConfig],
       label: item.label,

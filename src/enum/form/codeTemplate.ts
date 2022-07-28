@@ -11,9 +11,9 @@ export const CodeTemplate: Record<
     privateVar?: Record<string, any>
     formDataName?: string
   }
-> = Object.keys(templates).reduce((res, key) => {
+> = Object.entries(templates).reduce((res, [key, cur]) => {
   const _key = key.match(/\/(\S*)\//)![1]
-  res[_key] = templates[key].default
+  res[_key] = cur.default
   return res
 }, {} as Record<string, any>)
 
@@ -33,8 +33,8 @@ export function renderCode(widgetList: IWidgetItem[]) {
       if (!CodeTemplate[widget.type])
         return
 
-      const formValue = Object.keys(widget.form).reduce((pre, key) => {
-        pre[key] = widget.form[key].value
+      const formValue = Object.entries(widget.form).reduce((pre, [key, cur]) => {
+        pre[key] = cur.value
         return pre
       }, {} as Record<string, any>)
 
@@ -128,9 +128,9 @@ export function renderCode(widgetList: IWidgetItem[]) {
   /**
    * 渲染各个模块的私有变量
    */
-  const formDataStr = Object.keys(formDataObj).reduce(
-    (pre, key) => {
-      return `${pre}\nconst ${key} = reactive(${objectToString(formDataObj[key])})`
+  const formDataStr = Object.entries(formDataObj).reduce(
+    (pre, [key, cur]) => {
+      return `${pre}\nconst ${key} = reactive(${objectToString(cur)})`
     },
     '',
   )
@@ -138,22 +138,21 @@ export function renderCode(widgetList: IWidgetItem[]) {
   /**
    * 渲染各个模块的私有变量
    */
-  const widgetVariableStr = Object.keys(widgetVariableList).reduce(
-    (pre, key) => {
-      return `${pre}\nconst ${key} = ${objectToString(widgetVariableList[key])}`
+  const widgetVariableStr = Object.entries(widgetVariableList).reduce(
+    (pre, [key, cur]) => {
+      return `${pre}\nconst ${key} = ${objectToString(cur)}`
     },
     '',
   )
   /**
    * 渲染校验规则列表
    */
-  const validateListStr = Object.keys(validateList).reduce(
-    (pre, key) => {
-      return `${pre}\nconst ${key} = ${objectToString(validateList[key])}`
+  const validateListStr = Object.entries(validateList).reduce(
+    (pre, [key, cur]) => {
+      return `${pre}\nconst ${key} = ${objectToString(cur)}`
     },
     '',
   )
-  console.log(validateList, validateListStr)
 
   return `
 <template>

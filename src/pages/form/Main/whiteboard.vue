@@ -22,5 +22,7 @@ import { widgetList } from '@/core'
 
 provide('showType', 'whiteboard') // 显示状态为白板
 provide('formData', null)
-
+// const { TestFn } = getCurrentInstance()?.proxy
+// TestFn()
+// console.log(TestFn)
 </script>

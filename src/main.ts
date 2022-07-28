@@ -9,7 +9,9 @@ import GlobalComponents from '@/components/form/index'
 import lowcodeComponents from '@/core/components/index'
 
 const app = createApp(App)
-
+app.config.globalProperties.TestFn = () => {
+  console.log('testFn')
+}
 app.use(router as any)
 app.use(GlobalComponents)
 app.use(lowcodeComponents)

@@ -29,8 +29,8 @@ const props = defineProps<{
 const emits = defineEmits(['update'])
 
 const options = computed(() =>
-  Object.keys(props.item.form).reduce((pre, key) => {
-    pre[key] = props.item.form[key].value
+  Object.entries(props.item.form).reduce((pre, [key, cur]) => {
+    pre[key] = cur.value
     return pre
   }, {} as Record<string, any>),
 )

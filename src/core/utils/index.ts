@@ -55,7 +55,7 @@ export function objectToString(obj: any): string {
   if (obj instanceof Object) {
     console.log(obj, '对象')
 
-    return `{${Object.keys(obj).map(key => `${key}: ${obj[key] ? `${objectToString(obj[key])}` : '\'\''}`).join(', ')}}`
+    return `{${Object.entries(obj).map(([key, cur]) => `${key}: ${cur ? `${objectToString(cur)}` : '\'\''}`).join(', ')}}`
   }
 
   if (typeof obj === 'string') {

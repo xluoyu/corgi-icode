@@ -38,8 +38,8 @@ import CompConfig from '@/enum/form/CompConfig'
 const formOptionsData = computed(() => {
   if (!curActionWidget.value)
     return {}
-  return Object.keys(curActionWidget.value.form).reduce((pre, key) => {
-    pre[key] = curActionWidget.value!.form[key].value
+  return Object.entries(curActionWidget.value.form).reduce((pre, [key, cur]) => {
+    pre[key] = cur.value
     return pre
   }, {} as Record<string, any>)
 })
@@ -59,8 +59,7 @@ const renderList = computed(() => {
   if (!curActionWidget.value)
     return []
   isShowFormItems.value = []
-  const res = Object.keys(curActionWidget.value.form).map((key) => {
-    const item = curActionWidget.value!.form[key]
+  const res = Object.entries(curActionWidget.value.form).map(([key, item]) => {
     const obj: any = {
       ...CompConfig[item.type as keyof typeof CompConfig],
       label: item.label,
