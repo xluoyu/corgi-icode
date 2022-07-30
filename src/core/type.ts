@@ -28,3 +28,13 @@ export type IWidgetItemFormOptions = objectT<{
 }>
 
 export type objectT<T> = Record<string, T>
+
+export type renderWidgetCode = (options: Record<string, any>, IWidgetItem: IWidgetItem, formOptions?: {
+  key: string // formDataName
+  validate: boolean // form表单是否开启校验
+}) => {
+  template: string | ((arg: string) => string)
+  formData?: Record<string, any>
+  privateVar?: Record<string, any>
+  formDataName?: string
+}

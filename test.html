@@ -55,6 +55,12 @@ let num = 0
     }).catch((err) => {
       console.log(err)
     })
+
+    const test = (text) => {
+      console.log(text)
+    }
+
+    console.log(new Function(,`${test}`))
   </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
+import type { renderWidgetCode } from '@/core'
 import { formatArrt } from '@/utils/renderTemplate'
 
-export default function(options: Record<string, any>) {
+const run: renderWidgetCode = (options: Record<string, any>) => {
   const attrs = ['placeholder', 'clearable', 'multiple', 'filterable']
   const attrsStr = attrs
     .map(attr => formatArrt(attr, options[attr]))
@@ -38,3 +39,5 @@ export default function(options: Record<string, any>) {
     privateVar,
   }
 }
+
+export default run

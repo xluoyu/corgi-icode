@@ -1,6 +1,7 @@
+import type { renderWidgetCode } from '@/core'
 import { formatArrt } from '@/utils/renderTemplate'
 
-export default function(options: Record<string, any>) {
+const run: renderWidgetCode = (options, widgetItem, formOptions) => {
   const attrs = ['editable', 'clearable', 'type', 'format', 'valueFormat']
   const attrsStr = attrs
     .map(attr => formatArrt(attr, options[attr]))
@@ -28,6 +29,8 @@ export default function(options: Record<string, any>) {
         ? options.value.split(',')
         : options.value,
     },
-    template: `<el-date-picker v-model="formData.${options._key}" ${attrsStr} ${otherAttrsStr} />`,
+    template: `<el-date-picker ${formOptions ? `v-model="${formOptions.key}.${options._key} "` : ''}${attrsStr} ${otherAttrsStr} />`,
   }
 }
+
+export default run

@@ -1,16 +1,15 @@
-// import { validateFn, validates } from './validate'
+/**
+ * 通过对组件列表的遍历
+ * 生成代码块
+ *
+ */
 import { validateFn, validates } from './validate'
-import type { IWidgetItem } from '@/core'
+import type { IWidgetItem, renderWidgetCode } from '@/core'
 import { objectToString } from '@/core'
 const templates = import.meta.globEager('./*/template.ts')
+
 export const CodeTemplate: Record<
-  string,
-  (arg0: Record<string, any>, arg1: IWidgetItem) => {
-    formData?: Record<string, any>
-    template: string | ((arg0: string) => string)
-    privateVar?: Record<string, any>
-    formDataName?: string
-  }
+  string, renderWidgetCode
 > = Object.entries(templates).reduce((res, [key, cur]) => {
   const _key = key.match(/\/(\S*)\//)![1]
   res[_key] = cur.default
@@ -24,8 +23,8 @@ export function renderCode(widgetList: IWidgetItem[]) {
   const validateList: Record<string, any> = {} // 校验列表
 
   function eachList(widgetList: IWidgetItem[], formOptions?: {
-    key: string
-    validate: boolean
+    key: string // formDataName
+    validate: boolean // form表单是否开启校验
   }) {
     let resStr = ''
 
@@ -40,7 +39,7 @@ export function renderCode(widgetList: IWidgetItem[]) {
 
       let childrenStr = ''
 
-      const itemStrData = CodeTemplate[widget.type](formValue, widget)
+      const itemStrData = CodeTemplate[widget.type](formValue, widget, formOptions)
 
       // 如果当前是form组件，将formData放入formDataObj中
       if (widget.type === 'form') {
@@ -70,9 +69,12 @@ export function renderCode(widgetList: IWidgetItem[]) {
           })
         }
 
+        /**
+         * 如果当前组件开启了校验，将校验列表放入validateList中
+         */
         if (formValue.validate) {
           const validate = Object.keys(validates).includes(formValue.validate as string) ? validates[formValue.validate as keyof typeof validates] : formValue.validate
-
+          // 把检验规则函数当作变量，存放到私有变量列表中
           Object.assign(widgetVariableList, {
             [`${formValue._key}Validate`]: `${validateFn(formValue._key, validate)}`.replace(
               /_rule/g,
@@ -153,6 +155,7 @@ export function renderCode(widgetList: IWidgetItem[]) {
     },
     '',
   )
+  console.log(validateList)
 
   return `
 <template>
@@ -166,142 +169,3 @@ ${Object.keys(validateList).length ? validateListStr : ''}
 </script>
 `
 }
-
-// export const renderCodeOld = (widgetList: IWidgetItem[]) => {
-//   let hasValidate = false // 是否开启校验
-//   const validateList: Record<string, any> = {} // 校验列表
-//   const formAttrs = Object.keys(formGroup.formOptions)
-//     .map((key) => {
-//       const value = formGroup.formOptions[key].value
-//       if (key.includes('.') && value) {
-//         const keys = key.split('.')
-//         return `:${keys[0]}="{${keys[1]}: '${value}'}"`
-//       }
-//   /**
-//    * 表单开启了校验
-//    */
-//   if (key === 'validate' && value) {
-//     hasValidate = true
-//     return null
-//   }
-//   return formatArrt(key, value)
-// })
-// .filter(Boolean)
-// .join(' ')
-
-// const formDataObj: Record<string, any> = {} // formData的对象
-// const widgetVariableList: Record<string, any> = {} // 各个模块产生的私有变量
-
-/**
-   * 渲染模块
-   */
-// const widgetStr = formGroup.widgetList.reduce((pre, cur) => {
-//   const { type, form } = cur
-//   if (!CodeTemplate[type])
-//     return pre
-//   let itemStr = ''
-//   const itemStrData = CodeTemplate[type](form, cur, { hasValidate })
-
-//   if (itemStrData.privateVar) {
-//     Object.assign(widgetVariableList, itemStrData.privateVar)
-//   }
-//   if (itemStrData.formData) {
-//     Object.assign(formDataObj, itemStrData.formData || {})
-//   }
-
-// if (cur.noForm) {
-//   itemStr = `${itemStrData.template}`
-// } else {
-//   itemStr = `<el-form-item label="${form.label.value}"${
-//     hasValidate ? ` prop="${form._key.value}"` : ''
-//   }>
-//   ${itemStrData.template}
-// </el-form-item>`
-
-/**
-       * 添加校验规则
-       */
-// if (hasValidate && (cur.form.validate || cur.form.required)) {
-//   const key = cur.form._key.value
-//   const trigger = cur.type === 'input' ? 'blur' : 'change'
-//   validateList[key] = []
-//   if (cur.form.required.value) {
-//     validateList[key].push({
-//       required: true,
-//       message: `${key} is required`,
-//       trigger,
-//     })
-//   }
-// if (cur.form.validate) {
-//   let validate: string | RegExp | null = cur.form.validate?.value
-//   validate = (
-//     validate && Object.keys(validates).includes(validate as string)
-//       ? validates[validate as keyof typeof validates]
-//       : validate
-//   ) as RegExp | null
-//   if (validate) {
-//     Object.assign(widgetVariableList, {
-//       [`${key}ValidateReg`]: validate,
-//       [`${key}Validate`]: `${validateFn(key, validate)}`.replace(
-//         /_rule/g,
-//               `${key}ValidateReg`,
-//       ),
-//     })
-//     validateList[key].push({ validator: `${key}Validate`, trigger })
-//   }
-// }
-//   }
-// }
-//   return pre + itemStr
-// }, '')
-/**
-   * 渲染各个模块的私有变量
-   */
-// const widgetVariableStr = Object.keys(widgetVariableList).reduce(
-//   (pre, key) => {
-//     // 替换${key}
-//     const valueStr = `${widgetVariableList[key]}`.replace(/\$\{key\}/g, key)
-//     return `${pre}\nconst ${key} = ${valueStr}`
-//   },
-//   '',
-// )
-
-/**
-   * 渲染formData
-   */
-// const formDataStr = `{${Object.keys(formDataObj).reduce((pre, key) => {
-//   return `${pre}\n  ${key}: ${
-//     typeof formDataObj[key] === 'object'
-//       ? JSON.stringify(formDataObj[key])
-//       : `'${formDataObj[key]}'`
-//   },`
-// }, '')}\n}`
-
-// const validateStr = `\nconst roles = {${Object.keys(validateList).reduce(
-//   (pre, key) => {
-//     // 自定义校验format
-//     const validateValue = JSON.stringify(validateList[key]).replaceAll(
-//       `"${key}Validate"`,
-//       `${key}Validate`,
-//     )
-//     return `${pre}\n  ${key}: ${validateValue},`
-//   },
-//   '',
-// )}\n}`
-
-//   return `<template>
-//   <el-form :model="formData" ${formAttrs}${
-//     hasValidate ? ' :rules="rules"' : ''
-//   }>
-//     ${widgetStr}
-//   </el-form>
-// </template>
-
-// <script lang='ts' setup>
-// const formData = reactive(${formDataStr})
-// ${widgetVariableStr}
-// ${Object.keys(validateList).length ? validateStr : ''}
-// </script>
-
-// `
-// }

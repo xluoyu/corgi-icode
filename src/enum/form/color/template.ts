@@ -1,6 +1,7 @@
+import type { renderWidgetCode } from '@/core'
 import { formatArrt } from '@/utils/renderTemplate'
 
-export default function(options: Record<string, any>) {
+const run: renderWidgetCode = (options, widgetItem, formOptions) => {
   const attrs = ['showAlpha']
   const attrsStr = attrs
     .map(attr => formatArrt(attr, options[attr]))
@@ -11,6 +12,8 @@ export default function(options: Record<string, any>) {
     formData: {
       [options._key]: options.value,
     },
-    template: `<el-color-picker v-model="formData.${options._key}" ${attrsStr} />`,
+    template: `<el-color-picker ${formOptions ? `v-model="${formOptions.key}.${options._key} "` : ''} ${attrsStr} />`,
   }
 }
+
+export default run

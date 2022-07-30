@@ -48,21 +48,18 @@ if (import.meta.vitest) {
 
 export function objectToString(obj: any): string {
   if (Array.isArray(obj)) {
-    console.log(obj, '数组')
     return `[${obj.map(item => objectToString(item)).join(', ')}]`
   }
 
   if (obj instanceof Object) {
-    console.log(obj, '对象')
-
     return `{${Object.entries(obj).map(([key, cur]) => `${key}: ${cur ? `${objectToString(cur)}` : '\'\''}`).join(', ')}}`
   }
 
-  if (typeof obj === 'string') {
-    return `'${obj}'`
+  if (typeof obj === 'boolean' || typeof obj === 'number' || typeof obj === 'function') {
+    return `${obj}`
   }
 
-  if (typeof obj === 'boolean' || typeof obj === 'number') {
+  if (typeof obj === 'string' && obj.includes(') => {')) {
     return `${obj}`
   }
 

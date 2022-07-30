@@ -1,6 +1,7 @@
 import { formatArrt } from '@/utils/renderTemplate'
+import type { renderWidgetCode } from '@/core'
 
-export default function(options: Record<string, any>) {
+const run: renderWidgetCode = (options, widgetItem, formOptions) => {
   const attrs = ['activeText', 'inactiveText', 'activeColor', 'inactiveColor']
   const attrsStr = attrs
     .map(attr => formatArrt(attr, options[attr]))
@@ -12,8 +13,10 @@ export default function(options: Record<string, any>) {
       [options._key]: options.value,
     },
     template: `<el-switch
-        v-model="formData.${options._key}"
+        ${formOptions ? `v-model="${formOptions.key}.${options._key} "` : ''}
         ${attrsStr}
       />`,
   }
 }
+
+export default run
