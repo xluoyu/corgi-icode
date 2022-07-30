@@ -33,17 +33,14 @@
 <script lang="ts" setup>
 import { Back, Bottom, Delete, Top } from '@element-plus/icons-vue'
 import RiDragMove2Fill from '~icons/ri/drag-move-2-fill'
-// import { ProvideFormGroup } from '@/composables/designer'
 import type { IFormComp } from '@/enum/form/type'
 import { activeWidgetKey, curActionWidget, findWidgetItem, getParentForm, widgetList } from '@/core'
 
 const props = defineProps<{
   item: IFormComp
 }>()
-// const formGroup = inject(ProvideFormGroup)!
 
 const activeCurComp = () => {
-  // formGroup.changeActiveWidget(props.item.key)
   activeWidgetKey.value = props.item.key
 }
 

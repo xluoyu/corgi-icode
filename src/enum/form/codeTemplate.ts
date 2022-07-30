@@ -155,7 +155,6 @@ export function renderCode(widgetList: IWidgetItem[]) {
     },
     '',
   )
-  console.log(validateList)
 
   return `
 <template>

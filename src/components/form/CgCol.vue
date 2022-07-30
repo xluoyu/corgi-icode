@@ -40,11 +40,11 @@
 
 <script lang="ts" setup>
 import { Back, CopyDocument, Delete } from '@element-plus/icons-vue'
-import type { IFormComp } from '@/enum/form/type'
+import type { IWidgetItem } from '@/core'
 import { activeWidgetKey, cloneNewWidget, curActionWidget, findWidgetItem } from '@/core'
 import colOptions from '@/enum/form/col'
 const props = defineProps<{
-  item: IFormComp
+  item: IWidgetItem
 }>()
 
 const showType = inject('showType')

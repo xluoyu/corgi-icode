@@ -6,6 +6,7 @@
       <div class="flex justify-between items-center">
         <span class="pl-1">{{ title }}</span>
         <el-button
+          v-if="collapse"
           class="button"
           text
           @click="collapseStatus = !collapseStatus"
@@ -19,38 +20,34 @@
       </div>
     </template>
     <el-collapse-transition v-if="!collapseStatus && collapse">
-      <DraggableArea :list="children" class="min-h-[60px]" @add="addEnd" />
+      <DraggableArea :list="item.children" class="min-h-[60px]">
+        <template #default="{ item:_item }">
+          <RenderComp :item="_item" />
+        </template>
+      </DraggableArea>
     </el-collapse-transition>
 
     <DraggableArea
       v-if="!collapse"
-      :list="children"
+      :list="item.children"
       class="min-h-[60px]"
-      @add="addEnd"
-    />
+    >
+      <template #default="{ item:_item }">
+        <RenderComp :item="_item" />
+      </template>
+    </DraggableArea>
   </el-card>
 </template>
 
 <script lang="ts" setup>
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
-import { ProvideFormGroup } from '@/composables/designer'
-const props = defineProps<{
+import type { IWidgetItem } from '@/core'
+defineProps<{
   title: string
   collapse: boolean
   background: string
-  itemKey: string
+  item: IWidgetItem
 }>()
-
-const formGroup = inject(ProvideFormGroup)!
-const { children } = formGroup.findWidgetItem(props.itemKey)!
-
-const addEnd = () => {
-  children?.forEach((child) => {
-    child.parent = props.itemKey
-  })
-  formGroup.changeActiveWidget(formGroup.curCloneWidgetKey.value)
-  formGroup.addHistory()
-}
 
 const collapseStatus = ref(false)
 </script>

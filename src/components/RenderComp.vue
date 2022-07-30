@@ -18,7 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-// import { ProvideFormGroup } from '@/composables/designer'
 import type { IFormComp } from '@/enum/form/type'
 
 const props = defineProps<{
