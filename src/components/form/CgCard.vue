@@ -1,6 +1,6 @@
 <template>
   <el-card
-    :style="{ '--el-card-bg-color': background, '--el-card-padding': '6px' }"
+    :style="{ '--el-card-bg-color': background, '--el-card-padding': '10px' }"
   >
     <template #header>
       <div class="flex justify-between items-center">
@@ -19,8 +19,8 @@
         </el-button>
       </div>
     </template>
-    <el-collapse-transition v-if="!collapseStatus && collapse">
-      <DraggableArea :list="item.children" class="min-h-[60px]">
+    <el-collapse-transition v-if="collapse">
+      <DraggableArea v-if="collapseStatus" :list="item.children">
         <template #default="{ item:_item }">
           <RenderComp :item="_item" />
         </template>
@@ -30,7 +30,6 @@
     <DraggableArea
       v-if="!collapse"
       :list="item.children"
-      class="min-h-[60px]"
     >
       <template #default="{ item:_item }">
         <RenderComp :item="_item" />
@@ -49,12 +48,5 @@ defineProps<{
   item: IWidgetItem
 }>()
 
-const collapseStatus = ref(false)
+const collapseStatus = ref(true)
 </script>
-
-<style scoped>
-.el-card__header {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-</style>

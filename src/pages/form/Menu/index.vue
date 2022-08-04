@@ -9,7 +9,12 @@
           组件
         </h3>
         <el-scrollbar>
-          <el-collapse v-model="actionCollapse">
+          <el-collapse
+            v-model="actionCollapse" :style="{
+              '--el-collapse-content-bg-color': 'var(--theme-bg)',
+              '--el-collapse-header-bg-color': 'var(--theme-bg)'
+            }"
+          >
             <el-collapse-item
               v-for="item in compList"
               :key="item.title"

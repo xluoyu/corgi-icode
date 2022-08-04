@@ -7,6 +7,12 @@
     class="w-full h-full"
     @add="addEnd"
   >
+    <template v-if="!list.length" #header>
+      <div class="text-center opacity-60 h-40 leading-40">
+        {{ empty || '拖拽区域' }}
+      </div>
+    </template>
+
     <template #item="{ element }">
       <HandleComp v-if="showType === 'whiteboard'" :item="element">
         <slot :item="element" />
@@ -22,6 +28,7 @@ import { addNewWidget } from '../app'
 import type { IFormComp } from '@/enum/form/type'
 
 const props = defineProps<{
+  empty?: string
   itemKey?: string
   list: IFormComp[]
 }>()

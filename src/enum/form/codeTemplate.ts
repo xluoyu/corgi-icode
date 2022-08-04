@@ -3,6 +3,7 @@
  * 生成代码块
  *
  */
+import { isString } from '@vueuse/core'
 import { validateFn, validates } from './validate'
 import type { IWidgetItem, renderWidgetCode } from '@/core'
 import { objectToString } from '@/core'
@@ -17,10 +18,11 @@ export const CodeTemplate: Record<
 }, {} as Record<string, any>)
 
 export function renderCode(widgetList: IWidgetItem[]) {
-  console.log(widgetList)
   const formDataObj: Record<string, any> = {} // formData的对象
   const widgetVariableList: Record<string, any> = {} // 各个模块产生的私有变量
   const validateList: Record<string, any> = {} // 校验列表
+  const importList: Record<string, any> = {} // 引入列表
+  const fileList: Record<string, any> = {} // 文件列表
 
   function eachList(widgetList: IWidgetItem[], formOptions?: {
     key: string // formDataName
@@ -119,6 +121,15 @@ export function renderCode(widgetList: IWidgetItem[]) {
         </el-form-item>`
       }
 
+      // 如果当前组件有私有模板，添加到文件列表中
+      if (itemStrData.componentTemplate && itemStrData.componentName) {
+        fileList[itemStrData.componentName] = itemStrData.componentTemplate
+      }
+
+      if (itemStrData.importList) {
+        Object.assign(importList, itemStrData.importList)
+      }
+
       resStr += templateStr
     })
 
@@ -156,15 +167,25 @@ export function renderCode(widgetList: IWidgetItem[]) {
     '',
   )
 
-  return `
-<template>
-  ${templateStr}
-</template>
+  const importListStr = Object.entries(importList).reduce(
+    (pre, [key, cur]) => {
+      return `${pre}\nimport ${isString(cur) ? cur : `{${cur.join(', ')}}`} from '${key}'`
+    },
+    '',
+  )
 
-<script setup>
-${formDataStr}
-${widgetVariableStr}
-${Object.keys(validateList).length ? validateListStr : ''}
-</script>
-`
+  const baseTemplate = `
+  <template>
+    ${templateStr}
+  </template>
+  
+  <script setup>
+  ${importListStr}${formDataStr}${widgetVariableStr}${Object.keys(validateList).length ? validateListStr : ''}
+  </script>
+  `
+
+  return {
+    base: baseTemplate,
+    ...fileList,
+  }
 }

@@ -66,3 +66,7 @@ body,
   padding: 2px 4px;
   height: 100%;
 }
+
+.el-dialog__body{
+  padding-top: 10px !important;
+}

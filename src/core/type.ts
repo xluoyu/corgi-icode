@@ -35,6 +35,9 @@ export type renderWidgetCode = (options: Record<string, any>, IWidgetItem: IWidg
 }) => {
   template: string | ((arg: string) => string)
   formData?: Record<string, any>
-  privateVar?: Record<string, any>
-  formDataName?: string
+  privateVar?: Record<string, any> // 组件内的私有变量
+  formDataName?: string // form 的key
+  importList?: Record<string, any> // 组件内的引入列表
+  componentName?: string // 组件名称
+  componentTemplate?: string // 私有组件的模板
 }
