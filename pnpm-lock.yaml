@@ -18,7 +18,6 @@ specifiers:
   '@vueuse/core': ^8.9.4
   commitizen: ^4.2.5
   cz-conventional-changelog: ^3.3.0
-  dom-to-image: ^2.6.0
   element-plus: 2.2.9
   eslint: ^8.21.0
   husky: ^8.0.1
@@ -45,7 +44,6 @@ specifiers:
 dependencies:
   '@element-plus/icons-vue': 2.0.6_vue@3.2.37
   '@vueuse/core': 8.9.4_vue@3.2.37
-  dom-to-image: 2.6.0
   element-plus: 2.2.9_vue@3.2.37
   js-beautify: 1.14.4
   lodash: 4.17.21
@@ -1730,10 +1728,6 @@ packages:
       domhandler: 4.3.1
       entities: 2.2.0
     dev: true
-
-  /dom-to-image/2.6.0:
-    resolution: {integrity: sha512-Dt0QdaHmLpjURjU7Tnu3AgYSF2LuOmksSGsUcE6ItvJoCWTBEmiMXcqBdNSAm9+QbbwD7JMoVsuuKX6ZVQv1qA==}
-    dev: false
 
   /domelementtype/2.3.0:
     resolution: {integrity: sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==}
