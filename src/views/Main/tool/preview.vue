@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="dialogVisible" title="表单预览" width="60%">
+  <el-dialog v-model="dialogVisible" title="表单预览" width="60%" @close="close">
     <RenderComp
       v-for="item in widgetList"
       :key="item.key"
@@ -27,6 +27,10 @@ const widgetList = ref<IWidgetItem[]>([])
 const open = (options: IWidgetItem[]) => {
   dialogVisible.value = true
   widgetList.value = options
+}
+
+const close = () => {
+  widgetList.value = []
 }
 
 defineExpose({

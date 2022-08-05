@@ -91,7 +91,7 @@
           <el-tree
             :data="widgetList"
             default-expand-all
-            class="node-tree"
+            class="node-tree bg-$theme-bg"
             :props="treeDefaultProps"
             @node-click="handleNodeClick"
           />

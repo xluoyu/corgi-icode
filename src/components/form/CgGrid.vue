@@ -17,12 +17,11 @@ const showType = inject('showType')
 const children = props.item.children
 
 onMounted(() => {
-  if (showType === 'whiteboard') {
+  if (showType === 'whiteboard' && !props.item.children!.length) {
     props.item.children!.push(
       Object.assign(cloneNewWidget(colOptions), { parent: props.item.key }),
       Object.assign(cloneNewWidget(colOptions), { parent: props.item.key }),
     )
-
     // 将活跃节点的key锁定为grid
     curCloneWidgetKey.value = props.item.key
   }
