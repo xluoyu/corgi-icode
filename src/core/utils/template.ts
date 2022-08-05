@@ -1,6 +1,6 @@
-import type { ITemplateOptions } from '@/enum/form/type'
+import type { ITemplateOptions } from '../type'
 
-const localTemplateList = useLocalStorage<ITemplateOptions[]>(
+export const localTemplateList = useLocalStorage<ITemplateOptions[]>(
   'templateList',
   [],
 )

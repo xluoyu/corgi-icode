@@ -33,11 +33,11 @@
 <script lang="ts" setup>
 import { Back, Bottom, Delete, Top } from '@element-plus/icons-vue'
 import RiDragMove2Fill from '~icons/ri/drag-move-2-fill'
-import type { IFormComp } from '@/enum/form/type'
+import type { IWidgetItem } from '@/core'
 import { activeWidgetKey, curActionWidget, findWidgetItem, getParentForm, widgetList } from '@/core'
 
 const props = defineProps<{
-  item: IFormComp
+  item: IWidgetItem
 }>()
 
 const activeCurComp = () => {

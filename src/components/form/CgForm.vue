@@ -11,7 +11,7 @@
 <script lang='ts' setup>
 import type { IWidgetItem, objectT } from '@/core'
 import { getFormData, mixinValue } from '@/core'
-import { validateFn, validates } from '@/enum/form'
+import { validateFn, validates } from '@/config'
 
 const showType = inject('showType')
 
@@ -22,7 +22,7 @@ const props = defineProps<{
 const formData = reactive<objectT<any>>({})
 
 function updateFormData() {
-  Object.assign(formData, getFormData(props.item.key))
+  Object.assign(formData, getFormData(props.item))
 }
 
 // eslint-disable-next-line vue/no-mutating-props

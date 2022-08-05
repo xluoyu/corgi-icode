@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import type { IWidgetItem } from '@/core'
 import { cloneNewWidget, curCloneWidgetKey } from '@/core'
-import colOptions from '@/enum/form/col'
+import colOptions from '@/config/components/col'
 const props = defineProps<{
   item: IWidgetItem
 }>()

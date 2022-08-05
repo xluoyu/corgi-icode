@@ -4,7 +4,6 @@
     handle=".moveArea"
     item-key="key"
     group="dragGroup"
-    class="w-full h-full"
     @add="addEnd"
   >
     <template v-if="!list.length" #header>
@@ -25,18 +24,15 @@
 <script lang="ts" setup>
 import Draggable from 'vuedraggable'
 import { addNewWidget } from '../app'
-import type { IFormComp } from '@/enum/form/type'
+import type { IWidgetItem } from '../type'
 
 const props = defineProps<{
   empty?: string
   itemKey?: string
-  list: IFormComp[]
+  list: IWidgetItem[]
 }>()
 
 const showType = inject('showType')
-
-// 为了阻止vue的warn信息
-// provide('formData', null)
 
 const addEnd = () => {
   addNewWidget(props.itemKey)

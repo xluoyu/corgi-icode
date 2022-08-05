@@ -1,5 +1,0 @@
-export * from './validate'
-export * from './options'
-export * from './compsList'
-export * from './templateList'
-export * from './codeTemplate'

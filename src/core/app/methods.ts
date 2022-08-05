@@ -14,6 +14,20 @@ export const findWidgetItem = (key: string) => {
 }
 
 /**
+ * 检测当前组件是否在form之下
+ */
+function isInFormWidget(item: string | IWidgetItem) {
+  const widget: IWidgetItem | null = typeof item === 'string' ? findWidgetItem(item) : item
+
+  if (!widget) {
+    errorMsg('未找到当前组件', 'core/app/methods.ts line:23')
+    return false
+  }
+
+  return !!getParentForm(widget)
+}
+
+/**
  * 添加组件
  *
  * 这里并不是真实的添加
@@ -33,6 +47,12 @@ export function addNewWidget(parentKey?: string) {
   }
   activeWidgetKey.value = curCloneWidgetKey.value // 修改当前的活跃组件key
   addHistoryWidgetList(widgetList.value) // 添加历史记录
+
+  nextTick(() => {
+    if (curActionWidget.value && !curActionWidget.value.noForm && !isInFormWidget(curActionWidget.value)) {
+      alert('建议将当前组件放置于Form组件内')
+    }
+  })
 }
 
 /**
@@ -59,10 +79,9 @@ export function cloneNewWidget(item: IWidgetItem) {
  * @param key
  * @returns
  */
-export function getFormData(key: string) {
-  const targetWidget = findWidgetItem(key)
+export function getFormData(targetWidget: IWidgetItem) {
   if (!targetWidget || targetWidget.type !== 'form') {
-    errorMsg(`未找到对应的form组件，key: ${key}`, 'core/app/methods.ts line: 66')
+    errorMsg(`未找到对应的form组件，key: ${targetWidget.key}`, 'core/app/methods.ts line: 81')
     return
   }
 
@@ -74,6 +93,9 @@ export function getFormData(key: string) {
   }, {} as Record<string, any>)
 }
 
+/**
+ * 获取父级的form组件
+ */
 export function getParentForm(widget: IWidgetItem): null | IWidgetItem {
   if (!widget.parent)
     return null
@@ -120,4 +142,12 @@ export function updateActionWidgetOptions(key: string, value: any) {
  */
 export function returnData(): IWidgetItem[] {
   return cloneDeep(widgetList.value)
+}
+
+export function removeActionWidget() {
+  if (!curActionWidget.value)
+    return
+  const parentChildren = curActionWidget.value.parent ? findWidgetItem(curActionWidget.value.parent).children as IWidgetItem[] : widgetList.value
+  const idx = parentChildren.indexOf(curActionWidget.value)
+  parentChildren.splice(idx, 1)
 }

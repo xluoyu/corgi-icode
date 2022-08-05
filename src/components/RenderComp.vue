@@ -18,10 +18,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { IFormComp } from '@/enum/form/type'
+import type { IWidgetItem } from '@/core'
 
 const props = defineProps<{
-  item: IFormComp
+  item: IWidgetItem
   disUpdate?: Boolean
 }>()
 
@@ -33,9 +33,6 @@ const options = computed(() =>
     return pre
   }, {} as Record<string, any>),
 )
-
-// const formGroup = inject(ProvideFormGroup)!
-// const { updateWidgetSimulateValue } = formGroup
 
 // 判断是否在form之下
 const formFn: any = inject('formData')

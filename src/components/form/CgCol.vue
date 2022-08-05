@@ -42,7 +42,7 @@
 import { Back, CopyDocument, Delete } from '@element-plus/icons-vue'
 import type { IWidgetItem } from '@/core'
 import { activeWidgetKey, cloneNewWidget, curActionWidget, findWidgetItem } from '@/core'
-import colOptions from '@/enum/form/col'
+import colOptions from '@/config/components/col'
 const props = defineProps<{
   item: IWidgetItem
 }>()

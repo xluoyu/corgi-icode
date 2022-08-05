@@ -41,3 +41,12 @@ export type renderWidgetCode = (options: Record<string, any>, IWidgetItem: IWidg
   componentName?: string // 组件名称
   componentTemplate?: string // 私有组件的模板
 }
+
+export interface ITemplateOptions {
+  title: string
+  key: string
+  type: 'template'
+  photo?: string
+  uuId: number
+  widgetList: IWidgetItem[]
+}

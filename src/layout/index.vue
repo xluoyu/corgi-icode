@@ -2,7 +2,7 @@
   <div id="corgi-form" class="bg-$theme-gary w-full h-full !min-w-screen-xl">
     <Header />
     <el-container class="flex justify-between h-[calc(100%-var(--header-h))]">
-      <router-view />
+      <slot />
     </el-container>
   </div>
 </template>

@@ -20,7 +20,7 @@
       </div>
     </template>
     <el-collapse-transition v-if="collapse">
-      <DraggableArea v-if="collapseStatus" :list="item.children">
+      <DraggableArea v-if="collapseStatus" :list="item.children" :item-key="item.key">
         <template #default="{ item:_item }">
           <RenderComp :item="_item" />
         </template>
@@ -28,8 +28,9 @@
     </el-collapse-transition>
 
     <DraggableArea
-      v-if="!collapse"
+      v-else
       :list="item.children"
+      :item-key="item.key"
     >
       <template #default="{ item:_item }">
         <RenderComp :item="_item" />

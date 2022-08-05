@@ -1,10 +1,30 @@
 import type { IWidgetItem } from '../type'
 
-export const uuId = ref(0)
+const defaultWidgetList = [
+  {
+    children: [],
+    component: 'cg-form',
+    form: {
+      'dataName': { label: '数据对象', type: 'input', value: '' },
+      'inline': { label: '行内模式', type: 'switch', value: false },
+      'label-position': { label: '标签位置', type: 'labelPosition', value: 'left' },
+      'label-width': { label: '标签宽度', type: 'input', value: 'auto' },
+      'size': { label: '组件大小', type: 'formSize', value: 'default' },
+      'style.width': { label: '表单宽度', type: 'input', value: '' },
+      'validate': { label: '开启验证', type: 'switch', value: false },
+    },
+    key: 'form_0',
+    noForm: true,
+    title: '表单',
+    type: 'form',
+  },
+]
+
+export const uuId = ref(defaultWidgetList.length)
 /**
  * 白板上的组件列表
  */
-export const widgetList = ref<IWidgetItem[]>([])
+export const widgetList = ref<IWidgetItem[]>(defaultWidgetList)
 
 /**
  * 当前活跃的组件key
