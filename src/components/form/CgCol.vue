@@ -5,13 +5,6 @@
     style="border-color: rgb(74, 74, 74)"
     @click.capture="activeCurComp"
   >
-    <template v-if="showType === 'preview'">
-      <RenderComp
-        v-for="_item in item.children"
-        :key="_item.key"
-        :item="_item"
-      />
-    </template>
     <DraggableArea :list="item.children" class="min-h-[50px]" :item-key="item.key">
       <template #default="{ item:_item }">
         <RenderComp :item="_item" />
