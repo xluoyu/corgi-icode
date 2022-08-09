@@ -14,7 +14,6 @@ import Date from './components/date'
 import Card from './components/card'
 import Table from './components/table'
 import Form from './components/form'
-
 import Base from './templates/baseForm'
 
 export const Menu = [

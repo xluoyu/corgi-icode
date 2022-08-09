@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     CgRadio: typeof import('./src/components/form/CgRadio.vue')['default']
     CgSelect: typeof import('./src/components/form/CgSelect.vue')['default']
     CgSwitch: typeof import('./src/components/form/CgSwitch.vue')['default']
+    CgTable: typeof import('./src/components/form/CgTable.vue')['default']
     CgText: typeof import('./src/components/form/CgText.vue')['default']
     CgTextarea: typeof import('./src/components/form/CgTextarea.vue')['default']
     CgTime: typeof import('./src/components/form/CgTime.vue')['default']

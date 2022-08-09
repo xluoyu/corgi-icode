@@ -2,6 +2,7 @@
   <draggable
     :list="list"
     handle=".moveArea"
+    ghost-class="ghostClass"
     item-key="key"
     group="dragGroup"
     @add="addEnd"
@@ -38,3 +39,17 @@ const addEnd = () => {
   addNewWidget(props.itemKey)
 }
 </script>
+
+<style>
+.ghostClass{
+  height: 4px;
+  background: var(--el-color-primary);
+  color: var(--el-color-primary);
+  overflow: hidden;
+  padding: 0;
+  opacity: 0.5;
+}
+/* .ghostClass *{
+  display: none;
+} */
+</style>

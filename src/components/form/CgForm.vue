@@ -1,17 +1,27 @@
 <template>
   <el-form :model="formData" :rules="validateRules" class="w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs">
-    <DraggableArea :list="item.children" class="min-h-[100px]" :item-key="item.key">
+    <DraggableArea :list="item.children" class="min-h-[100px]" :item-key="item.key" empty="表单区域">
       <template #default="{ item: _item }">
         <RenderComp :item="_item" />
       </template>
     </DraggableArea>
+    <el-form-item>
+      <el-button type="primary" @click="submit">
+        提交
+      </el-button>
+      <el-button @click="reset">
+        重置
+      </el-button>
+    </el-form-item>
   </el-form>
 </template>
 
 <script lang='ts' setup>
 import type { IWidgetItem, objectT } from '@/core'
-import { getFormData, mixinValue } from '@/core'
+import { cloneNewWidget, curCloneWidgetKey, getFormData, mixinValue } from '@/core'
+
 import { validateFn, validates } from '@/config'
+import inputOptions from '@/config/components/input'
 
 const showType = inject('showType')
 
@@ -34,6 +44,21 @@ provide('formData', {
   updateFormData(data: { key: string | number; value: any }) {
     formData[data.key] = data.value
   },
+})
+
+const submit = () => {}
+const reset = () => {
+  // updateFormData
+}
+
+onMounted(() => {
+  if (showType === 'whiteboard' && !props.item.children!.length) {
+    props.item.children!.push(
+      Object.assign(cloneNewWidget(inputOptions), { parent: props.item.key }),
+    )
+    // 将活跃节点的key锁定为grid
+    curCloneWidgetKey.value = props.item.key
+  }
 })
 
 const formAttrs = computed(() => {
