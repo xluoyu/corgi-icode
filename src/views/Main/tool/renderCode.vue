@@ -12,7 +12,7 @@
       @tab-click="handleClick"
     >
       <el-tab-pane v-for="key in fileKeys" :key="key" :label="key" :name="key">
-        <div :id="key + 'editRef'" class="edit" />
+        <div :id="key + 'editRef'" class="h-[500px]" />
       </el-tab-pane>
     </el-tabs>
 
@@ -125,8 +125,3 @@ defineExpose({
   open,
 })
 </script>
-<style scoped>
-.edit {
-  height: 500px;
-}
-</style>

@@ -1,30 +1,46 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-11 16:12:26
+ */
 import type { IWidgetItem } from '@/core'
-import RiBankCardLine from '~icons/ri/bank-card-line'
+import MaterialSymbolsTableChartOutline from '~icons/material-symbols/table-chart-outline'
 
 const data: IWidgetItem = {
   title: '表格',
-  type: 'card',
+  type: 'table',
   key: '',
-  icon: RiBankCardLine,
-  component: 'cg-card',
+  icon: MaterialSymbolsTableChartOutline,
+  component: 'cg-table',
   noForm: true,
   children: [],
   form: {
-    title: {
-      label: '标题',
-      type: 'input',
-      value: '标题',
+    columns: {
+      label: '列表',
+      type: 'selectOptions',
+      value: [
+        { label: '名称', value: 'name' },
+        { label: '年龄', value: 'age' },
+        { label: '地址', value: 'address' },
+      ],
     },
-    collapse: {
-      label: '折叠',
-      type: 'switch',
-      value: false,
+    data: {
+      label: '数据',
+      type: 'codeEmit',
+      value: [
+        {
+          name: '张三',
+          age: 18,
+          address: '北京市朝阳区',
+        },
+        {
+          name: '李四',
+          age: 19,
+          address: '北京市海淀区',
+        },
+      ],
     },
-    background: {
-      label: '背景色',
-      type: 'alphaColor',
-      value: '',
-    },
+
   },
 }
 

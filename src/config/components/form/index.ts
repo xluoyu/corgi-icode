@@ -1,11 +1,16 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-11 10:44:15
+ */
 import type { IWidgetItem } from '@/core'
-import RiBankCardLine from '~icons/ri/bank-card-line'
+import IconParkOutlineFormOne from '~icons/icon-park-outline/form-one'
 
 const data: IWidgetItem = {
   title: '表单',
   type: 'form',
   key: '',
-  icon: RiBankCardLine,
+  icon: IconParkOutlineFormOne,
   component: 'cg-form',
   noForm: true,
   children: [],

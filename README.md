@@ -1,3 +1,8 @@
+<!--
+ * @Description: 
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-11 10:39:13
+-->
 <p align="center">
   <img src="./public/logo.png" width="100" align="center"></img>
 
@@ -16,9 +21,10 @@
 - [ √ ] 代码生成
 - [ ] 定义多个模板
 - [ ] 高阶组件（剩余：表格、图片、文件、富文本、动态标签）
-- [ ] 事件代码
 - [ √ ] vscode 插件版
 - [ ] 测试用例
+- [ ] 提交按钮、重置按钮 代码功能模板
+- [ ] 快捷键绑定
 
 ## bug
 

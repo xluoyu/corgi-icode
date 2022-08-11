@@ -1,11 +1,16 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-11 10:47:07
+ */
 import type { IWidgetItem } from '@/core'
-import MaterialSymbolsGridOn from '~icons/material-symbols/grid-on'
+import MaterialSymbolsGrid4x4Rounded from '~icons/material-symbols/grid-4x4-rounded'
 
 const data: IWidgetItem = {
   title: '网格',
   type: 'grid',
   key: '',
-  icon: MaterialSymbolsGridOn,
+  icon: MaterialSymbolsGrid4x4Rounded,
   component: 'cg-grid',
   noForm: true,
   form: {

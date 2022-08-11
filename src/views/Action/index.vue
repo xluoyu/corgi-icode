@@ -1,5 +1,10 @@
+<!--
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-11 13:30:31
+-->
 <template>
-  <el-aside class="bg-$theme-bg w-1/6 px-4">
+  <el-aside id="action" class="bg-$theme-bg w-1/6 px-4">
     <h3 v-if="curActionWidget" class="text-base py-2 text-$el-color-primary">
       组件配置
     </h3>

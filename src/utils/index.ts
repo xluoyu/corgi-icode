@@ -36,3 +36,30 @@ if (import.meta.vitest) {
     expect(obj[1].children && obj[1].children[0].name).toEqual('小红2.0')
   })
 }
+
+/**
+ * JSON 数据美化
+ * @param code
+ * @returns
+ */
+export function prettyFormat(code: any) {
+  try {
+    for (const key in code) {
+      if (typeof code[key] === 'function') {
+        let str = code[key]
+        str = str.toString()
+        code[key] = str.replace(/\n/g, '<br/>')
+      }
+    }
+    // 设置缩进为2个空格
+    let str = JSON.stringify(code, null, 2)
+    str = str
+      .replace(/&/g, '&')
+      .replace(/</g, '<')
+      .replace(/>/g, '>')
+    return str
+  } catch (e) {
+    console.error(`异常信息:${e}`)
+    return ''
+  }
+}

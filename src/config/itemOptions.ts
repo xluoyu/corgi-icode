@@ -219,4 +219,7 @@ export default {
       },
     ],
   },
+  codeEmit: {
+    component: 'CgCode',
+  },
 }

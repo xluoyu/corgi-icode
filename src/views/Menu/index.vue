@@ -1,5 +1,5 @@
 <template>
-  <el-aside class="h-full w-1/6 max-w-300px min-w-246px bg-$theme-bg pr-2">
+  <el-aside id="menu" class="h-full w-1/6 max-w-300px min-w-246px bg-$theme-bg pr-2">
     <el-tabs tab-position="left" class="h-full aside-tabs">
       <el-tab-pane>
         <template #label>

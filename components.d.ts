@@ -8,6 +8,7 @@ declare module '@vue/runtime-core' {
     CgButton: typeof import('./src/components/form/CgButton.vue')['default']
     CgCard: typeof import('./src/components/form/CgCard.vue')['default']
     CgCheckbox: typeof import('./src/components/form/CgCheckbox.vue')['default']
+    CgCode: typeof import('./src/components/form/CgCode.vue')['default']
     CgCol: typeof import('./src/components/form/CgCol.vue')['default']
     CgColor: typeof import('./src/components/form/CgColor.vue')['default']
     CgDate: typeof import('./src/components/form/CgDate.vue')['default']
