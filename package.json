@@ -1,57 +1,30 @@
 {
-  "private": true,
+  "name": "corgi-icode",
+  "author": "xluoyu",
+  "description": "可视化的代码模板生成器",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "vite build",
-    "dev": "vite --port 8080 --open",
-    "lint": "eslint . --fix",
-    "typecheck": "vue-tsc --noEmit",
-    "preview": "vite preview",
-    "test": "vitest",
-    "prepare": "husky install",
-    "commit": "cz"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.0.6",
-    "@vueuse/core": "^8.9.4",
-    "element-plus": "2.2.9",
-    "js-beautify": "^1.14.4",
-    "lodash": "^4.17.21",
-    "monaco-editor": "^0.33.0",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.3",
-    "vuedraggable": "^4.1.0"
+    "lodash": "^4.17.21",
+    "@vueuse/core": "^8.9.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.20.7",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@iconify-json/ep": "^1.1.6",
-    "@iconify-json/iconoir": "^1.1.8",
-    "@iconify-json/octicon": "^1.1.15",
-    "@iconify-json/uil": "^1.1.2",
-    "@iconify/json": "^2.1.86",
-    "@types/dom-to-image": "^2.6.4",
-    "@types/js-beautify": "^1.13.3",
     "@types/node": "^17.0.45",
-    "@vitejs/plugin-vue": "^2.3.3",
     "@vue/test-utils": "^2.0.2",
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.21.0",
     "husky": "^8.0.1",
-    "jsdom": "^19.0.0",
     "lint-staged": "^13.0.3",
-    "typescript": "^4.7.4",
-    "unplugin-auto-import": "^0.7.2",
-    "unplugin-icons": "^0.14.8",
-    "unplugin-vue-components": "^0.19.9",
-    "vite": "^2.9.14",
-    "vite-plugin-pages": "^0.22.0",
-    "vite-plugin-vue-setup-extend": "^0.4.0",
-    "vite-plugin-windicss": "^1.8.7",
-    "vitest": "^0.9.4",
-    "vue-tsc": "^0.34.17",
-    "windicss": "^3.5.6"
+    "typescript": "^4.7.4"
   },
   "config": {
     "commitizen": {
@@ -60,5 +33,14 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,vue}": "eslint --fix"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xluoyu/code-run.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xluoyu/code-run/issues"
+  },
+  "homepage": "https://github.com/xluoyu/code-run#readme"
 }
