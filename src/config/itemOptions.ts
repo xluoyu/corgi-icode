@@ -221,5 +221,6 @@ export default {
   },
   codeEmit: {
     component: 'CgCode',
+    name: '模拟数据',
   },
 }

@@ -1,6 +1,6 @@
 <template>
-  <el-form :model="formData" :rules="validateRules" class="w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs">
-    <DraggableArea :list="item.children" class="min-h-[100px]" :item-key="item.key" empty="表单区域">
+  <el-form :model="formData" :rules="validateRules" class="w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs" :inline="inline">
+    <DraggableArea :list="item.children" class="min-h-[50px]" :class="{'inline-block': inline}" :item-key="item.key" empty="表单区域">
       <template #default="{ item: _item }">
         <RenderComp :item="_item" />
       </template>
@@ -27,6 +27,7 @@ const showType = inject('showType')
 
 const props = defineProps<{
   item: IWidgetItem
+  inline: boolean
 }>()
 
 const formData = reactive<objectT<any>>({})

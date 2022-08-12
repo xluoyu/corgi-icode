@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-11 16:12:26
+ * @LastEditTime: 2022-08-12 16:48:14
  */
 import type { IWidgetItem } from '@/core'
 import MaterialSymbolsTableChartOutline from '~icons/material-symbols/table-chart-outline'
@@ -39,6 +39,16 @@ const data: IWidgetItem = {
           address: '北京市海淀区',
         },
       ],
+    },
+    stripe: {
+      label: '斑马线',
+      type: 'switch',
+      value: false,
+    },
+    border: {
+      label: '边框',
+      type: 'switch',
+      value: false,
     },
 
   },

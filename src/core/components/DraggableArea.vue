@@ -1,5 +1,11 @@
+<!--
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-12 16:35:28
+-->
 <template>
   <draggable
+    v-if="showType === 'whiteboard'"
     :list="list"
     handle=".moveArea"
     ghost-class="ghostClass"
@@ -14,12 +20,15 @@
     </template>
 
     <template #item="{ element }">
-      <HandleComp v-if="showType === 'whiteboard'" :item="element">
+      <HandleComp :item="element">
         <slot :item="element" />
       </HandleComp>
-      <slot v-else :item="element" />
     </template>
   </draggable>
+
+  <template v-else>
+    <slot v-for="item in list" :item="item" />
+  </template>
 </template>
 
 <script lang="ts" setup>

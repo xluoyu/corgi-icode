@@ -1,7 +1,12 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-12 16:41:43
+ */
 import type { renderWidgetCode } from '@/core'
 import { formatArrt } from '@/utils/renderTemplate'
 
-const run: renderWidgetCode = (options: Record<string, any>) => {
+const run: renderWidgetCode = (options, widgetItem, formOptions) => {
   const attrs = ['placeholder', 'clearable', 'multiple', 'filterable']
   const attrsStr = attrs
     .map(attr => formatArrt(attr, options[attr]))
@@ -30,10 +35,7 @@ const run: renderWidgetCode = (options: Record<string, any>) => {
     formData: {
       [options._key]: options.value,
     },
-    template: `<el-select
-        v-model="formData.${options._key}"
-        ${attrsStr}
-      >
+    template: `<el-select ${formOptions ? `v-model="${formOptions.key}.${options._key} "` : ''}${attrsStr}>
         ${optionsStr}
       </el-select>`,
     privateVar,

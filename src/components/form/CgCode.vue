@@ -1,13 +1,13 @@
 <!--
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-11 15:40:42
+ * @LastEditTime: 2022-08-12 15:49:41
 -->
 <template>
   <div class="w-full">
     <pre class="code-box" @click="openCodeEmitDialog">{{ dataString }}</pre>
 
-    <el-dialog v-model="dialogVisible" title="表格数据" width="60%" @close="destroyEditor">
+    <el-dialog v-model="dialogVisible" :title="name || '表格数据'" width="60%" @close="destroyEditor">
       <div id="codeEdit" class="h-[500px]" />
       <template #footer>
         <div class="text-center">
@@ -30,6 +30,7 @@ import { isDark } from '@/composables'
 const props = defineProps<{
   value: Object
   _key?: String
+  name: string
 }>()
 const emits = defineEmits(['update'])
 

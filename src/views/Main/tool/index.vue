@@ -41,6 +41,9 @@
       >
         保存模板
       </el-button>
+      <el-button text type="primary" :icon="BiFiletypeJson" @click="exportJSON">
+        导出JSON
+      </el-button>
       <el-button text type="primary" :icon="View" @click="view">
         预览
       </el-button>
@@ -84,6 +87,7 @@ import AkarIconsVueFill from '~icons/akar-icons/vue-fill'
 import IconoirSaveActionFloppy from '~icons/iconoir/save-action-floppy'
 import AkarIconsArrowForward from '~icons/akar-icons/arrow-forward'
 import AkarIconsArrowBack from '~icons/akar-icons/arrow-back'
+import BiFiletypeJson from '~icons/bi/filetype-json'
 import { useEnv } from '@/composables/appConfig'
 import { compileCode } from '@/config'
 import { historyWidgetList, localTemplateList, returnData, uuId, widgetList } from '@/core'
@@ -143,6 +147,14 @@ const saveTemplate = () => {
       })
     })
     .catch(() => null)
+}
+
+const exportJSON = () => {
+  navigator.clipboard.writeText(JSON.stringify(returnData())).then(() => {
+    ElMessage.success('copy success！')
+  }).catch(() => {
+    ElMessage.error('copy failed！')
+  })
 }
 
 const clearList = () => {

@@ -1,3 +1,8 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-12 16:01:27
+ */
 import Input from './components/input'
 import Select from './components/select'
 import Textarea from './components/textarea'
@@ -15,6 +20,7 @@ import Card from './components/card'
 import Table from './components/table'
 import Form from './components/form'
 import Base from './templates/baseForm'
+import TableList from './templates/tableList'
 
 export const Menu = [
   {
@@ -42,4 +48,5 @@ export const Menu = [
 
 export const TemplateList = [
   Base,
+  TableList,
 ]
