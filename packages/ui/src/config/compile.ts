@@ -7,7 +7,7 @@ import { isString } from '@vueuse/core'
 import { validateFn, validates } from './validate'
 import type { IWidgetItem, renderWidgetCode } from '@/core'
 import { objectToString } from '@/core'
-const templates = import.meta.globEager('./components/*/template.ts')
+const templates = import.meta.glob('./components/*/template.ts', { eager: true })
 
 export const CodeTemplate: Record<
    string, renderWidgetCode

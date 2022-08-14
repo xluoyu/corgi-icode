@@ -1,3 +1,8 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-14 15:57:40
+ */
 /// <reference types="vitest" />
 
 import path from 'path'
@@ -13,10 +18,12 @@ import IconsResolver from 'unplugin-icons/resolver'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 export default defineConfig({
+  build: {
+    outDir: path.resolve(__dirname, '../../dist'),
+  },
   resolve: {
     alias: {
       '@/': `${path.resolve(__dirname, 'src')}/`,
-      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
     },
   },
   plugins: [
