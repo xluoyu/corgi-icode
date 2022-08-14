@@ -6,12 +6,13 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cd packages/ui && nr dev",
+    "build": "cd packages/ui && nr build"
   },
   "dependencies": {
-    "vue": "^3.2.37",
+    "@vueuse/core": "^8.9.4",
     "lodash": "^4.17.21",
-    "@vueuse/core": "^8.9.4"
+    "vue": "^3.2.37"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.20.7",
@@ -21,7 +22,7 @@
     "@vue/test-utils": "^2.0.2",
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.21.0",
+    "eslint": "^8.22.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "typescript": "^4.7.4"

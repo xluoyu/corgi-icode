@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": [
+      "vite/client",
+      "vitest/importMeta",
+      "unplugin-icons/types/vue"
+    ],
+    "paths": {
+      "@/*": ["src/*"],
+    }
+  }
+}
