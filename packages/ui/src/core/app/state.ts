@@ -1,3 +1,13 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-15 17:22:19
+ */
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-15 17:21:59
+ */
 import type { IWidgetItem } from '../type'
 
 const defaultWidgetList = [
@@ -62,3 +72,5 @@ export const curActionWidget = computed(() => {
  * clone的模块实例
  */
 export const curCloneWidgetKey = ref<string>('') // 当前克隆的组件key
+
+export const Menu = []

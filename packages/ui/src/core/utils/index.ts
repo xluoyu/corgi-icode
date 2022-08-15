@@ -1,3 +1,8 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-15 17:34:18
+ */
 import { merge } from 'lodash'
 
 export * from './template'
@@ -80,4 +85,12 @@ if (import.meta.vitest) {
       ]),
     ).toEqual('[{name: \'阿松大\', age: \'2\'}, {name: \'阿松二\', age: \'3\'}]')
   })
+}
+
+export function importLibs(key) {
+  if (process.env.NODE_ENV === 'production') {
+
+  } else {
+
+  }
 }

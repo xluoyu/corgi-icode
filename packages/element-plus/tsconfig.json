@@ -4,12 +4,7 @@
     "baseUrl": ".",
     "types": [
       "vite/client",
-      "vitest/importMeta",
       "unplugin-icons/types/vue"
-    ],
-    "paths": {
-      "@/*": ["src/*"],
-      "@corgi-icode/element-plus": ["../element-plus"]
-    }
+    ]
   }
 }

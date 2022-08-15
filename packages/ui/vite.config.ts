@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-14 15:57:40
+ * @LastEditTime: 2022-08-15 11:31:30
  */
 /// <reference types="vitest" />
 
@@ -68,9 +68,5 @@ export default defineConfig({
   // https://github.com/vitest-dev/vitest
   define: {
     'import.meta.vitest': 'undefined',
-  },
-  test: {
-    environment: 'jsdom',
-    includeSource: ['src/**/*.{js,ts}'],
   },
 })
