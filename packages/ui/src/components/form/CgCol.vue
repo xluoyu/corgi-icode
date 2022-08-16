@@ -33,8 +33,8 @@
 
 <script lang="ts" setup>
 import { Back, CopyDocument, Delete } from '@element-plus/icons-vue'
-import type { IWidgetItem } from '@/core'
-import { activeWidgetKey, cloneNewWidget, curActionWidget, findWidgetItem } from '@/core'
+import type { IWidgetItem } from '@corgi-icode/core'
+import { activeWidgetKey, cloneNewWidget, curActionWidget, findWidgetItem } from '@corgi-icode/core'
 import colOptions from '@/config/components/col'
 const props = defineProps<{
   item: IWidgetItem

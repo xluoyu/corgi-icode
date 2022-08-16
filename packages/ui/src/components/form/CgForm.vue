@@ -17,9 +17,8 @@
 </template>
 
 <script lang='ts' setup>
-import type { IWidgetItem, objectT } from '@/core'
-import { cloneNewWidget, curCloneWidgetKey, getFormData, mixinValue } from '@/core'
-
+import type { IWidgetItem, objectT } from '@corgi-icode/core'
+import { cloneNewWidget, curCloneWidgetKey, getFormData, mixinValue } from '@corgi-icode/core'
 import { validateFn, validates } from '@/config'
 import inputOptions from '@/config/components/input'
 

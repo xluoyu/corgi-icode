@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { removeActionWidget, widgetList } from '@/core'
+import { removeActionWidget, widgetList } from '@corgi-icode/core'
 
 provide('showType', 'whiteboard') // 显示状态为白板
 provide('formData', null)

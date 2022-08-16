@@ -1,5 +1,13 @@
+<!--
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-16 13:36:37
+-->
 <template>
-  <Menu />
+  <Suspense>
+    <Menu />
+  </Suspense>
+
   <Main />
   <Action />
 </template>

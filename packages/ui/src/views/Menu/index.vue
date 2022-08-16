@@ -103,16 +103,17 @@
 
 <script lang="ts" setup>
 import Draggable from 'vuedraggable'
-import { cloneDeep } from 'lodash'
-import * as Element from '@corgi-icode/element-plus'
-import { Menu, TemplateList } from '@/config'
+import { cloneDeep } from 'lodash-es'
+// import * as Element from '@corgi-icode/element-plus'
+// import { Menu, TemplateList } from '@/config'
+import type { ITemplateOptions, IWidgetItem } from '@corgi-icode/core'
+import { activeWidgetKey, cloneNewWidget, importLibs, uuId, widgetList } from '@corgi-icode/core'
+import { getTemplateList } from '@/composables'
 import GgComponents from '~icons/gg/components'
 import GgTemplate from '~icons/gg/template'
 import CodiconListTree from '~icons/codicon/list-tree'
-import type { ITemplateOptions, IWidgetItem } from '@/core'
-import { activeWidgetKey, cloneNewWidget, getTemplateList, uuId, widgetList } from '@/core'
 
-console.log(Element)
+const { Menu, TemplateList } = await importLibs('element-plus')
 
 const actionCollapse = ref(Menu.slice(0, 2).map(e => e.title))
 const templateList = getTemplateList(TemplateList)

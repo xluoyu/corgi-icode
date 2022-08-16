@@ -1,7 +1,7 @@
 <!--
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-11 13:30:31
+ * @LastEditTime: 2022-08-16 16:58:25
 -->
 <template>
   <el-aside id="action" class="bg-$theme-bg w-1/6 px-4">
@@ -36,9 +36,9 @@
 </template>
 
 <script lang="ts" setup>
-import { curActionWidget, updateActionWidgetOptions } from '@/core'
+import { curActionWidget, updateActionWidgetOptions } from '@corgi-icode/core'
 import IcBaselineInfo from '~icons/ic/baseline-info'
-import { itemOptions } from '@/config'
+import widgetOptions from '@/enum/widgetOptions'
 
 const formOptionsData = computed(() => {
   if (!curActionWidget.value)
@@ -66,7 +66,7 @@ const renderList = computed(() => {
   isShowFormItems.value = []
   const res = Object.entries(curActionWidget.value.form).map(([key, item]) => {
     const obj: any = {
-      ...itemOptions[item.type as keyof typeof itemOptions],
+      ...widgetOptions[item.type as keyof typeof widgetOptions],
       label: item.label,
       value: item.value,
       _key: key,

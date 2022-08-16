@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { IWidgetItem } from '@/core'
-import { cloneNewWidget, curCloneWidgetKey } from '@/core'
+import type { IWidgetItem } from '@corgi-icode/core'
+import { cloneNewWidget, curCloneWidgetKey } from '@corgi-icode/core'
 import colOptions from '@/config/components/col'
 const props = defineProps<{
   item: IWidgetItem

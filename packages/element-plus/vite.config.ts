@@ -1,20 +1,23 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-15 17:28:53
+ * @LastEditTime: 2022-08-16 17:27:21
  */
 import path from 'path'
 import { defineConfig } from 'vite'
 import Icons from 'unplugin-icons/vite'
 import Vue from '@vitejs/plugin-vue'
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 module.exports = defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'index.ts'),
-      name: 'corgi-element-plus',
-      fileName: format => `corgi-element-plus.${format}.js`,
+      name: 'index',
+      fileName: format => `index.${format}.js`,
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
@@ -32,6 +35,21 @@ module.exports = defineConfig({
     Vue({
       reactivityTransform: true,
     }),
+    AutoImport({
+      imports: ['vue', 'vue/macros', 'vue-router', '@vueuse/core'],
+      resolvers: [
+        ElementPlusResolver(),
+      ],
+      dts: true,
+    }),
+    // https://github.com/antfu/vite-plugin-components
+    Components({
+      resolvers: [
+        ElementPlusResolver(),
+      ],
+      dts: true,
+    }),
+
     Icons({
       autoInstall: true,
     }),

@@ -78,6 +78,7 @@
 <script lang="ts" setup>
 import { Delete, View } from '@element-plus/icons-vue'
 import beautify from 'js-beautify'
+import { compileCode, historyWidgetList, returnData, uuId, widgetList } from '@corgi-icode/core'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import Preview from './preview.vue'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
@@ -88,9 +89,7 @@ import IconoirSaveActionFloppy from '~icons/iconoir/save-action-floppy'
 import AkarIconsArrowForward from '~icons/akar-icons/arrow-forward'
 import AkarIconsArrowBack from '~icons/akar-icons/arrow-back'
 import BiFiletypeJson from '~icons/bi/filetype-json'
-import { useEnv } from '@/composables/appConfig'
-import { compileCode } from '@/config'
-import { historyWidgetList, localTemplateList, returnData, uuId, widgetList } from '@/core'
+import { localTemplateList, useEnv } from '@/composables/appConfig'
 
 const previewDialog = ref<InstanceType<typeof Preview> | null>(null)
 const renderCodeDialog = ref<InstanceType<typeof RenderCode> | null>(null)

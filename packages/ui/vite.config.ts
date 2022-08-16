@@ -1,21 +1,62 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-15 11:31:30
+ * @LastEditTime: 2022-08-16 15:42:53
  */
 /// <reference types="vitest" />
 
 import path from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-// import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import WindiCSS from 'vite-plugin-windicss'
 import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import visualizer from 'rollup-plugin-visualizer'
+
+const plugins = [
+  vueSetupExtend(),
+  Vue({
+    reactivityTransform: true,
+  }),
+
+  // https://github.com/antfu/unplugin-auto-import
+  AutoImport({
+    imports: ['vue', 'vue/macros', 'vue-router', '@vueuse/core'],
+    resolvers: [
+      ElementPlusResolver(),
+    ],
+    dts: true,
+  }),
+
+  // https://github.com/antfu/vite-plugin-components
+  Components({
+    resolvers: [
+      ElementPlusResolver(),
+    ],
+    dts: true,
+  }),
+
+  Icons({
+    autoInstall: true,
+  }),
+
+  WindiCSS(),
+]
+
+// 打包生产环境才引入的插件
+if (process.env.NODE_ENV === 'production') {
+  // 打包依赖展示
+  plugins.push(
+    visualizer({
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+    }),
+  )
+}
 
 export default defineConfig({
   build: {
@@ -26,44 +67,7 @@ export default defineConfig({
       '@/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
-  plugins: [
-    vueSetupExtend(),
-    Vue({
-      reactivityTransform: true,
-    }),
-    // https://github.com/hannoeru/vite-plugin-pages
-    // Pages(),
-
-    // https://github.com/antfu/unplugin-auto-import
-    AutoImport({
-      imports: ['vue', 'vue/macros', 'vue-router', '@vueuse/core'],
-      resolvers: [
-        // 自动导入图标组件
-        IconsResolver({
-          prefix: 'Icon',
-        }),
-        ElementPlusResolver(),
-      ],
-      dts: true,
-    }),
-
-    // https://github.com/antfu/vite-plugin-components
-    Components({
-      resolvers: [
-        // IconsResolver({
-        //   enabledCollections: ['ep'],
-        // }),
-        ElementPlusResolver(),
-      ],
-      dts: true,
-    }),
-
-    Icons({
-      autoInstall: true,
-    }),
-
-    WindiCSS(),
-  ],
+  plugins,
 
   // https://github.com/vitest-dev/vitest
   define: {

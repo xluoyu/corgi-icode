@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
-import type { IWidgetItem } from '@/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 defineProps<{
   title: string
   collapse: boolean

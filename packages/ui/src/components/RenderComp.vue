@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IWidgetItem } from '@/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 
 const props = defineProps<{
   item: IWidgetItem

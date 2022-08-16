@@ -1,3 +1,8 @@
+<!--
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-16 17:23:54
+-->
 <template>
   <el-header
     class="h-$header-h bg-$theme-bg border-b border-gray-400 z-10 relative"
@@ -14,21 +19,6 @@
           <IcBaselineWbSunny v-show="!isDark" />
           <BiCloudMoonFill v-show="isDark" />
         </el-icon>
-        <!-- <el-dropdown @command="handleCommand">
-          <el-icon :size="20">
-            <OouiLanguage />
-          </el-icon>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="zh-CN">
-                简体中文
-              </el-dropdown-item>
-              <el-dropdown-item command="en-US">
-                English
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown> -->
         <a
           href="https://github.com/xluoyu/corgi-lowcode"
           target="__blank"

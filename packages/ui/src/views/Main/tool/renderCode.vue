@@ -45,10 +45,9 @@ import beautify from 'js-beautify'
 import { editor } from 'monaco-editor/esm/vs/editor/editor.api.js'
 import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution'
 import 'monaco-editor/esm/vs/basic-languages/html/html.contribution'
-import { compileCode } from '@/config'
+import { compileCode, errorMsg } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import { isDark } from '@/composables/appConfig'
-import { errorMsg } from '@/core'
-import type { IWidgetItem } from '@/core'
 
 const dialogVisible = ref(false)
 

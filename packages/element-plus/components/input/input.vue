@@ -1,22 +1,25 @@
 <!--
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-15 11:23:03
+ * @LastEditTime: 2022-08-16 17:10:38
 -->
 <template>
-  <el-input
-    v-model="value"
-    :type="type"
-    v-bind="$attrs"
-    @change="changeValue"
-  />
+  <el-form-item :label="label" :prop="_key">
+    <el-input
+      v-model="value"
+      :type="type"
+      v-bind="$attrs"
+      @change="changeValue"
+    />
+  </el-form-item>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup name="element-plus-input">
 const props = defineProps<{
   type?: string
   value?: string | number
   _key?: string
+  label: string
 }>()
 
 const emits = defineEmits(['update'])

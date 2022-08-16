@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IWidgetItem } from '@/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 
 const dialogVisible = ref(false)
 provide('showType', 'preview') // 显示状态为预览

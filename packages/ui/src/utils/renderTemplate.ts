@@ -1,12 +1,5 @@
-export const formatArrt = (attr: string, value: any) => {
-  if (typeof value === 'boolean') {
-    return value ? `${attr}` : ''
-  }
-  if (value === 'default') {
-    return ''
-  }
-  if (value) {
-    return `${attr}="${value}"`
-  }
-  return ''
-}
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-16 16:17:32
+ */

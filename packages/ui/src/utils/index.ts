@@ -1,3 +1,8 @@
+/*
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-16 16:40:32
+ */
 export function findDeepItem<T>(
   list: any[],
   filter: (a: any) => boolean,
