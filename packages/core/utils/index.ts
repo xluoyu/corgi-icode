@@ -1,9 +1,12 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-16 17:04:01
+ * @LastEditTime: 2022-08-17 15:58:11
  */
 import { merge } from 'lodash-es'
+import type { ILibsName } from '../libs'
+import { libsCDN } from '../libs'
+import type { ILibReturnType } from '../type'
 
 export function errorMsg(msg: string, source: string) {
   console.error(`[lowcode-core]: ${msg}`, source)
@@ -85,22 +88,15 @@ export function objectToString(obj: any): string {
 //   })
 // }
 
-export async function importLibs(key: string) {
-  let res = null
+export async function importLibs(key: ILibsName) {
+  let res: ILibReturnType | null = null
   if (process.env.NODE_ENV === 'production') {
     // 用于调用npm的cdn
+    res = await fetch(libsCDN[key]).then(res => res.json())
   } else {
-    // const libs = {
-    //   'element-plus': '@corgi-icode/element-plus/index.ts',
-    // }
-
     res = await import(`../../${key}/index.ts`)
   }
-  console.log(res)
-  return {
-    Menu: res.Menu,
-    TemplateList: res.TemplateList,
-  }
+  return res
 }
 
 export const formatArrt = (attr: string, value: any) => {

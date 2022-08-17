@@ -1,19 +1,15 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-15 17:22:19
+ * @LastEditTime: 2022-08-17 17:28:43
  */
-/*
- * @Description:
- * @Author: xluoyu
- * @LastEditTime: 2022-08-15 17:21:59
- */
-import type { IWidgetItem } from '../type'
+import type { ILibsName } from '../libs'
+import type { ILibReturnType, IMenu, ITemplate, IWidgetItem } from '../type'
 
+// 白板上的默认数据
 const defaultWidgetList = [
   {
     children: [],
-    component: 'cg-form',
     form: {
       'dataName': { label: '数据对象', type: 'input', value: '' },
       'inline': { label: '行内模式', type: 'switch', value: false },
@@ -30,7 +26,9 @@ const defaultWidgetList = [
   },
 ]
 
+// 组件计数
 export const uuId = ref(defaultWidgetList.length)
+
 /**
  * 白板上的组件列表
  */
@@ -43,6 +41,10 @@ export const activeWidgetKey = ref<string>('')
 
 /**
  * 组件列表的扁平化结构
+ *
+ * return => {
+ *  [key]: IWidgetItem
+ * }
  */
 export const widgetListFlat = computed<Record<string, IWidgetItem>>(() => {
   const res: Record<string, IWidgetItem> = {}
@@ -73,4 +75,11 @@ export const curActionWidget = computed(() => {
  */
 export const curCloneWidgetKey = ref<string>('') // 当前克隆的组件key
 
-export const Menu = []
+/**
+ * 菜单
+ */
+export const curLibName = ref<ILibsName>('element-plus')
+export const menu = ref<IMenu>([])
+export const defaultTemplateList = ref<ITemplate>([])
+
+export const libStorage: Partial<Record<ILibsName, ILibReturnType>> = {}

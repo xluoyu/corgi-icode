@@ -1,18 +1,18 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-16 16:28:03
+ * @LastEditTime: 2022-08-17 15:26:15
  */
 import type { FunctionalComponent, SVGAttributes } from 'vue'
+import type widgetOptions from '../ui/src/enum/widgetOptions'
 
 export interface IWidgetItem {
-  title: string
-  type: string
+  title: string // 标题
+  type: string // 组件类型，需要与组件名称保持一致
   icon?: FunctionalComponent<SVGAttributes, {}>
-  key: string
-  component: string
-  form: IWidgetItemForm
-  noForm?: boolean
+  key: string // 自动生成的key
+  form: IWidgetItemForm // 属性配置
+  noForm?: boolean // 是否为form下组件
   children?: IWidgetItem[]
   parent?: string
   updateDataFn?: () => void // 用来更新组件内的数据
@@ -22,21 +22,17 @@ export type IWidgetItemForm = Record<
   string,
   {
     label: string
-    type: string
+    type: keyof typeof widgetOptions
     value: any
     isShow?: (options: any) => boolean
     changeCb?: (options: any) => void
   }
 >
 
-export type IWidgetItemFormOptions = objectT<{
-  component: string
-  [name: string]: any
-}>
-
-export type objectT<T> = Record<string, T>
-
-export type renderWidgetCode = (options: Record<string, any>, IWidgetItem: IWidgetItem, formOptions?: {
+/**
+ * 编译组件代码
+ */
+export type renderWidgetCode = (options: Record<string, any>, formOptions?: {
   key: string // formDataName
   validate: boolean // form表单是否开启校验
 }) => {
@@ -49,6 +45,9 @@ export type renderWidgetCode = (options: Record<string, any>, IWidgetItem: IWidg
   componentTemplate?: string // 私有组件的模板
 }
 
+/**
+ * 模板数据
+ */
 export interface ITemplateOptions {
   title: string
   key: string
@@ -56,4 +55,13 @@ export interface ITemplateOptions {
   photo?: string
   uuId: number
   widgetList: IWidgetItem[]
+}
+
+export type IMenu = { title: string; children: IWidgetItem[] }[]
+export type ITemplate = ITemplateOptions[]
+
+export interface ILibReturnType {
+  Menu: IMenu
+  Template: ITemplate
+  Component: Record<string, any>
 }

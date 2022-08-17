@@ -72,8 +72,10 @@ importers:
   packages/core:
     specifiers:
       '@element-plus/icons-vue': ^2.0.6
+      vuedraggable: ^4.1.0
     dependencies:
       '@element-plus/icons-vue': 2.0.9_vue@3.2.37
+      vuedraggable: 4.1.0_vue@3.2.37
 
   packages/element-plus:
     specifiers:

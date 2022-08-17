@@ -3,28 +3,31 @@
     <slot />
     <div class="handleArea bottom-0 right-0 text-light-50">
       <div title="移动组件" class="moveArea">
-        <Rank />{{ item.type }}
+        <i class="icon">
+          <Rank />
+        </i>
+        {{ item.type }}
       </div>
       <div v-if="sortBtn.left" title="父级组件" @click="sortLeftClick">
-        <el-icon>
+        <i class="icon">
           <Back />
-        </el-icon>
+        </i>
       </div>
       <div v-if="sortBtn.top" title="上一个组件" @click="sortTopClick">
-        <el-icon>
+        <i class="icon">
           <Top />
-        </el-icon>
+        </i>
       </div>
       <div v-if="sortBtn.btm" title="下一个组件" @click="sortBtmClick">
-        <el-icon>
+        <i class="icon">
           <Bottom />
-        </el-icon>
+        </i>
       </div>
       <slot name="handle" />
       <div title="删除组件" @click="removeCurItem">
-        <el-icon>
+        <i class="icon">
           <Delete />
-        </el-icon>
+        </i>
       </div>
     </div>
   </div>
@@ -124,3 +127,19 @@ const removeCurItem = () => {
   parentChild.value.splice(oldIndex, 1)
 }
 </script>
+
+<style scoped>
+.icon{
+  --color: inherit;
+  height: 1em;
+  width: 1em;
+  line-height: 1em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--color);
+  font-size: inherit;
+}
+</style>

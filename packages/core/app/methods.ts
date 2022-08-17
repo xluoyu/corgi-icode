@@ -1,8 +1,9 @@
 import { cloneDeep } from 'lodash-es'
-import type { IWidgetItem } from '../type'
-import { errorMsg } from '../utils'
+import type { ILibReturnType, IWidgetItem } from '../type'
+import { errorMsg, importLibs } from '../utils'
+import type { ILibsName } from '../libs'
 import { addHistoryWidgetList } from './history'
-import { activeWidgetKey, curActionWidget, curCloneWidgetKey, uuId, widgetList, widgetListFlat } from './state'
+import { activeWidgetKey, curActionWidget, curCloneWidgetKey, curLibName, defaultTemplateList, libStorage, menu, uuId, widgetList, widgetListFlat } from './state'
 
 /**
  * 查找组件
@@ -120,7 +121,7 @@ export function getParentForm(widget: IWidgetItem): null | IWidgetItem {
  */
 export function updateActionWidgetOptions(key: string, value: any) {
   if (!curActionWidget.value) {
-    errorMsg('当前没有活跃的组件', 'core/app/methods.ts line: 95')
+    errorMsg('当前没有活跃的组件', 'core/app/methods.ts')
     return
   }
 
@@ -151,3 +152,28 @@ export function removeActionWidget() {
   const idx = parentChildren.indexOf(curActionWidget.value)
   parentChildren.splice(idx, 1)
 }
+
+/**
+ * 切换依赖的组件库
+ *
+ * @param key 组件库名称
+ */
+export async function changeLib(key: ILibsName) {
+  let lib: ILibReturnType | null = null
+  if (!libStorage[key]) {
+    lib = await importLibs(key)
+    if (lib) {
+      libStorage[key] = lib
+    }
+  } else {
+    lib = libStorage[key]!
+  }
+
+  if (lib) {
+    curLibName.value = key
+    menu.value = lib.Menu
+    defaultTemplateList.value = lib.Template
+  }
+}
+
+changeLib(curLibName.value)

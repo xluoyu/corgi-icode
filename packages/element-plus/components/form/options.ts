@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-16 16:36:28
+ * @LastEditTime: 2022-08-17 17:40:49
  */
 import type { IWidgetItem } from '@corgi-icode/core'
 import IconParkOutlineFormOne from '~icons/icon-park-outline/form-one'
@@ -10,8 +10,7 @@ export default <IWidgetItem> {
   title: '表单',
   type: 'form',
   key: '',
-  icon: IconParkOutlineFormOne,
-  component: 'cg-form',
+  icon: markRaw(IconParkOutlineFormOne),
   noForm: true,
   children: [],
   form: {

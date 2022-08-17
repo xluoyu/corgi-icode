@@ -16,7 +16,7 @@
             }"
           >
             <el-collapse-item
-              v-for="item in Menu"
+              v-for="item in menu"
               :key="item.title"
               :title="item.title"
               :name="item.title"
@@ -104,19 +104,21 @@
 <script lang="ts" setup>
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash-es'
-// import * as Element from '@corgi-icode/element-plus'
-// import { Menu, TemplateList } from '@/config'
 import type { ITemplateOptions, IWidgetItem } from '@corgi-icode/core'
-import { activeWidgetKey, cloneNewWidget, importLibs, uuId, widgetList } from '@corgi-icode/core'
+import { activeWidgetKey, cloneNewWidget, defaultTemplateList, menu, uuId, widgetList } from '@corgi-icode/core'
 import { getTemplateList } from '@/composables'
 import GgComponents from '~icons/gg/components'
 import GgTemplate from '~icons/gg/template'
 import CodiconListTree from '~icons/codicon/list-tree'
 
-const { Menu, TemplateList } = await importLibs('element-plus')
+const actionCollapse = ref()
+const templateList = getTemplateList(defaultTemplateList.value)
 
-const actionCollapse = ref(Menu.slice(0, 2).map(e => e.title))
-const templateList = getTemplateList(TemplateList)
+watch(menu, () => {
+  if (menu.value) {
+    actionCollapse.value = menu.value.slice(0, 2).map(e => e.title)
+  }
+})
 
 const renderTemplate = (item: ITemplateOptions) => {
   ElMessageBox.confirm(`是否使用${item.title}替换当前配置?`)
