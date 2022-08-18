@@ -181,11 +181,11 @@ export async function changeLib(key: ILibsName) {
 
 const vueInstance = ref<App| null>(null)
 
-watch([curLibName, vueInstance], () => {
-  // libStorage[curLibName.value]?.Components
-}, {
-  immediate: true,
-})
+// watch([curLibName, vueInstance], () => {
+//   // libStorage[curLibName.value]?.Components
+// }, {
+//   immediate: true,
+// })
 
 async function loadComponent(key: string) {
   const componentName = `${curLibName.value}-${key}`

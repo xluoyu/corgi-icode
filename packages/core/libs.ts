@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-18 15:49:17
+ * @LastEditTime: 2022-08-18 17:31:04
  */
 export const libs = [
   {
@@ -15,7 +15,7 @@ export const libs = [
 ] as const
 
 export const libsCDN = {
-  'element-plus': 'https://cdn.jsdelivr.net/npm/@corgi-icode/element-plus@0.0.0-beta.3',
+  'element-plus': 'https://cdn.jsdelivr.net/npm/@corgi-icode/element-plus@0.0.0-beta.4/dist/index.es.min.js',
   'naiveui': '',
 }
 

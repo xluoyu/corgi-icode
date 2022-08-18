@@ -17,8 +17,8 @@
     "commit": "cz"
   },
   "dependencies": {
-    "@corgi-icode/element-plus": "workspace:*",
     "@corgi-icode/core": "workspace:*",
+    "@corgi-icode/element-plus": "workspace:*",
     "@vueuse/core": "^8.9.4",
     "lodash-es": "^4.17.21",
     "vue": "^3.2.37"
@@ -32,11 +32,10 @@
     "@iconify-json/octicon": "^1.1.15",
     "@iconify-json/uil": "^1.1.2",
     "@iconify/json": "^2.1.86",
+    "@rollup/plugin-commonjs": "^22.0.2",
     "@types/node": "^17.0.45",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vue/test-utils": "^2.0.2",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-external-globals": "^0.6.1",
     "c8": "^7.12.0",
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
@@ -44,6 +43,8 @@
     "husky": "^8.0.1",
     "jsdom": "^19.0.0",
     "lint-staged": "^13.0.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-external-globals": "^0.6.1",
     "typescript": "^4.7.4",
     "unplugin-auto-import": "0.11.1",
     "unplugin-icons": "^0.14.8",

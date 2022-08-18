@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-18 15:59:05
+ * @LastEditTime: 2022-08-18 17:31:10
  */
 import { merge } from 'lodash-es'
 import type { ILibsName } from '../libs'
@@ -90,10 +90,11 @@ export function objectToString(obj: any): string {
 
 export async function importLibs(key: ILibsName) {
   let res: ILibReturnType | null = null
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     // 用于调用npm的cdn
     // res = await fetch().then(res => res.json())
-    res = await import('@corgi-icode/element-plus')
+    // res = await import(libsCDN[key])
+    res = await import(libsCDN[key])
     // console.log('开始加载', libsCDN[key])
     // await addScripts(libsCDN[key])
     // res = (window as any)[`@corgi-icode/${key}`]

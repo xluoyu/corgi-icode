@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-18 15:57:34
+ * @LastEditTime: 2022-08-18 17:21:58
  */
 /// <reference types="vitest" />
 
@@ -67,6 +67,7 @@ export default defineConfig({
     //   // 确保外部化处理那些你不想打包进库的依赖
     //   external: ['vue'],
     //   plugins: [
+
     //     commonjs(),
     //     externalGlobals({
     //       vue: 'Vue',
@@ -77,6 +78,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/': `${path.resolve(__dirname, 'src')}/`,
+      // 'vue': 'https://cdn.jsdelivr.net/npm/vue@3.2.37/dist/vue.esm-browser.js',
     },
   },
   plugins,
