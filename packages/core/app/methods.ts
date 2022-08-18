@@ -1,4 +1,5 @@
 import { cloneDeep } from 'lodash-es'
+import type { App } from 'vue'
 import type { ILibReturnType, IWidgetItem } from '../type'
 import { errorMsg, importLibs } from '../utils'
 import type { ILibsName } from '../libs'
@@ -72,6 +73,8 @@ export function cloneNewWidget(item: IWidgetItem) {
   }
   uuId.value++
   curCloneWidgetKey.value = key
+
+  loadComponent(item.type)
   return newObj
 }
 
@@ -163,7 +166,7 @@ export async function changeLib(key: ILibsName) {
   if (!libStorage[key]) {
     lib = await importLibs(key)
     if (lib) {
-      libStorage[key] = lib
+      libStorage[key] = Object.assign({}, lib)
     }
   } else {
     lib = libStorage[key]!
@@ -172,8 +175,38 @@ export async function changeLib(key: ILibsName) {
   if (lib) {
     curLibName.value = key
     menu.value = lib.Menu
-    defaultTemplateList.value = lib.Template
+    defaultTemplateList.value = lib.TemplateList
   }
+}
+
+const vueInstance = ref<App| null>(null)
+
+watch([curLibName, vueInstance], () => {
+  // libStorage[curLibName.value]?.Components
+}, {
+  immediate: true,
+})
+
+async function loadComponent(key: string) {
+  const componentName = `${curLibName.value}-${key}`
+  try {
+    if (vueInstance.value!._context.components[componentName])
+      return
+    const { default: component } = await libStorage[curLibName.value]?.Components[componentName]()
+    if (component.install) {
+      vueInstance.value!.use(component)
+    } else {
+      vueInstance.value!.component(componentName, component)
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const icodeInstall = {
+  install(app: App) {
+    vueInstance.value = app
+  },
 }
 
 changeLib(curLibName.value)

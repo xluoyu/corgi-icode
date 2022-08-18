@@ -1,20 +1,16 @@
+<!--
+ * @Description:
+ * @Author: xluoyu
+ * @LastEditTime: 2022-08-18 15:37:34
+-->
 <template>
   <component
     :is="item.component"
-    v-if="item.noForm"
     :key="options._key"
     :item="item"
     v-bind="options"
+    @update="update"
   />
-  <el-form-item v-else :label="options.label" :prop="options._key">
-    <component
-      :is="item.component"
-      :key="options._key"
-      :item="item"
-      v-bind="options"
-      @update="update"
-    />
-  </el-form-item>
 </template>
 
 <script lang="ts" setup>

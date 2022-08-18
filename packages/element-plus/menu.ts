@@ -1,22 +1,21 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-16 17:07:13
+ * @LastEditTime: 2022-08-18 10:00:28
  */
-import Input from './components/input/options'
-import Form from './components/form/options'
+import { ComponentsOptions } from './components/index'
 
 export const Menu = [
   {
     title: '布局',
     children: [
-      Form,
+      ComponentsOptions.form,
     ],
   },
   {
     title: '基础组件',
     children: [
-      Input,
+      ComponentsOptions.input,
     ],
   },
 ]

@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-17 15:26:15
+ * @LastEditTime: 2022-08-18 15:23:12
  */
 import type { FunctionalComponent, SVGAttributes } from 'vue'
 import type widgetOptions from '../ui/src/enum/widgetOptions'
@@ -10,6 +10,7 @@ export interface IWidgetItem {
   title: string // 标题
   type: string // 组件类型，需要与组件名称保持一致
   icon?: FunctionalComponent<SVGAttributes, {}>
+  component?: string // 调用组件名称
   key: string // 自动生成的key
   form: IWidgetItemForm // 属性配置
   noForm?: boolean // 是否为form下组件
@@ -62,6 +63,6 @@ export type ITemplate = ITemplateOptions[]
 
 export interface ILibReturnType {
   Menu: IMenu
-  Template: ITemplate
-  Component: Record<string, any>
+  TemplateList: ITemplate
+  Components: Record<string, any>
 }

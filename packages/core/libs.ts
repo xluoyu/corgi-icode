@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-17 17:20:20
+ * @LastEditTime: 2022-08-18 15:49:17
  */
 export const libs = [
   {
@@ -15,8 +15,23 @@ export const libs = [
 ] as const
 
 export const libsCDN = {
-  'element-plus': '',
+  'element-plus': 'https://cdn.jsdelivr.net/npm/@corgi-icode/element-plus@0.0.0-beta.3',
   'naiveui': '',
 }
 
 export type ILibsName = typeof libs[number]['name']
+
+export const validates: { label: string; value: RegExp }[] = [
+  {
+    label: '手机号',
+    value: /^1[3456789]\d{9}$/,
+  },
+  {
+    label: '邮箱',
+    value: /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/,
+  },
+  {
+    label: '身份证',
+    value: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+  },
+]

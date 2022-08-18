@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-16 15:42:53
+ * @LastEditTime: 2022-08-18 15:57:34
  */
 /// <reference types="vitest" />
 
@@ -15,6 +15,8 @@ import WindiCSS from 'vite-plugin-windicss'
 import Icons from 'unplugin-icons/vite'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import visualizer from 'rollup-plugin-visualizer'
+// import commonjs from 'rollup-plugin-commonjs'
+// import externalGlobals from 'rollup-plugin-external-globals'
 
 const plugins = [
   vueSetupExtend(),
@@ -61,6 +63,16 @@ if (process.env.NODE_ENV === 'production') {
 export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, '../../dist'),
+    // rollupOptions: {
+    //   // 确保外部化处理那些你不想打包进库的依赖
+    //   external: ['vue'],
+    //   plugins: [
+    //     commonjs(),
+    //     externalGlobals({
+    //       vue: 'Vue',
+    //     }),
+    //   ],
+    // },
   },
   resolve: {
     alias: {

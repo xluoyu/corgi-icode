@@ -17,7 +17,7 @@
 </template>
 
 <script lang='ts' setup>
-import type { IWidgetItem, objectT } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import { cloneNewWidget, curCloneWidgetKey, getFormData, mixinValue } from '@corgi-icode/core'
 import inputOptions from '../input/options'
 // import { validateFn, validates } from '@/config'
@@ -29,7 +29,7 @@ const props = defineProps<{
   inline: boolean
 }>()
 
-const formData = reactive<objectT<any>>({})
+const formData = reactive<any>({})
 
 function updateFormData() {
   Object.assign(formData, getFormData(props.item))

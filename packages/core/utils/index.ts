@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-17 15:58:11
+ * @LastEditTime: 2022-08-18 15:59:05
  */
 import { merge } from 'lodash-es'
 import type { ILibsName } from '../libs'
@@ -92,12 +92,33 @@ export async function importLibs(key: ILibsName) {
   let res: ILibReturnType | null = null
   if (process.env.NODE_ENV === 'production') {
     // 用于调用npm的cdn
-    res = await fetch(libsCDN[key]).then(res => res.json())
+    // res = await fetch().then(res => res.json())
+    res = await import('@corgi-icode/element-plus')
+    // console.log('开始加载', libsCDN[key])
+    // await addScripts(libsCDN[key])
+    // res = (window as any)[`@corgi-icode/${key}`]
+    console.log(res)
   } else {
-    res = await import(`../../${key}/index.ts`)
+    try {
+      res = await import(`../../${key}/index.ts`)
+    } catch (e) {
+      errorMsg('未找到指定组件库', '@corgi-icode/core/utils')
+    }
   }
   return res
 }
+
+// function addScripts(cdn: string) {
+//   return new Promise((resolve) => {
+//     const script = document.createElement('script')
+//     script.type = 'module'
+//     script.src = cdn
+//     script.onload = function() {
+//       resolve(true)
+//     }
+//     document.head.append(script)
+//   })
+// }
 
 export const formatArrt = (attr: string, value: any) => {
   if (typeof value === 'boolean') {

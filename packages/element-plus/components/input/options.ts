@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-17 17:40:37
+ * @LastEditTime: 2022-08-18 09:50:14
  */
 import type { IWidgetItem } from '@corgi-icode/core'
 import IconoirInputField from '~icons/iconoir/input-field'
@@ -11,7 +11,6 @@ export default <IWidgetItem> {
   type: 'input',
   key: '',
   icon: markRaw(IconoirInputField),
-  component: 'corgi-element-plus-input',
   form: {
     _key: {
       label: '绑定key',

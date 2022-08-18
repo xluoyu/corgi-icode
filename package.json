@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "pnpm run -C packages/ui dev",
     "build": "pnpm run -C packages/ui build",
+    "preview": "pnpm run -C packages/ui preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint . --fix",
@@ -34,6 +35,8 @@
     "@types/node": "^17.0.45",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vue/test-utils": "^2.0.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-external-globals": "^0.6.1",
     "c8": "^7.12.0",
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",

@@ -1,14 +1,17 @@
 {
   "name": "@corgi-icode/element-plus",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.0-beta.3",
+  "description": "基于element-plus",
+  "author": "xluoyu",
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build"
   },
-  "main": "dist/corgi-element-plus.umd.js",
-  "module": "dist/corgi-element-plus.es.js",
-  "author": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.umd.min.js",
+  "module": "dist/index.es.min.js",
   "license": "ISC",
   "dependencies": {
     "element-plus": "2.2.9"

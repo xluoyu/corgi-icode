@@ -1,7 +1,7 @@
 <!--
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-17 09:18:41
+ * @LastEditTime: 2022-08-18 10:15:48
 -->
 <template>
   <el-form-item :label="label" :prop="_key">
@@ -14,7 +14,7 @@
   </el-form-item>
 </template>
 
-<script lang="ts" setup name="element-plus-input">
+<script lang="ts" setup>
 const props = defineProps<{
   type?: string
   value?: string | number
