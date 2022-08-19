@@ -1,11 +1,11 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-18 17:31:10
+ * @LastEditTime: 2022-08-19 14:50:35
  */
 import { merge } from 'lodash-es'
 import type { ILibsName } from '../libs'
-import { libsCDN } from '../libs'
+import { libs } from '../libs'
 import type { ILibReturnType } from '../type'
 
 export function errorMsg(msg: string, source: string) {
@@ -88,24 +88,31 @@ export function objectToString(obj: any): string {
 //   })
 // }
 
+/**
+ * 加载指定的组件库
+ * @param key
+ * @returns
+ */
 export async function importLibs(key: ILibsName) {
   let res: ILibReturnType | null = null
-  if (process.env.NODE_ENV !== 'production') {
-    // 用于调用npm的cdn
-    // res = await fetch().then(res => res.json())
-    // res = await import(libsCDN[key])
-    res = await import(libsCDN[key])
-    // console.log('开始加载', libsCDN[key])
-    // await addScripts(libsCDN[key])
-    // res = (window as any)[`@corgi-icode/${key}`]
-    console.log(res)
-  } else {
-    try {
-      res = await import(`../../${key}/index.ts`)
-    } catch (e) {
-      errorMsg('未找到指定组件库', '@corgi-icode/core/utils')
-    }
+  // if (process.env.NODE_ENV === 'production') {
+  // 用于调用npm的cdn
+  // res = await fetch().then(res => res.json())
+  // res = await import(libsCDN[key])
+  // res = await import(libsCDN[key])
+  // console.log('开始加载', libsCDN[key])
+  // await addScripts(libsCDN[key])
+  // res = (window as any)[`@corgi-icode/${key}`]
+  // console.log(res)
+  // } else {
+  try {
+    res = await libs.find(e => e.name === key)!.import()
+    // import(`../../${key}/index.ts`)
+  } catch (e) {
+    alert(`未找到${key}组件库`)
+    errorMsg('未找到指定组件库', '@corgi-icode/core/utils')
   }
+  // }
   return res
 }
 

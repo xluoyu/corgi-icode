@@ -4,14 +4,12 @@
   "description": "基于element-plus",
   "author": "xluoyu",
   "scripts": {
-    "dev": "vite build --watch",
-    "build": "vite build"
+
   },
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/index.umd.min.js",
-  "module": "dist/index.es.min.js",
+  "main": "index.ts",
   "license": "ISC",
   "dependencies": {
     "element-plus": "2.2.9"

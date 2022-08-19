@@ -1,5 +1,4 @@
 import { cloneDeep } from 'lodash-es'
-import type { App } from 'vue'
 import type { ILibReturnType, IWidgetItem } from '../type'
 import { errorMsg, importLibs } from '../utils'
 import type { ILibsName } from '../libs'
@@ -179,34 +178,31 @@ export async function changeLib(key: ILibsName) {
   }
 }
 
-const vueInstance = ref<App| null>(null)
-
 // watch([curLibName, vueInstance], () => {
 //   // libStorage[curLibName.value]?.Components
 // }, {
 //   immediate: true,
 // })
 
+/**
+ * 挂载指定组件
+ * @param key
+ * @returns
+ */
 async function loadComponent(key: string) {
   const componentName = `${curLibName.value}-${key}`
   try {
-    if (vueInstance.value!._context.components[componentName])
+    if (window.app._context.components[componentName])
       return
     const { default: component } = await libStorage[curLibName.value]?.Components[componentName]()
     if (component.install) {
-      vueInstance.value!.use(component)
+      window.app.use(component)
     } else {
-      vueInstance.value!.component(componentName, component)
+      window.app.component(componentName, component)
     }
   } catch (err) {
     console.log(err)
   }
-}
-
-export const icodeInstall = {
-  install(app: App) {
-    vueInstance.value = app
-  },
 }
 
 changeLib(curLibName.value)

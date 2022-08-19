@@ -1,7 +1,7 @@
 /**
  * 用来配置输入框
  */
-export default <Record<string, any>> {
+export default {
   input: {
     component: 'CgInput',
   },
@@ -223,4 +223,4 @@ export default <Record<string, any>> {
     component: 'CgCode',
     name: '模拟数据',
   },
-}
+} as const
