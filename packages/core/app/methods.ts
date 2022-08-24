@@ -164,8 +164,9 @@ export async function changeLib(key: ILibsName) {
   let lib: ILibReturnType | null = null
   if (!libStorage[key]) {
     lib = await importLibs(key)
+
     if (lib) {
-      libStorage[key] = Object.assign({}, lib)
+      libStorage[key] = Object.assign({ renderComponent: {} }, lib)
     }
   } else {
     lib = libStorage[key]!
@@ -194,11 +195,14 @@ async function loadComponent(key: string) {
   try {
     if (window.app._context.components[componentName])
       return
-    const { default: component } = await libStorage[curLibName.value]?.Components[componentName]()
-    if (component.install) {
-      window.app.use(component)
-    } else {
-      window.app.component(componentName, component)
+    const { default: component } = await libStorage[curLibName.value]!.Components[componentName]()
+
+    libStorage[curLibName.value]!.renderComponent[key] = component
+
+    window.app.component(componentName, component)
+
+    if (component.dependents) {
+      component.dependents.forEach(loadComponent)
     }
   } catch (err) {
     console.log(err)

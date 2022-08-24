@@ -20,7 +20,7 @@
 import type { IWidgetItem } from '@corgi-icode/core'
 import { cloneNewWidget, curCloneWidgetKey, getFormData, mixinValue } from '@corgi-icode/core'
 import inputOptions from '../input/options'
-// import { validateFn, validates } from '@/config'
+import validateFn from './validate'
 
 const showType = inject('showType')
 
@@ -84,9 +84,6 @@ const formAttrs = computed(() => {
  * 规则校验
  */
 const validateRules = computed(() => {
-  if (!props.item.form.validate.value)
-    return []
-
   function run(list: IWidgetItem[]) {
     return list.reduce((pre, item) => {
       if (item.children && item.type !== 'form') {
@@ -105,19 +102,13 @@ const validateRules = computed(() => {
         rules.push({ required: true, message: `${key} is required`, trigger })
       }
 
-      // if (item.form.validate) {
-      //   let validate: string | RegExp | null = item.form.validate?.value
+      if (item.form.validate) {
+        const validate: RegExp | null = item.form.validate?.value
 
-      //   validate = (
-      //     validate && Object.keys(validates).includes(validate as string)
-      //       ? validates[validate as keyof typeof validates]
-      //       : validate
-      //   ) as RegExp | null
-
-      //   if (validate) {
-      //     rules.push({ validator: validateFn(key, validate), trigger })
-      //   }
-      // }
+        if (validate) {
+          rules.push({ validator: validateFn(key, validate), trigger })
+        }
+      }
 
       pre[key] = rules
       return pre

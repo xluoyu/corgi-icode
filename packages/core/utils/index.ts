@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-19 14:50:35
+ * @LastEditTime: 2022-08-24 20:53:37
  */
 import { merge } from 'lodash-es'
 import type { ILibsName } from '../libs'
@@ -115,18 +115,6 @@ export async function importLibs(key: ILibsName) {
   // }
   return res
 }
-
-// function addScripts(cdn: string) {
-//   return new Promise((resolve) => {
-//     const script = document.createElement('script')
-//     script.type = 'module'
-//     script.src = cdn
-//     script.onload = function() {
-//       resolve(true)
-//     }
-//     document.head.append(script)
-//   })
-// }
 
 export const formatArrt = (attr: string, value: any) => {
   if (typeof value === 'boolean') {

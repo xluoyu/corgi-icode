@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-17 17:40:49
+ * @LastEditTime: 2022-08-24 21:00:24
  */
 import type { IWidgetItem } from '@corgi-icode/core'
 import IconParkOutlineFormOne from '~icons/icon-park-outline/form-one'
@@ -14,7 +14,7 @@ export default <IWidgetItem> {
   noForm: true,
   children: [],
   form: {
-    'dataName': {
+    '_key': {
       label: '数据对象',
       type: 'input',
       value: '',
@@ -43,11 +43,6 @@ export default <IWidgetItem> {
       label: '组件大小',
       type: 'formSize',
       value: 'default',
-    },
-    'validate': {
-      label: '开启验证',
-      type: 'switch',
-      value: false,
     },
   },
 }

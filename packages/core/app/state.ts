@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-18 10:55:12
+ * @LastEditTime: 2022-08-24 20:54:23
  */
 import type { ILibsName } from '../libs'
 import type { ILibReturnType, IMenu, ITemplate, IWidgetItem } from '../type'
@@ -82,4 +82,4 @@ export const curLibName = ref<ILibsName>('element-plus')
 export const menu = ref<IMenu>([])
 export const defaultTemplateList = ref<ITemplate>([])
 
-export const libStorage: Partial<Record<ILibsName, ILibReturnType>> = {}
+export const libStorage: Partial<Record<ILibsName, ILibReturnType & { renderComponent: Record<string, any> }>> = {}

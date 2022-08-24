@@ -1,12 +1,12 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-16 16:17:50
+ * @LastEditTime: 2022-08-24 21:10:44
  */
 import type { renderWidgetCode } from '@corgi-icode/core'
 import { formatArrt } from '@corgi-icode/core'
 
-const run: renderWidgetCode = (options, formOptions) => {
+const run: renderWidgetCode = (options, _formDataName) => {
   const attrs = [
     'type',
     'placeholder',
@@ -24,7 +24,10 @@ const run: renderWidgetCode = (options, formOptions) => {
     formData: {
       [options._key]: options.value,
     },
-    template: `<el-input ${formOptions ? `v-model="${formOptions.key}.${options._key} "` : ''}${attrsStr} />`,
+    template: `<el-form-item label="${options.label}" prop="${options._key}">
+    <el-input ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}${attrsStr} />
+    </el-form-item>
+    `,
   }
 }
 

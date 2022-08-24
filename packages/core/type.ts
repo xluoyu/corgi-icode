@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Author: xluoyu
- * @LastEditTime: 2022-08-18 15:23:12
+ * @LastEditTime: 2022-08-24 20:57:24
  */
 import type { FunctionalComponent, SVGAttributes } from 'vue'
 import type widgetOptions from '../ui/src/enum/widgetOptions'
@@ -33,10 +33,7 @@ export type IWidgetItemForm = Record<
 /**
  * 编译组件代码
  */
-export type renderWidgetCode = (options: Record<string, any>, formOptions?: {
-  key: string // formDataName
-  validate: boolean // form表单是否开启校验
-}) => {
+export type renderWidgetCode = (options: Record<string, any>, formDataName: string) => {
   template: string | ((arg: string) => string)
   formData?: Record<string, any>
   privateVar?: Record<string, any> // 组件内的私有变量

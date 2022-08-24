@@ -79,15 +79,15 @@ export default {
       },
       {
         label: '手机号',
-        value: 'phone',
+        value: /^1[3456789]\d{9}$/,
       },
       {
         label: '身份证',
-        value: 'idCard',
+        value: /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/,
       },
       {
         label: '邮箱',
-        value: 'email',
+        value: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
       },
     ],
     placeholder: '选择预设，或输入正则',
