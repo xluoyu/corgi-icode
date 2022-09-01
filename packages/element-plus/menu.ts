@@ -10,12 +10,25 @@ export const Menu = [
     title: '布局',
     children: [
       ComponentsOptions.form,
+      ComponentsOptions.card,
+      ComponentsOptions.grid,
+      ComponentsOptions.table,
     ],
   },
   {
     title: '基础组件',
     children: [
       ComponentsOptions.input,
+      ComponentsOptions.button,
+      ComponentsOptions.checkbox,
+      ComponentsOptions.color,
+      ComponentsOptions.date,
+      ComponentsOptions.radio,
+      ComponentsOptions.select,
+      ComponentsOptions.switch,
+      ComponentsOptions.textarea,
+      ComponentsOptions.text,
+      ComponentsOptions.time,
     ],
   },
 ]

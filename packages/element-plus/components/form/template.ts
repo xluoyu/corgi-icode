@@ -19,9 +19,7 @@ export default <renderWidgetCode> function(
   const formDataName = option._key || _formDataName
 
   return {
-    template: (children: string) => `<el-form :model="${formDataName}" ${attrsStr}${
-      option.validate ? ` :rules='${formDataName}Rules'` : ''
-    }>${children}</el-form>`,
+    template: (children: string) => `<el-form :model="${formDataName}" ${attrsStr} :rules='${formDataName}Rules'>${children}</el-form>`,
     formData: {
       [formDataName]: {},
     },

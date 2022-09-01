@@ -4,7 +4,7 @@
   "description": "基于element-plus",
   "author": "xluoyu",
   "scripts": {
-
+    "dev": "vite"
   },
   "publishConfig": {
     "access": "public"
@@ -12,6 +12,7 @@
   "main": "index.ts",
   "license": "ISC",
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.6",
     "element-plus": "2.2.9"
   }
 }

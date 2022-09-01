@@ -94,7 +94,6 @@ export function compileCode(widgetList: IWidgetItem[]) {
         }
 
         if (rules.length) {
-          console.log(validateList, formDataName)
           Object.assign(validateList[`${formDataName}Rules`], {
             [formValue._key]: rules,
           })
@@ -156,8 +155,8 @@ export function compileCode(widgetList: IWidgetItem[]) {
   )
 
   /**
-     * 渲染各个模块的私有变量
-     */
+   * 渲染各个模块的私有变量
+   */
   const widgetVariableStr = Object.entries(widgetVariableList).reduce(
     (pre, [key, cur]) => {
       return `${pre}\nconst ${key} = ${objectToString(cur)}`
@@ -165,8 +164,8 @@ export function compileCode(widgetList: IWidgetItem[]) {
     '',
   )
   /**
-     * 渲染校验规则列表
-     */
+   * 渲染校验规则列表
+   */
   const validateListStr = Object.entries(validateList).reduce(
     (pre, [key, cur]) => {
       return `${pre}\nconst ${key} = ${objectToString(cur)}`

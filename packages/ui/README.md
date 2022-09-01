@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-08-11 10:39:13
 -->
 <p align="center">
-  <img src="./public/logo.png" width="100" align="center"></img>
+  <img src="./public/logo.png" width="100" align="center" />
 
   <h2 align="center">Corgi代码生成器</h2>
 

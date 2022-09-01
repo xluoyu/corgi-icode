@@ -13,7 +13,7 @@
     group="dragGroup"
     @add="addEnd"
   >
-    <template v-if="!list.length" #header>
+    <template v-if="!list.length" #footer>
       <div class="text-center opacity-60 h-40 leading-40">
         {{ empty || '拖拽区域' }}
       </div>
