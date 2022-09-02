@@ -1,29 +1,37 @@
 import type { IWidgetItem } from '@corgi-icode/core'
-import RadixIconsDividerHorizontal from '~icons/radix-icons/divider-horizontal'
+import IcOutlineRadioButtonChecked from '~icons/ic/outline-radio-button-checked'
 
 const data: IWidgetItem = {
-  title: '分割线',
-  type: 'divider',
+  title: '单选',
+  type: 'radio',
   key: '',
-  icon: markRaw(RadixIconsDividerHorizontal),
-  component: 'cg-divider',
-  noForm: true,
+  icon: markRaw(IcOutlineRadioButtonChecked),
+  component: 'cg-radio',
   form: {
-    // color: {
-    //   label: '颜色',
-    //   type: 'color',
-    //   value: '#dcdfe6',
-    // },
-    content: {
-      label: '分割线文案',
+    _key: {
+      label: '绑定key',
       type: 'input',
       value: '',
     },
-    // contentPosition: {
-    //   label: '分隔线位置',
-    //   type: 'input',
-    //   value: '关闭',
-    // }
+    value: {
+      label: '默认值',
+      type: 'input',
+      value: '1',
+    },
+    label: {
+      label: '标签文本',
+      type: 'input',
+      value: '单选',
+    },
+    options: {
+      label: '选项配置',
+      type: 'selectOptions',
+      value: [
+        { label: '选项一', value: '1' },
+        { label: '选项二', value: '2' },
+        { label: '选项三', value: '3' },
+      ],
+    },
   },
 }
 

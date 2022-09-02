@@ -5,7 +5,7 @@ const data: IWidgetItem = {
   title: '文字',
   type: 'text',
   key: '',
-  icon: MdiFormatText,
+  icon: markRaw(MdiFormatText),
   component: 'cg-text',
   noForm: true,
   form: {

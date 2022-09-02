@@ -11,6 +11,6 @@ Form.renderCodeTemplate = Template
 Form.validateFn = validateFn
 
 // 本组件下的依赖组件，用于同时挂载
-Form.dependents = ['input']
+Form.dependents = ['element-plus-input']
 
 export default Form

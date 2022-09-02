@@ -72,8 +72,7 @@ export function cloneNewWidget(item: IWidgetItem) {
   }
   uuId.value++
   curCloneWidgetKey.value = key
-  console.log(item.type)
-  loadComponent(item.type)
+  loadComponent(item.component!)
   return newObj
 }
 
@@ -171,11 +170,16 @@ export async function changeLib(key: ILibsName) {
   } else {
     lib = libStorage[key]!
   }
-  console.log(lib)
+
   if (lib) {
     curLibName.value = key
     menu.value = lib.Menu
     defaultTemplateList.value = lib.TemplateList
+    console.log(lib)
+    console.time('componentBegin')
+    Promise.all(Object.keys(lib.Components).map(loadComponent)).then(() => {
+      console.timeEnd('componentBegin')
+    })
   }
 }
 
@@ -190,17 +194,15 @@ export async function changeLib(key: ILibsName) {
  * @param key
  * @returns
  */
-async function loadComponent(key: string) {
-  const componentName = `${curLibName.value}-${key}`
+async function loadComponent(componentName: string) {
   try {
     if (window.app._context.components[componentName])
       return
     const { default: component } = await libStorage[curLibName.value]!.Components[componentName]()
 
-    libStorage[curLibName.value]!.renderComponent[key] = component
+    libStorage[curLibName.value]!.renderComponent[componentName] = component
 
     window.app.component(componentName, component)
-
     if (component.dependents) {
       component.dependents.forEach(loadComponent)
     }
@@ -210,3 +212,16 @@ async function loadComponent(key: string) {
 }
 
 changeLib(curLibName.value)
+
+/**
+ * 在切换依赖库后对菜单内的组件进行遍历挂载
+ *
+ * 挂载过程不能影响正常交互, 调度
+ */
+
+function Scheduler() {
+  const queue = new Set()
+  return function(jobs: typeof loadComponent[]) {
+    console.log(jobs)
+  }
+}

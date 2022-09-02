@@ -8,5 +8,5 @@ import Template from './template'
 
 Grid.renderCodeTemplate = Template
 
-Grid.dependents = ['col']
+Grid.dependents = ['element-plus-col']
 export default Grid

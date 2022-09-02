@@ -29,6 +29,7 @@ export const Menu = [
       ComponentsOptions.textarea,
       ComponentsOptions.text,
       ComponentsOptions.time,
+      ComponentsOptions.divider,
     ],
   },
 ]
