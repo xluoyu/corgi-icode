@@ -8,6 +8,7 @@
 const props = defineProps<{
   value?: boolean | string
   _key?: string
+  label?: string
 }>()
 
 const emits = defineEmits(['update'])

@@ -112,10 +112,12 @@ import GgTemplate from '~icons/gg/template'
 import CodiconListTree from '~icons/codicon/list-tree'
 
 const actionCollapse = ref()
-const templateList = getTemplateList(defaultTemplateList.value)
+const templateList = getTemplateList(defaultTemplateList)
 
 watch(menu, () => {
   if (menu.value) {
+    console.log(defaultTemplateList.value)
+
     actionCollapse.value = menu.value.slice(0, 2).map(e => e.title)
   }
 })

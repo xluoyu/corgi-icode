@@ -1,13 +1,13 @@
 <template>
   <el-form-item :label="label" :prop="_key">
-  <el-input
-    ref="textareaRef"
-    v-model="value"
-    type="textarea"
-    v-bind="$attrs"
-    @change="changeValue"
-  />
-</el-form-item>
+    <el-input
+      ref="textareaRef"
+      v-model="value"
+      type="textarea"
+      v-bind="$attrs"
+      @change="changeValue"
+    />
+  </el-form-item>
 </template>
 
 <script lang="ts" setup>

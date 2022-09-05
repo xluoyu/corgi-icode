@@ -1,13 +1,13 @@
 <template>
   <el-form-item :label="label" :prop="_key">
-  <el-time-picker
-    v-bind="$attrs"
-    :key="uid"
-    v-model="value"
-    :is-range="isRange"
-    @change="changeValue"
-  />
-</el-form-item>
+    <el-time-picker
+      v-bind="$attrs"
+      :key="uid"
+      v-model="value"
+      :is-range="isRange"
+      @change="changeValue"
+    />
+  </el-form-item>
 </template>
 
 <script lang="ts" setup>

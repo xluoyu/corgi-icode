@@ -4,6 +4,7 @@ import { errorMsg, importLibs } from '../utils'
 import type { ILibsName } from '../libs'
 import { addHistoryWidgetList } from './history'
 import { activeWidgetKey, curActionWidget, curCloneWidgetKey, curLibName, defaultTemplateList, libStorage, menu, uuId, widgetList, widgetListFlat } from './state'
+import { injectSchedulerCbs } from './scheduler'
 
 /**
  * 查找组件
@@ -172,22 +173,13 @@ export async function changeLib(key: ILibsName) {
   }
 
   if (lib) {
+    console.log(lib)
     curLibName.value = key
     menu.value = lib.Menu
     defaultTemplateList.value = lib.TemplateList
-    console.log(lib)
-    console.time('componentBegin')
-    Promise.all(Object.keys(lib.Components).map(loadComponent)).then(() => {
-      console.timeEnd('componentBegin')
-    })
+    injectSchedulerCbs(Object.keys(lib.Components).map(e => async() => await loadComponent(e)))
   }
 }
-
-// watch([curLibName, vueInstance], () => {
-//   // libStorage[curLibName.value]?.Components
-// }, {
-//   immediate: true,
-// })
 
 /**
  * 挂载指定组件
@@ -196,12 +188,11 @@ export async function changeLib(key: ILibsName) {
  */
 async function loadComponent(componentName: string) {
   try {
-    if (window.app._context.components[componentName])
+    if (window.app.component(componentName)) // 如果已经注册过则不需要再注册
       return
     const { default: component } = await libStorage[curLibName.value]!.Components[componentName]()
 
     libStorage[curLibName.value]!.renderComponent[componentName] = component
-
     window.app.component(componentName, component)
     if (component.dependents) {
       component.dependents.forEach(loadComponent)
@@ -212,16 +203,3 @@ async function loadComponent(componentName: string) {
 }
 
 changeLib(curLibName.value)
-
-/**
- * 在切换依赖库后对菜单内的组件进行遍历挂载
- *
- * 挂载过程不能影响正常交互, 调度
- */
-
-function Scheduler() {
-  const queue = new Set()
-  return function(jobs: typeof loadComponent[]) {
-    console.log(jobs)
-  }
-}
