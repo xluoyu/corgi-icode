@@ -1,0 +1,16 @@
+{
+  "name": "@corgi-icode/core",
+  "version": "0.0.0-beta.1",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {},
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.0.6",
+    "vuedraggable": "^4.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "xluoyu",
+  "license": "ISC"
+}
