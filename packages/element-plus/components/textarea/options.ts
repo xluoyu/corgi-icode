@@ -1,7 +1,7 @@
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import BiTextareaResize from '~icons/bi/textarea-resize'
 
-const data: IWidgetItem = {
+const data: IWidgetItemOmitComponent = {
   title: '多行文本',
   type: 'textarea',
   key: '',

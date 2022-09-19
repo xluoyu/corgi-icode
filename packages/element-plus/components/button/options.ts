@@ -1,7 +1,7 @@
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import IcOutlineSmartButton from '~icons/ic/outline-smart-button'
 
-const data: IWidgetItem = {
+const data: IWidgetItemOmitComponent = {
   title: '按钮',
   type: 'button',
   key: '',

@@ -3,10 +3,10 @@
  * @Author: xluoyu
  * @LastEditTime: 2022-08-11 10:47:07
  */
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import MaterialSymbolsGrid4x4Rounded from '~icons/material-symbols/grid-4x4-rounded'
 
-const data: IWidgetItem = {
+const data: IWidgetItemOmitComponent = {
   title: '网格',
   type: 'grid',
   key: '',

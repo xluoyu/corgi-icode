@@ -1,7 +1,7 @@
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import MdiToggleSwitchOff from '~icons/mdi/toggle-switch-off'
 
-const data: IWidgetItem = {
+const data: IWidgetItemOmitComponent = {
   title: '开关',
   type: 'switch',
   key: '',

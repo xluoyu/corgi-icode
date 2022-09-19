@@ -17,7 +17,7 @@
 </template>
 
 <script lang='ts' setup>
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import { cloneNewWidget, curCloneWidgetKey, getFormData, mixinValue } from '@corgi-icode/core'
 import inputOptions from '../input/options'
 import validateFn from './validate'
@@ -25,7 +25,7 @@ import validateFn from './validate'
 const showType = inject('showType')
 
 const props = defineProps<{
-  item: IWidgetItem
+  item: IWidgetItemOmitComponent
   inline: boolean
 }>()
 
@@ -84,7 +84,7 @@ const formAttrs = computed(() => {
  * 规则校验
  */
 const validateRules = computed(() => {
-  function run(list: IWidgetItem[]) {
+  function run(list: IWidgetItemOmitComponent[]) {
     return list.reduce((pre, item) => {
       if (item.children && item.type !== 'form') {
         pre = run(item.children)

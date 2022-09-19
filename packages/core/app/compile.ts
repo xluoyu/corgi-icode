@@ -7,16 +7,6 @@ import { isString } from '@vueuse/core'
 import type { IWidgetItem } from '@corgi-icode/core'
 import { objectToString } from '@corgi-icode/core'
 import { curLibName, libStorage } from './state'
-//  import { validateFn, validates } from './validate'
-//  const templates = import.meta.glob('./components/*/template.ts', { eager: true })
-
-//  export const CodeTemplate: Record<
-//     string, renderWidgetCode
-//   > = Object.entries(templates).reduce((res, [key, cur]) => {
-//     const _key = key.match(/components\/(\S*)\//)![1]
-//     res[_key] = cur.default
-//     return res
-//   }, {} as Record<string, any>)
 
 let validateFn: null | Function = null
 /**
@@ -27,7 +17,6 @@ let validateFn: null | Function = null
 export function compileCode(widgetList: IWidgetItem[]) {
   const renderComponents = libStorage[curLibName.value]!.renderComponent
 
-  console.log(renderComponents)
   const formDataObj: Record<string, any> = {} // formData的对象
   const widgetVariableList: Record<string, any> = {} // 各个模块产生的私有变量
   const validateList: Record<string, any> = {} // 校验列表
@@ -38,7 +27,7 @@ export function compileCode(widgetList: IWidgetItem[]) {
     let resStr = ''
 
     widgetList.forEach((widget) => {
-      if (!renderComponents[widget.type])
+      if (!renderComponents[widget.component])
         return
 
       const formValue = Object.entries(widget.form).reduce((pre, [key, cur]) => {
@@ -48,7 +37,7 @@ export function compileCode(widgetList: IWidgetItem[]) {
 
       let childrenStr = ''
 
-      const itemStrData = renderComponents[widget.type].renderCodeTemplate(formValue, formDataName)
+      const itemStrData = renderComponents[widget.component].renderCodeTemplate(formValue, formDataName)
 
       // 如果当前是form组件，将formData放入formDataObj中
       if (widget.type === 'form') {

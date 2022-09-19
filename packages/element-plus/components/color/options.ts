@@ -1,7 +1,7 @@
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import IonColorPalette from '~icons/ion/color-palette'
 
-const data: IWidgetItem = {
+const data: IWidgetItemOmitComponent = {
   title: '取色器',
   type: 'color',
   key: '',

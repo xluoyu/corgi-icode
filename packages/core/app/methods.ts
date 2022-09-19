@@ -173,7 +173,6 @@ export async function changeLib(key: ILibsName) {
   }
 
   if (lib) {
-    console.log(lib)
     curLibName.value = key
     menu.value = lib.Menu
     defaultTemplateList.value = lib.TemplateList
@@ -191,7 +190,6 @@ async function loadComponent(componentName: string) {
     if (window.app.component(componentName)) // 如果已经注册过则不需要再注册
       return
     const { default: component } = await libStorage[curLibName.value]!.Components[componentName]()
-
     libStorage[curLibName.value]!.renderComponent[componentName] = component
     window.app.component(componentName, component)
     if (component.dependents) {

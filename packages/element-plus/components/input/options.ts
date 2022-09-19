@@ -3,10 +3,10 @@
  * @Author: xluoyu
  * @LastEditTime: 2022-08-18 09:50:14
  */
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import IconoirInputField from '~icons/iconoir/input-field'
 
-export default <IWidgetItem> {
+export default <IWidgetItemOmitComponent> {
   title: '输入框',
   type: 'input',
   key: '',

@@ -3,10 +3,10 @@
  * @Author: xluoyu
  * @LastEditTime: 2022-08-24 21:00:24
  */
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import IconParkOutlineFormOne from '~icons/icon-park-outline/form-one'
 
-export default <IWidgetItem> {
+export default <IWidgetItemOmitComponent> {
   title: '表单',
   type: 'form',
   key: '',

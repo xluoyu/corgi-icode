@@ -5,11 +5,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import { cloneNewWidget, curCloneWidgetKey } from '@corgi-icode/core'
 import colOptions from '../col/options'
 const props = defineProps<{
-  item: IWidgetItem
+  item: IWidgetItemOmitComponent
 }>()
 
 const showType = inject('showType')

@@ -1,12 +1,11 @@
-import type { IWidgetItem } from '@corgi-icode/core'
+import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
 import CilAvTimer from '~icons/cil/av-timer'
 
-const data: IWidgetItem = {
+const data: IWidgetItemOmitComponent = {
   title: '时间选择器',
   type: 'time',
   key: '',
   icon: CilAvTimer,
-  component: 'cg-time',
   form: {
     _key: {
       label: '绑定key',
