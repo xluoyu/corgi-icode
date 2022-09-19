@@ -6,9 +6,9 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "pnpm run -C packages/ui dev",
-    "build": "pnpm run -C packages/ui build",
-    "preview": "pnpm run -C packages/ui preview",
+    "dev": "npm run -C packages/ui dev",
+    "build": "npm run -C packages/ui build",
+    "preview": "npm run -C packages/ui preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint . --fix",
