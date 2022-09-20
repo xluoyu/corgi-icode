@@ -21,6 +21,8 @@ export default <renderWidgetCode> function(options: Record<string, any>, _formDa
     formData: {
       [options._key]: options.value,
     },
-    template: `<el-input v-model="${_formDataName}.${options._key}" type="textarea" ${attrsStr} />`,
+    template: `<el-form-item label="${options.label}" prop="${options._key}">
+    <el-input v-model="${_formDataName}.${options._key}" type="textarea" ${attrsStr} />
+    </el-form-item>`,
   }
 }

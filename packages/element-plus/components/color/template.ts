@@ -12,7 +12,10 @@ const run: renderWidgetCode = (options, _formDataName) => {
     formData: {
       [options._key]: options.value,
     },
-    template: `<el-color-picker ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''} ${attrsStr} />`,
+    template: `<el-form-item label="${options.label}" prop="${options._key}">
+    <el-color-picker ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''} ${attrsStr} />
+    </el-form-item>`,
+
   }
 }
 

@@ -72,7 +72,7 @@ function save() {
 .code-box{
   background: var(--theme-bg);
   color: var(--theme-color);
-  width: 100%;
+  width: 95%;
   max-height: 260px;
   overflow: auto;
 }

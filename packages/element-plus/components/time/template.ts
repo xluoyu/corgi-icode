@@ -26,7 +26,9 @@ const run: renderWidgetCode = (options, _formDataName) => {
     formData: {
       [options._key]: options.value,
     },
-    template: `<el-time-picker ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}${attrsStr} ${otherAttrsStr} />`,
+    template: `<el-form-item label="${options.label}" prop="${options._key}">
+    <el-time-picker ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}${attrsStr} ${otherAttrsStr} />
+    </el-form-item>`,
   }
 }
 

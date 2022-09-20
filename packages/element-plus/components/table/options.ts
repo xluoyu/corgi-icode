@@ -11,7 +11,6 @@ const data: IWidgetItemOmitComponent = {
   type: 'table',
   key: '',
   icon: markRaw(MaterialSymbolsTableChartOutline),
-  component: 'cg-table',
   noForm: true,
   children: [],
   form: {
@@ -32,11 +31,6 @@ const data: IWidgetItemOmitComponent = {
           name: '张三',
           age: 18,
           address: '北京市朝阳区',
-        },
-        {
-          name: '李四',
-          age: 19,
-          address: '北京市海淀区',
         },
       ],
     },

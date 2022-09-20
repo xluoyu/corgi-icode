@@ -32,13 +32,23 @@ body,
 }
 
 .handle-comp {
-  border: 1px dashed transparent;
   position: relative;
+}
+.handle-comp::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  border: 1px dashed transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
 }
 .handle-comp .handleArea {
   display: none;
 }
-.handle-comp.handle-comp--active {
+.handle-comp.handle-comp--active::after {
   border-color: var(--el-color-primary) !important;
 }
 .handle-comp.handle-comp--active > .handleArea {

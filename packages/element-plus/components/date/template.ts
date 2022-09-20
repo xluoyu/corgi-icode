@@ -29,7 +29,9 @@ const run: renderWidgetCode = (options, _formDataName) => {
         ? options.value.split(',')
         : options.value,
     },
-    template: `<el-date-picker ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}${attrsStr} ${otherAttrsStr} />`,
+    template: `<el-form-item label="${options.label}" prop="${options._key}">
+    <el-date-picker ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}${attrsStr} ${otherAttrsStr} />
+    </el-form-item>`,
   }
 }
 

@@ -35,9 +35,11 @@ const run: renderWidgetCode = (options, _formDataName) => {
     formData: {
       [options._key]: options.value,
     },
-    template: `<el-select ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}${attrsStr}>
+    template: `<el-form-item label="${options.label}" prop="${options._key}">
+    <el-select ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}${attrsStr}>
         ${optionsStr}
-      </el-select>`,
+      </el-select>
+    </el-form-item>`,
     privateVar,
   }
 }

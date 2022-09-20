@@ -147,6 +147,7 @@ export function returnData(): IWidgetItem[] {
   return cloneDeep(widgetList.value)
 }
 
+// 删除当前活跃组件
 export function removeActionWidget() {
   if (!curActionWidget.value)
     return

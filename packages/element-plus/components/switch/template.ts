@@ -12,10 +12,12 @@ const run: renderWidgetCode = (options, _formDataName) => {
     formData: {
       [options._key]: options.value,
     },
-    template: `<el-switch
+    template: `<el-form-item label="${options.label}" prop="${options._key}">
+    <el-switch
         ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}
         ${attrsStr}
-      />`,
+      />
+    </el-form-item>`,
   }
 }
 
