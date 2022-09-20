@@ -31,7 +31,7 @@ const options = computed(() =>
 )
 
 // 判断是否在form之下
-const formFn: any = inject('formData')
+const formFn: any = inject('formData') || {}
 
 const update = (data: any) => {
   if (!props.disUpdate) {

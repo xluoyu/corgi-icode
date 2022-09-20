@@ -16,6 +16,7 @@ export interface IWidgetItem {
   noForm?: boolean // 是否为form下组件
   children?: IWidgetItem[]
   parent?: string
+  validateFn?: Function
   updateDataFn?: () => void // 用来更新组件内的数据
 }
 

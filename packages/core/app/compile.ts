@@ -47,7 +47,7 @@ export function compileCode(widgetList: IWidgetItem[]) {
           [`${itemStrData.formDataName}Rules`]: {},
         })
 
-        validateFn = renderComponents.form.validateFn
+        validateFn = widget.validateFn || null
       }
 
       // 如果是form组件下的子组件，合并当前的formData
