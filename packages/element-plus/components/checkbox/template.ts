@@ -25,11 +25,13 @@ const run: renderWidgetCode = (options, _formDataName) => {
     formData: {
       [options._key]: options.value.split(','),
     },
-    template: `<el-checkbox-group
+    template: `<el-form-item label="${options.label}" prop="${options._key}">
+    <el-checkbox-group
     ${_formDataName ? `v-model="${_formDataName}.${options._key} "` : ''}
       >
         ${optionsStr}
-      </el-checkbox-group>`,
+      </el-checkbox-group>
+    </el-form-item>`,
     privateVar,
   }
 }
