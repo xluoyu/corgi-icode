@@ -6,7 +6,7 @@
 export default `
 <template>
   <el-card
-    :style="{ '--el-card-bg-color': background, '--el-card-padding': '10px' }"
+    :style="{ '--el-card-bg-color': background, '--el-card-padding': '10px', 'margin-bottom': '10px' }"
   >
     <template #header>
       <slot name="header">

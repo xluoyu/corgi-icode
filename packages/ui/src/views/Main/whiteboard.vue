@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { removeActionWidget, widgetList } from '@corgi-icode/core'
+import { changeLib, curLibName, removeActionWidget, widgetList } from '@corgi-icode/core'
 
 provide('showType', 'whiteboard') // 显示状态为白板
 provide('formData', null)
@@ -23,4 +23,6 @@ document.addEventListener('keydown', (event) => {
     removeActionWidget()
   }
 })
+
+changeLib(curLibName.value)
 </script>

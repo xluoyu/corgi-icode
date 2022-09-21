@@ -200,5 +200,3 @@ async function loadComponent(componentName: string) {
     console.log(err)
   }
 }
-
-changeLib(curLibName.value)

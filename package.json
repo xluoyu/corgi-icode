@@ -65,11 +65,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xluoyu/code-run.git"
+    "url": "git+https://github.com/xluoyu/corgi-icode.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/xluoyu/code-run/issues"
+    "url": "https://github.com/xluoyu/corgi-icode/issues"
   },
-  "homepage": "https://github.com/xluoyu/code-run#readme"
+  "homepage": "https://corgi-icode.netlify.app/"
 }

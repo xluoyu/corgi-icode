@@ -5,6 +5,7 @@
  */
 import type { ILibsName } from '../libs'
 import type { ILibReturnType, IMenu, ITemplate, IWidgetItem } from '../type'
+import { findWidgetItem } from './methods'
 
 // 白板上的默认数据
 const defaultWidgetList: IWidgetItem[] = [
@@ -68,6 +69,13 @@ export const curActionWidget = computed(() => {
     return null
   }
   return widgetListFlat.value[activeWidgetKey.value]
+})
+
+/**
+ * 当前活跃的组件的父级
+ */
+export const curActionWidgetParentChildren = computed(() => {
+  return curActionWidget.value?.parent ? findWidgetItem(curActionWidget.value.parent).children! : widgetList.value
 })
 
 /**
