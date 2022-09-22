@@ -49,12 +49,10 @@ const activeCurComp = () => {
 const cls = computed(() => [
   'handle-comp',
   {
-    'handle-comp--active':
-      curActionWidget.value?.key === props.item.key,
+    'handle-comp--active': curActionWidget.value?.key === props.item.key,
   },
   {
-    'inline-block':
-      props.item.form?.inline?.value || getParentForm(props.item)?.form.inline.value,
+    'inline-block': props.item.form?.inline?.value || getParentForm(props.item)?.form.inline.value,
   },
 ])
 

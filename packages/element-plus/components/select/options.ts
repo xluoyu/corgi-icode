@@ -1,7 +1,7 @@
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import OcticonMultiSelect16 from '~icons/octicon/multi-select-16'
 
-const data: IWidgetItemOmitComponent = {
+const data: IWidgetItem = {
   title: '下拉框',
   type: 'select',
   key: '',

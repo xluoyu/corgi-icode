@@ -1,7 +1,7 @@
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import MdiFormatText from '~icons/mdi/format-text'
 
-const data: IWidgetItemOmitComponent = {
+const data: IWidgetItem = {
   title: '文字',
   type: 'text',
   key: '',

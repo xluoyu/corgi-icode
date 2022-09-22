@@ -1,7 +1,7 @@
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import RiBankCardLine from '~icons/ri/bank-card-line'
 
-const data: IWidgetItemOmitComponent = {
+const data: IWidgetItem = {
   title: '卡片',
   type: 'card',
   key: '',

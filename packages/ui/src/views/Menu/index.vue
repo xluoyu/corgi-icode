@@ -116,8 +116,6 @@ const templateList = getTemplateList(defaultTemplateList)
 
 watch(menu, () => {
   if (menu.value) {
-    console.log(defaultTemplateList.value)
-
     actionCollapse.value = menu.value.slice(0, 2).map(e => e.title)
   }
 })

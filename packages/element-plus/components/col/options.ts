@@ -1,6 +1,6 @@
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 
-const data: IWidgetItemOmitComponent = {
+const data: IWidgetItem = {
   title: 'col',
   type: 'col',
   key: '',

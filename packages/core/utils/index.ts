@@ -94,7 +94,7 @@ export function objectToString(obj: any): string {
  * @returns
  */
 export async function importLibs(key: ILibsName) {
-  let res: ILibReturnType | null = null
+  let res = null
   // if (process.env.NODE_ENV === 'production') {
   // 用于调用npm的cdn
   // res = await fetch().then(res => res.json())
@@ -109,11 +109,11 @@ export async function importLibs(key: ILibsName) {
     res = await libs.find(e => e.name === key)!.import()
     // import(`../../${key}/index.ts`)
   } catch (e) {
-    alert(`未找到${key}组件库`)
+    // alert(`未找到${key}组件库`)
     errorMsg('未找到指定组件库', '@corgi-icode/core/utils')
   }
   // }
-  return res
+  return res as any as ILibReturnType
 }
 
 export const formatArrt = (attr: string, value: any) => {

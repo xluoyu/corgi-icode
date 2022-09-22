@@ -1,7 +1,7 @@
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import RadixIconsDividerHorizontal from '~icons/radix-icons/divider-horizontal'
 
-const data: IWidgetItemOmitComponent = {
+const data: IWidgetItem = {
   title: '分割线',
   type: 'divider',
   key: '',

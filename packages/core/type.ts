@@ -4,13 +4,13 @@
  * @LastEditTime: 2022-08-24 20:57:24
  */
 import type { FunctionalComponent, SVGAttributes } from 'vue'
-import type widgetOptions from '../ui/src/enum/widgetOptions'
+import type widgetOptions from '@corgi-icode/ui/src/enum/widgetOptions'
 
 export interface IWidgetItem {
   title: string // 标题
   type: string // 组件类型，需要与组件名称保持一致
   icon?: FunctionalComponent<SVGAttributes, {}>
-  component: string // 调用组件名称
+  component?: string // 调用组件名称
   key: string // 自动生成的key
   form: IWidgetItemForm // 属性配置
   noForm?: boolean // 是否为form下组件
@@ -19,8 +19,6 @@ export interface IWidgetItem {
   validateFn?: Function
   updateDataFn?: () => void // 用来更新组件内的数据
 }
-
-export type IWidgetItemOmitComponent = Omit<IWidgetItem, 'component'>
 
 export type IWidgetItemForm = Record<
   string,

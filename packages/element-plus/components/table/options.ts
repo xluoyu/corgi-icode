@@ -3,10 +3,10 @@
  * @Author: xluoyu
  * @LastEditTime: 2022-08-12 16:48:14
  */
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import MaterialSymbolsTableChartOutline from '~icons/material-symbols/table-chart-outline'
 
-const data: IWidgetItemOmitComponent = {
+const data: IWidgetItem = {
   title: '表格',
   type: 'table',
   key: '',

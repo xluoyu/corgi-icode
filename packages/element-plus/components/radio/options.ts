@@ -1,7 +1,7 @@
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import IcOutlineRadioButtonChecked from '~icons/ic/outline-radio-button-checked'
 
-const data: IWidgetItemOmitComponent = {
+const data: IWidgetItem = {
   title: '单选',
   type: 'radio',
   key: '',

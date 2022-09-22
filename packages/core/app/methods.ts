@@ -172,7 +172,6 @@ export async function changeLib(key: ILibsName) {
   } else {
     lib = libStorage[key]!
   }
-
   if (lib) {
     curLibName.value = key
     menu.value = lib.Menu

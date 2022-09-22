@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="formData" :rules="validateRules" class="w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs" :inline="inline">
+  <el-form :model="formData" :rules="validateRules" class="!w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs" :inline="inline">
     <DraggableArea :list="item.children" class="min-h-[50px]" :class="{'inline-block': inline}" :item-key="item.key" empty="表单区域">
       <template #default="{ item: _item }">
         <RenderComp :item="_item" />
@@ -17,16 +17,21 @@
 </template>
 
 <script lang='ts' setup>
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import { cloneNewWidget, curCloneWidgetKey, getFormData, mixinValue } from '@corgi-icode/core'
 import inputOptions from '../input/options'
+import { optionsWithComponent } from '../index'
 import validateFn from './validate'
 
 const showType = inject('showType')
 
 const props = defineProps<{
-  item: IWidgetItemOmitComponent
+  item: IWidgetItem
   inline: boolean
+  formType: {
+    type: String
+    default: 'form'
+  }
 }>()
 
 const formData = reactive<any>({})
@@ -46,13 +51,17 @@ provide('formData', {
   },
 })
 
-const submit = () => {}
+const submit = () => {
+
+}
 const reset = () => {
   // updateFormData
 }
 
 onMounted(() => {
   if (showType === 'whiteboard' && !props.item.children!.length) {
+    inputOptions.component = optionsWithComponent('input')
+
     props.item.children!.push(
       Object.assign(cloneNewWidget(inputOptions), { parent: props.item.key }),
     )
@@ -84,7 +93,7 @@ const formAttrs = computed(() => {
  * 规则校验
  */
 const validateRules = computed(() => {
-  function run(list: IWidgetItemOmitComponent[]) {
+  function run(list: IWidgetItem[]) {
     return list.reduce((pre, item) => {
       if (item.children && item.type !== 'form') {
         pre = run(item.children)

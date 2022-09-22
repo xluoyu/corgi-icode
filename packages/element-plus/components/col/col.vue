@@ -33,11 +33,11 @@
 
 <script lang="ts" setup>
 import { Back, CopyDocument, Delete } from '@element-plus/icons-vue'
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import { activeWidgetKey, cloneNewWidget, curActionWidget, findWidgetItem } from '@corgi-icode/core'
 import colOptions from './options'
 const props = defineProps<{
-  item: IWidgetItemOmitComponent
+  item: IWidgetItem
 }>()
 
 const showType = inject('showType')

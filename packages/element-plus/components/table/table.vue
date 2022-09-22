@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-// import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+// import type { IWidgetItem } from '@corgi-icode/core'
 defineProps<{
   columns: { label: string; prop: string; [x: string]: any }[]
 }>()

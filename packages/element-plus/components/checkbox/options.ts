@@ -1,7 +1,7 @@
-import type { IWidgetItemOmitComponent } from '@corgi-icode/core'
+import type { IWidgetItem } from '@corgi-icode/core'
 import IonCheckbox from '~icons/ion/checkbox'
 
-const data: IWidgetItemOmitComponent = {
+const data: IWidgetItem = {
   title: '多选',
   type: 'checkbox',
   key: '',

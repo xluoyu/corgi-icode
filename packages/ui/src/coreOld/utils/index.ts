@@ -98,7 +98,7 @@ export async function importLibs(key: string) {
 
     res = await import(`../../../../${key}/index.ts`)
   }
-  console.log(res)
+
   return {
     Menu: res.Menu,
     TemplateList: res.TemplateList,

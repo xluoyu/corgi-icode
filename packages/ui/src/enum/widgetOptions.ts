@@ -178,6 +178,19 @@ export default {
       },
     ],
   },
+  formTypeSelect: {
+    component: 'CgSelect',
+    options: [
+      {
+        label: '普通表单',
+        value: 'form',
+      },
+      {
+        label: '数据筛选',
+        value: 'filter',
+      },
+    ],
+  },
   dateTypeSelect: {
     component: 'CgSelect',
     options: [
