@@ -5,7 +5,8 @@
  */
 import { createApp } from 'vue'
 import lowcodeComponents from '@corgi-icode/core/components/index'
-import 'virtual:windi.css'
+// import 'virtual:windi.css'
+import 'uno.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import './styles/main.css'
 import App from './App.vue'
@@ -14,4 +15,5 @@ const app = createApp(App)
 app.use(lowcodeComponents)
 app.use(FormComponents)
 app.mount('#app')
+
 window.app = app

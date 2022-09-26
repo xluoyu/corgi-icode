@@ -10,6 +10,10 @@ body,
   user-select: none;
 }
 
+div{
+  box-sizing: border-box;
+}
+
 .noBorder {
   border: none;
 }

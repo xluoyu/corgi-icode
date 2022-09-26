@@ -11,10 +11,12 @@ import Vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import WindiCSS from 'vite-plugin-windicss'
+// import WindiCSS from 'vite-plugin-windicss'
 import Icons from 'unplugin-icons/vite'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import visualizer from 'rollup-plugin-visualizer'
+import Unocss from 'unocss/vite'
+// import { presetUno } from 'unocss'
 // import commonjs from 'rollup-plugin-commonjs'
 // import externalGlobals from 'rollup-plugin-external-globals'
 
@@ -45,7 +47,15 @@ const plugins = [
     autoInstall: true,
   }),
 
-  WindiCSS(),
+  Unocss({
+    // presets: [
+    // presetUno(),
+    // ...custom presets
+    // ],
+    shortcuts: [
+      ['full', 'w-full h-full'],
+    ],
+  }),
 ]
 
 // 打包生产环境才引入的插件

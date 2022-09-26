@@ -31,7 +31,7 @@
               >
                 <template #item="{ element }">
                   <div
-                    class="cursor-pointer w-[48%] mb-3 flex justify-start items-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)"
+                    class="cursor-pointer w-[48%] mb-3 flex justify-start items-center border border-$el-border-color py-1 px-2 rounded-md hover:border-$el-color-primary hover:text-$el-color-primary"
                   >
                     <component
                       :is="element.icon"
@@ -56,7 +56,7 @@
           <div
             v-for="item in templateList"
             :key="item.key"
-            class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:(border-$el-color-primary text-$el-color-primary)"
+            class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:border-$el-color-primary hover:text-$el-color-primary"
             @click="renderTemplate(item)"
           >
             <el-popover
