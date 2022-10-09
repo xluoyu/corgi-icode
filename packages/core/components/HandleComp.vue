@@ -36,7 +36,7 @@
 <script lang="ts" setup>
 import { Back, Bottom, Delete, Rank, Top } from '@element-plus/icons-vue'
 import type { IWidgetItem } from '../type'
-import { activeWidgetKey, curActionWidget, curActionWidgetParentChildren, getParentForm } from '../index'
+import { activeWidgetKey, curActionWidget, findWidgetItem, getParentForm, widgetList } from '../index'
 
 const props = defineProps<{
   item: IWidgetItem
@@ -63,10 +63,23 @@ const sortBtn = reactive({
 })
 
 /**
+ * 当前活跃的组件的父级
+ */
+const curActionWidgetParent = computed(() => curActionWidget.value?.parent ? findWidgetItem(curActionWidget.value.parent) : null)
+
+const parentChild = computed(() => {
+  return curActionWidgetParent.value ? curActionWidgetParent.value.children! : widgetList.value
+})
+
+// const parentChild = computed(() => {
+//   const parent = findWidgetItem(props.item.parent!)
+//   return parent ? parent.children! : widgetList.value
+// })
+/**
  * 计算当前组件需要展示的排序按钮
  */
 watch(
-  () => curActionWidgetParentChildren.value.length,
+  () => parentChild.value.length,
   () => {
     const parent = props.item.parent || null
     function setTopAndBtm(index: number, list: any[]) {
@@ -74,7 +87,7 @@ watch(
       sortBtn.top = index !== 0
       sortBtn.btm = index < list.length - 1
     }
-    setTopAndBtm(curActionWidgetParentChildren.value.indexOf(props.item), curActionWidgetParentChildren.value)
+    setTopAndBtm(parentChild.value.indexOf(props.item), parentChild.value)
   },
   { immediate: true, deep: true },
 )
@@ -95,10 +108,10 @@ const sortLeftClick = () => {
  * 与上一个组件交换位置
  */
 const sortTopClick = () => {
-  const oldIndex = curActionWidgetParentChildren.value.indexOf(props.item)
-  ;[curActionWidgetParentChildren.value[oldIndex], curActionWidgetParentChildren.value[oldIndex - 1]] = [
-    curActionWidgetParentChildren.value[oldIndex - 1],
-    curActionWidgetParentChildren.value[oldIndex],
+  const oldIndex = parentChild.value.indexOf(props.item)
+  ;[parentChild.value[oldIndex], parentChild.value[oldIndex - 1]] = [
+    parentChild.value[oldIndex - 1],
+    parentChild.value[oldIndex],
   ]
 }
 
@@ -106,10 +119,10 @@ const sortTopClick = () => {
  * 与下一个组件交换位置
  */
 const sortBtmClick = () => {
-  const oldIndex = curActionWidgetParentChildren.value.indexOf(props.item)
-  ;[curActionWidgetParentChildren.value[oldIndex], curActionWidgetParentChildren.value[oldIndex + 1]] = [
-    curActionWidgetParentChildren.value[oldIndex + 1],
-    curActionWidgetParentChildren.value[oldIndex],
+  const oldIndex = parentChild.value.indexOf(props.item)
+  ;[parentChild.value[oldIndex], parentChild.value[oldIndex + 1]] = [
+    parentChild.value[oldIndex + 1],
+    parentChild.value[oldIndex],
   ]
 }
 
@@ -117,8 +130,8 @@ const sortBtmClick = () => {
  * 移除当前组件
  */
 const removeCurItem = () => {
-  const oldIndex = curActionWidgetParentChildren.value.indexOf(props.item)
-  curActionWidgetParentChildren.value.splice(oldIndex, 1)
+  const oldIndex = parentChild.value.indexOf(props.item)
+  parentChild.value.splice(oldIndex, 1)
 }
 </script>
 

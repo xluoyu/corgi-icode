@@ -1,6 +1,7 @@
 <template>
   <div class="h-full flex-1">
     <Tools />
+
     <el-scrollbar class="overflow-auto !h-[calc(100%-2rem)]">
       <Whiteboard />
     </el-scrollbar>

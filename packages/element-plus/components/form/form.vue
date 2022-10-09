@@ -25,14 +25,13 @@ import validateFn from './validate'
 
 const showType = inject('showType')
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   item: IWidgetItem
   inline: boolean
-  formType: {
-    type: String
-    default: 'form'
-  }
-}>()
+  formType: string
+}>(), {
+  formType: 'form',
+})
 
 const formData = reactive<any>({})
 
