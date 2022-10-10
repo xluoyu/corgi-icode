@@ -27,3 +27,5 @@ export const ComponentsOptions = Object.entries(import.meta.glob('./*/options.ts
     [componentName]: (val as any).default as IWidgetItem,
   }
 }, {}) as Record<string, IWidgetItem>
+
+console.log(ComponentsOptions)

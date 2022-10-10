@@ -236,4 +236,8 @@ export default {
     component: 'CgCode',
     name: '模拟数据',
   },
+  listOptions: {
+    component: 'CgList',
+    name: '数据列表',
+  },
 } as const

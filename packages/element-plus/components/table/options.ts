@@ -16,12 +16,19 @@ const data: IWidgetItem = {
   form: {
     columns: {
       label: '列表',
-      type: 'selectOptions',
-      value: [
-        { label: '名称', value: 'name' },
-        { label: '年龄', value: 'age' },
-        { label: '地址', value: 'address' },
-      ],
+      type: 'listOptions',
+      value: {
+        姓名: 'name',
+        // eslint-disable-next-line no-template-curly-in-string
+        年龄: '${age}岁',
+        职业: ({ row }: any) => {
+          return `${row.age}岁的${row.jb}`
+        },
+        性别: 'sex',
+        地址: 'address',
+        专业: 'major',
+        学历: 'study',
+      },
     },
     data: {
       label: '数据',
@@ -30,7 +37,11 @@ const data: IWidgetItem = {
         {
           name: '张三',
           age: 18,
-          address: '北京市朝阳区',
+          jb: '前端',
+          sex: '男',
+          address: '北京市海淀区望江东路123号北京市海淀区望江东路123号北京市海淀区望江东路123号',
+          major: '计算机技术',
+          study: '哈弗大学毕业-研究及上',
         },
       ],
     },

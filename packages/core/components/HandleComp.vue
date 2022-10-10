@@ -65,7 +65,7 @@ const sortBtn = reactive({
 /**
  * 当前活跃的组件的父级
  */
-const curActionWidgetParent = computed(() => curActionWidget.value?.parent ? findWidgetItem(curActionWidget.value.parent) : null)
+const curActionWidgetParent = computed(() => props.item?.parent ? findWidgetItem(props.item.parent) : null)
 
 const parentChild = computed(() => {
   return curActionWidgetParent.value ? curActionWidgetParent.value.children! : widgetList.value

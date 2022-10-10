@@ -49,13 +49,15 @@ if (import.meta.vitest) {
  */
 export function prettyFormat(code: any) {
   try {
+    // console.log(code)
     for (const key in code) {
+      console.log(key)
       if (typeof code[key] === 'function') {
-        let str = code[key]
-        str = str.toString()
-        code[key] = str.replace(/\n/g, '<br/>')
+        const str = code[key]
+        code[key] = unescape(`${str}`.replaceAll(/\\\u/gi, '%u'))
       }
     }
+    // console.log(code['职业'])
     // 设置缩进为2个空格
     let str = JSON.stringify(code, null, 2)
     str = str

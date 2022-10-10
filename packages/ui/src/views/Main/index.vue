@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full flex-1">
+  <div class="h-full w-[calc(100vw-600px)] overflow-hidden">
     <Tools />
 
     <el-scrollbar class="overflow-auto !h-[calc(100%-2rem)]">

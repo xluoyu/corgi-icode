@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
     CgCode: typeof import('./src/components/form/CgCode.vue')['default']
     CgColor: typeof import('./src/components/form/CgColor.vue')['default']
     CgInput: typeof import('./src/components/form/CgInput.vue')['default']
+    CgList: typeof import('./src/components/form/CgList.vue')['default']
     CgOptions: typeof import('./src/components/form/CgOptions.vue')['default']
     CgSelect: typeof import('./src/components/form/CgSelect.vue')['default']
     CgSwitch: typeof import('./src/components/form/CgSwitch.vue')['default']

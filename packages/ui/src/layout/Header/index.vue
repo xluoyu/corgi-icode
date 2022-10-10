@@ -36,10 +36,10 @@
         <a
           href="https://github.com/xluoyu/corgi-lowcode"
           target="__blank"
-          class="cursor-pointer ml-4 leading-0"
+          class="cursor-pointer ml-4 leading-0 color-$theme-color"
         >
           <el-icon :size="20">
-            <AkarIconsGithubFill />
+            <MdiGithub />
           </el-icon>
         </a>
       </el-col>
@@ -54,8 +54,8 @@ import { libs } from '@corgi-icode/core/libs'
 import { ArrowDown } from '@element-plus/icons-vue'
 import { changeLib, curLibName } from '@corgi-icode/core'
 import IcBaselineWbSunny from '~icons/ic/baseline-wb-sunny'
-import AkarIconsGithubFill from '~icons/akar-icons/github-fill'
 import BiCloudMoonFill from '~icons/bi/cloud-moon-fill'
+import MdiGithub from '~icons/mdi/github'
 // import type { ILocale } from '@/composables'
 import { isDark, toggleDark } from '@/composables'
 // const { locale: curLocale } = useI18n()

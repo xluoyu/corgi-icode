@@ -25,6 +25,7 @@
 
 <script lang='ts' setup>
 import { editor } from 'monaco-editor/esm/vs/editor/editor.api.js'
+import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution'
 import { prettyFormat } from '@/utils'
 import { isDark } from '@/composables'
 const props = defineProps<{
@@ -45,7 +46,7 @@ function openCodeEmitDialog() {
   nextTick(() => {
     editorInstance = editor.create(document.getElementById('codeEdit') as HTMLElement, {
       value: dataString.value,
-      language: 'json',
+      language: 'javascript',
       theme: isDark.value ? 'vs-dark' : 'vs',
       automaticLayout: true,
       renderLineHighlight: 'all',
