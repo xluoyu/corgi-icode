@@ -14,6 +14,11 @@ const data: IWidgetItem = {
   noForm: true,
   children: [],
   form: {
+    _key: {
+      label: '数据源',
+      type: 'input',
+      value: 'tableData',
+    },
     columns: {
       label: '列表',
       type: 'listOptions',
@@ -21,9 +26,6 @@ const data: IWidgetItem = {
         姓名: 'name',
         // eslint-disable-next-line no-template-curly-in-string
         年龄: '${age}岁',
-        职业: ({ row }: any) => {
-          return `${row.age}岁的${row.jb}`
-        },
         性别: 'sex',
         地址: 'address',
         专业: 'major',
@@ -55,7 +57,16 @@ const data: IWidgetItem = {
       type: 'switch',
       value: false,
     },
-
+    hasPagination: {
+      label: '需要分页',
+      type: 'switch',
+      value: true,
+    },
+    pageSize: {
+      label: '每页个数',
+      type: 'inputNumer',
+      value: 20,
+    },
   },
 }
 

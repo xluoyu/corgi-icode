@@ -51,7 +51,6 @@ export function prettyFormat(code: any) {
   try {
     // console.log(code)
     for (const key in code) {
-      console.log(key)
       if (typeof code[key] === 'function') {
         const str = code[key]
         code[key] = unescape(`${str}`.replaceAll(/\\\u/gi, '%u'))

@@ -57,12 +57,12 @@ export function objectToString(obj: any): string {
     return `[${obj.map(item => objectToString(item)).join(', ')}]`
   }
 
-  if (obj instanceof Object) {
-    return `{${Object.entries(obj).map(([key, cur]) => `${key}: ${cur ? `${objectToString(cur)}` : '\'\''}`).join(', ')}}`
-  }
-
   if (typeof obj === 'boolean' || typeof obj === 'number' || typeof obj === 'function') {
     return `${obj}`
+  }
+
+  if (obj instanceof Object) {
+    return `{${Object.entries(obj).map(([key, cur]) => `${key}: ${cur ? `${objectToString(cur)}` : '\'\''}`).join(', ')}}`
   }
 
   if (typeof obj === 'string' && obj.includes(') => {')) {

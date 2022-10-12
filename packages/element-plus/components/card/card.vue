@@ -10,7 +10,7 @@
     <template #header>
       <slot name="header">
         <div class="flex justify-between items-center">
-          <span class="pl-1">{{ title }}</span>
+          <span class="pl-1">{{ header }}</span>
           <el-button
             v-if="collapse"
             class="button"
@@ -50,7 +50,7 @@
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import type { IWidgetItem } from '@corgi-icode/core'
 defineProps<{
-  title: string
+  header: string
   collapse: boolean
   background: string
   item: IWidgetItem

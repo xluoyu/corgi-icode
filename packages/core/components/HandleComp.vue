@@ -79,7 +79,7 @@ const parentChild = computed(() => {
  * 计算当前组件需要展示的排序按钮
  */
 watch(
-  () => parentChild.value.length,
+  () => parentChild.value,
   () => {
     const parent = props.item.parent || null
     function setTopAndBtm(index: number, list: any[]) {

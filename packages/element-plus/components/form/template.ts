@@ -19,10 +19,28 @@ export default <renderWidgetCode> function(
   const formDataName = option._key || _formDataName
 
   return {
-    template: (children: string) => `<el-form :model="${formDataName}" ${attrsStr} :rules='${formDataName}Rules'>${children}</el-form>`,
+    template: (children: string) => `<el-form :model="${formDataName}" ${attrsStr} :rules='${formDataName}Rules'>
+      ${children}
+      <el-form-item>
+        <el-button type="primary" @click="submit">
+          ${option.formType === 'form' ? '提交' : '搜索'}
+        </el-button>
+        <el-button @click="reset">
+          重置
+        </el-button>
+      </el-form-item>
+    </el-form>`,
     formData: {
       [formDataName]: {},
     },
     formDataName,
+    privateVar: {
+      submit: `() => {
+        console.log(${formDataName})
+      }`,
+      reset: `() => {
+        console.log('重置')
+      }`,
+    },
   }
 }

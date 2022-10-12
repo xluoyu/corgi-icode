@@ -10,7 +10,7 @@ const data: IWidgetItem = {
   noForm: true,
   children: [],
   form: {
-    title: {
+    header: {
       label: '标题',
       type: 'input',
       value: '标题',

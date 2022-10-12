@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="formData" :rules="validateRules" class="!w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs" :inline="inline">
+  <el-form ref="formRef" :model="formData" :rules="validateRules" class="!w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs" :inline="inline">
     <DraggableArea :list="item.children" class="min-h-[50px]" :class="{'inline-block': inline}" :item-key="item.key" empty="表单区域">
       <template #default="{ item: _item }">
         <RenderComp :item="_item" />
@@ -7,7 +7,7 @@
     </DraggableArea>
     <el-form-item>
       <el-button type="primary" @click="submit">
-        提交
+        {{ formType === 'form' ? '提交' : '搜索' }}
       </el-button>
       <el-button @click="reset">
         重置
@@ -19,6 +19,7 @@
 <script lang='ts' setup>
 import type { IWidgetItem } from '@corgi-icode/core'
 import { cloneNewWidget, curCloneWidgetKey, getFormData, mixinValue } from '@corgi-icode/core'
+import type { FormInstance } from 'element-plus'
 import inputOptions from '../input/options'
 import { optionsWithComponent } from '../index'
 import validateFn from './validate'
@@ -49,13 +50,6 @@ provide('formData', {
     formData[data.key] = data.value
   },
 })
-
-const submit = () => {
-
-}
-const reset = () => {
-  // updateFormData
-}
 
 onMounted(() => {
   if (showType === 'whiteboard' && !props.item.children!.length) {
@@ -125,5 +119,22 @@ const validateRules = computed(() => {
 
   return run(props.item.children!)
 })
+
+const formRef = ref<FormInstance>()
+
+const submit = () => {
+  if (Object.keys(validateRules.value).length) {
+    formRef.value?.validate((valid) => {
+      if (valid) {
+        console.log(formData)
+      }
+    })
+  } else {
+    console.log(formData)
+  }
+}
+const reset = () => {
+  console.log('重置')
+}
 
 </script>

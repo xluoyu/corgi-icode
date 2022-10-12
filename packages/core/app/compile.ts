@@ -22,12 +22,12 @@ export function compileCode(widgetList: IWidgetItem[]) {
   const validateList: Record<string, any> = {} // 校验列表
   const importList: Record<string, any> = {} // 引入列表
   const fileList: Record<string, any> = {} // 文件列表
+  console.log(renderComponents)
 
   function eachList(widgetList: IWidgetItem[], formDataName?: string) {
     let resStr = ''
-
     widgetList.forEach((widget) => {
-      if (!renderComponents[widget.component])
+      if (!widget.component || !renderComponents[widget.component])
         return
 
       const formValue = Object.entries(widget.form).reduce((pre, [key, cur]) => {
@@ -36,7 +36,6 @@ export function compileCode(widgetList: IWidgetItem[]) {
       }, {} as Record<string, any>)
 
       let childrenStr = ''
-
       const itemStrData = renderComponents[widget.component].renderCodeTemplate(formValue, formDataName)
 
       // 如果当前是form组件，将formData放入formDataObj中
@@ -157,7 +156,11 @@ export function compileCode(widgetList: IWidgetItem[]) {
    */
   const validateListStr = Object.entries(validateList).reduce(
     (pre, [key, cur]) => {
-      return `${pre}\nconst ${key} = ${objectToString(cur)}`
+      if (Object.keys(cur).length) {
+        return `${pre}\nconst ${key} = ${objectToString(cur)}`
+      } else {
+        return pre
+      }
     },
     '',
   )
@@ -168,14 +171,13 @@ export function compileCode(widgetList: IWidgetItem[]) {
     },
     '',
   )
-
   const baseTemplate = `
     <template>
       ${templateStr}
     </template>
     
     <script setup>
-    ${importListStr}${formDataStr}${widgetVariableStr}${Object.keys(validateList).length ? validateListStr : ''}
+    ${importListStr}${formDataStr}${validateListStr}${widgetVariableStr}
     </script>
     `
 

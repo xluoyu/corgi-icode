@@ -8,7 +8,4 @@
 import Layout from './layout/index.vue'
 import Index from './views/index.vue'
 
-const test = h('div')
-
-console.log(test)
 </script>

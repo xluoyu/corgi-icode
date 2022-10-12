@@ -1,4 +1,5 @@
 import { cloneDeep } from 'lodash-es'
+import { nextTick } from 'vue'
 import type { ILibReturnType, IWidgetItem } from '../type'
 import { errorMsg, importLibs } from '../utils'
 import type { ILibsName } from '../libs'
