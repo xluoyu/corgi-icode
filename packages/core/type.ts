@@ -42,6 +42,7 @@ export type renderWidgetCode = (options: Record<string, any>, formDataName: stri
   importList?: Record<string, any> // 组件内的引入列表
   componentName?: string // 组件名称
   componentTemplate?: string // 私有组件的模板
+  hooks?: Record<string, any>
 }
 
 /**

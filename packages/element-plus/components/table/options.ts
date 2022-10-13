@@ -26,10 +26,7 @@ const data: IWidgetItem = {
         姓名: 'name',
         // eslint-disable-next-line no-template-curly-in-string
         年龄: '${age}岁',
-        性别: 'sex',
         地址: 'address',
-        专业: 'major',
-        学历: 'study',
       },
     },
     data: {
@@ -39,11 +36,7 @@ const data: IWidgetItem = {
         {
           name: '张三',
           age: 18,
-          jb: '前端',
-          sex: '男',
-          address: '北京市海淀区望江东路123号北京市海淀区望江东路123号北京市海淀区望江东路123号',
-          major: '计算机技术',
-          study: '哈弗大学毕业-研究及上',
+          address: '浙江省杭州市西湖区断桥景点旁第三棵树下',
         },
       ],
     },

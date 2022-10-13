@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash-es'
 import type { IWidgetItem } from '../type'
 
 /**
@@ -12,7 +13,7 @@ export const historyWidgetList = ref<IWidgetItem[][]>([[]])
  * @param list
  */
 export function addHistoryWidgetList(list: IWidgetItem[]) {
-  historyWidgetList.value.push(list)
+  historyWidgetList.value.push(cloneDeep(list))
   if (historyWidgetList.value.length > historyMaxStep) {
     historyWidgetList.value.shift()
   }

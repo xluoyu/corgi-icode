@@ -5,7 +5,7 @@ import componentTemplate from './componentTemplate'
 const run: renderWidgetCode = (
   options: Record<string, any>,
 ) => {
-  const attrs = ['title', 'collapse', 'background']
+  const attrs = ['header', 'collapse', 'background']
   const attrsStr = attrs
     .map(attr => formatArrt(`${attr}`, options[attr]))
     .filter(Boolean)

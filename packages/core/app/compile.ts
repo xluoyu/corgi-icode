@@ -109,12 +109,6 @@ export function compileCode(widgetList: IWidgetItem[]) {
         templateStr = itemStrData.template
       }
 
-      // if (!widget.noForm) {
-      //   templateStr = `<el-form-item label="${formValue.label}"${formOptions && formOptions.validate ? `prop="${formValue._key}"` : ''}>
-      //       ${templateStr}
-      //     </el-form-item>`
-      // }
-
       // 如果当前组件有私有模板，添加到文件列表中
       if (itemStrData.componentTemplate && itemStrData.componentName) {
         fileList[itemStrData.componentName] = itemStrData.componentTemplate
@@ -130,14 +124,14 @@ export function compileCode(widgetList: IWidgetItem[]) {
     return resStr
   }
 
-  const templateStr = eachList(widgetList)
+  let templateStr = eachList(widgetList)
 
   /**
      * formdata
      */
   const formDataStr = Object.entries(formDataObj).reduce(
     (pre, [key, cur]) => {
-      return `${pre}\nconst ${key} = reactive(${objectToString(cur)})`
+      return `${pre}\nconst ${key} = reactive(${objectToString(cur)})\n`
     },
     '',
   )
@@ -147,7 +141,7 @@ export function compileCode(widgetList: IWidgetItem[]) {
    */
   const widgetVariableStr = Object.entries(widgetVariableList).reduce(
     (pre, [key, cur]) => {
-      return `${pre}\nconst ${key} = ${objectToString(cur)}`
+      return `${pre}\n const ${key} = ${objectToString(cur)} \n`
     },
     '',
   )
@@ -157,8 +151,9 @@ export function compileCode(widgetList: IWidgetItem[]) {
   const validateListStr = Object.entries(validateList).reduce(
     (pre, [key, cur]) => {
       if (Object.keys(cur).length) {
-        return `${pre}\nconst ${key} = ${objectToString(cur)}`
+        return `${pre}\nconst ${key} = ${objectToString(cur)}\n`
       } else {
+        templateStr = templateStr.replace(`:rules='${key}'`, '')
         return pre
       }
     },
@@ -167,7 +162,7 @@ export function compileCode(widgetList: IWidgetItem[]) {
 
   const importListStr = Object.entries(importList).reduce(
     (pre, [key, cur]) => {
-      return `${pre}\nimport ${isString(cur) ? cur : `{${cur.join(', ')}}`} from '${key}'`
+      return `${pre}\nimport ${isString(cur) ? cur : `{${cur.join(', ')}}`} from '${key}' \n`
     },
     '',
   )

@@ -36,6 +36,7 @@ export default <renderWidgetCode> function(
     formDataName,
     privateVar: {
       submit: `() => {
+        
         console.log(${formDataName})
       }`,
       reset: `() => {

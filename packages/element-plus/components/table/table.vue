@@ -28,11 +28,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { VNodeRef } from 'vue'
+import type { VNode, VNodeRef } from 'vue'
 // import type { IWidgetItem } from '@corgi-icode/core'
 const props = defineProps<{
   data: Array<any>
-  columns: Record<string, any>
+  columns: Record<string, string>
   stripe: boolean
   border: boolean
   hasPagination: boolean
@@ -49,7 +49,7 @@ watch(() => [props.data, props.columns], () => {
 
 const tableColumns = computed(() => {
   return Object.keys(props.columns).map((key) => {
-    let value = props.columns[key]
+    let value: string | ((arg0: any) => VNode) = props.columns[key]
     // 字符内有参数，用正则做一下替换
     if (value.includes('${')) {
       const reg = /\$\{(.+?)\}/g

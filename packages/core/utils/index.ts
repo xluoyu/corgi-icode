@@ -65,7 +65,7 @@ export function objectToString(obj: any): string {
     return `{${Object.entries(obj).map(([key, cur]) => `${key}: ${cur ? `${objectToString(cur)}` : '\'\''}`).join(', ')}}`
   }
 
-  if (typeof obj === 'string' && obj.includes(') => {')) {
+  if (typeof obj === 'string' && obj.includes('(')) {
     return `${obj}`
   }
 

@@ -61,8 +61,8 @@
           >
             <el-popover
               placement="right"
-              width="600px"
               :offset="20"
+              width="500"
               :show-after="500"
             >
               <template #reference>
@@ -70,12 +70,12 @@
                   <img
                     :src="item.photo"
                     alt=""
-                    class="object-cover max-h-160px mx-auto"
+                    class="object-cover max-h-160px mx-auto block"
                   >
                   {{ item.title }}
                 </div>
               </template>
-              <img :src="item.photo" alt="" class="mx-auto">
+              <img :src="item.photo" alt="" class="mx-auto w-[500px]">
             </el-popover>
           </div>
         </el-scrollbar>
