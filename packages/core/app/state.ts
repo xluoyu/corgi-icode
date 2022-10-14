@@ -58,7 +58,7 @@ export const curCloneWidgetKey = ref<string>('') // 当前克隆的组件key
 /**
  * 菜单
  */
-export const curLibName = ref<ILibsName>('naive-ui')
+export const curLibName = ref<ILibsName>('element-plus')
 export const menu = ref<IMenu>([])
 export const defaultTemplateList = ref<ITemplate>([])
 
