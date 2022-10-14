@@ -9,11 +9,11 @@ export const libs = [
     icon: 'https://element-plus.org/images/element-plus-logo-small.svg',
     import: () => import('../element-plus'),
   },
-  {
-    name: 'naive-ui',
-    icon: 'https://www.naiveui.com/assets/naivelogo.93278402.svg',
-    import: () => import('../naive-ui'),
-  },
+  // {
+  //   name: 'naive-ui',
+  //   icon: 'https://www.naiveui.com/assets/naivelogo.93278402.svg',
+  //   import: () => import('../naive-ui'),
+  // },
 ] as const
 
 // export const libsCDN = {
