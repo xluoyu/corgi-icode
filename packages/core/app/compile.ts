@@ -22,11 +22,11 @@ export function compileCode(widgetList: IWidgetItem[]) {
   const validateList: Record<string, any> = {} // 校验列表
   const importList: Record<string, any> = {} // 引入列表
   const fileList: Record<string, any> = {} // 文件列表
-  console.log(renderComponents)
 
   function eachList(widgetList: IWidgetItem[], formDataName?: string) {
     let resStr = ''
     widgetList.forEach((widget) => {
+      console.log(widget)
       if (!widget.component || !renderComponents[widget.component])
         return
 
@@ -40,10 +40,11 @@ export function compileCode(widgetList: IWidgetItem[]) {
 
       // 如果当前是form组件，将formData放入formDataObj中
       if (widget.type === 'form') {
-        Object.assign(formDataObj, itemStrData.formData)
+        formDataName = itemStrData.formDataName as string
 
+        Object.assign(formDataObj, { [formDataName]: {} })
         Object.assign(validateList, {
-          [`${itemStrData.formDataName}Rules`]: {},
+          [`${formDataName}Rules`]: {},
         })
 
         validateFn = widget.validateFn || null
@@ -99,7 +100,7 @@ export function compileCode(widgetList: IWidgetItem[]) {
          * 如果有子节点，则递归调用
          */
       if (widget.children) {
-        childrenStr = eachList(widget.children, widget.type === 'form' ? itemStrData.formDataName : undefined)
+        childrenStr = eachList(widget.children, formDataName || undefined)
       }
       let templateStr = ''
 

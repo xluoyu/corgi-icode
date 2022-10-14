@@ -7,40 +7,49 @@ import type { renderWidgetCode } from '@corgi-icode/core'
 import { formatArrt } from '@corgi-icode/core'
 
 export default <renderWidgetCode> function(
-  option,
+  options,
   _formDataName,
 ) {
   const attrs = ['inline', 'label-width', 'label-position', 'size']
   const attrsStr = attrs
-    .map(attr => formatArrt(`${attr}`, option[attr]))
+    .map(attr => formatArrt(`${attr}`, options[attr]))
     .filter(Boolean)
     .join(' ')
 
-  const formDataName = option._key || _formDataName
+  const formDataName = options._key || _formDataName
+
+  let filterStr = ''
+  if (options.formType === 'filter') {
+    filterStr = `
+      Object.assgin(tableSearch, ${formDataName})
+      getTableList()
+    `
+  }
 
   return {
-    template: (children: string) => `<el-form :model="${formDataName}" ${attrsStr} :rules='${formDataName}Rules'>
+    template: (children: string) => `<el-form ref="${`${formDataName}Ref`}" :model="${formDataName}" ${attrsStr} :rules='${formDataName}Rules'>
       ${children}
       <el-form-item>
         <el-button type="primary" @click="submit">
-          ${option.formType === 'form' ? '提交' : '搜索'}
+          ${options.formType === 'form' ? '提交' : '搜索'}
         </el-button>
         <el-button @click="reset">
           重置
         </el-button>
       </el-form-item>
     </el-form>`,
-    formData: {
-      [formDataName]: {},
-    },
     formDataName,
     privateVar: {
+      [`${formDataName}Ref`]: 'ref(null)',
       submit: `() => {
-        
-        console.log(${formDataName})
+        ${`${formDataName}Ref`}.value.validate((valid) => {
+          if (!valid) return
+          console.log(${formDataName})
+          ${filterStr}
+        })
       }`,
       reset: `() => {
-        console.log('重置')
+        ${`${formDataName}Ref`}.value.resetFields()
       }`,
     },
   }

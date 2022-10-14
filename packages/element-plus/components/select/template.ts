@@ -14,6 +14,14 @@ const run: renderWidgetCode = (options, _formDataName) => {
     .join('\n')
   const privateVar: Record<string, any> = {}
   let optionsStr = ''
+  const cOptions = Object.assign({}, options.options)
+
+  options.options = Object.keys(cOptions).map((key) => {
+    return {
+      label: key,
+      value: cOptions[key],
+    }
+  })
   if (options.options.length >= 3) {
     optionsStr = `<el-option
           v-for="item in ${options._key}SelectList"

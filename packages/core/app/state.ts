@@ -6,33 +6,13 @@
 import type { ILibsName } from '../libs'
 import type { ILibReturnType, IMenu, ITemplate, IWidgetItem } from '../type'
 
-// 白板上的默认数据
-const defaultWidgetList: IWidgetItem[] = [
-  // {
-  //   children: [],
-  //   form: {
-  //     'dataName': { label: '数据对象', type: 'input', value: '' },
-  //     'inline': { label: '行内模式', type: 'switch', value: false },
-  //     'label-position': { label: '标签位置', type: 'labelPosition', value: 'left' },
-  //     'label-width': { label: '标签宽度', type: 'input', value: 'auto' },
-  //     'size': { label: '组件大小', type: 'formSize', value: 'default' },
-  //     'style.width': { label: '表单宽度', type: 'input', value: '' },
-  //     'validate': { label: '开启验证', type: 'switch', value: false },
-  //   },
-  //   key: 'form_0',
-  //   noForm: true,
-  //   title: '表单',
-  //   type: 'form',
-  // },
-]
-
 // 组件计数
-export const uuId = ref(defaultWidgetList.length)
+export const uuId = ref(0)
 
 /**
  * 白板上的组件列表
  */
-export const widgetList = ref<IWidgetItem[]>(defaultWidgetList)
+export const widgetList = ref<IWidgetItem[]>([])
 
 /**
  * 当前活跃的组件key
@@ -78,7 +58,7 @@ export const curCloneWidgetKey = ref<string>('') // 当前克隆的组件key
 /**
  * 菜单
  */
-export const curLibName = ref<ILibsName>('element-plus')
+export const curLibName = ref<ILibsName>('naive-ui')
 export const menu = ref<IMenu>([])
 export const defaultTemplateList = ref<ITemplate>([])
 

@@ -96,9 +96,6 @@ export default {
     defaultFirstOption: true,
     filterable: true,
   },
-  selectOptions: {
-    component: 'CgOptions',
-  },
   resizeSelect: {
     component: 'CgSelect',
     options: [
@@ -239,5 +236,55 @@ export default {
   listOptions: {
     component: 'CgList',
     name: '数据列表',
+  },
+  naiveButton: {
+    component: 'CgSelect',
+    options: [
+      {
+        label: '默认',
+        value: 'default',
+      },
+      {
+        label: '确认',
+        value: 'primary',
+      },
+      {
+        label: '取消',
+        value: 'info',
+      },
+      {
+        label: '警告',
+        value: 'warning',
+      },
+      {
+        label: '危险',
+        value: 'error',
+      },
+      {
+        label: '成功',
+        value: 'success',
+      },
+    ],
+    naiveSize: {
+      component: 'CgSelect',
+      options: [
+        {
+          label: '默认',
+          value: 'medium',
+        },
+        {
+          label: '最小',
+          value: 'tiny',
+        },
+        {
+          label: '小',
+          value: 'small',
+        },
+        {
+          label: '大',
+          value: 'large',
+        },
+      ],
+    },
   },
 } as const

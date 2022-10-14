@@ -3,7 +3,7 @@ import { nextTick } from 'vue'
 import type { ILibReturnType, IWidgetItem } from '../type'
 import { errorMsg, importLibs } from '../utils'
 import type { ILibsName } from '../libs'
-import { addHistoryWidgetList } from './history'
+import { addHistoryWidgetList, historyWidgetList } from './history'
 import { activeWidgetKey, curActionWidget, curCloneWidgetKey, curLibName, defaultTemplateList, libStorage, menu, uuId, widgetList, widgetListFlat } from './state'
 import { injectSchedulerCbs } from './scheduler'
 
@@ -163,6 +163,9 @@ export function removeActionWidget() {
  * @param key 组件库名称
  */
 export async function changeLib(key: ILibsName) {
+  widgetList.value = []
+  historyWidgetList.value = [[]]
+
   let lib: ILibReturnType | null = null
   if (!libStorage[key]) {
     lib = await importLibs(key)

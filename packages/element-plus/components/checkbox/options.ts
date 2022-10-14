@@ -24,12 +24,17 @@ const data: IWidgetItem = {
     },
     options: {
       label: '选项配置',
-      type: 'selectOptions',
-      value: [
-        { label: '选项一', value: '1' },
-        { label: '选项二', value: '2' },
-        { label: '选项三', value: '3' },
-      ],
+      type: 'listOptions',
+      value: {
+        选项一: 1,
+        选项二: 2,
+        选项三: 3,
+      },
+    },
+    required: {
+      label: '必填',
+      type: 'switch',
+      value: false,
     },
   },
 }

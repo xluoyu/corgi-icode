@@ -4,6 +4,16 @@ import type { renderWidgetCode } from '@corgi-icode/core'
 const run: renderWidgetCode = (options, _formDataName) => {
   const privateVar: Record<string, any> = {}
   let optionsStr = ''
+
+  const cOptions = Object.assign({}, options.options)
+
+  options.options = Object.keys(cOptions).map((key) => {
+    return {
+      label: key,
+      value: cOptions[key],
+    }
+  })
+
   if (options.options.length >= 3) {
     optionsStr = `<el-checkbox
           v-for="item in ${options._key}SelectList"

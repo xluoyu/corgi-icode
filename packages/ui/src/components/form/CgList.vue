@@ -49,6 +49,7 @@ function openCodeEmitDialog() {
     editorInstance = editor.create(document.getElementById('listEdit') as HTMLElement, {
       value: dataString.value,
       language: 'javascript',
+
       theme: isDark.value ? 'vs-dark' : 'vs',
       automaticLayout: true,
       renderLineHighlight: 'all',

@@ -5,6 +5,7 @@
  */
 import { ComponentsOptions } from './components/index'
 import BaseTemplate from './templates/base'
+import TableTemplate from './templates/table'
 
 export const Menu = [
   {
@@ -37,4 +38,5 @@ export const Menu = [
 
 export const TemplateList = [
   BaseTemplate,
+  TableTemplate,
 ]

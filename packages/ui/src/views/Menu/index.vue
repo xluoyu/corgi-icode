@@ -3,6 +3,41 @@
     <el-tabs tab-position="left" class="h-full aside-tabs">
       <el-tab-pane>
         <template #label>
+          <GgTemplate />
+        </template>
+        <h3 class="text-base py-2 text-$el-color-primary">
+          模板
+        </h3>
+        <el-scrollbar>
+          <div
+            v-for="item in templateList"
+            :key="item.key"
+            class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:border-$el-color-primary hover:text-$el-color-primary"
+            @click="renderTemplate(item)"
+          >
+            <el-popover
+              placement="right"
+              :offset="20"
+              width="500"
+              :show-after="500"
+            >
+              <template #reference>
+                <div>
+                  <img
+                    :src="item.photo"
+                    alt=""
+                    class="object-cover w-full h-160px mx-auto block"
+                  >
+                  {{ item.title }}
+                </div>
+              </template>
+              <img :src="item.photo" alt="" class="mx-auto w-[800px]">
+            </el-popover>
+          </div>
+        </el-scrollbar>
+      </el-tab-pane>
+      <el-tab-pane lazy>
+        <template #label>
           <GgComponents />
         </template>
         <h3 class="text-base py-2 text-$el-color-primary">
@@ -43,41 +78,6 @@
               </draggable>
             </el-collapse-item>
           </el-collapse>
-        </el-scrollbar>
-      </el-tab-pane>
-      <el-tab-pane lazy>
-        <template #label>
-          <GgTemplate />
-        </template>
-        <h3 class="text-base py-2 text-$el-color-primary">
-          模板
-        </h3>
-        <el-scrollbar>
-          <div
-            v-for="item in templateList"
-            :key="item.key"
-            class="cursor-pointer mb-3 text-center border border-$el-border-color py-1 px-2 rounded-md hover:border-$el-color-primary hover:text-$el-color-primary"
-            @click="renderTemplate(item)"
-          >
-            <el-popover
-              placement="right"
-              :offset="20"
-              width="500"
-              :show-after="500"
-            >
-              <template #reference>
-                <div>
-                  <img
-                    :src="item.photo"
-                    alt=""
-                    class="object-cover max-h-160px mx-auto block"
-                  >
-                  {{ item.title }}
-                </div>
-              </template>
-              <img :src="item.photo" alt="" class="mx-auto w-[500px]">
-            </el-popover>
-          </div>
         </el-scrollbar>
       </el-tab-pane>
       <el-tab-pane lazy>

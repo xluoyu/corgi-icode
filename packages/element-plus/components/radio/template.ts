@@ -4,6 +4,16 @@ import type { renderWidgetCode } from '@corgi-icode/core'
 const run: renderWidgetCode = (options, _formDataName) => {
   const privateVar: Record<string, any> = {}
   let optionsStr = ''
+
+  const cOptions = Object.assign({}, options.options)
+
+  options.options = Object.keys(cOptions).map((key) => {
+    return {
+      label: key,
+      value: cOptions[key],
+    }
+  })
+
   if (options.options.length >= 3) {
     optionsStr = `<el-radio
           v-for="item in ${options._key}SelectList"
@@ -23,7 +33,7 @@ const run: renderWidgetCode = (options, _formDataName) => {
 
   return {
     formData: {
-      [options._key]: options.value.split(','),
+      [options._key]: options.value,
     },
     template: `<el-form-item label="${options.label}" prop="${options._key}">
     <el-radio-group

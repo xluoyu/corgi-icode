@@ -32,7 +32,7 @@ export default <IWidgetItem> {
     'label-width': {
       label: '标签宽度',
       type: 'input',
-      value: 'auto',
+      value: '',
     },
     'label-position': {
       label: '标签位置',

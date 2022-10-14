@@ -22,6 +22,11 @@ const data: IWidgetItem = {
       type: 'input',
       value: '时间选择',
     },
+    required: {
+      label: '必填',
+      type: 'switch',
+      value: false,
+    },
     editable: {
       label: '可输入',
       type: 'switch',

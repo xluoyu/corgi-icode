@@ -31,9 +31,15 @@ const run: renderWidgetCode = (options, _formDataName) => {
   }, '')
 
   let pagination = ''
+  const paginationFn: Record<string, any> = {}
   if (options.hasPagination) {
     pagination = `
-  <el-pagination small background layout="prev, pager, next" :page-size="tableSearch.pageSize" :total="tableTotal"/>`
+  <el-pagination v-model:currentPage="tableSearch.currentPage" small background layout="prev, pager, next" :page-size="tableSearch.pageSize" :total="tableTotal" @current-change="handleCurrentChange"/>`
+
+    paginationFn.handleCurrentChange = `(val) => {
+      tableSearch.currentPage = val
+      getTableList()
+    }`
   }
 
   return {
@@ -41,6 +47,7 @@ const run: renderWidgetCode = (options, _formDataName) => {
       [options._key]: `ref(${objectToString(options.data)})`,
       tableSearch: `reactive({
         pageSize: options.pageSize,
+        currentPage: 0
       })`,
       tableTotal: 'ref(99)',
       getTableList: `() => {
@@ -50,10 +57,11 @@ const run: renderWidgetCode = (options, _formDataName) => {
           ${options._key}.value = res.data.list
         })
       }`,
+      ...paginationFn,
     },
     hooks: {
       onMounted: {
-        content: '',
+        content: 'getTableList()',
       },
     },
     template: `<el-table :data="${options._key}" ${attrsStr} style="margin-bottom: 20px">
