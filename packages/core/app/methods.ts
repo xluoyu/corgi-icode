@@ -5,7 +5,7 @@ import { errorMsg, importLibs } from '../utils'
 import type { ILibsName } from '../libs'
 import { addHistoryWidgetList, historyWidgetList } from './history'
 import { activeWidgetKey, curActionWidget, curCloneWidgetKey, curLibName, defaultTemplateList, libStorage, menu, uuId, widgetList, widgetListFlat } from './state'
-import { injectSchedulerCbs } from './scheduler'
+// import { injectSchedulerCbs } from './scheduler'
 
 /**
  * 查找组件
@@ -181,7 +181,8 @@ export async function changeLib(key: ILibsName) {
     curLibName.value = key
     menu.value = lib.Menu
     defaultTemplateList.value = lib.TemplateList
-    injectSchedulerCbs(Object.keys(lib.Components).map(e => async() => await loadComponent(e)))
+    Object.keys(lib.Components).forEach(loadComponent)
+    // injectSchedulerCbs(Object.keys(lib.Components).map(e => async() => await loadComponent(e)))
   }
 }
 
