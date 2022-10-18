@@ -7,5 +7,6 @@
   },
   "files.associations": {
     "*.css": "css"
-  }
+  },
+  "unocss.root": "packages/ui"
 }

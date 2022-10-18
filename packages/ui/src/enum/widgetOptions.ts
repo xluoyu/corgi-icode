@@ -91,7 +91,6 @@ export default {
       },
     ],
     placeholder: '选择预设，或输入正则',
-    tooltip: '请确保在表单配置中开启校验',
     allowCreate: true,
     defaultFirstOption: true,
     filterable: true,

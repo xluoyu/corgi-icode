@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-08-24 20:54:23
  */
 import type { ILibsName } from '../libs'
-import type { ILibReturnType, IMenu, ITemplate, IWidgetItem } from '../type'
+import type { ILibReturnType, IMenu, ITemplate, IWidgetItem, renderWidgetCode } from '../type'
 
 // 组件计数
 export const uuId = ref(0)
@@ -62,4 +62,4 @@ export const curLibName = ref<ILibsName>('element-plus')
 export const menu = ref<IMenu>([])
 export const defaultTemplateList = ref<ITemplate>([])
 
-export const libStorage: Partial<Record<ILibsName, ILibReturnType & { renderComponent: Record<string, any> }>> = {}
+export const libStorage: Partial<Record<ILibsName, ILibReturnType & { renderComponent: Record<string, { renderCodeTemplate: renderWidgetCode }> }>> = {}

@@ -20,7 +20,7 @@ const run: renderWidgetCode = (
     }
   } else {
     return {
-      template: (children: string) => `<el-card ${attrsStr}>${children}</el-card>`,
+      template: (children: string) => `<el-card ${attrsStr} style="margin-bottom: 20px">${children}</el-card>`,
     }
   }
 

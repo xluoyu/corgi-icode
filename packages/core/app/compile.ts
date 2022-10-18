@@ -15,18 +15,17 @@ let validateFn: null | Function = null
  * @returns
  */
 export function compileCode(widgetList: IWidgetItem[]) {
+  console.log(widgetList)
   const renderComponents = libStorage[curLibName.value]!.renderComponent
-
   const formDataObj: Record<string, any> = {} // formData的对象
   const widgetVariableList: Record<string, any> = {} // 各个模块产生的私有变量
   const validateList: Record<string, any> = {} // 校验列表
   const importList: Record<string, any> = {} // 引入列表
   const fileList: Record<string, any> = {} // 文件列表
-
+  let endScript = ''
   function eachList(widgetList: IWidgetItem[], formDataName?: string) {
     let resStr = ''
     widgetList.forEach((widget) => {
-      console.log(widget)
       if (!widget.component || !renderComponents[widget.component])
         return
 
@@ -75,7 +74,7 @@ export function compileCode(widgetList: IWidgetItem[]) {
           Object.assign(widgetVariableList, {
             [`${formValue._key}Validate`]: `${validateFn(formValue._key, formValue.validate)}`.replace(
               /_rule/g,
-                `${formValue._key}ValidateReg`,
+              formValue.validate,
             ).replace(/\$\{key\}/g, formValue._key),
           })
 
@@ -90,8 +89,8 @@ export function compileCode(widgetList: IWidgetItem[]) {
       }
 
       /**
-         * 添加各个模块的私有变量
-         */
+       * 添加各个模块的私有变量
+       */
       if (itemStrData.privateVar) {
         Object.assign(widgetVariableList, itemStrData.privateVar)
       }
@@ -117,6 +116,10 @@ export function compileCode(widgetList: IWidgetItem[]) {
 
       if (itemStrData.importList) {
         Object.assign(importList, itemStrData.importList)
+      }
+
+      if (itemStrData.endScript) {
+        endScript += itemStrData.endScript
       }
 
       resStr += templateStr
@@ -167,15 +170,16 @@ export function compileCode(widgetList: IWidgetItem[]) {
     },
     '',
   )
+
   const baseTemplate = `
     <template>
       ${templateStr}
     </template>
     
     <script setup>
-    ${importListStr}${formDataStr}${validateListStr}${widgetVariableStr}
+    ${importListStr + formDataStr + validateListStr + widgetVariableStr + endScript}
     </script>
-    `
+  `
 
   return {
     base: baseTemplate,

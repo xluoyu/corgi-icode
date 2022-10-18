@@ -59,11 +59,10 @@ const run: renderWidgetCode = (options, _formDataName) => {
       }`,
       ...paginationFn,
     },
-    hooks: {
-      onMounted: {
-        content: 'getTableList()',
-      },
-    },
+    endScript: `
+    onMounted(() => {
+      getTableList()
+    })`,
     template: `<el-table :data="${options._key}" ${attrsStr} style="margin-bottom: 20px">
       ${columns}
     </el-table>

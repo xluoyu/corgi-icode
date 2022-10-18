@@ -4,8 +4,7 @@
  * @LastEditTime: 2022-08-24 20:57:24
  */
 import type { FunctionalComponent, SVGAttributes } from 'vue'
-import type widgetOptions from '@corgi-icode/ui/src/enum/widgetOptions'
-
+import type IWidgetOptions from '../ui/src/enum/widgetOptions'
 export interface IWidgetItem {
   title: string // 标题
   type: string // 组件类型，需要与组件名称保持一致
@@ -16,7 +15,7 @@ export interface IWidgetItem {
   noForm?: boolean // 是否为form下组件
   children?: IWidgetItem[]
   parent?: string
-  validateFn?: Function
+  validateFn?: Function // 表单组件校验方法
   updateDataFn?: () => void // 用来更新组件内的数据
 }
 
@@ -24,7 +23,7 @@ export type IWidgetItemForm = Record<
   string,
   {
     label: string
-    type: keyof typeof widgetOptions
+    type: keyof typeof IWidgetOptions
     value: any
     isShow?: (options: any) => boolean
     changeCb?: (options: any) => void
@@ -34,7 +33,7 @@ export type IWidgetItemForm = Record<
 /**
  * 编译组件代码
  */
-export type renderWidgetCode = (options: Record<string, any>, formDataName: string) => {
+export type renderWidgetCode = (options: Record<string, any>, formDataName?: string) => {
   template: string | ((arg: string) => string)
   formData?: Record<string, any>
   privateVar?: Record<string, any> // 组件内的私有变量
@@ -42,7 +41,7 @@ export type renderWidgetCode = (options: Record<string, any>, formDataName: stri
   importList?: Record<string, any> // 组件内的引入列表
   componentName?: string // 组件名称
   componentTemplate?: string // 私有组件的模板
-  hooks?: Record<string, any>
+  endScript?: string // 其他代码 hooks等
 }
 
 /**
