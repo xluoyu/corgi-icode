@@ -27,6 +27,7 @@ importers:
       jsdom: ^19.0.0
       lint-staged: ^13.0.3
       lodash-es: ^4.17.21
+      pnpm: '3'
       rollup: ^2.79.0
       rollup-plugin-commonjs: ^10.1.0
       rollup-plugin-external-globals: ^0.6.1
@@ -65,6 +66,7 @@ importers:
       husky: 8.0.1
       jsdom: 19.0.0
       lint-staged: 13.0.3
+      pnpm: 3.8.1
       rollup: 2.79.0
       rollup-plugin-commonjs: 10.1.0_rollup@2.79.0
       rollup-plugin-external-globals: 0.6.1_rollup@2.79.0
@@ -4617,6 +4619,12 @@ packages:
   /pluralize/8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
+    dev: true
+
+  /pnpm/3.8.1:
+    resolution: {integrity: sha512-uINy/U+TNvUHInG1l0/NrgDosUtafn9BrHjP5+v+ojpw+zb/lgXjkQmMHB4461LKezlNoBb7+0JOrNnm5JhZFg==}
+    engines: {node: '>=8.15'}
+    hasBin: true
     dev: true
 
   /postcss-selector-parser/6.0.10:

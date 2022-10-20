@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "dev": "npm run -C packages/ui dev",
+    "prebuild": "[[ $CI = true ]] && npx pnpm@3 install -r --store=node_modules/.pnpm-store || echo skiping pnpm install",
     "build": "npm run build-ui",
     "build-element": "npm run -C packages/element-plus build",
     "build-ui": "npm run -C packages/ui build",
@@ -45,6 +46,7 @@
     "husky": "^8.0.1",
     "jsdom": "^19.0.0",
     "lint-staged": "^13.0.3",
+    "pnpm": "3",
     "rollup": "^2.79.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-external-globals": "^0.6.1",
