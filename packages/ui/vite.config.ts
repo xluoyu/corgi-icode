@@ -14,8 +14,10 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // import WindiCSS from 'vite-plugin-windicss'
 import Icons from 'unplugin-icons/vite'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
-import visualizer from 'rollup-plugin-visualizer'
+// import visualizer from 'rollup-plugin-visualizer'
 import Unocss from 'unocss/vite'
+// import progress from 'vite-plugin-progress'
+
 // import { presetUno } from 'unocss'
 // import commonjs from 'rollup-plugin-commonjs'
 // import externalGlobals from 'rollup-plugin-external-globals'
@@ -25,7 +27,7 @@ const plugins = [
   Vue({
     reactivityTransform: true,
   }),
-
+  // progress(),
   // https://github.com/antfu/unplugin-auto-import
   AutoImport({
     imports: ['vue', 'vue/macros', 'vue-router', '@vueuse/core'],
@@ -59,16 +61,16 @@ const plugins = [
 ]
 
 // 打包生产环境才引入的插件
-if (process.env.NODE_ENV === 'production') {
-  // 打包依赖展示
-  plugins.push(
-    visualizer({
-      open: true,
-      gzipSize: true,
-      brotliSize: true,
-    }),
-  )
-}
+// if (process.env.NODE_ENV === 'production') {
+//   // 打包依赖展示
+//   plugins.push(
+//     visualizer({
+//       open: true,
+//       gzipSize: true,
+//       brotliSize: true,
+//     }),
+//   )
+// }
 
 export default defineConfig({
   build: {

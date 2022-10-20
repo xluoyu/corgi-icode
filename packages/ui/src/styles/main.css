@@ -70,6 +70,8 @@ div{
   align-items: center;
   justify-content: center;
   height: 24px;
+  bottom: 0;
+  right: 0;
 }
 .handleArea > div {
   margin-left: 4px;

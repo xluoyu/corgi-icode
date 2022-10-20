@@ -7,7 +7,7 @@
   <el-table
     v-bind="$attrs"
     ref="tableRef"
-    class="mb-5"
+    style="margin-bottom: 20px"
     :data="data"
     :stripe="stripe"
     :border="border"

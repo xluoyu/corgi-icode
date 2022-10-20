@@ -1,7 +1,7 @@
 <template>
   <div :class="cls" @click.capture="activeCurComp">
     <slot />
-    <div class="handleArea bottom-0 right-0 text-light-50">
+    <div class="handleArea text-light-50">
       <div title="移动组件" class="moveArea">
         <i class="icon">
           <Rank />

@@ -14,7 +14,6 @@ export default `
           <span class="pl-1">{{ title }}</span>
           <el-button
             v-if="collapse"
-            class="button"
             text
             @click="collapseStatus = !collapseStatus"
           >
@@ -46,4 +45,15 @@ defineProps({
 
 const collapseStatus = ref(true)
 </script>
+
+<style scoped>
+.flex-center{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pl-1{
+  padding-left: 0.25rem;
+}
+</style>
 `

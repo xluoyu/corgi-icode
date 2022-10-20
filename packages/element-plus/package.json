@@ -4,7 +4,8 @@
   "description": "基于element-plus",
   "author": "xluoyu",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
   },
   "publishConfig": {
     "access": "public"
