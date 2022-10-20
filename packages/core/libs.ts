@@ -3,11 +3,20 @@
  * @Author: xluoyu
  * @LastEditTime: 2022-08-19 14:50:29
  */
+// const isProd = process.env.NODE_ENV === 'production'
+
 export const libs = [
   {
     name: 'element-plus',
     icon: 'https://element-plus.org/images/element-plus-logo-small.svg',
-    import: () => import('../element-plus'),
+    import: () => {
+      // if (isProd) {
+      //   import('../element-plus/dist/style.css')
+      //   return import('../element-plus/dist')
+      // } else {
+      return import('../element-plus/')
+      // }
+    },
   },
   // {
   //   name: 'naive-ui',

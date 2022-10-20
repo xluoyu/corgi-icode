@@ -9,11 +9,10 @@
   >
     <template #header>
       <slot name="header">
-        <div class="flex justify-between items-center">
+        <div class="flex-center">
           <span class="pl-1">{{ header }}</span>
           <el-button
             v-if="collapse"
-            class="button"
             text
             @click="collapseStatus = !collapseStatus"
           >
@@ -49,6 +48,7 @@
 <script lang="ts" setup>
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import type { IWidgetItem } from '@corgi-icode/core'
+
 defineProps<{
   header: string
   collapse: boolean
@@ -58,3 +58,14 @@ defineProps<{
 
 const collapseStatus = ref(true)
 </script>
+
+<style scoped>
+.flex-center{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pl-1{
+  padding-left: 0.25rem;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
-  <el-form ref="formRef" :model="formData" :rules="validateRules" class="!w-full h-full" :class="showType === 'whiteboard' ? 'border border-gray-400 border-dashed' : ''" v-bind="formAttrs" :inline="inline">
-    <DraggableArea :list="item.children" class="min-h-[50px]" :class="{'inline-block': inline}" :item-key="item.key" empty="表单区域">
+  <el-form ref="formRef" :model="formData" :rules="validateRules" :class="{border: showType === 'whiteboard'}" v-bind="formAttrs" :inline="inline">
+    <DraggableArea :list="item.children" :class="{'inline-block': inline}" :item-key="item.key" empty="表单区域">
       <template #default="{ item: _item }">
         <RenderComp :item="_item" />
       </template>
@@ -138,3 +138,12 @@ const reset = () => {
 }
 
 </script>
+
+<style scoped>
+.border{
+  border: 1px dashed #9ca3af;
+}
+.inline-block{
+  display: inline-block;
+}
+</style>

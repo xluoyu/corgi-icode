@@ -5,13 +5,13 @@
     style="border-color: rgb(74, 74, 74)"
     @click.capture="activeCurComp"
   >
-    <DraggableArea :list="item.children" class="min-h-[50px]" :item-key="item.key">
+    <DraggableArea :list="item.children" :item-key="item.key">
       <template #default="{ item:_item }">
         <RenderComp :item="_item" />
       </template>
     </DraggableArea>
 
-    <div class="handleArea bottom-0 right-0">
+    <div class="handleArea">
       <div title="父级组件" @click="sortLeftClick">
         <el-icon>
           <Back />
