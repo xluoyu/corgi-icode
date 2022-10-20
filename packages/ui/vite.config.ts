@@ -16,7 +16,7 @@ import Icons from 'unplugin-icons/vite'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 // import visualizer from 'rollup-plugin-visualizer'
 import Unocss from 'unocss/vite'
-import progress from 'vite-plugin-progress'
+// import progress from 'vite-plugin-progress'
 
 // import { presetUno } from 'unocss'
 // import commonjs from 'rollup-plugin-commonjs'
@@ -27,7 +27,7 @@ const plugins = [
   Vue({
     reactivityTransform: true,
   }),
-  progress(),
+  // progress(),
   // https://github.com/antfu/unplugin-auto-import
   AutoImport({
     imports: ['vue', 'vue/macros', 'vue-router', '@vueuse/core'],
