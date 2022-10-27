@@ -1,5 +1,5 @@
 <template>
-  <el-aside id="menu" class="h-full w-300px bg-$theme-bg pr-2">
+  <el-aside id="menu" class="h-full w-300px bg-$theme-bg pr-2 relative">
     <el-tabs tab-position="left" class="h-full aside-tabs">
       <el-tab-pane>
         <template #label>
@@ -98,6 +98,25 @@
         </el-scrollbar>
       </el-tab-pane>
     </el-tabs>
+
+    <!-- <el-button :icon="PhInfo" circle class="absolute bottom-4 left-3" @click="openInfoDialog" type="info"></el-button> -->
+    <PhInfo class="absolute bottom-4 left-4 text-xl cursor-pointer text-gray-400 hover:text-[var(--el-color-primary)]" @click="openInfoDialog"/>
+
+    <el-dialog v-model="infoDialog" title="About" width="500px">
+      <div class="text-center">
+        <img src="/logo.png" class="w-[120px]" alt="">
+        <h2>Corgi-ICode</h2>
+        <ul>
+          <li>🍄 此项目只是为练习而写的，如要使用，请认真检查所生成的代码。 🍄</li>
+          <li>🌼 如果对你有用，那真是太好啦~ 🌼</li>
+          <li>🍊 项目已开源，右上角即可看到（点个star呦）🍊</li>
+          <li>🎈 欢迎加我微信，共同学习哦~ 🎈</li>
+        </ul>
+
+        <img src="/wx.png" class="w-[200px]" alt="">
+        <p>（ 请备注来意哦 ）</p>
+      </div>
+    </el-dialog>
   </el-aside>
 </template>
 
@@ -110,6 +129,7 @@ import { getTemplateList } from '@/composables'
 import GgComponents from '~icons/gg/components'
 import GgTemplate from '~icons/gg/template'
 import CodiconListTree from '~icons/codicon/list-tree'
+import PhInfo from '~icons/ph/info'
 
 const actionCollapse = ref()
 const templateList = getTemplateList(defaultTemplateList)
@@ -127,6 +147,12 @@ const renderTemplate = (item: ITemplateOptions) => {
       uuId.value = item.uuId
     })
     .catch(() => {})
+}
+
+const infoDialog = ref(true)
+
+function openInfoDialog() {
+  infoDialog.value = true
 }
 
 const treeDefaultProps = {
@@ -187,5 +213,13 @@ const handleNodeClick = (data: IWidgetItem) => {
 }
 .aside-tabs .el-tab-pane .el-scrollbar {
   height: calc(100% - 40px);
+}
+
+ul {
+  padding: 0;
+}
+li{
+  list-style: none;
+  margin: 20px 0;
 }
 </style>
